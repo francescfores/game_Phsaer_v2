@@ -1,0 +1,57 @@
+{
+    "activeFile": "assets/maps/map.json",
+    "expandedProjectPaths": [
+        "assets",
+        "assets/maps",
+        "assets/atlas",
+        "."
+    ],
+    "file.lastUsedOpenFilter": "Todos los archivos (*)",
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/maps/map.json": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 849.3333333333333,
+                "y": 231.33333333333326
+            }
+        },
+        "assets/maps/map.json#collisions": {
+            "scaleInDock": 1
+        },
+        "assets/maps/map.json#test": {
+            "scaleInDock": 1
+        },
+        "assets/maps/map.json#tileset": {
+            "scaleInDock": 1
+        },
+        "assets/maps/test.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/maps/tiles-curious-factory.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "/home/fran/Descargas/Phaser project/Phaser project/assets/environment",
+    "openFiles": [
+        "assets/maps/tiles-curious-factory.tsx",
+        "assets/maps/map.json"
+    ],
+    "project": "sin nombre.tiled-project",
+    "recentFiles": [
+        "assets/maps/map.json",
+        "assets/maps/test.tsx",
+        "assets/maps/tiles-curious-factory.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
