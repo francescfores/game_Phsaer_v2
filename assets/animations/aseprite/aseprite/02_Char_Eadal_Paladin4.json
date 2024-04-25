@@ -1,0 +1,2225 @@
+{ "frames": {
+   "02_Char_Eadal_Paladin 0.ase": {
+    "frame": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 1.ase": {
+    "frame": { "x": 90, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 2.ase": {
+    "frame": { "x": 180, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 3.ase": {
+    "frame": { "x": 270, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 4.ase": {
+    "frame": { "x": 360, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 5.ase": {
+    "frame": { "x": 450, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 6.ase": {
+    "frame": { "x": 540, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 7.ase": {
+    "frame": { "x": 630, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 8.ase": {
+    "frame": { "x": 720, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 9.ase": {
+    "frame": { "x": 810, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 10.ase": {
+    "frame": { "x": 900, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 11.ase": {
+    "frame": { "x": 990, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 12.ase": {
+    "frame": { "x": 1080, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 13.ase": {
+    "frame": { "x": 1170, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 14.ase": {
+    "frame": { "x": 1260, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 15.ase": {
+    "frame": { "x": 1350, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 16.ase": {
+    "frame": { "x": 1440, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 17.ase": {
+    "frame": { "x": 1530, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 18.ase": {
+    "frame": { "x": 1620, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 19.ase": {
+    "frame": { "x": 1710, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 20.ase": {
+    "frame": { "x": 1800, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 21.ase": {
+    "frame": { "x": 1890, "y": 0, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 22.ase": {
+    "frame": { "x": 0, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 23.ase": {
+    "frame": { "x": 90, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 24.ase": {
+    "frame": { "x": 180, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 25.ase": {
+    "frame": { "x": 270, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 26.ase": {
+    "frame": { "x": 360, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 27.ase": {
+    "frame": { "x": 450, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 28.ase": {
+    "frame": { "x": 540, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 29.ase": {
+    "frame": { "x": 630, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 30.ase": {
+    "frame": { "x": 720, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 31.ase": {
+    "frame": { "x": 810, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 32.ase": {
+    "frame": { "x": 900, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 33.ase": {
+    "frame": { "x": 990, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 34.ase": {
+    "frame": { "x": 1080, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 35.ase": {
+    "frame": { "x": 1170, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 36.ase": {
+    "frame": { "x": 1260, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 37.ase": {
+    "frame": { "x": 1350, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 38.ase": {
+    "frame": { "x": 1440, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 39.ase": {
+    "frame": { "x": 1530, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 40.ase": {
+    "frame": { "x": 1620, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 41.ase": {
+    "frame": { "x": 1710, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 42.ase": {
+    "frame": { "x": 1800, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 43.ase": {
+    "frame": { "x": 1890, "y": 80, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 44.ase": {
+    "frame": { "x": 0, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 45.ase": {
+    "frame": { "x": 90, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 46.ase": {
+    "frame": { "x": 180, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 47.ase": {
+    "frame": { "x": 270, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 48.ase": {
+    "frame": { "x": 360, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 49.ase": {
+    "frame": { "x": 450, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 50.ase": {
+    "frame": { "x": 540, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 51.ase": {
+    "frame": { "x": 630, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 52.ase": {
+    "frame": { "x": 720, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 53.ase": {
+    "frame": { "x": 810, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 54.ase": {
+    "frame": { "x": 900, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 55.ase": {
+    "frame": { "x": 990, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 56.ase": {
+    "frame": { "x": 1080, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 57.ase": {
+    "frame": { "x": 1170, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 58.ase": {
+    "frame": { "x": 1260, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 59.ase": {
+    "frame": { "x": 1350, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 60.ase": {
+    "frame": { "x": 1440, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 61.ase": {
+    "frame": { "x": 1530, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 62.ase": {
+    "frame": { "x": 1620, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 63.ase": {
+    "frame": { "x": 1710, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 64.ase": {
+    "frame": { "x": 1800, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 65.ase": {
+    "frame": { "x": 1890, "y": 160, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 66.ase": {
+    "frame": { "x": 0, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 67.ase": {
+    "frame": { "x": 90, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 68.ase": {
+    "frame": { "x": 180, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 69.ase": {
+    "frame": { "x": 270, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 70.ase": {
+    "frame": { "x": 360, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 71.ase": {
+    "frame": { "x": 450, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 72.ase": {
+    "frame": { "x": 540, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 73.ase": {
+    "frame": { "x": 630, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 74.ase": {
+    "frame": { "x": 720, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 75.ase": {
+    "frame": { "x": 810, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 76.ase": {
+    "frame": { "x": 900, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 77.ase": {
+    "frame": { "x": 990, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 78.ase": {
+    "frame": { "x": 1080, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 79.ase": {
+    "frame": { "x": 1170, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 80.ase": {
+    "frame": { "x": 1260, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 81.ase": {
+    "frame": { "x": 1350, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 82.ase": {
+    "frame": { "x": 1440, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 83.ase": {
+    "frame": { "x": 1530, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 84.ase": {
+    "frame": { "x": 1620, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 85.ase": {
+    "frame": { "x": 1710, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 86.ase": {
+    "frame": { "x": 1800, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 87.ase": {
+    "frame": { "x": 1890, "y": 240, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 88.ase": {
+    "frame": { "x": 0, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 89.ase": {
+    "frame": { "x": 90, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 90.ase": {
+    "frame": { "x": 180, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 91.ase": {
+    "frame": { "x": 270, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 92.ase": {
+    "frame": { "x": 360, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 93.ase": {
+    "frame": { "x": 450, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 94.ase": {
+    "frame": { "x": 540, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 95.ase": {
+    "frame": { "x": 630, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 96.ase": {
+    "frame": { "x": 720, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 97.ase": {
+    "frame": { "x": 810, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 98.ase": {
+    "frame": { "x": 900, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 99.ase": {
+    "frame": { "x": 990, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 100.ase": {
+    "frame": { "x": 1080, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 101.ase": {
+    "frame": { "x": 1170, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 102.ase": {
+    "frame": { "x": 1260, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 103.ase": {
+    "frame": { "x": 1350, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 104.ase": {
+    "frame": { "x": 1440, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 105.ase": {
+    "frame": { "x": 1530, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 106.ase": {
+    "frame": { "x": 1620, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 107.ase": {
+    "frame": { "x": 1710, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 108.ase": {
+    "frame": { "x": 1800, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 109.ase": {
+    "frame": { "x": 1890, "y": 320, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 110.ase": {
+    "frame": { "x": 0, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 111.ase": {
+    "frame": { "x": 90, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 112.ase": {
+    "frame": { "x": 180, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 113.ase": {
+    "frame": { "x": 270, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 114.ase": {
+    "frame": { "x": 360, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 115.ase": {
+    "frame": { "x": 450, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 116.ase": {
+    "frame": { "x": 540, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 117.ase": {
+    "frame": { "x": 630, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 118.ase": {
+    "frame": { "x": 720, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 119.ase": {
+    "frame": { "x": 810, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 120.ase": {
+    "frame": { "x": 900, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 121.ase": {
+    "frame": { "x": 990, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 122.ase": {
+    "frame": { "x": 1080, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 123.ase": {
+    "frame": { "x": 1170, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 124.ase": {
+    "frame": { "x": 1260, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 125.ase": {
+    "frame": { "x": 1350, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 126.ase": {
+    "frame": { "x": 1440, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 127.ase": {
+    "frame": { "x": 1530, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 128.ase": {
+    "frame": { "x": 1620, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 129.ase": {
+    "frame": { "x": 1710, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 130.ase": {
+    "frame": { "x": 1800, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 131.ase": {
+    "frame": { "x": 1890, "y": 400, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 132.ase": {
+    "frame": { "x": 0, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 133.ase": {
+    "frame": { "x": 90, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 134.ase": {
+    "frame": { "x": 180, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 135.ase": {
+    "frame": { "x": 270, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 136.ase": {
+    "frame": { "x": 360, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 137.ase": {
+    "frame": { "x": 450, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 138.ase": {
+    "frame": { "x": 540, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 139.ase": {
+    "frame": { "x": 630, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 140.ase": {
+    "frame": { "x": 720, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 141.ase": {
+    "frame": { "x": 810, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 142.ase": {
+    "frame": { "x": 900, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 143.ase": {
+    "frame": { "x": 990, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 144.ase": {
+    "frame": { "x": 1080, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 145.ase": {
+    "frame": { "x": 1170, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 146.ase": {
+    "frame": { "x": 1260, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 147.ase": {
+    "frame": { "x": 1350, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 148.ase": {
+    "frame": { "x": 1440, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 149.ase": {
+    "frame": { "x": 1530, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 150.ase": {
+    "frame": { "x": 1620, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 151.ase": {
+    "frame": { "x": 1710, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 152.ase": {
+    "frame": { "x": 1800, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 153.ase": {
+    "frame": { "x": 1890, "y": 480, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 154.ase": {
+    "frame": { "x": 0, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 155.ase": {
+    "frame": { "x": 90, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 156.ase": {
+    "frame": { "x": 180, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 157.ase": {
+    "frame": { "x": 270, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 158.ase": {
+    "frame": { "x": 360, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 159.ase": {
+    "frame": { "x": 450, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 160.ase": {
+    "frame": { "x": 540, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 161.ase": {
+    "frame": { "x": 630, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 162.ase": {
+    "frame": { "x": 720, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 163.ase": {
+    "frame": { "x": 810, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 164.ase": {
+    "frame": { "x": 900, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 165.ase": {
+    "frame": { "x": 990, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 166.ase": {
+    "frame": { "x": 1080, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 167.ase": {
+    "frame": { "x": 1170, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 168.ase": {
+    "frame": { "x": 1260, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 169.ase": {
+    "frame": { "x": 1350, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 170.ase": {
+    "frame": { "x": 1440, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 171.ase": {
+    "frame": { "x": 1530, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 172.ase": {
+    "frame": { "x": 1620, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 173.ase": {
+    "frame": { "x": 1710, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 174.ase": {
+    "frame": { "x": 1800, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 175.ase": {
+    "frame": { "x": 1890, "y": 560, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 176.ase": {
+    "frame": { "x": 0, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 177.ase": {
+    "frame": { "x": 90, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 178.ase": {
+    "frame": { "x": 180, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 179.ase": {
+    "frame": { "x": 270, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 180.ase": {
+    "frame": { "x": 360, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 181.ase": {
+    "frame": { "x": 450, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 182.ase": {
+    "frame": { "x": 540, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 183.ase": {
+    "frame": { "x": 630, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 184.ase": {
+    "frame": { "x": 720, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 185.ase": {
+    "frame": { "x": 810, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 186.ase": {
+    "frame": { "x": 900, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 187.ase": {
+    "frame": { "x": 990, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 188.ase": {
+    "frame": { "x": 1080, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 189.ase": {
+    "frame": { "x": 1170, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 190.ase": {
+    "frame": { "x": 1260, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 191.ase": {
+    "frame": { "x": 1350, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 192.ase": {
+    "frame": { "x": 1440, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 193.ase": {
+    "frame": { "x": 1530, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 194.ase": {
+    "frame": { "x": 1620, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 195.ase": {
+    "frame": { "x": 1710, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 196.ase": {
+    "frame": { "x": 1800, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 197.ase": {
+    "frame": { "x": 1890, "y": 640, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 198.ase": {
+    "frame": { "x": 0, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 199.ase": {
+    "frame": { "x": 90, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 200.ase": {
+    "frame": { "x": 180, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 201.ase": {
+    "frame": { "x": 270, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 202.ase": {
+    "frame": { "x": 360, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 203.ase": {
+    "frame": { "x": 450, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 204.ase": {
+    "frame": { "x": 540, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 205.ase": {
+    "frame": { "x": 630, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 206.ase": {
+    "frame": { "x": 720, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 207.ase": {
+    "frame": { "x": 810, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 208.ase": {
+    "frame": { "x": 900, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 209.ase": {
+    "frame": { "x": 990, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 210.ase": {
+    "frame": { "x": 1080, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 211.ase": {
+    "frame": { "x": 1170, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 212.ase": {
+    "frame": { "x": 1260, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 213.ase": {
+    "frame": { "x": 1350, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 214.ase": {
+    "frame": { "x": 1440, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 215.ase": {
+    "frame": { "x": 1530, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 216.ase": {
+    "frame": { "x": 1620, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 217.ase": {
+    "frame": { "x": 1710, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 218.ase": {
+    "frame": { "x": 1800, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 219.ase": {
+    "frame": { "x": 1890, "y": 720, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 220.ase": {
+    "frame": { "x": 0, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 221.ase": {
+    "frame": { "x": 90, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 222.ase": {
+    "frame": { "x": 180, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 223.ase": {
+    "frame": { "x": 270, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 224.ase": {
+    "frame": { "x": 360, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 225.ase": {
+    "frame": { "x": 450, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 226.ase": {
+    "frame": { "x": 540, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 227.ase": {
+    "frame": { "x": 630, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 228.ase": {
+    "frame": { "x": 720, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 229.ase": {
+    "frame": { "x": 810, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 230.ase": {
+    "frame": { "x": 900, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 231.ase": {
+    "frame": { "x": 990, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 232.ase": {
+    "frame": { "x": 1080, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 233.ase": {
+    "frame": { "x": 1170, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 234.ase": {
+    "frame": { "x": 1260, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 235.ase": {
+    "frame": { "x": 1350, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 236.ase": {
+    "frame": { "x": 1440, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 237.ase": {
+    "frame": { "x": 1530, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 238.ase": {
+    "frame": { "x": 1620, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 239.ase": {
+    "frame": { "x": 1710, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 240.ase": {
+    "frame": { "x": 1800, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 241.ase": {
+    "frame": { "x": 1890, "y": 800, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 242.ase": {
+    "frame": { "x": 0, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 243.ase": {
+    "frame": { "x": 90, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 244.ase": {
+    "frame": { "x": 180, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 245.ase": {
+    "frame": { "x": 270, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 246.ase": {
+    "frame": { "x": 360, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 247.ase": {
+    "frame": { "x": 450, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 248.ase": {
+    "frame": { "x": 540, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 249.ase": {
+    "frame": { "x": 630, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 250.ase": {
+    "frame": { "x": 720, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 251.ase": {
+    "frame": { "x": 810, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 252.ase": {
+    "frame": { "x": 900, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 253.ase": {
+    "frame": { "x": 990, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 254.ase": {
+    "frame": { "x": 1080, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 255.ase": {
+    "frame": { "x": 1170, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 256.ase": {
+    "frame": { "x": 1260, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 257.ase": {
+    "frame": { "x": 1350, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 258.ase": {
+    "frame": { "x": 1440, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 259.ase": {
+    "frame": { "x": 1530, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 260.ase": {
+    "frame": { "x": 1620, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 261.ase": {
+    "frame": { "x": 1710, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 262.ase": {
+    "frame": { "x": 1800, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 263.ase": {
+    "frame": { "x": 1890, "y": 880, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 264.ase": {
+    "frame": { "x": 0, "y": 960, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 265.ase": {
+    "frame": { "x": 90, "y": 960, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 266.ase": {
+    "frame": { "x": 180, "y": 960, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 267.ase": {
+    "frame": { "x": 270, "y": 960, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 268.ase": {
+    "frame": { "x": 360, "y": 960, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   },
+   "02_Char_Eadal_Paladin 269.ase": {
+    "frame": { "x": 450, "y": 960, "w": 90, "h": 80 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 90, "h": 80 },
+    "sourceSize": { "w": 90, "h": 80 },
+    "duration": 83
+   }
+ },
+ "meta": {
+  "app": "https://github.com/LibreSprite/LibreSprite/",
+  "version": "1.0-dev",
+  "image": "/home/fran/Documentos/Code/GameWithPhaserEditor/static/assets/animations/aseprite/aseprite/02_Char_Eadal_Paladin4.png",
+  "format": "RGBA8888",
+  "size": { "w": 2048, "h": 2048 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "step", "from": 0, "to": 9, "direction": "forward" },
+   { "name": "idle defesa", "from": 10, "to": 22, "direction": "forward" },
+   { "name": "SHit", "from": 23, "to": 24, "direction": "forward" },
+   { "name": "Delay", "from": 25, "to": 38, "direction": "forward" },
+   { "name": "release", "from": 31, "to": 38, "direction": "forward" },
+   { "name": "Idle fight", "from": 39, "to": 51, "direction": "forward" },
+   { "name": "run front", "from": 52, "to": 62, "direction": "forward" },
+   { "name": "run back", "from": 63, "to": 73, "direction": "forward" },
+   { "name": "morte", "from": 74, "to": 79, "direction": "forward" },
+   { "name": "Skill 1 - Trust-dash", "from": 80, "to": 96, "direction": "forward" },
+   { "name": "Hurt", "from": 97, "to": 101, "direction": "forward" },
+   { "name": "Delay c", "from": 102, "to": 117, "direction": "forward" },
+   { "name": "release c", "from": 110, "to": 117, "direction": "forward" },
+   { "name": "dash", "from": 118, "to": 119, "direction": "forward" },
+   { "name": "Delay Front atk", "from": 120, "to": 135, "direction": "forward" },
+   { "name": "CF1", "from": 126, "to": 131, "direction": "forward" },
+   { "name": "RF1", "from": 132, "to": 135, "direction": "forward" },
+   { "name": "Sit", "from": 136, "to": 165, "direction": "forward" },
+   { "name": "standup", "from": 153, "to": 165, "direction": "forward" },
+   { "name": "idle back", "from": 166, "to": 178, "direction": "forward" },
+   { "name": "skill back", "from": 179, "to": 196, "direction": "forward" },
+   { "name": "skill front", "from": 197, "to": 214, "direction": "forward" },
+   { "name": "War Cry", "from": 215, "to": 230, "direction": "forward" },
+   { "name": "Magnum Break", "from": 231, "to": 246, "direction": "forward" },
+   { "name": "slide", "from": 247, "to": 250, "direction": "forward" },
+   { "name": "fallen", "from": 251, "to": 261, "direction": "forward" },
+   { "name": "Ress", "from": 262, "to": 269, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "Background", "opacity": 255, "blendMode": "normal" },
+   { "name": "vazio", "opacity": 255, "blendMode": "normal" },
+   { "name": "shadow", "opacity": 90, "blendMode": "normal" },
+   { "name": "escudo inferior", "opacity": 255, "blendMode": "normal" },
+   { "name": "med Woman capa", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman body", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman faixas", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman cinto", "opacity": 255, "blendMode": "normal" },
+   { "name": "escudo superior", "opacity": 255, "blendMode": "normal" },
+   { "name": "braco superior", "opacity": 255, "blendMode": "normal" },
+   { "name": "lanca", "opacity": 255, "blendMode": "normal" },
+   { "name": "nao tao vazio", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman lanca", "opacity": 255, "blendMode": "normal" },
+   { "name": "Escudo inferir", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman braco infe", "opacity": 255, "blendMode": "normal" },
+   { "name": "slim woman leg", "opacity": 255, "blendMode": "normal" },
+   { "name": "Slim woman tronco", "opacity": 255, "blendMode": "normal" },
+   { "name": "armor", "opacity": 255, "blendMode": "normal" },
+   { "name": "Slim woman cinto", "opacity": 255, "blendMode": "normal" },
+   { "name": "Slim Woman capa", "opacity": 255, "blendMode": "normal" },
+   { "name": "escudo superior", "opacity": 255, "blendMode": "normal" },
+   { "name": "linhas", "opacity": 43, "blendMode": "normal" },
+   { "name": "Costas ", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

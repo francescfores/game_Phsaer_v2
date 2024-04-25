@@ -1,9 +1,9 @@
 {
-    "activeFile": "assets/maps/map.json",
+    "activeFile": "assets/maps/matter-platformer2.json",
     "expandedProjectPaths": [
-        "assets",
         "assets/maps",
         "assets/atlas",
+        "assets",
         "."
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
@@ -12,12 +12,18 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "assets/maps/Terrain16x16.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/maps/Terrain32x32.tsx": {
+            "scaleInDock": 1
+        },
         "assets/maps/map.json": {
-            "scale": 0.75,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 849.3333333333333,
-                "y": 231.33333333333326
+                "x": 1279.5,
+                "y": 199.5
             }
         },
         "assets/maps/map.json#collisions": {
@@ -29,6 +35,38 @@
         "assets/maps/map.json#tileset": {
             "scaleInDock": 1
         },
+        "assets/maps/map2.json": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 465.3333333333333,
+                "y": 141.99999999999994
+            }
+        },
+        "assets/maps/map2.json#Terrain16x16": {
+            "scaleInDock": 1
+        },
+        "assets/maps/map2.json#collisions": {
+            "scaleInDock": 1
+        },
+        "assets/maps/map2.json#tileset": {
+            "scaleInDock": 1.5
+        },
+        "assets/maps/matter-platformer2.json": {
+            "scale": 0.220875,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 977.9286926994906,
+                "y": 482.1731748726654
+            }
+        },
+        "assets/maps/matter-platformer2.json#Terrain32x32": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/maps/matter-platformer2.json#kenney_redux_64x64": {
+            "scaleInDock": 1
+        },
         "assets/maps/test.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
@@ -36,22 +74,65 @@
         "assets/maps/tiles-curious-factory.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "assets/maps/tileset.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/PR_TileSet 16x16.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/fantasy-tiles.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer2.json": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 136,
+                "y": 347.5
+            }
+        },
+        "assets/tilemaps/maps/matter-platformer2.json#1560": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer2.json#PR_BackGround": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer2.json#PR_TileSet": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer2.json#Terrain32x32": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer2.json#fantasy-tiles": {
+            "scaleInDock": 0.75
+        },
+        "assets/tilemaps/maps/matter-platformer2.json#kenney_redux_64x64": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer2.json#wario-tiles": {
+            "scaleInDock": 1
         }
     },
-    "last.imagePath": "/home/fran/Descargas/Phaser project/Phaser project/assets/environment",
+    "last.imagePath": "/home/fran/Descargas/gamesAssets/Phaser project/assets/environment",
     "openFiles": [
         "assets/maps/tiles-curious-factory.tsx",
-        "assets/maps/map.json"
+        "assets/maps/map.json",
+        "assets/maps/map2.json",
+        "assets/maps/matter-platformer2.json"
     ],
     "project": "sin nombre.tiled-project",
     "recentFiles": [
+        "assets/tilemaps/maps/matter-platformer2.json",
+        "assets/maps/matter-platformer2.json",
         "assets/maps/map.json",
-        "assets/maps/test.tsx",
-        "assets/maps/tiles-curious-factory.tsx"
+        "assets/maps/map2.json",
+        "assets/maps/tiles-curious-factory.tsx",
+        "assets/maps/test.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 16,
-        "width": 16
+        "height": 32,
+        "width": 32
     }
 }

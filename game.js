@@ -10,6 +10,7 @@
     var stompFlag=false;
     var tackleFlag=false;
     var jumpFlag=false;
+    var jumpduckFlag=false;
     var canJumpAfterKill = false; // Bandera para permitir saltar después de matar a un enemigo
     var background;
     var middleground;
@@ -23,6 +24,7 @@
     var loot_group;
     var hurtFlag = false;
     var audioFlag = true;
+    var isAttacking = false;
     var score = 0;
     var lastKey;
     var lastDirectionKey='right';
@@ -219,7 +221,7 @@
 
             this.music = game.add.audio("music");
             this.music.loop = true;
-            this.music.play();
+            // this.music.play();
 
         },
         addAudios: function () {
@@ -632,13 +634,18 @@
             }
 
             var maxJumpVelocity = -250; // Velocidad de salto máxima
-            var minJumpVelocity = 10; // Velocidad de salto mínima
+            var minJumpVelocity = 1; // Velocidad de salto mínima
             if (this.wasd.jump.isDown && player.body.onFloor() ) {
                 player.body.velocity.y = maxJumpVelocity;
                 canJumpAfterKill = false;
                 this.audioJump.play();
-            } else if (!this.wasd.jump.isDown && player.body.velocity.y < 0 && !canJumpAfterKill) {
-                player.body.velocity.y = Math.max(player.body.velocity.y, minJumpVelocity);
+            } else if (!this.wasd.jump.isDown && !canJumpAfterKill) {
+                if (!player.body.onFloor() && this.wasd.duck.isDown) {
+                    player.body.velocity.y = 200;
+                }else if (player.body.velocity.y< 0) {
+                    player.body.velocity.y = Math.max(player.body.velocity.y, minJumpVelocity);
+
+                }
             }
 
             var vel = 80;
@@ -661,74 +668,87 @@
             } else {
                 player.body.velocity.x = 0;
                 this.stillAnimation();
-                if(this.wasd.hit.isDown) {
+                if (this.wasd.hit.isDown && !isAttacking) {
+
                     if(lastDirectionKey=='right'){
                         player.body.velocity.x = vel*1.2;
                     }else {
                         player.body.velocity.x = -vel*1.2;
                     }
                 }
-            }
-            if (!player.body.onFloor() && this.wasd.duck.isDown) {
-                player.body.velocity.y = 100;
+                // console.log(this.wasd.hit.isUp)
+                // // Verifica si se ha soltado la tecla de golpe
+                // if (this.wasd.hit.isUp) {
+                //     // Restablece la bandera de golpeo para permitir otro golpe
+                //     isAttacking = true;
+                // }else {
+                //     isAttacking = false;
+                // }
             }
 
         },
         moveAnimation: function () {
-            if (player.body.velocity.y < 0 && !this.wasd.hit.isDown) {
+            if (player.body.velocity.y < 0 && !this.wasd.hit.isDown && !this.wasd.duck.isDown) {
                 if (!jumpFlag) {
                     jumpFlag = true;
                     player.animations.play("jump");
+                    jumpduckFlag = false;
                 }
-            } else if (player.body.velocity.y > 0 && !this.wasd.duck.isDown && !this.wasd.hit.isDown) {
+            } else if (player.body.velocity.y > 0 && !this.wasd.duck.isDown && !this.wasd.hit.isDown && !player.body.onFloor()) {
                 player.animations.play("fall");
-            } else if (!player.body.onFloor() && this.wasd.duck.isDown){
-                    if (!stompFlag) {
-                        player.animations.play("stomp");
-                        stompFlag = true;
-                    }
-            }else
-            {
-                if(this.wasd.hit.isDown) {
-                    player.animations.play("tackle");
-                }else {
-                    player.animations.play("skip");
-                }
-                stompFlag = false;
+                jumpduckFlag = false;
+            } else if (this.wasd.duck.isDown && player.body.onFloor() && !this.wasd.hit.isDown) {
+                jumpduckFlag = true;
                 jumpFlag = false;
-
+                player.animations.play("duck");
+            } else if (!player.body.onFloor() && this.wasd.duck.isDown && !this.wasd.hit.isDown){
+                if (!jumpduckFlag) {
+                    player.animations.play("stomp");
+                }else {
+                    jumpFlag = false;
+                }
+            }
+            else if(this.wasd.hit.isDown)
+            {
+                player.animations.play("tackle");
+            }else {
+                player.animations.play("skip");
+                jumpFlag = false;
+                jumpduckFlag = false;
             }
         },
         stillAnimation: function () {
             var vel = 100;
-            if (player.body.velocity.y < 0 && !this.wasd.hit.isDown) {
+
+            if (player.body.velocity.y < 0 && !this.wasd.hit.isDown && !this.wasd.duck.isDown) {
                 if (!jumpFlag) {
                     jumpFlag = true;
-                    player.animations.stop("duck");
-                    player.animations.stop("stomp");
                     player.animations.play("jump");
+                    jumpduckFlag = false;
                 }
-            } else if (player.body.velocity.y > 0 && !this.wasd.duck.isDown && !this.wasd.hit.isDown) {
+            } else if (player.body.velocity.y > 0 && !this.wasd.duck.isDown && !this.wasd.hit.isDown && !player.body.onFloor()) {
                 player.animations.play("fall");
-            } else if (this.wasd.duck.isDown && player.body.onFloor()) {
-                player.animations.play("duck");
-            } else if (!player.body.onFloor() && this.wasd.duck.isDown){
-                    if (!stompFlag) {
-                        player.animations.play("stomp");
-                        stompFlag = true;
-                    }
-                }
-            else
-            {
-                if(this.wasd.hit.isDown) {
-                    player.animations.play("tackle");
-                }else {
-                    player.animations.play("idle");
-                }
-                stompFlag = false;
-                tackleFlag = false;
+                jumpduckFlag = false;
+            } else if (this.wasd.duck.isDown && player.body.onFloor() && !this.wasd.hit.isDown) {
+                jumpduckFlag = true;
                 jumpFlag = false;
+                player.animations.play("duck");
+            } else if (!player.body.onFloor() && this.wasd.duck.isDown && !this.wasd.hit.isDown){
+                if (!jumpduckFlag) {
+                    player.animations.play("stomp");
+                }else {
+                    jumpFlag = false;
+                }
             }
+            else if(this.wasd.hit.isDown)
+            {
+                player.animations.play("tackle");
+            }else {
+                player.animations.play("idle");
+                jumpFlag = false;
+                jumpduckFlag = false;
+            }
+
         },
         debugGame: function () {
             // game.debug.spriteInfo(this.player, 30, 30);
@@ -787,13 +807,13 @@
         */
         this.animations.add('idle', Phaser.Animation.generateFrameNames('player-idle/player-idle-', 1, 9, '', 0), animVel, true);
         this.animations.add('skip', Phaser.Animation.generateFrameNames('player-skip/player-skip-', 1, 8, '', 0), animVel, true);
-        this.animations.add('jump', Phaser.Animation.generateFrameNames('player-jump/player-jump-', 1, 2, '', 0), 6, false);
-        // this.animations.add('fall', Phaser.Animation.generateFrameNames('player-fall/player-fall-', 1,4, '', 0), animVel, true);
+        this.animations.add('jump', Phaser.Animation.generateFrameNames('player-jump/player-jump-', 1, 1, '', 0), 6, false);
+        this.animations.add('fall', Phaser.Animation.generateFrameNames('player-fall/player-fall-', 1,1, '', 0), animVel, true);
         this.animations.add('duck', Phaser.Animation.generateFrameNames('player-duck/player-duck-', 1, 1, '', 0), animVel, true);
         this.animations.add('hurt', Phaser.Animation.generateFrameNames('player-hurt/player-hurt-', 1, 2, '', 0), animVel, true);
         this.animations.add('climb', Phaser.Animation.generateFrameNames('player-climb/player-climb-', 1, 6, '', 0), animVel, true);
-        this.animations.add('stomp', Phaser.Animation.generateFrameNames('player-stomp/player-stomp-', 1, 3, '', 0), 4, false);
-        this.animations.add('tackle', Phaser.Animation.generateFrameNames('player-tackle/player-tackle-', 1, 5, '', 0), 10, false);
+        this.animations.add('stomp', Phaser.Animation.generateFrameNames('player-stomp/player-stomp-', 1, 3, '', 0), animVel, false);
+        this.animations.add('tackle', Phaser.Animation.generateFrameNames('player-tackle/player-tackle-', 1, 4, '', 0), animVel, false);
         this.animations.play("idle");
         /*
         Establece la propiedad kind del objeto jugador en "player",
