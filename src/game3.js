@@ -49,14 +49,15 @@ class Example extends Phaser.Scene
         this.load.image('Terrain32x32', 'assets/environment/Terrain32x32.png');
         this.load.image('fantasy-tiles', 'assets/tilemaps/tiles/fantasy-tiles.png');
         this.load.image('wario-tiles', 'assets/tilemaps/tiles/wario-tiles.png');
-        this.load.image('PR_TileSet', '/assets/tilemaps/tiles/Pyramid Ruins/PR_TileSet 16x16.png');
         this.load.image('1560', 'assets/tilemaps/tiles/1560.png');
+        this.load.image('PR_TileSet', '/assets/tilemaps/tiles/Pyramid Ruins/PR_TileSet 16x16.png');
         this.load.spritesheet('player', 'assets/sprites/dude-cropped.png', { frameWidth: 32, frameHeight: 42 });
         this.load.image('box', 'assets/sprites/box-item-boxed.png');
         this.load.image("background", "assets/bg_parallax/background.png");
         this.load.image("background2", "assets/bg_parallax/trees.png");
         this.load.image("background3", "assets/bg_parallax/foreground.png");
         this.load.image("background4", "assets/bg_parallax/fog.png");
+        // this.load.aseprite('paladin', 'assets/animations/aseprite/aseprite/paladin.png', 'assets/animations/aseprite/aseprite/paladin.json');
         this.load.aseprite('paladin', 'assets/animations/aseprite/wario/wario_animations2.png', 'assets/animations/aseprite/aseprite/02_Char_Eadal_Paladin.json');
 
     }
@@ -104,20 +105,30 @@ class Example extends Phaser.Scene
         console.log('Alto del tile:', map.tileHeight);
 
         const layer2 = map.createLayer('Capa de patrones 2',  [
-            map.addTilesetImage('Terrain32x32','Terrain32x32',64, 64),
-            map.addTilesetImage('fantasy-tiles','fantasy-tiles',64, 64),
+            map.addTilesetImage('kenney_redux_64x64','kenney_redux_64x64',64, 64),
+            map.addTilesetImage('Terrain32x32','Terrain32x32',32, 32),
+            map.addTilesetImage('Terrain32x32','Terrain32x32',32, 32),
+            map.addTilesetImage('fantasy-tiles','fantasy-tiles',32, 32),
             map.addTilesetImage('1560','1560',32, 32),
-            map.addTilesetImage('wario-tiles','wario-tiles',64, 64),
+            map.addTilesetImage('wario-tiles','wario-tiles',32, 32),
             map.addTilesetImage('PR_TileSet','PR_TileSet',32, 32),
         ]);
+        const layer3 =map.createLayer('Tile Layer 1', [
+                map.addTilesetImage('kenney_redux_64x64','kenney_redux_64x64',32, 32),
+                map.addTilesetImage('PR_TileSet','PR_TileSet',32, 32),
+            ],
+        );
         const layer =map.createLayer('Tile Layer 1', [
-            map.addTilesetImage('kenney_redux_64x64','kenney_redux_64x64',64, 64)]);
+                map.addTilesetImage('wario-tiles','wario-tiles',32, 32),
+            ],
+            );
         layer.visible = false;
 
         // Set up the layer to have matter bodies. Any colliding tiles will be given a Matter body.
         map.setCollisionByProperty({ collides: true });
         this.matter.world.convertTilemapLayer(layer);
         this.matter.world.convertTilemapLayer(layer2);
+        this.matter.world.convertTilemapLayer(layer3);
 
         this.matter.world.setBounds(map.widthInPixels, map.heightInPixels);
         this.matter.world.createDebugGraphic();
@@ -126,19 +137,20 @@ class Example extends Phaser.Scene
         this.cursors = this.input.keyboard.createCursorKeys();
         this.smoothedControls = new SmoothedHorionztalControl(0.0005);
         // Itera sobre cada tile en el layer
+        layer.forEachTile(tile => {
+            const tileWorldPos = layer.tileToWorldXY(tile.x, tile.y);
+            const text = this.add.text(tileWorldPos.x + 16, tileWorldPos.y + 16, tile.index.toString(), {
+                fontSize: '10px',
+                fill: '#000'
+            });
+            text.setOrigin(0.5);
+        }, this);
         // layer2.forEachTile(tile => {
-        //     // Obtener la posición del tile en píxeles
         //     const tileWorldPos = layer2.tileToWorldXY(tile.x, tile.y);
-        //
-        //     // Crear un rectángulo para el borde del cuadro
-        //
-        //     // Crear texto con el ID del tile
         //     const text = this.add.text(tileWorldPos.x + 32, tileWorldPos.y + 32, tile.index.toString(), {
-        //         fontSize: '12px',
-        //         fill: '#ffffff'
+        //         fontSize: '10px',
+        //         fill: '#0ce502'
         //     });
-        //
-        //     // Centrar el texto en el tile
         //     text.setOrigin(0.5);
         // }, this);
         // The player is a collection of bodies and sensors
@@ -146,12 +158,12 @@ class Example extends Phaser.Scene
 
         const sprite = this.add.sprite(200, 200).play({ key: 'Magnum Break', repeat: -1 }).setScale(6);
 
-        for (let i = 0; i < tags.length; i++)
-        {
-            const label = this.add.text(32, 32 + (i * 16), tags[i].key, { color: '#00ff00' });
-
-            label.setInteractive();
-        }
+        // for (let i = 0; i < tags.length; i++)
+        // {
+        //     const label = this.add.text(32, 32 + (i * 16), tags[i].key, { color: '#00ff00' });
+        //
+        //     label.setInteractive();
+        // }
 
         this.input.on('gameobjectdown', (pointer, obj) =>
         {
@@ -206,8 +218,8 @@ class Example extends Phaser.Scene
             },
             lastJumpedAt: 0,
             speed: {
-                run: 7,
-                jump: 10
+                run: 5,
+                jump: 17
             }
         };
 
@@ -222,27 +234,40 @@ class Example extends Phaser.Scene
         //    the player is standing on solid ground or pushed up against a solid object.
 
         // Move the sensor to player center
-        const sx = w / 2;
-        const sy = h / 2;
+        let sx = w / 2;
+        let sy = h / 2;
 
         // The player's body is going to be a compound body.
-        const playerBody = M.Bodies.rectangle(sx, sy, w * 0.75, h, { chamfer: { radius: 10 } });
+        let playerBody = M.Bodies.rectangle(sx, sy, w * 0.75, h, { chamfer: { radius: 10 } });
         this.playerController.sensors.bottom = M.Bodies.rectangle(sx, h, sx, 5, { isSensor: true });
         this.playerController.sensors.left = M.Bodies.rectangle(sx - w * 0.45, sy, 5, h * 0.25, { isSensor: true });
         this.playerController.sensors.right = M.Bodies.rectangle(sx + w * 0.45, sy, 5, h * 0.25, { isSensor: true });
-        const compoundBody = M.Body.create({
+        let compoundBody = M.Body.create({
             parts: [
                 playerBody, this.playerController.sensors.bottom, this.playerController.sensors.left,
                 this.playerController.sensors.right
             ],
-            friction: 0.01,
+            friction: 0.1,
             restitution: 0.05 // Prevent body from sticking against a wall
         });
-
         this.playerController.matterSprite.play({ key: 'delay', repeat: -1 })
             .setExistingBody(compoundBody)
             .setFixedRotation() // Sets max inertia to prevent rotation
             .setPosition(50 , 100);
+
+
+        // const playerBody = this.matter.add.rectangle(100, 100, w, h);
+        //
+        // this.playerController.matterSprite.play({ key: 'delay', repeat: -1 })
+        //     .setExistingBody(playerBody)
+        //     .setFixedRotation() // Sets max inertia to prevent rotation
+        //     .setPosition(50 , 100);
+
+        // this.playerController.matterSprite.setRectangle(1000, 10);
+
+        // Ajustar el hitbox según cada fotograma de la animación
+            // Obtener el fotograma actual de la animación
+
 
         this.matter.add.image(630, 750, 'box');
         this.matter.add.image(630, 650, 'box');
@@ -385,8 +410,7 @@ class Example extends Phaser.Scene
         if (this.cursors.left.isDown && !this.playerController.blocked.left)
         {
             this.smoothedControls.moveLeft(delta);
-            matterSprite.anims.play('step', true);
-
+            this.playerController.matterSprite.anims.play('step', true);
             // Lerp the velocity towards the max run using the smoothed controls. This simulates a
             // player controlled acceleration.
             oldVelocityX = matterSprite.body.velocity.x;
@@ -394,7 +418,8 @@ class Example extends Phaser.Scene
             newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, -this.smoothedControls.value);
 
             matterSprite.setVelocityX(newVelocityX);
-
+            console.log(matterSprite)
+            this.playerController.matterSprite.setFlipX(true);
 
             // this.image0.tilePositionX-=0.2 ;
             // this.image1.tilePositionX-=0.8 ;
@@ -402,8 +427,7 @@ class Example extends Phaser.Scene
         else if (this.cursors.right.isDown && !this.playerController.blocked.right)
         {
             this.smoothedControls.moveRight(delta);
-            matterSprite.anims.play('step', true);
-
+            this.playerController.matterSprite.anims.play('step', true);
 
             // Lerp the velocity towards the max run using the smoothed controls. This simulates a
             // player controlled acceleration.
@@ -412,25 +436,86 @@ class Example extends Phaser.Scene
             newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, this.smoothedControls.value);
 
             matterSprite.setVelocityX(newVelocityX);
+            this.playerController.matterSprite.setFlipX(false);
 
-            // this.image0.tilePositionX+=0.2 ;
-            // this.image1.tilePositionX+=0.8 ;
+        }
+        else if (this.cursors.down.isDown) {
+            if (this.cursors.down.isDown && !this.scalingDone) {
+
+            const Matter = Phaser.Physics.Matter.Matter;
+
+            // Modificar el alto del sprite
+                // Modificar el alto del sprite
+                // Modificar el alto del sprite
+                const newHeight = this.playerController.matterSprite.height * 0.5; // Reducir el alto al 75%
+
+                // Escalar el cuerpo físico
+                const currentBody = this.playerController.matterSprite.body;
+                const currentHeight = currentBody.bounds.max.y - currentBody.bounds.min.y;
+                const newBodyHeight = newHeight * 1.5;
+                Matter.Body.scale(currentBody, 1, newBodyHeight / currentHeight);
+
+                // Actualizar la posición visual del sprite
+                const newPositionY = this.playerController.matterSprite.y - (newHeight - this.playerController.matterSprite.height) / 2;
+                this.playerController.matterSprite.y = newPositionY;
+
+                // Actualizar el tamaño del sprite
+                this.playerController.matterSprite.setSize(this.playerController.matterSprite.width, newHeight);
+
+                // Marcar que la acción de escalar se ha realizado
+                this.scalingDone = true;
+
+                this.playerController.matterSprite.anims.play('morte', true);
+                // Lerp the velocity towards the max run using the smoothed controls. This simulates a
+                // player controlled acceleration.
+                oldVelocityX = matterSprite.body.velocity.x;
+                targetVelocityX = this.playerController.speed.run;
+                newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, this.smoothedControls.value);
+                matterSprite.setVelocityX(newVelocityX);
+        }
         }
         else
         {
-            matterSprite.anims.play('Delay', true);
+            matterSprite.anims.play('SHit', true);
 
             // this.smoothedControls.reset();
             // matterSprite.anims.play('idle', true);
 
         }
+        if (this.cursors.down.isUp && this.scalingDone) {
+            const Matter = Phaser.Physics.Matter.Matter;
 
+            // Modificar el alto del sprite
+            // Modificar el alto del sprite
+            const newHeight = this.playerController.matterSprite.height * 1; // Reducir el alto al 75%
+
+            // Modificar el alto del cuerpo físico
+            const currentBody = this.playerController.matterSprite.body;
+            const currentHeight = currentBody.bounds.max.y - currentBody.bounds.min.y;
+            const newBodyHeight = newHeight * 1.5;
+
+            // Calcular la nueva posición Y del cuerpo físico
+            const newPositionY = currentBody.position.y + (currentHeight - newBodyHeight) / 2;
+
+            // Escalar el cuerpo físico
+            Matter.Body.scale(currentBody, 1, newBodyHeight / currentHeight);
+
+            // Actualizar la posición Y del cuerpo físico
+            Matter.Body.setPosition(currentBody, { x: currentBody.position.x+1, y: newPositionY });
+
+            // Actualizar el tamaño del sprite
+            this.playerController.matterSprite.setSize(this.playerController.matterSprite.width, newHeight);
+
+            // Marcar que la acción de escalar se ha realizado
+            // this.scalingDone = true;
+            this.scalingDone = false;
+        }
         // Jumping & wall jumping
 
         // Add a slight delay between jumps since the sensors will still collide for a few frames after
         // a jump is initiated
         const canJump = (time - this.playerController.lastJumpedAt) > 250;
-        if (this.cursors.up.isDown & canJump)
+        if (this.cursors.up.isDown && canJump)
         {
             if (this.playerController.blocked.bottom)
             {
@@ -480,15 +565,17 @@ class Example extends Phaser.Scene
 
 const config = {
     type: Phaser.AUTO,
-    width: 600,
-    height: 512,
+    width: 576,
+    height:320,
     backgroundColor: '#000000',
     parent: 'phaser-example',
     physics: {
         default: 'matter',
         matter: {
-            gravity: { y: 1 },
-            enableSleep: false,
+            gravity: {
+                x: 0,
+                y: 1
+            },            enableSleep: false,
             debug: true
         }
     },

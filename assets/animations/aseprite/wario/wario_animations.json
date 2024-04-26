@@ -2067,7 +2067,7 @@
  "meta": {
   "app": "https://github.com/LibreSprite/LibreSprite/",
   "version": "1.0-dev",
-  "image": "/home/fran/Documentos/Code/GameWithPhaserEditor/static/assets/animations/aseprite/wario/wario_animations.png",
+  "image": "/home/fran/Descargas/gamesAssets/Phaser project/assets/animations/aseprite/wario/wario_animations.png",
   "format": "RGBA8888",
   "size": { "w": 2048, "h": 1024 },
   "scale": "1",
