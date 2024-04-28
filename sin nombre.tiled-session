@@ -22,8 +22,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1279.5,
-                "y": 199.5
+                "x": 380.5,
+                "y": 223.5
             }
         },
         "assets/maps/map.json#collisions": {
@@ -39,8 +39,8 @@
             "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 457.3333333333333,
-                "y": 136.66666666666663
+                "x": 416,
+                "y": 131.33333333333326
             }
         },
         "assets/maps/map2.json#Terrain16x16": {
@@ -56,8 +56,8 @@
             "scale": 0.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 600,
-                "y": 75
+                "x": 588,
+                "y": 67
             }
         },
         "assets/maps/matter-platformer2.json#Terrain32x32": {
@@ -81,7 +81,69 @@
         "assets/tilemaps/maps/PR_TileSet 16x16.tsx": {
             "scaleInDock": 1
         },
+        "assets/tilemaps/maps/collision_test.json": {
+            "scale": 0.4120625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 800.849385712119,
+                "y": 287.57773396026096
+            }
+        },
+        "assets/tilemaps/maps/collision_test.json#coin": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/collision_test.json#ground_1x1": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/collision_test.json#tiles2": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/collision_test.json#walls_1x2": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/collisions.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "assets/tilemaps/maps/commando.json": {
+            "scale": 0.125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 280,
+                "y": 3988
+            }
+        },
+        "assets/tilemaps/maps/commando.json#CommandoMap1-1BG_bank.png": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "assets/tilemaps/maps/fantasy-tiles.tsx": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/impact-tilemap.json": {
+            "scale": 0.3767428571428571,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 875.9290156226303,
+                "y": 386.2050659790689
+            }
+        },
+        "assets/tilemaps/maps/impact-tilemap.json#kenney": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/level-with-coin-objects.json": {
+            "scale": 0.4120625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 800.849385712119,
+                "y": 290.0045502806007
+            }
+        },
+        "assets/tilemaps/maps/level-with-coin-objects.json#coin": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/level-with-coin-objects.json#ground_1x1": {
             "scaleInDock": 1
         },
         "assets/tilemaps/maps/map.json": {
@@ -98,11 +160,33 @@
         "assets/tilemaps/maps/map.json#tileset": {
             "scaleInDock": 1
         },
+        "assets/tilemaps/maps/matter-ghost-vertices.json": {
+            "scale": 0.515078125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 640.6795085696951,
+                "y": 641.6502350978309
+            }
+        },
+        "assets/tilemaps/maps/matter-ghost-vertices.json#kenney_redux_64x64": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer-dynamic-example.json": {
+            "scale": 0.515078125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 640.6795085696951,
+                "y": 641.6502350978309
+            }
+        },
+        "assets/tilemaps/maps/matter-platformer-dynamic-example.json#kenney_redux_64x64": {
+            "scaleInDock": 1
+        },
         "assets/tilemaps/maps/matter-platformer.json": {
             "scale": 0.5521875,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 635.6536502546688,
+                "x": 632.0316921335597,
                 "y": 638.3701188455009
             }
         },
@@ -110,11 +194,11 @@
             "scaleInDock": 1
         },
         "assets/tilemaps/maps/matter-platformer2.json": {
-            "scale": 1,
-            "selectedLayer": 1,
+            "scale": 0.75,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": -93,
-                "y": 564.5
+                "x": 5602,
+                "y": 189.99999999999994
             }
         },
         "assets/tilemaps/maps/matter-platformer2.json#1560": {
@@ -129,6 +213,11 @@
         "assets/tilemaps/maps/matter-platformer2.json#Terrain32x32": {
             "scaleInDock": 1
         },
+        "assets/tilemaps/maps/matter-platformer2.json#collisions": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "assets/tilemaps/maps/matter-platformer2.json#fantasy-tiles": {
             "scaleInDock": 0.75
         },
@@ -137,13 +226,42 @@
             "scaleInEditor": 1
         },
         "assets/tilemaps/maps/matter-platformer2.json#wario-tiles": {
+            "scaleInDock": 0.5
+        },
+        "assets/tilemaps/maps/matter-platformer3.json": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 1910.333333333333,
+                "y": 374.33333333333337
+            }
+        },
+        "assets/tilemaps/maps/matter-platformer3.json#1560": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer3.json#PR_TileSet": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer3.json#Terrain32x32": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer3.json#collisions": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer3.json#fantasy-tiles": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer3.json#kenney_redux_64x64": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/matter-platformer3.json#wario-tiles": {
             "scaleInDock": 1
         },
         "assets/tilemaps/maps/multi-layer-multi-tileset.json": {
             "scale": 0.5521875,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 637.4646293152234,
+                "x": 632.0316921335597,
                 "y": 638.3701188455009
             }
         },
@@ -189,9 +307,57 @@
         },
         "assets/tilemaps/maps/multi-tileset.json#kenny_platformer_64x64": {
             "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/multiple-tile-sizes-collision.json": {
+            "scale": 0.34338541666666667,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 958.1070832701349,
+                "y": -94.64583649325027
+            }
+        },
+        "assets/tilemaps/maps/multiple-tile-sizes-collision.json#coin": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/multiple-tile-sizes-collision.json#ground_1x1": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/multiple-tile-sizes-collision.json#kenney_redux_64x64": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/multiple-tile-sizes-collision.json#kenny_items_64x64": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/multiple-tile-sizes-collision.json#kenny_platformer_64x64": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/multiple-tile-sizes-collision.json#walls_1x2": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/ninja-tilemap.json": {
+            "scale": 0.3767428571428571,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 875.9290156226303,
+                "y": 386.2050659790689
+            }
+        },
+        "assets/tilemaps/maps/ninja-tilemap.json#kenney": {
+            "scaleInDock": 1
+        },
+        "assets/tilemaps/maps/platform.json": {
+            "scale": 0.824125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 400.4246928560595,
+                "y": 320.9464583649326
+            }
+        },
+        "assets/tilemaps/maps/platform.json#platformer_tiles": {
+            "scaleInDock": 1
         }
     },
-    "last.imagePath": "/home/fran/Descargas/gamesAssets/Phaser project/assets/tilemaps/tiles/Pyramid Ruins",
+    "last.imagePath": "/home/fran/Descargas/gamesAssets/Phaser project/assets/tilemaps/tiles",
     "openFiles": [
         "assets/maps/tiles-curious-factory.tsx",
         "assets/maps/map.json",
@@ -201,20 +367,23 @@
     "project": "sin nombre.tiled-project",
     "recentFiles": [
         "assets/tilemaps/maps/matter-platformer2.json",
+        "assets/tilemaps/maps/collisions.tsx",
+        "assets/maps/map2.json",
         "assets/maps/tiles-curious-factory.tsx",
         "assets/maps/map.json",
-        "assets/maps/map2.json",
-        "assets/tilemaps/maps/multi-layer-multi-tileset.json",
-        "assets/tilemaps/maps/multi-tileset.json",
-        "assets/tilemaps/maps/matter-platformer.json",
         "assets/maps/matter-platformer2.json",
-        "assets/tilemaps/maps/map.json",
-        "assets/tilemaps/maps/multi-tileset-v12.json",
-        "assets/maps/test.tsx"
+        "assets/tilemaps/maps/matter-platformer-dynamic-example.json",
+        "assets/tilemaps/maps/matter-platformer.json",
+        "assets/tilemaps/maps/multi-layer-multi-tileset.json",
+        "assets/tilemaps/maps/matter-ghost-vertices.json",
+        "assets/tilemaps/maps/level-with-coin-objects.json",
+        "assets/tilemaps/maps/impact-tilemap.json"
     ],
+    "tileset.embedInMap": true,
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 32,
         "width": 32
-    }
+    },
+    "tileset.type": 1
 }

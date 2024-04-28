@@ -92,8 +92,8 @@
 
         },
         create: function () {
-            // this.game.state.start("TitleScreen");
-            this.game.state.start('PlayGame');
+            this.game.state.start("TitleScreen");
+            // this.game.state.start('PlayGame');
         }
 
     }
@@ -285,8 +285,6 @@
             }
             //tilemap
             globalMap = game.add.tilemap("map" + levelNum);
-            const map = this.make.tilemap({key: 'map'});
-
             globalMap.addTilesetImage("collisions");
             globalMap.addTilesetImage("tileset");
 
@@ -308,7 +306,7 @@
             this.layer.resizeWorld();
             this.layer_collisions.resizeWorld();
             this.layer_collisions.visible = false;
-            this.layer_collisions.debug = true;
+            // this.layer_collisions.debug = true;
 
         },
         enemyCollide: function (obj) {
