@@ -1,0 +1,2131 @@
+{ "frames": {
+   "wario_animations3 0.ase": {
+    "frame": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 1.ase": {
+    "frame": { "x": 54, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 2.ase": {
+    "frame": { "x": 108, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 3.ase": {
+    "frame": { "x": 162, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 4.ase": {
+    "frame": { "x": 216, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 5.ase": {
+    "frame": { "x": 270, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 6.ase": {
+    "frame": { "x": 324, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 7.ase": {
+    "frame": { "x": 378, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 8.ase": {
+    "frame": { "x": 432, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 9.ase": {
+    "frame": { "x": 486, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 10.ase": {
+    "frame": { "x": 540, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 11.ase": {
+    "frame": { "x": 594, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 12.ase": {
+    "frame": { "x": 648, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 13.ase": {
+    "frame": { "x": 702, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 14.ase": {
+    "frame": { "x": 756, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 15.ase": {
+    "frame": { "x": 810, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 16.ase": {
+    "frame": { "x": 864, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 17.ase": {
+    "frame": { "x": 918, "y": 0, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 18.ase": {
+    "frame": { "x": 0, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 19.ase": {
+    "frame": { "x": 54, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 20.ase": {
+    "frame": { "x": 108, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 21.ase": {
+    "frame": { "x": 162, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 22.ase": {
+    "frame": { "x": 216, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 23.ase": {
+    "frame": { "x": 270, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 24.ase": {
+    "frame": { "x": 324, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 25.ase": {
+    "frame": { "x": 378, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 26.ase": {
+    "frame": { "x": 432, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 27.ase": {
+    "frame": { "x": 486, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 28.ase": {
+    "frame": { "x": 540, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 29.ase": {
+    "frame": { "x": 594, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 30.ase": {
+    "frame": { "x": 648, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 31.ase": {
+    "frame": { "x": 702, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 32.ase": {
+    "frame": { "x": 756, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 33.ase": {
+    "frame": { "x": 810, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 34.ase": {
+    "frame": { "x": 864, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 35.ase": {
+    "frame": { "x": 918, "y": 54, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 36.ase": {
+    "frame": { "x": 0, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 37.ase": {
+    "frame": { "x": 54, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 38.ase": {
+    "frame": { "x": 108, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 39.ase": {
+    "frame": { "x": 162, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 40.ase": {
+    "frame": { "x": 216, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 41.ase": {
+    "frame": { "x": 270, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 42.ase": {
+    "frame": { "x": 324, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 43.ase": {
+    "frame": { "x": 378, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 44.ase": {
+    "frame": { "x": 432, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 45.ase": {
+    "frame": { "x": 486, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 46.ase": {
+    "frame": { "x": 540, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 47.ase": {
+    "frame": { "x": 594, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 48.ase": {
+    "frame": { "x": 648, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 49.ase": {
+    "frame": { "x": 702, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 50.ase": {
+    "frame": { "x": 756, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 51.ase": {
+    "frame": { "x": 810, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 52.ase": {
+    "frame": { "x": 864, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 53.ase": {
+    "frame": { "x": 918, "y": 108, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 54.ase": {
+    "frame": { "x": 0, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 55.ase": {
+    "frame": { "x": 54, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 56.ase": {
+    "frame": { "x": 108, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 57.ase": {
+    "frame": { "x": 162, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 58.ase": {
+    "frame": { "x": 216, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 59.ase": {
+    "frame": { "x": 270, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 60.ase": {
+    "frame": { "x": 324, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 61.ase": {
+    "frame": { "x": 378, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 62.ase": {
+    "frame": { "x": 432, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 63.ase": {
+    "frame": { "x": 486, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 64.ase": {
+    "frame": { "x": 540, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 65.ase": {
+    "frame": { "x": 594, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 66.ase": {
+    "frame": { "x": 648, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 67.ase": {
+    "frame": { "x": 702, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 68.ase": {
+    "frame": { "x": 756, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 69.ase": {
+    "frame": { "x": 810, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 70.ase": {
+    "frame": { "x": 864, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 71.ase": {
+    "frame": { "x": 918, "y": 162, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 72.ase": {
+    "frame": { "x": 0, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 73.ase": {
+    "frame": { "x": 54, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 74.ase": {
+    "frame": { "x": 108, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 75.ase": {
+    "frame": { "x": 162, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 76.ase": {
+    "frame": { "x": 216, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 77.ase": {
+    "frame": { "x": 270, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 78.ase": {
+    "frame": { "x": 324, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 79.ase": {
+    "frame": { "x": 378, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 80.ase": {
+    "frame": { "x": 432, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 81.ase": {
+    "frame": { "x": 486, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 82.ase": {
+    "frame": { "x": 540, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 83.ase": {
+    "frame": { "x": 594, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 84.ase": {
+    "frame": { "x": 648, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 85.ase": {
+    "frame": { "x": 702, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 86.ase": {
+    "frame": { "x": 756, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 87.ase": {
+    "frame": { "x": 810, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 88.ase": {
+    "frame": { "x": 864, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 89.ase": {
+    "frame": { "x": 918, "y": 216, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 90.ase": {
+    "frame": { "x": 0, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 91.ase": {
+    "frame": { "x": 54, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 92.ase": {
+    "frame": { "x": 108, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 93.ase": {
+    "frame": { "x": 162, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 94.ase": {
+    "frame": { "x": 216, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 95.ase": {
+    "frame": { "x": 270, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 96.ase": {
+    "frame": { "x": 324, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 97.ase": {
+    "frame": { "x": 378, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 98.ase": {
+    "frame": { "x": 432, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 99.ase": {
+    "frame": { "x": 486, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 100.ase": {
+    "frame": { "x": 540, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 101.ase": {
+    "frame": { "x": 594, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 102.ase": {
+    "frame": { "x": 648, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 103.ase": {
+    "frame": { "x": 702, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 104.ase": {
+    "frame": { "x": 756, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 105.ase": {
+    "frame": { "x": 810, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 106.ase": {
+    "frame": { "x": 864, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 107.ase": {
+    "frame": { "x": 918, "y": 270, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 108.ase": {
+    "frame": { "x": 0, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 109.ase": {
+    "frame": { "x": 54, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 110.ase": {
+    "frame": { "x": 108, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 111.ase": {
+    "frame": { "x": 162, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 112.ase": {
+    "frame": { "x": 216, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 113.ase": {
+    "frame": { "x": 270, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 114.ase": {
+    "frame": { "x": 324, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 115.ase": {
+    "frame": { "x": 378, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 116.ase": {
+    "frame": { "x": 432, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 117.ase": {
+    "frame": { "x": 486, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 118.ase": {
+    "frame": { "x": 540, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 119.ase": {
+    "frame": { "x": 594, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 120.ase": {
+    "frame": { "x": 648, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 121.ase": {
+    "frame": { "x": 702, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 122.ase": {
+    "frame": { "x": 756, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 123.ase": {
+    "frame": { "x": 810, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 124.ase": {
+    "frame": { "x": 864, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 125.ase": {
+    "frame": { "x": 918, "y": 324, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 126.ase": {
+    "frame": { "x": 0, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 127.ase": {
+    "frame": { "x": 54, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 128.ase": {
+    "frame": { "x": 108, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 129.ase": {
+    "frame": { "x": 162, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 130.ase": {
+    "frame": { "x": 216, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 131.ase": {
+    "frame": { "x": 270, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 132.ase": {
+    "frame": { "x": 324, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 133.ase": {
+    "frame": { "x": 378, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 134.ase": {
+    "frame": { "x": 432, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 135.ase": {
+    "frame": { "x": 486, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 136.ase": {
+    "frame": { "x": 540, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 137.ase": {
+    "frame": { "x": 594, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 138.ase": {
+    "frame": { "x": 648, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 139.ase": {
+    "frame": { "x": 702, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 140.ase": {
+    "frame": { "x": 756, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 141.ase": {
+    "frame": { "x": 810, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 142.ase": {
+    "frame": { "x": 864, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 143.ase": {
+    "frame": { "x": 918, "y": 378, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 144.ase": {
+    "frame": { "x": 0, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 145.ase": {
+    "frame": { "x": 54, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 146.ase": {
+    "frame": { "x": 108, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 147.ase": {
+    "frame": { "x": 162, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 148.ase": {
+    "frame": { "x": 216, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 149.ase": {
+    "frame": { "x": 270, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 150.ase": {
+    "frame": { "x": 324, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 151.ase": {
+    "frame": { "x": 378, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 152.ase": {
+    "frame": { "x": 432, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 153.ase": {
+    "frame": { "x": 486, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 154.ase": {
+    "frame": { "x": 540, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 155.ase": {
+    "frame": { "x": 594, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 156.ase": {
+    "frame": { "x": 648, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 157.ase": {
+    "frame": { "x": 702, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 158.ase": {
+    "frame": { "x": 756, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 159.ase": {
+    "frame": { "x": 810, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 160.ase": {
+    "frame": { "x": 864, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 161.ase": {
+    "frame": { "x": 918, "y": 432, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 162.ase": {
+    "frame": { "x": 0, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 163.ase": {
+    "frame": { "x": 54, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 164.ase": {
+    "frame": { "x": 108, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 165.ase": {
+    "frame": { "x": 162, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 166.ase": {
+    "frame": { "x": 216, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 167.ase": {
+    "frame": { "x": 270, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 168.ase": {
+    "frame": { "x": 324, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 169.ase": {
+    "frame": { "x": 378, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 170.ase": {
+    "frame": { "x": 432, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 171.ase": {
+    "frame": { "x": 486, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 172.ase": {
+    "frame": { "x": 540, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 173.ase": {
+    "frame": { "x": 594, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 174.ase": {
+    "frame": { "x": 648, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 175.ase": {
+    "frame": { "x": 702, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 176.ase": {
+    "frame": { "x": 756, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 177.ase": {
+    "frame": { "x": 810, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 178.ase": {
+    "frame": { "x": 864, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 179.ase": {
+    "frame": { "x": 918, "y": 486, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 180.ase": {
+    "frame": { "x": 0, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 181.ase": {
+    "frame": { "x": 54, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 182.ase": {
+    "frame": { "x": 108, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 183.ase": {
+    "frame": { "x": 162, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 184.ase": {
+    "frame": { "x": 216, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 185.ase": {
+    "frame": { "x": 270, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 186.ase": {
+    "frame": { "x": 324, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 187.ase": {
+    "frame": { "x": 378, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 188.ase": {
+    "frame": { "x": 432, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 189.ase": {
+    "frame": { "x": 486, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 190.ase": {
+    "frame": { "x": 540, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 191.ase": {
+    "frame": { "x": 594, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 192.ase": {
+    "frame": { "x": 648, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 193.ase": {
+    "frame": { "x": 702, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 194.ase": {
+    "frame": { "x": 756, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 195.ase": {
+    "frame": { "x": 810, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 196.ase": {
+    "frame": { "x": 864, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 197.ase": {
+    "frame": { "x": 918, "y": 540, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 198.ase": {
+    "frame": { "x": 0, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 199.ase": {
+    "frame": { "x": 54, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 200.ase": {
+    "frame": { "x": 108, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 201.ase": {
+    "frame": { "x": 162, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 202.ase": {
+    "frame": { "x": 216, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 203.ase": {
+    "frame": { "x": 270, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 204.ase": {
+    "frame": { "x": 324, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 205.ase": {
+    "frame": { "x": 378, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 206.ase": {
+    "frame": { "x": 432, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 207.ase": {
+    "frame": { "x": 486, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 208.ase": {
+    "frame": { "x": 540, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 209.ase": {
+    "frame": { "x": 594, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 210.ase": {
+    "frame": { "x": 648, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 211.ase": {
+    "frame": { "x": 702, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 212.ase": {
+    "frame": { "x": 756, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 213.ase": {
+    "frame": { "x": 810, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 214.ase": {
+    "frame": { "x": 864, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 215.ase": {
+    "frame": { "x": 918, "y": 594, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 216.ase": {
+    "frame": { "x": 0, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 217.ase": {
+    "frame": { "x": 54, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 218.ase": {
+    "frame": { "x": 108, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 219.ase": {
+    "frame": { "x": 162, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 220.ase": {
+    "frame": { "x": 216, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 221.ase": {
+    "frame": { "x": 270, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 222.ase": {
+    "frame": { "x": 324, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 223.ase": {
+    "frame": { "x": 378, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 224.ase": {
+    "frame": { "x": 432, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 225.ase": {
+    "frame": { "x": 486, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 226.ase": {
+    "frame": { "x": 540, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 227.ase": {
+    "frame": { "x": 594, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 228.ase": {
+    "frame": { "x": 648, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 229.ase": {
+    "frame": { "x": 702, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 230.ase": {
+    "frame": { "x": 756, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 231.ase": {
+    "frame": { "x": 810, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 232.ase": {
+    "frame": { "x": 864, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 233.ase": {
+    "frame": { "x": 918, "y": 648, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 234.ase": {
+    "frame": { "x": 0, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 235.ase": {
+    "frame": { "x": 54, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 236.ase": {
+    "frame": { "x": 108, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 237.ase": {
+    "frame": { "x": 162, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 238.ase": {
+    "frame": { "x": 216, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 239.ase": {
+    "frame": { "x": 270, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 240.ase": {
+    "frame": { "x": 324, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 241.ase": {
+    "frame": { "x": 378, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 242.ase": {
+    "frame": { "x": 432, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 243.ase": {
+    "frame": { "x": 486, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 244.ase": {
+    "frame": { "x": 540, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 245.ase": {
+    "frame": { "x": 594, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 246.ase": {
+    "frame": { "x": 648, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 247.ase": {
+    "frame": { "x": 702, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 248.ase": {
+    "frame": { "x": 756, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 249.ase": {
+    "frame": { "x": 810, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 250.ase": {
+    "frame": { "x": 864, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 251.ase": {
+    "frame": { "x": 918, "y": 702, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 252.ase": {
+    "frame": { "x": 0, "y": 756, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 253.ase": {
+    "frame": { "x": 54, "y": 756, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 254.ase": {
+    "frame": { "x": 108, "y": 756, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 255.ase": {
+    "frame": { "x": 162, "y": 756, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 256.ase": {
+    "frame": { "x": 216, "y": 756, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   },
+   "wario_animations3 257.ase": {
+    "frame": { "x": 270, "y": 756, "w": 54, "h": 54 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 54, "h": 54 },
+    "sourceSize": { "w": 54, "h": 54 },
+    "duration": 83
+   }
+ },
+ "meta": {
+  "app": "https://github.com/LibreSprite/LibreSprite/",
+  "version": "1.0-dev",
+  "image": "/home/fran/Descargas/gamesAssets/Phaser project/assets/animations/aseprite/wario/wario_animations3.png",
+  "format": "RGBA8888",
+  "size": { "w": 1024, "h": 1024 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "run", "from": 0, "to": 9, "direction": "forward" },
+   { "name": "jump", "from": 10, "to": 13, "direction": "forward" },
+   { "name": "SHit", "from": 14, "to": 17, "direction": "forward" },
+   { "name": "punch", "from": 18, "to": 31, "direction": "forward" },
+   { "name": "release", "from": 26, "to": 31, "direction": "forward" },
+   { "name": "ground_pound", "from": 32, "to": 43, "direction": "forward" },
+   { "name": "ground_pound_2", "from": 40, "to": 43, "direction": "forward" },
+   { "name": "dash", "from": 44, "to": 55, "direction": "forward" },
+   { "name": "run back", "from": 56, "to": 61, "direction": "forward" },
+   { "name": "crouch", "from": 62, "to": 67, "direction": "forward" },
+   { "name": "Skill 1 - Trust-dash", "from": 68, "to": 84, "direction": "forward" },
+   { "name": "Hurt", "from": 85, "to": 89, "direction": "forward" },
+   { "name": "Delay c", "from": 90, "to": 105, "direction": "forward" },
+   { "name": "release c", "from": 98, "to": 105, "direction": "forward" },
+   { "name": "dash", "from": 106, "to": 107, "direction": "forward" },
+   { "name": "Delay Front atk", "from": 108, "to": 123, "direction": "forward" },
+   { "name": "CF1", "from": 114, "to": 119, "direction": "forward" },
+   { "name": "RF1", "from": 120, "to": 123, "direction": "forward" },
+   { "name": "Sit", "from": 124, "to": 153, "direction": "forward" },
+   { "name": "standup", "from": 141, "to": 153, "direction": "forward" },
+   { "name": "idle back", "from": 154, "to": 166, "direction": "forward" },
+   { "name": "skill back", "from": 167, "to": 184, "direction": "forward" },
+   { "name": "skill front", "from": 185, "to": 202, "direction": "forward" },
+   { "name": "War Cry", "from": 203, "to": 218, "direction": "forward" },
+   { "name": "Magnum Break", "from": 219, "to": 234, "direction": "forward" },
+   { "name": "slide", "from": 235, "to": 238, "direction": "forward" },
+   { "name": "fallen", "from": 239, "to": 249, "direction": "forward" },
+   { "name": "Ress", "from": 250, "to": 257, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "vazio", "opacity": 255, "blendMode": "normal" },
+   { "name": "shadow", "opacity": 90, "blendMode": "normal" },
+   { "name": "escudo inferior", "opacity": 255, "blendMode": "normal" },
+   { "name": "med Woman capa", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman leg", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman body", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman faixas", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman cinto", "opacity": 255, "blendMode": "normal" },
+   { "name": "escudo superior", "opacity": 255, "blendMode": "normal" },
+   { "name": "braco superior", "opacity": 255, "blendMode": "normal" },
+   { "name": "lanca", "opacity": 255, "blendMode": "normal" },
+   { "name": "nao tao vazio", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman lanca", "opacity": 255, "blendMode": "normal" },
+   { "name": "Escudo inferir", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman braco infe", "opacity": 255, "blendMode": "normal" },
+   { "name": "slim woman leg", "opacity": 255, "blendMode": "normal" },
+   { "name": "Slim woman tronco", "opacity": 255, "blendMode": "normal" },
+   { "name": "armor", "opacity": 255, "blendMode": "normal" },
+   { "name": "Slim woman cinto", "opacity": 255, "blendMode": "normal" },
+   { "name": "Slim Woman capa", "opacity": 255, "blendMode": "normal" },
+   { "name": "escudo superior", "opacity": 255, "blendMode": "normal" },
+   { "name": "linhas", "opacity": 43, "blendMode": "normal" },
+   { "name": "Costas ", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}
