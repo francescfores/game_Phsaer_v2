@@ -1,0 +1,236 @@
+{ "frames": {
+   "0": {
+    "frame": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "1": {
+    "frame": { "x": 30, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "2": {
+    "frame": { "x": 60, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "3": {
+    "frame": { "x": 90, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "4": {
+    "frame": { "x": 120, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "5": {
+    "frame": { "x": 150, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "6": {
+    "frame": { "x": 180, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "7": {
+    "frame": { "x": 210, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "8": {
+    "frame": { "x": 240, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "9": {
+    "frame": { "x": 270, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "10": {
+    "frame": { "x": 300, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "11": {
+    "frame": { "x": 330, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "12": {
+    "frame": { "x": 360, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "13": {
+    "frame": { "x": 390, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "14": {
+    "frame": { "x": 420, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "15": {
+    "frame": { "x": 450, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "16": {
+    "frame": { "x": 480, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "17": {
+    "frame": { "x": 510, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "18": {
+    "frame": { "x": 540, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "19": {
+    "frame": { "x": 570, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "20": {
+    "frame": { "x": 600, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "21": {
+    "frame": { "x": 630, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "22": {
+    "frame": { "x": 660, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   },
+   "23": {
+    "frame": { "x": 690, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 220
+   }
+ },
+ "meta": {
+  "app": "https://github.com/LibreSprite/LibreSprite/",
+  "version": "1.0-dev",
+  "image": "/home/fran/Descargas/gamesAssets/Phaser project/assets/animations/aseprite/wario/enemi_bu.png",
+  "format": "RGBA8888",
+  "size": { "w": 720, "h": 30 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "run_bu_ememi", "from": 0, "to": 6, "direction": "forward" },
+   { "name": "dash_bu_enemi", "from": 7, "to": 11, "direction": "forward" },
+   { "name": "flip_bu_enemi", "from": 12, "to": 15, "direction": "forward" },
+   { "name": "assasas", "from": 16, "to": 18, "direction": "forward" },
+   { "name": "sdd", "from": 19, "to": 23, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "vazio", "opacity": 255, "blendMode": "normal" },
+   { "name": "shadow", "opacity": 90, "blendMode": "normal" },
+   { "name": "escudo inferior", "opacity": 255, "blendMode": "normal" },
+   { "name": "med Woman capa", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman leg", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman body", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman faixas", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman cinto", "opacity": 255, "blendMode": "normal" },
+   { "name": "escudo superior", "opacity": 255, "blendMode": "normal" },
+   { "name": "braco superior", "opacity": 255, "blendMode": "normal" },
+   { "name": "lanca", "opacity": 255, "blendMode": "normal" },
+   { "name": "nao tao vazio", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman lanca", "opacity": 255, "blendMode": "normal" },
+   { "name": "Escudo inferir", "opacity": 255, "blendMode": "normal" },
+   { "name": "med woman braco infe", "opacity": 255, "blendMode": "normal" },
+   { "name": "slim woman leg", "opacity": 255, "blendMode": "normal" },
+   { "name": "Slim woman tronco", "opacity": 255, "blendMode": "normal" },
+   { "name": "armor", "opacity": 255, "blendMode": "normal" },
+   { "name": "Slim woman cinto", "opacity": 255, "blendMode": "normal" },
+   { "name": "Slim Woman capa", "opacity": 255, "blendMode": "normal" },
+   { "name": "escudo superior", "opacity": 255, "blendMode": "normal" },
+   { "name": "linhas", "opacity": 43, "blendMode": "normal" },
+   { "name": "Costas ", "opacity": 255, "blendMode": "normal" },
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

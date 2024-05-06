@@ -44,6 +44,8 @@ class Example extends Phaser.Scene {
     tween;
     rocksGroup;
     enemiesGroup;
+    enemiesBuGroup;
+    tweens;
     layer;
     layer2;
 
@@ -58,15 +60,19 @@ class Example extends Phaser.Scene {
     dash;
     defeat;
     crouch;
-    MAX_SPEED=2;
-    NORMAL_SPEED=1;
-    MIN_SPEED=1;
-
+    MAX_SPEED=4;
+    NORMAL_SPEED=3;
+    MIN_SPEED=2.4;
     tilesCollisionInfo = {
+        1: "platform",
+        10: "stick_wall",
         113: "ramp",
         114: "Azulejo especial 2",
         115: "Azulejo especial 3",
-        13: "flat"
+        13: "ramp",
+        14: "ramp",
+        15: "ramp",
+        16: "ramp"
     };
 
     preload() {
@@ -84,22 +90,24 @@ class Example extends Phaser.Scene {
         this.load.image("background3", "assets/bg_parallax/foreground.png");
         this.load.image("background4", "assets/bg_parallax/fog.png");
         // this.load.aseprite('paladin', 'assets/animations/aseprite/aseprite/paladin.png', 'assets/animations/aseprite/aseprite/paladin.json');
-        this.load.aseprite('paladin', 'assets/animations/aseprite/wario/wario_animations2.png', 'assets/animations/aseprite/aseprite/02_Char_Eadal_Paladin.json');
+        this.load.aseprite('paladin', 'assets/animations/aseprite/wario/wario_animations_booooooo.png', 'assets/animations/aseprite/wario/wario_animations_booooooo.json',{frameWidth: 45, frameHeight: 45});
         // this.load.aseprite('paladin', 'assets/animations/aseprite/wario/wario_animations3.png', 'assets/animations/aseprite/wario/wario_animations3.json');
 
-        this.load.aseprite('enemi_1', 'assets/animations/aseprite/wario/enemi_1.png', 'assets/animations/aseprite/wario/enemi_1.json');
+        this.load.aseprite('enemi_2', 'assets/animations/aseprite/wario/enemi_bu.png', 'assets/animations/aseprite/wario/enemi_bu.json');
+        this.load.aseprite('enemi_1', 'assets/animations/aseprite/wario/enemi_1_2.png', 'assets/animations/aseprite/wario/enemi_1_2.json');
         this.load.spritesheet('rock1', 'assets/tilemaps/tiles/rock_1.png', {frameWidth: 16, frameHeight: 16});
         this.load.spritesheet('rock2', 'assets/tilemaps/tiles/rock_2.png', {frameWidth: 16, frameHeight: 16});
         this.load.spritesheet('rock3', 'assets/tilemaps/tiles/rock_3.png', {frameWidth: 16, frameHeight: 16});
         this.load.spritesheet('rock_small_object', 'assets/tilemaps/tiles/wario/rock_small_object.png', {frameWidth: 32, frameHeight: 32});
     }
     createTileMap(){
-        this.image0 = this.add.tileSprite(0, 0, 0, 0, 'background').setScale(2).setOrigin(0.1, 0.1);
-        this.image1 = this.add.tileSprite(0, 0, 0, 0, 'background3').setScale(2).setOrigin(0.1, 0.1);
-        this.image0.displayWidth = this.sys.game.config.width * 2;
-        this.image0.displayHeight = this.sys.game.config.height * 2;
-        this.image1.displayWidth = this.sys.game.config.width * 2;
-        this.image1.displayHeight = this.sys.game.config.height * 2;
+
+        this.image0 = this.add.tileSprite(0, 0, 0, 0, 'background').setScale(1).setOrigin(0.1, 0.1);
+        this.image1 = this.add.tileSprite(0, 0, 0, 0, 'background3').setScale(1).setOrigin(0.1, 0.1);
+        this.image0.displayWidth = this.sys.game.config.width * 2.5;
+        this.image0.displayHeight = this.sys.game.config.height * 2.5;
+        this.image1.displayWidth = this.sys.game.config.width * 2.5;
+        this.image1.displayHeight = this.sys.game.config.height * 2.5;
 
         // const map = this.make.tilemap({key: 'map'});
         const map = this.add.tilemap("map");
@@ -145,8 +153,9 @@ class Example extends Phaser.Scene {
         this.cursors = this.input.keyboard.createCursorKeys();
         this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S); // Tecla "S"
         this.keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R); // Tecla "S"
+        this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D); // Tecla "S"
 
-        this.smoothedControls = new SmoothedHorionztalControl(0.0005);
+        this.smoothedControls = new SmoothedHorionztalControl(0.003);
         this.cam = this.cameras.main;
         this.cam.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     }
@@ -159,383 +168,52 @@ class Example extends Phaser.Scene {
         this.image0.x= this.cam.scrollX;
         this.image1.x= this.cam.scrollX;
     }
-
-
-    create() {
-        this.rocksGroup=[];
-        this.enemiesGroup=[];
-        this.createTileMap()
-        // this.decorWorld()
-        this.createPlayer(200, 0);
-        this.populate();
-
-        this.matterEventsPlayer();
-        this.matterEventsEnemies();
-        this.enableDebug();
-        // this.createRocks();
-        // this.populate();
-        // this.decorWorldFront();
-        // this.createCarrots();
-        // this.camFollow();
-        // this.bindKeys();
-        // this.createStars();
-        // this.startMusic();
-        // this.addAudios();
-        // this.createHud();
-        // Configurar colisiones
-        // this.setCollisions();
-        // this.updateText();
+    populate(){
+        this.createRocks();
+        this.createEnemies();
     }
-    update (time, delta)
-    {
-
-
-        // Ajustamos la posición del fondo en relación con la cámara
-        this.parallaxBgReset();
-        this.movePlayer(time, delta);
-        this.moveEnemies(time, delta);
-        const matterSprite = this.playerController.matterSprite;
-        // Horizontal movement
-        this.smoothMoveCameraTowards(matterSprite, 0.9);
-
-
-    }
-    movePlayer(time, delta){
+    createRocks() {
         const M = Phaser.Physics.Matter.Matter;
-
-        const matterSprite = this.playerController.matterSprite;
-        let oldVelocityX;
-        let targetVelocityX;
-        let newVelocityX;
-
-
-
-        if(this.cursors.left.isDown &&
-            !this.playerController.blocked.left &&
-            !this.cursors.down.isDown &&
-            this.playerController.blocked.bottom &&
-            !this.keyS.isDown
-        ) {
-            this.playerController.matterSprite.anims.play('run', true);
-
-        }else  if(this.cursors.right.isDown &&
-            !this.playerController.blocked.right &&
-            !this.cursors.down.isDown &&
-            this.playerController.blocked.bottom &&
-            !this.keyS.isDown
-        ) {
-            this.playerController.matterSprite.anims.play('run', true);
-
-        }
-        if(this.cursors.left.isDown &&
-            !this.playerController.blocked.left &&
-            !this.cursors.down.isDown
-        ) {
-            // this.playerController.matterSprite.anims.play('step', true);
-            // Lerp the velocity towards the max run using the smoothed controls. This simulates a
-            // player controlled acceleration.
-            oldVelocityX = matterSprite.body.velocity.x;
-            targetVelocityX = -this.playerController.speed.run;
-            newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, -this.smoothedControls.value);
-            if (newVelocityX > this.MAX_SPEED) {
-                newVelocityX = this.MAX_SPEED;
-                // matterSprite.body.velocity.x *= ratio;
-                // matterSprite.body.velocity.y *= ratio;
+        const idDeseado = 9;
+        this.layer.forEachTile(tile => {
+            if (tile.index === idDeseado) {
+                const item = this.createRockSprite(tile.getCenterX(), tile.getCenterY());
+                this.rocksGroup.push(item);
             }
-            //realisitic vel
-            // matterSprite.setVelocityX(newVelocityX);
-            matterSprite.setVelocityX(-this.MAX_SPEED);
-            this.playerController.matterSprite.setFlipX(true);
-            this.parallaxBg(-1);
-            this.smoothedControls.moveLeft(delta);
-
-        }
-        else if (this.cursors.right.isDown &&
-            !this.playerController.blocked.right  &&
-            !this.cursors.down.isDown
-        ){
-            // this.playerController.matterSprite.anims.play('step', true);
-            // Lerp the velocity towards the max run using the smoothed controls. This simulates a
-            // player controlled acceleration.
-            oldVelocityX = matterSprite.body.velocity.x;
-            targetVelocityX = this.playerController.speed.run;
-            newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, this.smoothedControls.value);
-            if (newVelocityX > this.MAX_SPEED) {
-                newVelocityX = this.MAX_SPEED ;
-                // matterSprite.body.velocity.x *= ratio;
-                // matterSprite.body.velocity.y *= ratio;
-            }
-            //realisitic vel
-            // matterSprite.setVelocityX(newVelocityX);
-            matterSprite.setVelocityX(this.MAX_SPEED);
-            this.playerController.matterSprite.setFlipX(false);
-            this.parallaxBg(1);
-            this.smoothedControls.moveRight(delta);
-
-        }
-        else if (this.cursors.down.isDown )
-        {
-            if (this.cursors.down.isDown && !this.scalingDone) {
-                const newHeight = this.playerController.matterSprite.height * 0.5; // Reducir el alto al 75%
-                const currentBody = this.playerController.matterSprite.body;
-                const currentHeight = currentBody.bounds.max.y - currentBody.bounds.min.y;
-                const newBodyHeight = newHeight * 1.5;
-                M.Body.scale(currentBody, 1, newBodyHeight / currentHeight);
-
-                // Actualizar la posición visual del sprite
-                const newPositionY = this.playerController.matterSprite.y - (newHeight - this.playerController.matterSprite.height) / 2;
-                this.playerController.matterSprite.y = newPositionY;
-
-                // Actualizar el tamaño del sprite
-                this.playerController.matterSprite.setSize(this.playerController.matterSprite.width, newHeight);
-
-                // Marcar que la acción de escalar se ha realizado
-                this.scalingDone = true;
-
-                // this.playerController.matterSprite.anims.play('morte', true);
-                // Lerp the velocity towards the max run using the smoothed controls. This simulates a
-                // player controlled acceleration.
-                oldVelocityX = matterSprite.body.velocity.x;
-                targetVelocityX = this.playerController.speed.run;
-                newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, this.smoothedControls.value);
-                matterSprite.setVelocityX(newVelocityX);
-                this.playerController.matterSprite.anims.play('crouch', true);
-            }
-        }
-        else if(
-            this.playerController.blocked.bottom &&
-            !this.cursors.up.isDown
-        ){
-            this.smoothedControls.reset();
-
-            // this.playerController.matterSprite.anims.play('look', true);
-        }
-        if (this.keyS.isDown){
-            this.playerController.matterSprite.anims.play('dash', true);
-        }
-        if (this.cursors.down.isUp && this.scalingDone) {
-            // Modificar el alto del sprite
-            // Modificar el alto del sprite
-            const newHeight = this.playerController.matterSprite.height * 1; // Reducir el alto al 75%
-            // Modificar el alto del cuerpo físico
-            const currentBody = this.playerController.matterSprite.body;
-            const currentHeight = currentBody.bounds.max.y - currentBody.bounds.min.y;
-            const newBodyHeight = newHeight * 1.5;
-            // Calcular la nueva posición Y del cuerpo físico
-            const newPositionY = currentBody.position.y + (currentHeight - newBodyHeight) / 2;
-            // Escalar el cuerpo físico
-            M.Body.scale(currentBody, 1, newBodyHeight / currentHeight);
-            // Actualizar la posición Y del cuerpo físico
-            M.Body.setPosition(currentBody, { x: currentBody.position.x+1, y: newPositionY });
-            // Actualizar el tamaño del sprite
-            this.playerController.matterSprite.setSize(this.playerController.matterSprite.width, newHeight);
-            // Marcar que la acción de escalar se ha realizado
-            this.scalingDone = false;
-            // this.playerController.matterSprite.anims.play('SHit', true);
-
-        }
-
-        const canJump = (time - this.playerController.lastJumpedAt) > 450;
-
-        if(this.cursors.up.isDown && !this.cursors.down.isDown){
-            if (this.playerController.blocked.bottom)
-            {
-                this.playerController.matterSprite.anims.play('jump', true);
-
-            }
-            else if (this.playerController.blocked.left)
-            {
-                this.playerController.matterSprite.anims.play('jump', true);
-                this.playerController.matterSprite.setFlipX(false);
-
-            }
-            else if (this.playerController.blocked.right)
-            {
-                this.playerController.matterSprite.anims.play('jump', true);
-                this.playerController.matterSprite.setFlipX(true);
-            }
-        }
-        if (this.cursors.up.isDown && canJump)
-        {
-            if (this.playerController.blocked.bottom)
-            {
-                matterSprite.setVelocityY(-this.playerController.speed.jump);
-                this.playerController.lastJumpedAt = time;
-            }
-            else if (this.playerController.blocked.left)
-            {
-                // Jump up and away from the wall
-                matterSprite.setVelocityY(-this.playerController.speed.jump);
-                matterSprite.setVelocityX(this.playerController.speed.run);
-                this.playerController.lastJumpedAt = time;
-            }
-            else if (this.playerController.blocked.right)
-            {
-
-                // Jump up and away from the wall
-                matterSprite.setVelocityY(-this.playerController.speed.jump);
-                matterSprite.setVelocityX(-this.playerController.speed.run);
-                this.playerController.lastJumpedAt = time;
-
-            }
-        }
-
-        this.smoothMoveCameraTowards(matterSprite, 0.9);
-    }
-
-    // Método para manejar el ataque del enemigo
-    enemyAttack(enemy, player) {
-        // Reproducir la animación de ataque del enemigo
-        // enemy.playAttackAnimation();
-        //
-        // Reducir la salud del jugador (esto es solo un ejemplo, puedes tener tu propia lógica aquí)
-        // player.reduceHealth(enemy.attackDamage);
-    }
-
-    moveEnemies(time, delta){
-        this.enemiesGroup.forEach(enemy => {
-            const distance = Phaser.Math.Distance.Between(
-                this.playerController.matterSprite.x,
-                0,
-                enemy.matterSprite.x, 0);
-
-            const visionRange = 100; // Definir el rango de visión deseado
-
-            const inVisionRange = distance < visionRange;
-            //
-            // if (enemy.visionRectangle) {
-            //     // Actualizar la visibilidad y posición del rectángulo de visión
-            //     enemy.visionRectangle.setVisible(inVisionRange);
-            //     enemy.visionRectangle.setPosition(enemy.matterSprite.x, enemy.matterSprite.y);
-            //     if (distance < visionRange) {
-            //         // El jugador está dentro del rango de ataque
-            //         if (!enemy.isAttacking) {
-            //             // El enemigo no está actualmente atacando, así que comienza la animación de ataque
-            //             // enemy.isAttacking = true;
-            //             enemy.matterSprite.anims.play('dash_enemi', true);
-            //
-            //             // Establece un temporizador para detener la animación de ataque después de cierto tiempo
-            //             this.time.delayedCall(1000, () => {
-            //                 // Detener la animación de ataque y cambiar a la animación de caminar
-            //                 // enemy.isAttacking = false;
-            //                 enemy.matterSprite.anims.play('run_enemi', true);
-            //             }, [], this);
-            //         }
-            //     } else {
-            //         // El jugador está fuera del rango de ataque, así que el enemigo debería caminar
-            //         enemy.matterSprite.anims.play('run_enemi', true);
-            //     }
-            // } else {
-            //     // Crear el rectángulo de visión si aún no existe
-            //     enemy.visionRectangle = this.add.rectangle(
-            //         enemy.matterSprite.x,
-            //         enemy.matterSprite.y,
-            //         visionRange*2,
-            //         visionRange*2, // Reducir la altura a la mitad para representar el área de visión
-            //         0x00ff00, // Color verde para el área de visión
-            //         0.5 // Opacidad del rectángulo
-            //     );
-            //     enemy.visionRectangle.setStrokeStyle(2, 0x00ff00); // Color del borde verde
-            //     enemy.visionRectangle.setOrigin(0.5); // Establecer el punto de origen en el centro
-            // }
-            // const attackRange1 =120; // Definir el rango de ataque deseado
-            //
-            // const showAttackRangeRectangle = distance < attackRange1;
-            // if (enemy.attackRangeRectangle) {
-            //     enemy.attackRangeRectangle.setVisible(showAttackRangeRectangle);
-            //     enemy.attackRangeRectangle.setPosition(enemy.matterSprite.x, enemy.matterSprite.y);
-            //         enemy.attackRangeRectangle.setSize(attackRange1 , attackRange1/2, true);
-            //
-            // } else {
-            //     enemy.attackRangeRectangle = this.add.rectangle(
-            //         enemy.matterSprite.x,
-            //         enemy.matterSprite.y,
-            //         attackRange1 , attackRange1/2, 0xff0000, 0.5);
-            //     enemy.attackRangeRectangle.setStrokeStyle(2, 0xff0000);
-            //     enemy.attackRangeRectangle.setOrigin(0.5);
-            // }
-            // const showAttackRangeRectangle = distance < attackRange;
-            // if (enemy.attackRangeRectangle) {
-            //     enemy.attackRangeRectangle.setVisible(showAttackRangeRectangle);
-            //     enemy.attackRangeRectangle.setPosition(enemy.matterSprite.x, enemy.matterSprite.y);
-            //     // Ajustar el tamaño del rectángulo de ataque
-            //     enemy.attackRangeRectangle.setSize(attackRange * 2, attackRange, true);
-            // } else {
-            //     enemy.attackRangeRectangle = this.add.rectangle(enemy.matterSprite.x, enemy.matterSprite.y, attackRange * 2, attackRange, 0xff0000, 0.5);
-            //     enemy.attackRangeRectangle.setStrokeStyle(2, 0xff0000);
-            //     enemy.attackRangeRectangle.setOrigin(0.5);
-            // }
-            // const inAttackRange = Phaser.Geom.Rectangle.ContainsPoint(enemy.attackRangeRectangle.getBounds(),
-            //     this.playerController.matterSprite.x, this.playerController.matterSprite.x);
-            //
-            // // Cambiar la animación del enemigo dependiendo de si el jugador está dentro del rectángulo de ataque
-            // if (inAttackRange) {
-            //     // Si el jugador está dentro del rectángulo de ataque, reproducir la animación de ataque
-            //         if (!enemy.isAttacking) {
-            //             // El enemigo no está actualmente atacando, así que comienza la animación de ataque
-            //             enemy.isAttacking = true;
-            //             enemy.matterSprite.anims.play('dash_enemi', true);
-            //
-            //             // Establece un temporizador para detener la animación de ataque después de cierto tiempo
-            //             this.time.delayedCall(700, () => {
-            //                 // Detener la animación de ataque y cambiar a la animación de caminar
-            //                 enemy.isAttacking = false;
-            //                 enemy.matterSprite.anims.play('run_enemi', true);
-            //             }, [], this);
-            //         }
-            // } else {
-            //     // Si el jugador no está dentro del rectángulo de ataque, reproducir la animación de caminar
-            //     enemy.matterSprite.anims.play('dash_enemi', true);
-            // }
-
-            if (enemy.blocked.left) {
-                // Si está bloqueado en el lado izquierdo, cambia la dirección a la derecha
-                enemy.direction.x = 1;
-            } else if (enemy.blocked.right) {
-                // Si está bloqueado en el lado derecho, cambia la dirección a la izquierda
-                enemy.direction.x = -1;
-            }
-
-            if (enemy.blocked.attack) {
-                // Reproducir la animación de ataque si está en modo de ataque
-                enemy.matterSprite.anims.play('dash_enemi', true);
-            } else {
-                // Reproducir la animación de carrera y ajustar la velocidad y orientación del sprite
-                enemy.matterSprite.anims.play('run_enemi', true);
-
-                const velocityX = this.NORMAL_SPEED * enemy.direction.x;
-                enemy.matterSprite.setVelocityX(velocityX);
-
-                // Voltear el sprite horizontalmente según la dirección
-                if (enemy.direction.x === 1) {
-                    enemy.matterSprite.setFlipX(false); // No voltear
-                } else {
-                    enemy.matterSprite.setFlipX(true); // Voltear horizontalmente
-                }
-            }
-
-            // if(enemy.blocked.attack){
-            //     // this.time.delayedCall(100, () => {
-            //     //     // Detener la animación de ataque y cambiar a la animación de caminar
-            //     //     enemy.isAttacking = false;
-            //     // }, [], this);
-            //     const velocityX =2* (enemy.direction.y);
-            //     enemy.matterSprite.setVelocityY(this.NORMAL_SPEED);
-            // }
-
         });
     }
     createPlayer(x,y){
         // this.matter.add.sprite(200, 200, 'enemi_1', 0).setScale(1.5)
         this.playerController = {
             matterSprite: this.matter.add.sprite(200, 200, 'paladin', 0)
-                .setBounce(0)
-                .setFriction(0, 0, 0)
-                .setCollisionGroup(this.matter.world.nextGroup())
-                .setVelocityY(2)
-                .setScale(1.5)
-            // .setDisplaySize(45, 45)
+                // .setExistingBody(compoundBody)
+                // .setDensity(1000)
+                // .setFrictionStatic(100)
+                // .setFrictionAir(0.00001)
+                // .setFriction(0, 0.02, 1)
+                // .setBounce(0) // Sets max inertia to prevent rotation
+                .setScale(1.7)
             ,
+            actionDuration:1000,
+            actionTimer:0,
+            jump:false,
+            step:false,
+            run:false,
+            crouch:false,
+            punch:false,
+            dash:false,
+            pound:false,
+            defeat:false,
+            stick:false,
+            climb:false,
+            morte:false,
+            stop:true,
+
+
+            direction: {
+                x: 1,
+                y: 0,
+            },
             blocked: {
                 left: false,
                 right: false,
@@ -556,15 +234,17 @@ class Example extends Phaser.Scene {
                 rightDown: 0
             },
             lastJumpedAt: 0,
+            jumpSpeed: 0,
             speed: {
-                run: 5,
-                jump: 8
+                step: 3.5,
+                run: 7,
+                jump: 9
             }
         };
 
         const M = Phaser.Physics.Matter.Matter;
-        const w = this.playerController.matterSprite.width *1.5;
-        const h = this.playerController.matterSprite.height *1.5;
+        const w = this.playerController.matterSprite.width *1.7;
+        const h = this.playerController.matterSprite.height *1.7;
         // El cuerpo del jugador va a ser un cuerpo compuesto:
         // - playerBody es el cuerpo sólido que interactuará físicamente con el mundo. Tiene un
         // chaflán (bordes redondeados) para evitar el problema de los vértices fantasma: http://www.iforce2d.net/b2dtut/ghost-vertices
@@ -581,8 +261,8 @@ class Example extends Phaser.Scene {
         // this.playerController.sensors.right = M.Bodies.rectangle(sx + w * 0.45, sy*1.55, 5, h * 0.25, {isSensor: true});
         // this.playerController.sensors.up = M.Bodies.rectangle(sx, sy+0.1, sx, 5, {isSensor: true});
 
-        let playerBody = M.Bodies.rectangle(sx, sy * 1.1, w * 0.5, h/1.1, {chamfer: {radius: 0}});
-        this.playerController.sensors.bottom = M.Bodies.rectangle(sx, h, sx/2, 5, {isSensor: true});
+        let playerBody = M.Bodies.rectangle(sx, sy * 1.1, w * 0.5, h/1.1, {chamfer: {radius: 10}});
+        this.playerController.sensors.bottom = M.Bodies.rectangle(sx, h, sx, 5, {isSensor: true});
         this.playerController.sensors.left = M.Bodies.rectangle(sx - w * 0.25, sy, 5, h * 0.25, {isSensor: true});
         this.playerController.sensors.right = M.Bodies.rectangle(sx + w * 0.25, sy, 5, h * 0.25, {isSensor: true});
         this.playerController.sensors.up = M.Bodies.rectangle(sx, h-h/1.1, sx, 5, {isSensor: true});
@@ -595,229 +275,39 @@ class Example extends Phaser.Scene {
                 this.playerController.sensors.left,
                 this.playerController.sensors.right
             ],
-            friction: 0.1,
+            friction: 0.01,
             restitution: 0.05 // Prevent body from sticking against a wall
         });
         this.playerController.matterSprite.play({key: 'delay', repeat: -1})
             .setExistingBody(compoundBody)
+            .setPosition(x,y)
             .setFixedRotation() // Sets max inertia to prevent rotation
-            .setPosition(x,y);
-        this.playerController.matterSprite.body.gravityScale.y =2; // Define la gravedad específica para este sprite
 
+        // .setDensity(1000)
+        // .setFrictionStatic(0)
+        // .setFrictionAir(1)
+        // .setFriction(0.01)
+        // .setBounce(0) // Sets max inertia to prevent rotation
+        // .setFixedRotation() // Sets max inertia to prevent rotation
+        // .setPosition(x,y)
+        // .setScale(1.5)
+        // this.playerController.matterSprite.body.gravityScale.y =2; // Define la gravedad específica para este sprite
         this.smoothMoveCameraTowards(this.playerController.matterSprite);
-
     }
     createEnemies(){
-        const idDeseado = 11;
+        const id_enemi = 11;
         this.layer.forEachTile(tile => {
-            if (tile.index === idDeseado) {
-                const item = this.createEnemiSprite(tile.getCenterX(), tile.getCenterY());
+            if (tile.index === id_enemi) {
+                this.createEnemiSprite(tile.getCenterX(), tile.getCenterY());
             }
         });
-    }
-    createRocks() {
-        const M = Phaser.Physics.Matter.Matter;
-        const idDeseado = 9;
+        const id_enemi_bu = 12;
+
         this.layer.forEachTile(tile => {
-            if (tile.index === idDeseado) {
-                const item = this.createRockSprite(tile.getCenterX(), tile.getCenterY());
-                this.rocksGroup.push(item);
+            if (tile.index === id_enemi_bu) {
+                this.createEnemiSprite3(tile.getCenterX(), tile.getCenterY());
             }
         });
-    }
-
-    matterEventsPlayer(){
-        // Usa eventos de materia para detectar si el jugador está tocando una superficie a la izquierda, derecha o
-        // abajo.
-        // Antes de la actualización de la materia, restablece el recuento del jugador de las superficies que está tocando.
-        this.matter.world.on('beforeupdate', function (event) {
-            this.enemiesGroup.forEach(enemy => {
-                enemy.numTouching.left = 0;
-                enemy.numTouching.right = 0;
-                enemy.numTouching.bottom = 0;
-                enemy.numTouching.up = 0;
-                enemy.numTouching.attack = 0;
-            });
-            this.playerController.numTouching.left = 0;
-            this.playerController.numTouching.right = 0;
-            this.playerController.numTouching.bottom = 0;
-        }, this);
-        // Recorre los pares activos en colisión y cuenta las superficies que toca el jugador.
-        this.matter.world.on('collisionactive', function (event) {
-            const playerBody = this.playerController.matterSprite.body;
-            for (let i = 0; i < event.pairs.length; i++) {
-                const bodyA = event.pairs[i].bodyA;
-                const bodyB = event.pairs[i].bodyB;
-                this.checkCollisionPlayer(bodyA,bodyB);
-
-                this.enemiesGroup.forEach(enemy => {
-                    const playerBody2 = enemy;
-                    const left = enemy.sensors.left;
-                    const right = enemy.sensors.right;
-                    const bottom = enemy.sensors.bottom;
-                    const up = enemy.sensors.up;
-                    const attack = enemy.sensors.attack;
-
-                    if (bodyA === bottom || bodyB === bottom) {
-                        // Standing on any surface counts (e.g. jumping off of a non-static crate).
-                        playerBody2.numTouching.bottom += 1;
-                    }else if ((bodyA === left ) || (bodyB === left )) {
-                        playerBody2.numTouching.left += 1;
-                        if(playerBody ===bodyA.gameObject.body || playerBody ===bodyB.gameObject.body){
-                            const rock = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
-                            // playerBody2.numTouching.attack += 1;
-                        }
-                    }
-                    else if ((bodyA === right ) || (bodyB === right )) {
-                        playerBody2.numTouching.right += 1;
-                        if(playerBody ===bodyA.gameObject.body || playerBody ===bodyB.gameObject.body){
-                            const rock = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
-
-                        }
-                    }
-                    else if ((bodyA === attack ) || (bodyB === attack )) {
-                        // playerBody2.numTouching.attack += 1;
-                        if(playerBody ===bodyA.gameObject.body || playerBody ===bodyB.gameObject.body){
-                            playerBody2.numTouching.attack += 1;
-                            // playerBody2.numTouching.attack += 1;
-                            this.applyBounceForce(this.playerController.matterSprite);
-
-
-                        }
-                    }
-                    else if ((bodyA === up ) || (bodyB === up )) {
-                        playerBody2.numTouching.up += 1;
-                        //eliminar enemigo al 2 sltar 2 vbeces encima
-                        if(playerBody ===bodyA.gameObject.body || playerBody ===bodyB.gameObject.body){
-                            const rock = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
-                            if(rock){
-                                if (rock.lives===0){
-                                    this.killEnemi(rock);
-                                }else{
-                                    this.playerController.matterSprite.setVelocityX(-this.MAX_SPEED);
-                                    this.playerController.matterSprite.setVelocityY(-this.MAX_SPEED*2);
-                                    this.playerController.matterSprite.setFlipX(true);
-                                    rock.matterSprite.anims.play('flip_enemi', true);
-                                    // Establecer un temporizador para volver a la animación "step" después de 2 segundos
-                                    const interval = setInterval(() => {
-                                        // Reanudar la animación "step_enemi"
-                                        rock.matterSprite.anims.play('run_enemi', true);
-                                        // Limpiar el intervalo después de ejecutar una vez
-                                        clearInterval(interval);
-                                    }, 600); // 2000 milisegundos (2 segundos)
-                                    rock.lives--;
-                                }
-                            }
-
-                        }
-                    }
-
-
-                });
-            }
-        }, this);
-        // Actualización finalizada, por lo que ahora podemos determinar si alguna dirección está bloqueada
-        this.matter.world.on('afterupdate', function (event) {
-
-            this.enemiesGroup.forEach(enemy => {
-                enemy.blocked.right = enemy.numTouching.right > 0 ? true : false;
-                enemy.blocked.left = enemy.numTouching.left > 0 ? true : false;
-                enemy.blocked.bottom = enemy.numTouching.bottom > 0 ? true : false;
-                enemy.blocked.up = enemy.numTouching.up > 0 ? true : false;
-                enemy.blocked.attack = enemy.numTouching.attack > 0 ? true : false;
-            });
-
-            this.playerController.blocked.right = this.playerController.numTouching.right > 0 ? true : false;
-            this.playerController.blocked.left = this.playerController.numTouching.left > 0 ? true : false;
-            this.playerController.blocked.bottom = this.playerController.numTouching.bottom > 0 ? true : false;
-        }, this);
-    }
-    checkCollisionPlayer(bodyA,bodyB){
-        const playerBody = this.playerController.matterSprite.body;
-        const left = this.playerController.sensors.left;
-        const right = this.playerController.sensors.right;
-        const bottom = this.playerController.sensors.bottom;
-
-        // if (bodyA.gameObject.tile instanceof Phaser.Tilemaps.Tile &&
-        //     this.tilesCollisionInfo.hasOwnProperty(bodyA.gameObject.tile.index)) {
-        //     const tileDescription = this.tilesCollisionInfo[bodyA.gameObject.tile.index];
-        // }
-        // if (bodyB.gameObject.tile instanceof Phaser.Tilemaps.Tile &&
-        //     this.tilesCollisionInfo.hasOwnProperty(bodyB.gameObject.tile.index)) {
-        //     const tileDescription = this.tilesCollisionInfo[bodyB.gameObject.tile.index];
-        // }
-
-        // if (bodyA === playerBody || bodyB === playerBody)
-        // {
-        //     continue;
-        // }else
-            if (bodyA === bottom || bodyB === bottom) {
-            // Standing on any surface counts (e.g. jumping off of a non-static crate).
-            this.playerController.numTouching.bottom += 1;
-            const enemie = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
-            // if (enemie) {
-            //     console.log(enemie)
-            //     enemie.numTouching.bottom += 1;
-            // }
-        }
-        else if ((bodyA === left ) || (bodyB === left )) {
-            // Only static objects count since we don't want to be blocked by an object that we
-            // can push around.
-            this.playerController.numTouching.left += 1;
-            const rock = this.rocksGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
-            const enemie = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
-            if (rock) {
-                this.breakRock(rock);
-            }
-            // if (enemie) {
-            //     enemie.numTouching.left += 1;
-            // }
-        }
-        else if ((bodyA === right ) || (bodyB === right )) {
-            this.playerController.numTouching.right += 1;
-            // Verificar si uno de los cuerpos colisionando pertenece al grupo de rocas
-            const rock = this.rocksGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
-            const enemie = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
-            if (rock) {
-                this.breakRock(rock);
-            }
-            // if (enemie) {
-            //     enemie.numTouching.right += 1;
-            // }
-        }
-    }
-    applyBounceForce(sprite) {
-        const interval = setInterval(() => {
-            // Reanudar la animación "step_enemi"
-            // this.playerController.matterSprite.setVelocityX(-this.MAX_SPEED);
-            // this.playerController.matterSprite.setVelocityY(-3);
-            // Limpiar el intervalo después de ejecutar una vez
-
-            this.playerController.matterSprite.anims.play('defeat', true);
-
-            // const forceMagnitude = 0.01; // Reducir la magnitud de la fuerza
-            // const forceX = -0.01; // Dirección horizontal hacia la izquierda
-            // const forceY = -0.1; // Dirección vertical hacia arriba
-
-            // Aplicar una fuerza al sprite Matter
-            // sprite.applyForce({ x: forceX * forceMagnitude, y: forceY * forceMagnitude });
-            this.playerController.matterSprite.setVelocityX(-this.MAX_SPEED-2);
-            this.playerController.matterSprite.setVelocityY(-1.2);
-            sprite.setBounce(1.5); // Un valor entre 0 y 1, donde 1 es un rebote completo
-            this.time.delayedCall(500, () => {
-                sprite.setBounce(0)
-            }, [], this);
-            clearInterval(interval);
-        }, 200); // 2000 milisegundos (2 segundos)
-
-    }
-    matterEventsEnemies(){
-
-    }
-    populate(){
-        this.createRocks();
-        this.createEnemies();
-
     }
     //rocks
     createRockSprite(x, y) {
@@ -858,13 +348,230 @@ class Example extends Phaser.Scene {
 
         let enemy = {
             matterSprite: this.matter.add.sprite(200, 200, 'enemi_1', 0)
-                .setBounce(0)
-                .setFriction(0, 0, 0)
-                .setCollisionGroup(this.matter.world.nextGroup())
-                .setVelocityY(2)
-            .setScale(1.5)
+                .setDensity(1000)
+                .setFrictionStatic(100)
+                .setFrictionAir(0.00001)
+                .setFriction(0, 0.02, 1)
+                .setBounce(0) // Sets max inertia to prevent rotation
+                .setFixedRotation() // Sets max inertia to prevent rotation
+                .setPosition(x,y)
+                .setScale(1.5)
             //     .setDisplaySize(100, 100)
             ,
+            actionDuration:1000,
+            actionTimer:800,
+            fliped:false,
+            direction: {
+                x: 1,
+                y: 0,
+            },
+            lives: 10,
+            isAttacking: false,
+            blocked: {
+                left: false,
+                right: false,
+                bottom: false,
+                up: false,
+                attack: false
+            },
+            numTouching: {
+                left: 0,
+                right: 0,
+                bottom: 0,
+                up: 0,
+                attack: 0
+            },
+            sensors: {
+                bottom: null,
+                left: null,
+                right: null,
+                up: null,
+                attack: null
+            },
+            time: {
+                leftDown: 0,
+                rightDown: 0
+            },
+            lastJumpedAt: 0,
+            speed: {
+                run: 5,
+                jump: 8
+            }
+        };
+        const M = Phaser.Physics.Matter.Matter;
+        const w = enemy.matterSprite.width * 1.5;
+        const h = enemy.matterSprite.height * 1.5;
+        // El cuerpo del jugador va a ser un cuerpo compuesto:
+        // - playerBody es el cuerpo sólido que interactuará físicamente con el mundo. Tiene un
+        // chaflán (bordes redondeados) para evitar el problema de los vértices fantasma: http://www.iforce2d.net/b2dtut/ghost-vertices
+        // - Sensores izquierdo/derecho/inferior que no interactuarán físicamente pero nos permitirán comprobar si
+        // el jugador está parado sobre suelo sólido o empujado contra un objeto sólido.
+        // Move the sensor to player center
+        let sx = w / 2;
+        let sy = h / 2;
+        // The player's body is going to be a compound body.
+            let playerBody = M.Bodies.rectangle(sx, sy*1.5, w * 0.5, h/2, {chamfer: {radius: 0}});
+            enemy.sensors.bottom = M.Bodies.rectangle(sx, h, sx/4, 5, {isSensor: true});
+            enemy.sensors.left = M.Bodies.rectangle(sx - w * 0.25, sy*1.5, 5, h * 0.25, {isSensor: true});
+            enemy.sensors.right = M.Bodies.rectangle(sx + w * 0.25, sy*1.55, 5, h * 0.25, {isSensor: true});
+            enemy.sensors.up = M.Bodies.rectangle(sx, h/2.5, sx/2, 5, {isSensor: true});
+            enemy.sensors.attack = M.Bodies.rectangle(sx, h, w/1.2, h/2, {isSensor: true});
+
+            let compoundBody = M.Body.create({
+                parts: [
+                    playerBody,
+                    enemy.sensors.bottom,
+                    enemy.sensors.left,
+                    enemy.sensors.right,
+                    enemy.sensors.up,
+                    enemy.sensors.attack,
+                ],
+                friction: 0.01,
+                restitution: 0.05 // Prevent body from sticking against a wall
+            });
+        enemy.matterSprite
+            .setExistingBody(compoundBody)
+            .setDensity(0.01)
+            .setFrictionStatic(10)
+            .setFrictionAir(0.1)
+            .setFriction(1)
+            .setBounce(0) // Sets max inertia to prevent rotation
+            .setFixedRotation(0) // Sets max inertia to prevent rotation
+            .setPosition(x,y)
+
+        // console.log(enemy.matterSprite.body)
+        // enemy.matterSprite.body.gravityScale.y =1; // Define la gravedad específica para este sprite
+        this.enemiesGroup.push(enemy);
+    }
+    createEnemiSprite3(x,  y) {
+        this.anims.createFromAseprite('enemi_2');
+
+        let enemy = {
+            matterSprite: this.matter.add.sprite(200, 200, 'enemi_2', 0)
+                .setDensity(1000)
+                .setFrictionStatic(100)
+                .setFrictionAir(0.00001)
+                .setFriction(0, 0.02, 1)
+                .setBounce(0) // Sets max inertia to prevent rotation
+                .setFixedRotation() // Sets max inertia to prevent rotation
+                .setPosition(x, y)
+                .setScale(1.5),
+            actionDuration: 1000,
+            actionTimer: 0,
+            fliped: false,
+            direction: {
+                x: 1,
+                y: 0,
+            },
+            lives: 10,
+            isAttacking: false,
+            blocked: {
+                left: false,
+                right: false,
+                bottom: false,
+                up: false,
+                attack: false
+            },
+            numTouching: {
+                left: 0,
+                right: 0,
+                bottom: 0,
+                up: 0,
+                attack: 0
+            },
+            sensors: {
+                bottom: null,
+                left: null,
+                right: null,
+                up: null,
+                attack: null
+            },
+            time: {
+                leftDown: 0,
+                rightDown: 0
+            },
+            lastJumpedAt: 0,
+            speed: {
+                run: 5,
+                jump: 8
+            }
+        };
+
+        const M = Phaser.Physics.Matter.Matter;
+        const w = enemy.matterSprite.width ;
+        const h = enemy.matterSprite.height;
+        // El cuerpo del jugador va a ser un cuerpo compuesto:
+        // - playerBody es el cuerpo sólido que interactuará físicamente con el mundo. Tiene un
+        // chaflán (bordes redondeados) para evitar el problema de los vértices fantasma: http://www.iforce2d.net/b2dtut/ghost-vertices
+        // - Sensores izquierdo/derecho/inferior que no interactuarán físicamente pero nos permitirán comprobar si
+        // el jugador está parado sobre suelo sólido o empujado contra un objeto sólido.
+        // Move the sensor to player center
+        let sx = w / 2;
+        let sy = h / 2;
+        // The player's body is going to be a compound body.
+
+        // let playerBody = M.Bodies.rectangle(sx, sy*1.5, w * 0.5, h/2, {chamfer: {radius: 0}});
+        // enemy.sensors.bottom = M.Bodies.rectangle(sx, h, sx, 5, {isSensor: true});
+        // enemy.sensors.left = M.Bodies.rectangle(sx - w * 0.45, sy*1.5, 5, h * 0.25, {isSensor: true});
+        // enemy.sensors.right = M.Bodies.rectangle(sx + w * 0.45, sy*1.55, 5, h * 0.25, {isSensor: true});
+        // enemy.sensors.up = M.Bodies.rectangle(sx, sy+0.1, sx, 5, {isSensor: true});
+
+        let playerBody = M.Bodies.rectangle(sx, sy , w , h, {chamfer: {radius: 10}});
+        enemy.sensors.bottom = M.Bodies.rectangle(sx, h, sx, 5, {isSensor: true});
+        enemy.sensors.left = M.Bodies.rectangle(sx - w * 0.50, sy, 5, h * 0.5, {isSensor: true});
+        enemy.sensors.right = M.Bodies.rectangle(sx + w * 0.50, sy, 5, h * 0.5, {isSensor: true});
+        // enemy.sensors.up = M.Bodies.rectangle(sx, 0, sx, 5, {isSensor: true});
+        enemy.sensors.up = M.Bodies.rectangle(sx, 0, sx, 5, {isSensor: true});
+        enemy.sensors.attack = M.Bodies.rectangle(sx, sy , w *2, h*2, {isSensor: true});
+
+        let compoundBody = M.Body.create({
+            parts: [
+                playerBody,
+                // enemy.sensors.up,
+                // enemy.sensors.bottom,
+                // enemy.sensors.left,
+                // enemy.sensors.right,
+                enemy.sensors.attack
+            ],
+            friction: 0.01,
+            restitution: 0.05 // Prevent body from sticking against a wall
+        });
+
+        enemy.matterSprite.setExistingBody(compoundBody).setFixedRotation();
+        // enemy.matterSprite.body.collisionFilter.category = 0; // Desactiva las colisiones con todas las categorías
+        // enemy.matterSprite.body.collisionFilter.mask = 0; // No colisiona con ninguna categoría
+
+// Posicionar el sprite del enemigo
+        enemy.matterSprite.setPosition(x, y);
+
+
+        // console.log(enemy.matterSprite.body)
+        enemy.matterSprite.body.gravityScale.y =0; // Define la gravedad específica para este sprite
+        enemy.matterSprite.body.gravityScale.x =0; // Define la gravedad específica para este sprite
+        this.enemiesBuGroup.push(enemy);
+      enemy.matterSprite.body.gravityScale.y =0; // Define la gravedad específica para este sprite
+        enemy.matterSprite.setIgnoreGravity(true)
+        enemy.matterSprite.setAngularVelocity(0)
+
+    }
+    createEnemiSprite2(x, y) {
+        this.anims.createFromAseprite('enemi_2');
+
+        let enemy = {
+            matterSprite: this.matter.add.sprite(200, 200, 'enemi_2', 0)
+                .setDensity(1000)
+                .setFrictionStatic(100)
+                .setFrictionAir(0.00001)
+                .setFriction(0, 0.02, 1)
+                .setBounce(0) // Sets max inertia to prevent rotation
+                .setFixedRotation() // Sets max inertia to prevent rotation
+                .setPosition(x,y)
+                .setScale(1.5)
+            //     .setDisplaySize(100, 100)
+            ,
+            actionDuration:1000,
+            actionTimer:800,
+            fliped:false,
             direction: {
                 x: 1,
                 y: 0,
@@ -918,35 +625,1610 @@ class Example extends Phaser.Scene {
         enemy.sensors.bottom = M.Bodies.rectangle(sx, h, sx/4, 5, {isSensor: true});
         enemy.sensors.left = M.Bodies.rectangle(sx - w * 0.25, sy*1.5, 5, h * 0.25, {isSensor: true});
         enemy.sensors.right = M.Bodies.rectangle(sx + w * 0.25, sy*1.55, 5, h * 0.25, {isSensor: true});
-        enemy.sensors.up = M.Bodies.rectangle(sx, sy+0.1, sx/4, 5, {isSensor: true});
-        enemy.sensors.attack = M.Bodies.rectangle(sx, h, w, h/4, {isSensor: true});
+        enemy.sensors.up = M.Bodies.rectangle(sx, h/2.5, sx/2, 5, {isSensor: true});
+        enemy.sensors.attack = M.Bodies.rectangle(sx, h, w/1.2, h/2, {isSensor: true});
 
         let compoundBody = M.Body.create({
             parts: [
                 playerBody,
-                // playerBody2,
                 enemy.sensors.bottom,
                 enemy.sensors.left,
                 enemy.sensors.right,
                 enemy.sensors.up,
                 enemy.sensors.attack,
             ],
-            friction: 0.1,
+            friction: 0.01,
             restitution: 0.05 // Prevent body from sticking against a wall
         });
         enemy.matterSprite
             .setExistingBody(compoundBody)
-            .setFixedRotation() // Sets max inertia to prevent rotation
+            .setDensity(0.01)
+            .setFrictionStatic(10)
+            .setFrictionAir(0.1)
+            .setFriction(1)
+            .setBounce(0) // Sets max inertia to prevent rotation
+            .setFixedRotation(0) // Sets max inertia to prevent rotation
             .setPosition(x,y)
-            .setVelocityX(5)
-            .setBounce(0)
-            .setFriction(0, 0, 0)
-            .setCollisionGroup(this.matter.world.nextGroup())
-            .setVelocityY(2);
 
         // console.log(enemy.matterSprite.body)
         // enemy.matterSprite.body.gravityScale.y =1; // Define la gravedad específica para este sprite
-        this.enemiesGroup.push(enemy);
+        this.enemiesBuGroup.push(enemy);
+    }
+    create() {
+        // Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
+        const newWidth = 580 * 1.5;
+        const newHeight = 320 *1.5;
+
+        // Calculamos el zoom necesario para mantener la misma relación de aspecto
+        const zoomX = newWidth / 580;
+        const zoomY = newHeight / 320;
+
+        // Ajustamos el zoom de la cámara para mantener la misma relación de aspecto
+        this.cameras.main.setZoom(Math.min(zoomX, zoomY));
+
+        // Centramos la cámara en el centro del mundo
+        this.cameras.main.centerOn(0, 0);
+        this.rocksGroup=[];
+        this.enemiesGroup=[];
+        this.enemiesBuGroup=[];
+        this.createTileMap()
+        // this.decorWorld()
+        this.createPlayer(200, 0);
+        this.populate();
+
+        this.matterEvents();
+        this.enableDebug();
+        // this.createRocks();
+        // this.populate();
+        // this.decorWorldFront();
+        // this.createCarrots();
+        // this.camFollow();
+        // this.bindKeys();
+        // this.createStars();
+        // this.startMusic();
+        // this.addAudios();
+        // this.createHud();
+        // Configurar colisiones
+        // this.setCollisions();
+        // this.updateText();
+    }
+    update (time, delta)
+    {
+
+        this.parallaxBgReset();
+        this.movePlayer(time, delta);
+        this.moveEnemies(time, delta);
+        this.moveEnemies2(time, delta);
+    }
+    matterEvents(){
+        // Usa eventos de materia para detectar si el jugador está tocando una superficie a la izquierda, derecha o
+        // abajo.
+        // Antes de la actualización de la materia, restablece el recuento del jugador de las superficies que está tocando.
+        this.matter.world.on('beforeupdate', function (event) {
+            this.enemiesGroup.forEach(enemy => {
+                enemy.numTouching.left = 0;
+                enemy.numTouching.right = 0;
+                enemy.numTouching.bottom = 0;
+                enemy.numTouching.up = 0;
+                enemy.numTouching.attack = 0;
+            });
+            this.enemiesBuGroup.forEach(enemy => {
+                enemy.numTouching.left = 0;
+                enemy.numTouching.right = 0;
+                enemy.numTouching.bottom = 0;
+                enemy.numTouching.up = 0;
+                enemy.numTouching.attack = 0;
+            });
+            this.playerController.numTouching.left = 0;
+            this.playerController.numTouching.right = 0;
+            this.playerController.numTouching.bottom = 0;
+        }, this);
+
+        // Detectar colisión del sensor de sombra con las paredes
+        // this.matter.world.on('collisionstart', function (event) {
+        //     for (let i = 0; i < event.pairs.length; i++) {
+        //         console.log('isAttacking')
+        //         const bodyA = event.pairs[i].bodyA;
+        //         const bodyB = event.pairs[i].bodyB;
+        //         this.enemiesBuGroup.forEach(enemy => {
+        //                 if ((bodyA === enemy.sensors.attack ) || (bodyB === enemy.sensors.attack )) {
+        //                     if(!enemy.isAttacking){
+        //                     console.log('isAttacking')
+        //                     enemy.isAttacking = true;
+        //                     }
+        //             }
+        //     });
+        //     }
+        // }, this);
+        // this.matter.world.on('collisionend', function (event) {
+        //     for (let i = 0; i < event.pairs.length; i++) {
+        //         console.log('isAttsssssssssssssssssssssssssacking')
+        //         const bodyA = event.pairs[i].bodyA;
+        //         const bodyB = event.pairs[i].bodyB;
+        //         this.enemiesBuGroup.forEach(enemy => {
+        //             if ((bodyA === enemy.sensors.attack ) || (bodyB === enemy.sensors.attack )) {
+        //                 console.log('faassssssssssssssaaaaaaaaaisAttacking')
+        //                 // enemy.isAttacking = false;
+        //             }
+        //         });
+        //     }
+        // }, this);
+        // Recorre los pares activos en colisión y cuenta las superficies que toca el jugador.
+        this.matter.world.on('collisionactive', function (event) {
+            const playerBody = this.playerController.matterSprite.body;
+            for (let i = 0; i < event.pairs.length; i++) {
+                const bodyA = event.pairs[i].bodyA;
+                const bodyB = event.pairs[i].bodyB;
+                this.checkCollisionPlayer(bodyA,bodyB);
+                this.checkCollisionEnemies(bodyA,bodyB);
+                this.checkCollisionEnemies2(bodyA,bodyB);
+            }
+        }, this);
+        // Actualización finalizada, por lo que ahora podemos determinar si alguna dirección está bloqueada
+        this.matter.world.on('afterupdate', function (event) {
+
+            this.enemiesGroup.forEach(enemy => {
+                enemy.blocked.right = enemy.numTouching.right > 0 ? true : false;
+                enemy.blocked.left = enemy.numTouching.left > 0 ? true : false;
+                enemy.blocked.bottom = enemy.numTouching.bottom > 0 ? true : false;
+                enemy.blocked.up = enemy.numTouching.up > 0 ? true : false;
+                enemy.blocked.attack = enemy.numTouching.attack > 0 ? true : false;
+            });
+            this.enemiesBuGroup.forEach(enemy => {
+                enemy.blocked.right = enemy.numTouching.right > 0 ? true : false;
+                enemy.blocked.left = enemy.numTouching.left > 0 ? true : false;
+                enemy.blocked.bottom = enemy.numTouching.bottom > 0 ? true : false;
+                enemy.blocked.up = enemy.numTouching.up > 0 ? true : false;
+                enemy.blocked.attack = enemy.numTouching.attack > 0 ? true : false;
+            });
+            this.playerController.blocked.right = this.playerController.numTouching.right > 0 ? true : false;
+            this.playerController.blocked.left = this.playerController.numTouching.left > 0 ? true : false;
+            this.playerController.blocked.bottom = this.playerController.numTouching.bottom > 0 ? true : false;
+        }, this);
+    }
+    checkTileCollision(body,player) {
+        if (body.gameObject.tile instanceof Phaser.Tilemaps.Tile &&
+            this.tilesCollisionInfo.hasOwnProperty(body.gameObject.tile.index)) {
+            const tileDescription = this.tilesCollisionInfo[body.gameObject.tile.index];
+            if(tileDescription==='stick_wall' ){
+                this.playerController.stick=true;
+            } if(tileDescription==='platform'){
+                this.playerController.stick=false;
+            }
+            if(tileDescription==='ramp' ){
+                this.playerController.ball=true;
+            } else  {
+                this.playerController.ball=false;
+            }
+        }else if(body.gameObject.tile instanceof Phaser.Tilemaps.Tile){
+            this.playerController.stick=false;
+            this.playerController.ball=false;
+            // player.attack=false;
+        }
+        player.attack=true;
+
+    }
+    checkTileCollisionEnemi(body,player) {
+        if (body.gameObject.tile instanceof Phaser.Tilemaps.Tile &&
+            this.tilesCollisionInfo.hasOwnProperty(body.gameObject.tile.index)) {
+            const tileDescription = this.tilesCollisionInfo[body.gameObject.tile.index];
+            if(tileDescription==='stick_wall' ){
+            } if(tileDescription==='platform'){
+                // player.attack=true;
+            }
+            if(tileDescription==='ramp' ){
+            } else  {
+            }
+            // player.attack=true;
+        }else if(body.gameObject.tile instanceof Phaser.Tilemaps.Tile){
+            // player.attack=false;
+        }
+        // player.attack=true;
+
+    }
+    checkCollisionPlayer(bodyA,bodyB){
+        const playerBody = this.playerController.matterSprite.body;
+        const left = this.playerController.sensors.left;
+        const right = this.playerController.sensors.right;
+        const bottom = this.playerController.sensors.bottom;
+
+        // if (bodyA.gameObject.tile instanceof Phaser.Tilemaps.Tile &&
+        //     this.tilesCollisionInfo.hasOwnProperty(bodyA.gameObject.tile.index)) {
+        //     const tileDescription = this.tilesCollisionInfo[bodyA.gameObject.tile.index];
+        // }
+        // if (bodyB.gameObject.tile instanceof Phaser.Tilemaps.Tile &&
+        //     this.tilesCollisionInfo.hasOwnProperty(bodyB.gameObject.tile.index)) {
+        //     const tileDescription = this.tilesCollisionInfo[bodyB.gameObject.tile.index];
+        // }
+        if (bodyA === bottom || bodyB === bottom) {
+            this.checkTileCollision(bodyA,playerBody);
+            this.checkTileCollision(bodyB,playerBody);
+            // Standing on any surface counts (e.g. jumping off of a non-static crate).
+            this.playerController.numTouching.bottom += 1;
+            // this.playerController.matterSprite.setFriction(0.5)
+            // this.checkTileCollision(bodyA);
+            // this.checkTileCollision(bodyB);
+            const enemie = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
+        }
+        else if ((bodyA === left ) || (bodyB === left )) {
+            this.checkTileCollision(bodyA,playerBody);
+            this.checkTileCollision(bodyB,playerBody);
+            // Only static objects count since we don't want to be blocked by an object that we
+            // can push around.
+            this.playerController.dash = false;
+            this.playerController.punch = false;
+
+            this.playerController.numTouching.left += 1;
+            const rock = this.rocksGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
+            const enemie = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
+            if (rock) {
+                this.breakRock(rock);
+            }
+            // if (enemie) {
+            //     enemie.numTouching.left += 1;
+            // }
+        }
+        else if ((bodyA === right ) || (bodyB === right )) {
+            this.checkTileCollision(bodyA,playerBody);
+            this.checkTileCollision(bodyB,playerBody);
+            console.log('right')
+            this.playerController.numTouching.right += 1;
+            // Verificar si uno de los cuerpos colisionando pertenece al grupo de rocas
+            const rock = this.rocksGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
+            const enemie = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
+            if (rock) {
+                this.breakRock(rock);
+            }
+            // if (enemie) {
+            //     enemie.numTouching.right += 1;
+            // }
+            this.playerController.dash = false;
+            this.playerController.punch = false;
+        }
+    }
+    checkCollisionEnemies(bodyA,bodyB){
+        this.enemiesGroup.forEach(enemy => {
+            const playerBody = this.playerController.matterSprite.body;
+            const left = enemy.sensors.left;
+            const right = enemy.sensors.right;
+            const bottom = enemy.sensors.bottom;
+            const up = enemy.sensors.up;
+            const attack = enemy.sensors.attack;
+
+            if (bodyA === bottom || bodyB === bottom) {
+                // Standing on any surface counts (e.g. jumping off of a non-static crate).
+                enemy.numTouching.bottom += 1;
+            }else if ((bodyA === left ) || (bodyB === left )) {
+                if(playerBody !==bodyA.gameObject.body && playerBody !==bodyB.gameObject.body){
+                    enemy.numTouching.left += 1;
+                }
+            }
+            else if ((bodyA === right ) || (bodyB === right )) {
+                if(playerBody !==bodyA.gameObject.body && playerBody !==bodyB.gameObject.body){
+                    enemy.numTouching.right += 1;
+                }
+            }
+            else if ((bodyA === attack ) || (bodyB === attack )) {
+                if(playerBody ===bodyA.gameObject.body || playerBody ===bodyB.gameObject.body){
+                    enemy.numTouching.attack += 1;
+
+                }
+            }
+            else if ((bodyA === up ) || (bodyB === up )) {
+                enemy.numTouching.up += 1;
+                //eliminar enemigo al 2 sltar 2 vbeces encima
+
+
+            }
+
+
+        });
+    }
+    checkCollisionEnemies2(bodyA,bodyB){
+        this.enemiesBuGroup.forEach(enemy => {
+            const playerBody = this.playerController.matterSprite.body;
+            const left = enemy.sensors.left;
+            const right = enemy.sensors.right;
+            const bottom = enemy.sensors.bottom;
+            const up = enemy.sensors.up;
+            const attack = enemy.sensors.attack;
+
+            // if (bodyA === bottom || bodyB === bottom) {
+            //     enemy.numTouching.bottom += 1;
+            // }else if ((bodyA === left ) || (bodyB === left )) {
+            //     enemy.numTouching.left += 1;
+            // }
+            // else if ((bodyA === right ) || (bodyB === right )) {
+            //         enemy.numTouching.right += 1;
+            // }
+            // // else if ((bodyA === attack ) || (bodyB === attack )) {
+            // //         enemy.numTouching.attack += 1;
+            // // }
+            // else if ((bodyA === up ) || (bodyB === up )) {
+            //     enemy.numTouching.up += 1;
+            // }else
+
+            if ((bodyA === attack && bodyB.gameObject.body === playerBody) || (bodyB === attack && bodyA.gameObject.body === playerBody)) {
+                // Si el jugador está dentro del sensor de ataque del enemigo
+                        enemy.numTouching.attack += 1;
+
+                console.log("¡El jugador está dentro del sensor de ataque del enemigo!");
+                // Realiza las acciones necesarias, como iniciar el ataque del enemigo, etc.
+            }
+        });
+    }
+    movePlayer(time, delta){
+        // const matterSprite = this.playerController.matterSprite;
+        //
+        // // Horizontal movement
+        // let oldVelocityX;
+        // let targetVelocityX;
+        // let newVelocityX;
+        //
+        // if (this.cursors.left.isDown && !this.playerController.blocked.left)
+        // {
+        //     this.smoothedControls.moveLeft(delta);
+        //     matterSprite.anims.play('left', true);
+        //
+        //     // Lerp the velocity towards the max run using the smoothed controls. This simulates a
+        //     // player controlled acceleration.
+        //     oldVelocityX = matterSprite.body.velocity.x;
+        //     targetVelocityX = -this.playerController.speed.run;
+        //     newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, -this.smoothedControls.value);
+        //
+        //     matterSprite.setVelocityX(newVelocityX);
+        // }
+        // else if (this.cursors.right.isDown && !this.playerController.blocked.right)
+        // {
+        //     this.smoothedControls.moveRight(delta);
+        //     matterSprite.anims.play('right', true);
+        //
+        //     // Lerp the velocity towards the max run using the smoothed controls. This simulates a
+        //     // player controlled acceleration.
+        //     oldVelocityX = matterSprite.body.velocity.x;
+        //     targetVelocityX = this.playerController.speed.run;
+        //     newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, this.smoothedControls.value);
+        //
+        //     matterSprite.setVelocityX(newVelocityX);
+        // }
+        // else
+        // {
+        //     this.smoothedControls.reset();
+        //     matterSprite.anims.play('idle', true);
+        // }
+        //
+        // // Jumping & wall jumping
+        //
+        // // Add a slight delay between jumps since the sensors will still collide for a few frames after
+        // // a jump is initiated
+        // const canJump = (time - this.playerController.lastJumpedAt) > 250;
+        // if (this.cursors.up.isDown && canJump)
+        // {
+        //     if (this.playerController.blocked.bottom)
+        //     {
+        //         matterSprite.setVelocityY(-this.playerController.speed.jump);
+        //         this.playerController.lastJumpedAt = time;
+        //     }
+        //     else if (this.playerController.blocked.left)
+        //     {
+        //         // Jump up and away from the wall
+        //         matterSprite.setVelocityY(-this.playerController.speed.jump);
+        //         matterSprite.setVelocityX(this.playerController.speed.run*2);
+        //         this.playerController.lastJumpedAt = time;
+        //     }
+        //     else if (this.playerController.blocked.right)
+        //     {
+        //         // Jump up and away from the wall
+        //         matterSprite.setVelocityY(-this.playerController.speed.jump);
+        //         matterSprite.setVelocityX(-this.playerController.speed.run*2);
+        //         this.playerController.lastJumpedAt = time;
+        //     }
+        // }
+
+        // this.smoothMoveCameraTowards(matterSprite, 0.9);
+        const player = this.playerController;
+        player.actionTimer += delta;
+
+        const matterSprite = this.playerController.matterSprite;
+
+        // if(
+        //     player.blocked.bottom
+        //     && !this.playerController.climb
+        //     && (!this.cursors.left.isDown ||  !this.cursors.right.isDown)
+        //     && !this.playerController.stick
+        //     && player.actionTimer >= player.actionDuration
+        // ){
+        //     this.playerController.matterSprite.anims.play('run_stop', true);
+        //     player.actionDuration = 1000;
+        //     player.actionTimer = 0;
+        // }
+
+        // if(player.actionTimer >= player.actionDuration ){
+        //     // this.playerController.matterSprite.anims.play('look', true);
+        //     player.actionTimer = 0;
+        //     // // player.actionDuration=500;
+        //     this.playerController.jump=false;
+        //     this.playerController.run=false;
+        //     this.playerController.crouch=false; //todo remove
+        //     this.playerController.punch=false;
+        //     this.playerController.dash=false;
+        //     this.playerController.pound=false;
+        //     this.playerController.defeat=false;
+        //     this.playerController.stick=false;
+        //     this.playerController.climb=false;
+        //     this.playerController.morte=false;
+        //     //
+        //     // this.smoothedControls.reset();
+        // }
+
+        // if(player.actionTimer >= player.actionDuration ){
+        //     // this.playerController.matterSprite.anims.play('look', true);
+        //     // player.actionTimer = 0;
+        //     // player.actionDuration=500;
+        //     this.playerController.jump=false;
+        //     this.playerController.run=false;
+        //     // this.playerController.crouch=false; //todo remove
+        //     this.playerController.punch=false;
+        //     this.playerController.dash=false;
+        //     this.playerController.pound=false;
+        //     this.playerController.defeat=false;
+        //     this.playerController.stick=false;
+        //     this.playerController.climb=false;
+        //     this.playerController.morte=false;
+        //
+        //     this.smoothedControls.reset();
+        // }
+
+        //stop player
+
+        this.jumpPlayer(time,player); // Mover jugador hacia la izquierda
+
+        if(!player.defeat){
+
+            if(
+                player.blocked.bottom
+                // && (!player.blocked.right &&  !player.blocked.left)
+                && !this.playerController.punch
+                && !this.playerController.dash
+                && !this.playerController.morte
+                && !this.playerController.ball
+                && (this.cursors.left.isDown ||  this.cursors.right.isDown)
+                // && !this.playerController.stick
+            ){
+                this.playerController.matterSprite.anims.play('run', true);
+            }
+
+            if( player.blocked.bottom
+                // && !this.playerController.morte
+                && !this.playerController.dash
+                && !this.playerController.punch
+                && !this.playerController.morte
+                && !this.playerController.ball
+                // && !this.playerController.punch
+                // && !this.playerController.run
+                // && !this.playerController.climb
+                // && (player.blocked.right ||  plrrayer.blocked.left)
+                && (!this.cursors.left.isDown &&  !this.cursors.right.isDown)
+                // && !this.playerController.stick
+            ){
+                this.playerController.matterSprite.setFrame(4);
+                this.playerController.matterSprite.anims.stop('run');
+                player.stop=true;
+            }
+            if(
+                player.blocked.bottom
+                // && (!player.blocked.right &&  !player.blocked.left)
+                && this.playerController.morte
+                && !this.playerController.ball
+                && (this.cursors.left.isDown ||  this.cursors.right.isDown)
+                // && !this.playerController.stick
+            ){
+                this.playerController.matterSprite.anims.play('morte', true);
+            }
+
+            this.movePlayerDirection(delta,player); // Mover jugador hacia la izquierda
+            this.mortePlayer(time,delta,player); // Mover jugador hacia la izquierda
+            if(!player.morte && !player.stick){
+                this.punchPlayer(time,player); // Mover jugador hacia la izquierda
+                this.dashPlayer(time,delta,player); // Mover jugador hacia la izquierda
+                // this.ballPlayer(time,delta,player); // Mover jugador hacia la izquierda
+                this.stickWallPlayer(time,player); // Mover jugador hacia la izquierda
+            }
+        }
+
+        //
+        // if (
+        //     this.cursors.down.isDown
+        //     && !this.playerController.morte
+        //     && this.playerController.blocked.bottom
+        //     // && player.actionTimer >= player.actionDuration
+        // ) {
+        //     const newHeight = this.playerController.matterSprite.height * 0.5; // Reducir el alto al 75%
+        //     const currentBody = this.playerController.matterSprite.body;
+        //     const currentHeight = currentBody.bounds.max.y - currentBody.bounds.min.y;
+        //     const newBodyHeight = newHeight * 1.5;
+        //     M.Body.scale(currentBody, 1, newBodyHeight / currentHeight);
+        //
+        //     // Actualizar la posición visual del sprite
+        //     // const newPositionY = this.playerController.matterSprite.y - (newHeight - this.playerController.matterSprite.height) / 2;
+        //     // this.playerController.matterSprite.y = newPositionY-20;
+        //     // this.playerController.matterSprite.setSize(this.playerController.matterSprite.width, newHeight);
+        //     // this.playerController.matterSprite.setBounce(0)
+        //     // Actualizar el tamaño del sprite
+        //     // Marcar que la acción de escalar se ha realizado
+        //     // this.playerController.morte = true;
+        //     this.playerController.matterSprite.anims.play('morte', true);
+        // }
+        // // if (
+        // //     this.cursors.down.isUp
+        // //     && this.playerController.morte
+        // // ) {
+        // //     this.playerController.morte = true;
+        // //
+        // // }
+        // if (
+        //     this.playerController.morte
+        // ) {
+        //     player.actionDuration=0;
+        //     // Modificar el alto del sprite
+        //     // Modificar el alto del sprite
+        //     const newHeight = this.playerController.matterSprite.height ; // Reducir el alto al 75%
+        //     // Modificar el alto del cuerpo físico
+        //     const currentBody = this.playerController.matterSprite.body;
+        //     const currentHeight = currentBody.bounds.max.y - currentBody.bounds.min.y;
+        //     const newBodyHeight = newHeight * 1.5;
+        //     // Calcular la nueva posición Y del cuerpo físico
+        //     // const newPositionY = currentBody.position.y + (currentHeight - newBodyHeight) / 2;
+        //     // Escalar el cuerpo físico
+        //     M.Body.scale(currentBody, 1, newBodyHeight / currentHeight);
+        //     // Actualizar la posición Y del cuerpo físico
+        //     // M.Body.setPosition(currentBody, { x: currentBody.position.x+1, y: newPositionY });
+        //     // Actualizar el tamaño del sprite
+        //     // this.playerController.matterSprite.setSize(this.playerController.matterSprite.width, newHeight);
+        //     // Marcar que la acción de escalar se ha realizado
+        //     this.playerController.morte = false;
+        //     // this.playerController.matterSprite.anims.play('SHit', true);
+        //     if (this.playerController.blocked.bottom)
+        //     {
+        //         // this.playerController.matterSprite.anims.play('run', true);
+        //
+        //     }else {
+        //         // this.playerController.matterSprite.anims.play('jump', true);
+        //     }
+        // }
+
+
+        this.smoothMoveCameraTowards(matterSprite, 0.9);
+    }
+    // Función para cambiar la forma del jugador a circular
+    changeToBall(player) {
+        const M = Phaser.Physics.Matter.Matter;
+        const w = this.playerController.matterSprite.width *1.7;
+        const h = this.playerController.matterSprite.height *1.7;
+        // El cuerpo del jugador va a ser un cuerpo compuesto:
+        // - playerBody es el cuerpo sólido que interactuará físicamente con el mundo. Tiene un
+        // chaflán (bordes redondeados) para evitar el problema de los vértices fantasma: http://www.iforce2d.net/b2dtut/ghost-vertices
+        // - Sensores izquierdo/derecho/inferior que no interactuarán físicamente pero nos permitirán comprobar si
+        // el jugador está parado sobre suelo sólido o empujado contra un objeto sólido.
+        // Move the sensor to player center
+        let sx = w / 2;
+        let sy = h / 2;
+        // The player's body is going to be a compound body.
+
+        // let playerBody = M.Bodies.rectangle(sx, sy*1.5, w * 0.5, h/2, {chamfer: {radius: 0}});
+        // this.playerController.sensors.bottom = M.Bodies.rectangle(sx, h, sx, 5, {isSensor: true});
+        // this.playerController.sensors.left = M.Bodies.rectangle(sx - w * 0.45, sy*1.5, 5, h * 0.25, {isSensor: true});
+        // this.playerController.sensors.right = M.Bodies.rectangle(sx + w * 0.45, sy*1.55, 5, h * 0.25, {isSensor: true});
+        // this.playerController.sensors.up = M.Bodies.rectangle(sx, sy+0.1, sx, 5, {isSensor: true});
+        let circleRadius = Math.min(sx, sy) / 2;
+        // let playerBody = M.Bodies.circle(w, h, circleRadius, { chamfer: { radius: 10 } });
+        // Actualizar la posición de los sensores
+        let playerBody = M.Bodies.circle(sx, sy * 1.1, circleRadius, { chamfer: { radius: 10 } });
+
+        this.playerController.sensors.bottom = M.Bodies.rectangle(sx, sy + circleRadius, sx * 0.5, 5, { isSensor: true });
+        this.playerController.sensors.left = M.Bodies.rectangle(sx - circleRadius, sy, 5, sy * 0.5, { isSensor: true });
+        this.playerController.sensors.right = M.Bodies.rectangle(sx + circleRadius, sy, 5, sy * 0.5, { isSensor: true });
+        this.playerController.sensors.up = M.Bodies.rectangle(sx, sy - circleRadius, sx * 0.5, 5, { isSensor: true });
+
+        let compoundBody = M.Body.create({
+            parts: [
+                playerBody,
+                this.playerController.sensors.up,
+                this.playerController.sensors.bottom,
+                this.playerController.sensors.left,
+                this.playerController.sensors.right
+            ],
+            friction: 0,
+            restitution: 0.05 // Prevent body from sticking against a wall
+        });
+
+
+        const newHeight = this.playerController.matterSprite.height; // Reducir el alto al 75%
+        const currentBody = this.playerController.matterSprite.body;
+        const currentHeight = currentBody.bounds.max.y - currentBody.bounds.min.y;
+        const newBodyHeight = newHeight ;
+
+// Escalar el cuerpo físico
+        M.Body.scale(currentBody, 1, newBodyHeight / currentHeight);
+
+// Calcular la diferencia de altura para ajustar la posición vertical
+        const heightDifference = currentHeight - newBodyHeight;
+
+// Ajustar la posición vertical para mantener al jugador en el suelo
+        const newPositionY = currentBody.position.y + heightDifference / 2;
+
+// Establecer el cuerpo físico y ajustar la posición vertical
+        this.playerController.matterSprite
+            // .setExistingBody(currentBody)
+            .setExistingBody(compoundBody)
+
+            .setFixedRotation() // Evita que el jugador gire
+            .setPosition(currentBody.position.x, newPositionY);
+    }
+    changeToNormal(player) {
+        const M = Phaser.Physics.Matter.Matter;
+        const w = this.playerController.matterSprite.width *1.7;
+        const h = this.playerController.matterSprite.height *1.7;
+
+        let sx = w / 2;
+        let sy = h / 2;
+
+        let playerBody = M.Bodies.rectangle(sx, sy * 1.1, w * 0.5, h/1.1, {chamfer: {radius: 10}});
+        this.playerController.sensors.bottom = M.Bodies.rectangle(sx, h, sx, 5, {isSensor: true});
+        this.playerController.sensors.left = M.Bodies.rectangle(sx - w * 0.25, sy, 5, h * 0.25, {isSensor: true});
+        this.playerController.sensors.right = M.Bodies.rectangle(sx + w * 0.25, sy, 5, h * 0.25, {isSensor: true});
+        this.playerController.sensors.up = M.Bodies.rectangle(sx, h-h/1.1, sx, 5, {isSensor: true});
+
+        let compoundBody = M.Body.create({
+            parts: [
+                playerBody,
+                this.playerController.sensors.up,
+                this.playerController.sensors.bottom,
+                this.playerController.sensors.left,
+                this.playerController.sensors.right
+            ],
+            friction: 0.01,
+            restitution: 0.05 // Prevent body from sticking against a wall
+        });
+
+
+        const newHeight = this.playerController.matterSprite.height ; // Reducir el alto al 75%
+        // Modificar el alto del cuerpo físico
+        const currentBody = this.playerController.matterSprite.body;
+        const currentHeight = currentBody.bounds.max.y - currentBody.bounds.min.y;
+        const newBodyHeight = newHeight * 1.5;
+        // Calcular la nueva posición Y del cuerpo físico
+        // const newPositionY = currentBody.position.y + (currentHeight - newBodyHeight) / 2;
+        // Escalar el cuerpo físico
+        M.Body.scale(currentBody, 1, newBodyHeight / currentHeight);
+        // this.playerController.matterSprite
+        //         .setPosition(currentBody.position.x,currentBody.position.y)
+        //     .setExistingBody(currentBody).setRectangle(this.playerController.matterSprite.width, this.playerController.matterSprite.height)
+        this.playerController.matterSprite
+            .setExistingBody(compoundBody)
+            .setFixedRotation() // Sets max inertia to prevent rotation
+            .setPosition(currentBody.position.x,currentBody.position.y)
+
+    }
+    mortePlayer(time,delta,player) {
+        const M = Phaser.Physics.Matter.Matter;
+        let oldVelocityX;
+        let targetVelocityX;
+        let newVelocityX;
+        const isDirectionPositive = (player.direction.x === 1) ? true : false;
+
+        let isCircular = false;
+        const w = player.matterSprite.width * 1.5;
+        const h = player.matterSprite.height * 1.5;
+        // El cuerpo del jugador va a ser un cuerpo compuesto:
+        // - playerBody es el cuerpo sólido que interactuará físicamente con el mundo. Tiene un
+        // chaflán (bordes redondeados) para evitar el problema de los vértices fantasma: http://www.iforce2d.net/b2dtut/ghost-vertices
+        // - Sensores izquierdo/derecho/inferior que no interactuarán físicamente pero nos permitirán comprobar si
+        // el jugador está parado sobre suelo sólido o empujado contra un objeto sólido.
+        // Move the sensor to player center
+        let sx = w / 2;
+        let sy = h / 2;
+        // The player's body is going to be a compound body.
+        let playerBody = M.Bodies.rectangle(sx, sy*1.5, w * 0.5, h/2, {chamfer: {radius: 0}});
+
+// Crear el jugador cuadrado inicialmente
+        playerBody = M.Bodies.rectangle(1, w * 0.5, h / 1.1, { chamfer: { radius: 10 } });
+
+        if( this.cursors.down.isDown && this.playerController.ball && this.playerController.morte){
+            this.playerController.matterSprite.anims.play('ball', true);
+            // this.smoothedControls.moveRight(delta);
+            // if (
+            //     !isDirectionPositive
+            // ) {
+            //     oldVelocityX = player.matterSprite.body.velocity.x;
+            //     targetVelocityX = -this.playerController.speed.step;
+            //     newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, -this.smoothedControls.value);
+            //     player.matterSprite.setVelocityX(newVelocityX);
+            //     this.smoothedControls.moveLeft(delta);
+            //     this.parallaxBg(this.playerController.direction.x);
+            // } else if (
+            //     isDirectionPositive
+            // ) {
+            //     oldVelocityX = player.matterSprite.body.velocity.x;
+            //     targetVelocityX = this.playerController.speed.step;
+            //     newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, this.smoothedControls.value);
+            //     player.matterSprite.setVelocityX(newVelocityX);
+            //     this.smoothedControls.moveRight(delta);
+            //     this.parallaxBg(this.playerController.direction.x);
+            // }
+        }
+
+        if (
+            this.playerController.blocked.bottom &&
+            this.cursors.down.isDown
+            && this.playerController.ball
+            && !this.playerController.morte ){
+            this.changeToBall(player);
+            // this.playerController.morte=true;
+        }
+        this.input.keyboard.on('keyup', function (event) {
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN) {
+                if(
+                    !player.ball &&
+                    this.playerController.blocked.bottom
+
+                ){
+                    player.ball=false;
+                    player.morte=false;
+                    this.changeToNormal(player)
+                }
+
+            }
+        }, this);
+        if (
+            this.cursors.down.isDown
+            && !this.playerController.morte
+            // && !this.playerController.ball
+            && this.playerController.blocked.bottom
+            // && player.actionTimer >= player.actionDuration
+        ) {
+            const newHeight = this.playerController.matterSprite.height * 0.5; // Reducir el alto al 75%
+            const currentBody = this.playerController.matterSprite.body;
+            const currentHeight = currentBody.bounds.max.y - currentBody.bounds.min.y;
+            const newBodyHeight = newHeight * 1.5;
+
+// Escalar el cuerpo físico
+            M.Body.scale(currentBody, 1, newBodyHeight / currentHeight);
+
+// Establecer el cuerpo físico y ajustar la posición vertical
+            this.playerController.matterSprite
+                .setExistingBody(currentBody)
+                .setPosition(this.playerController.matterSprite.x, this.playerController.matterSprite.y + (currentHeight - newBodyHeight) / 2);
+
+            this.playerController.morte = true;
+            this.playerController.matterSprite.anims.play('morte', true);
+
+            this.input.keyboard.on('keyup', function (event) {
+                // Verifica si la tecla liberada es la tecla 'R'
+                if (event.keyCode === this.keyD.keyCode) {
+                    // Haz algo cuando la tecla 'R' sea liberada
+                    // this.playerController.matterSprite.anims.play('start_ball', true);
+                    this.smoothedControls.reset();
+                    player.ball=false;
+                    player.morte=false;
+                    this.changeToNormal(player)
+                }
+            }, this);
+
+            // this.playerController.matterSprite
+            //     .setExistingBody(currentBody)
+            //     .setPosition(currentBody.position.x,currentBody.position.y)
+            //     .setCircle(20)
+            //     .setPosition(currentBody.position.x,currentBody.position.y)
+            //     .setCircle(20)
+            // Actualizar la posición visual del sprite
+            // const newPositionY = this.playerController.matterSprite.y - (newHeight - this.playerController.matterSprite.height) / 2;
+            // this.playerController.matterSprite.y = newPositionY-20;
+            // this.playerController.matterSprite.setSize(this.playerController.matterSprite.width, newHeight);
+            // this.playerController.matterSprite.setBounce(0)
+            // Actualizar el tamaño del sprite
+            // Marcar que la acción de escalar se ha realizado
+        }
+
+        if (
+            this.cursors.down.isUp
+            && this.playerController.morte
+            && this.playerController.ball
+        ) {
+            player.actionDuration=0;
+            this.changeToNormal(player)
+            // // Modificar el alto del sprite
+            // // Modificar el alto del sprite
+            // const newHeight = this.playerController.matterSprite.height ; // Reducir el alto al 75%
+            // // Modificar el alto del cuerpo físico
+            // const currentBody = this.playerController.matterSprite.body;
+            // const currentHeight = currentBody.bounds.max.y - currentBody.bounds.min.y;
+            // const newBodyHeight = newHeight * 1.5;
+            // // Calcular la nueva posición Y del cuerpo físico
+            // // const newPositionY = currentBody.position.y + (currentHeight - newBodyHeight) / 2;
+            // // Escalar el cuerpo físico
+            // M.Body.scale(currentBody, 1, newBodyHeight / currentHeight);
+            // // this.playerController.matterSprite
+            // //         .setPosition(currentBody.position.x,currentBody.position.y)
+            // //     .setExistingBody(currentBody).setRectangle(this.playerController.matterSprite.width, this.playerController.matterSprite.height)
+            // // this.playerController.matterSprite
+            // //     .setExistingBody(currentBody)
+            // //     .setCircle(20)
+            // //     .setPosition(currentBody.position.x,currentBody.position.y)
+            // //     .setCircle(20)
+            // // Actualizar la posición Y del cuerpo físico
+            // // M.Body.setPosition(currentBody, { x: currentBody.position.x+1, y: newPositionY });
+            // // Actualizar el tamaño del sprite
+            // // this.playerController.matterSprite.setSize(this.playerController.matterSprite.width, newHeight);
+            // // Marcar que la acción de escalar se ha realizado
+            this.playerController.morte = false;
+            // this.playerController.matterSprite.anims.play('SHit', true);
+            if (this.playerController.blocked.bottom)
+            {
+                // this.playerController.matterSprite.anims.play('run', true);
+
+            }else {
+                // this.playerController.matterSprite.anims.play('jump', true);
+            }
+        }
+    }
+    ballPlayer(time,delta,player) {
+        //  let oldVelocityX;
+        //  let targetVelocityX;
+        //  let newVelocityX;
+        //  const isDirectionPositive = (player.direction.x === 1) ? true : false;
+        //
+        // //ball
+        //  if (this.keyD.isDown){
+        //      this.playerController.run=true;
+        //      this.playerController.ball=true;
+        //      this.playerController.matterSprite.anims.play('ball', true);
+        //      player.actionTimer = 0;
+        //      player.actionDuration=1000;
+        //
+        //      // this.smoothedControls.moveRight(delta);
+        //      if (
+        //          !isDirectionPositive
+        //      ) {
+        //          oldVelocityX = player.matterSprite.body.velocity.x;
+        //          targetVelocityX = -this.playerController.speed.step;
+        //          newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, -this.smoothedControls.value);
+        //          player.matterSprite.setVelocityX(newVelocityX);
+        //          this.smoothedControls.moveLeft(delta);
+        //          this.parallaxBg(this.playerController.direction.x);
+        //      } else if (
+        //          isDirectionPositive
+        //      ) {
+        //          oldVelocityX = player.matterSprite.body.velocity.x;
+        //          targetVelocityX = this.playerController.speed.step;
+        //          newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, this.smoothedControls.value);
+        //          player.matterSprite.setVelocityX(newVelocityX);
+        //          this.smoothedControls.moveRight(delta);
+        //          this.parallaxBg(this.playerController.direction.x);
+        //      }
+        //  }
+        //  this.input.keyboard.on('keyup', function (event) {
+        //      // Verifica si la tecla liberada es la tecla 'R'
+        //      if (event.keyCode === this.keyD.keyCode) {
+        //          // Haz algo cuando la tecla 'R' sea liberada
+        //          // this.playerController.matterSprite.anims.play('start_ball', true);
+        //          this.smoothedControls.reset();
+        //          player.ball=false;
+        //
+        //      }
+        //  }, this);
+    }
+    dashPlayer(time,delta,player) {
+        let oldVelocityX;
+        let targetVelocityX;
+        let newVelocityX;
+        const isDirectionPositive = (player.direction.x === 1) ? true : false;
+
+
+        if (this.keyR.isDown){
+            this.playerController.punch=false;
+            this.playerController.matterSprite.anims.play('dash', true);
+            player.actionTimer = 0;
+            player.actionDuration=1000;
+            this.playerController.dash=true;
+            // this.smoothedControls.moveRight(delta);
+            if (
+                !isDirectionPositive
+            ) {
+                oldVelocityX = player.matterSprite.body.velocity.x;
+                targetVelocityX = -this.playerController.speed.run;
+                newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, -this.smoothedControls.value);
+                player.matterSprite.setVelocityX(newVelocityX);
+                this.smoothedControls.moveLeft(delta);
+                this.parallaxBg(this.playerController.direction.x);
+            } else if (
+                isDirectionPositive
+            ) {
+                oldVelocityX = player.matterSprite.body.velocity.x;
+                targetVelocityX = this.playerController.speed.run;
+                newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, this.smoothedControls.value);
+                player.matterSprite.setVelocityX(newVelocityX);
+                this.smoothedControls.moveRight(delta);
+                this.parallaxBg(this.playerController.direction.x);
+            }
+        }
+        // else if(this.keyR.isUp){
+        //     this.playerController.matterSprite.anims.play('ground_pound', true);
+        //     this.smoothedControls.reset();
+        //
+        // }
+
+        this.input.keyboard.on('keyup', function (event) {
+            // Verifica si la tecla liberada es la tecla 'R'
+            if (event.keyCode === this.keyR.keyCode) {
+                // Haz algo cuando la tecla 'R' sea liberada
+                // this.playerController.matterSprite.anims.play('run_stop', true);
+                player.dash=false;
+                this.smoothedControls.reset();
+            }
+        }, this);
+
+
+
+    }
+    punchPlayer(time,player) {
+        // let timeAnimation
+        // player.actionTimer += delta;
+        // let timeAnimation+= delta;
+        let durationAnimation=1000;
+        //dash
+        if(this.playerController.punch
+            && !this.playerController.ball
+            && !this.playerController.dash){
+            const dashDistance = 4; // Ajusta según sea necesario
+            this.playerController.matterSprite.x += dashDistance * this.playerController.direction.x;
+            this.smoothedControls.reset();
+            this.playerController.matterSprite.anims.play('punch', true);
+            this.playerController.punch=true;
+
+        }
+        if (this.keyS.isDown
+            && !this.playerController.ball
+            && !this.playerController.punch
+            && !this.playerController.blocked.left
+            && !this.playerController.blocked.right
+            && this.playerController.blocked.bottom
+            && (!this.cursors.left.isDown || !this.cursors.right.isDown)
+        ){
+            this.playerController.punch=true;
+            player.actionTimer = 0;
+            player.actionDuration=1000;
+            player.matterSprite.setVelocityY(-this.playerController.speed.jump/2.5);
+        }
+        if(this.playerController.punch && player.actionTimer >= player.actionDuration ){
+            this.playerController.punch=false;
+        }
+    }
+    stickWallPlayer(time,player) {
+        if (this.playerController.stick ||
+            (this.playerController.blocked.bottom &&
+                !this.playerController.blocked.left &&
+                !this.playerController.blocked.right)) {
+            this.playerController.matterSprite.setFriction(0.05).setBounce(0);
+        } else {
+            this.playerController.matterSprite.setFriction(0).setBounce(0);
+        }
+    }
+    jumpPlayer(time,player) {
+
+        const canJump = (time - this.playerController.lastJumpedAt) > 250;
+
+        if (this.cursors.up.isDown) {
+            player.jumpSpeed += 4; // Ajusta el incremento de velocidad según sea necesario
+
+            if (this.playerController.blocked.left && player.stick)
+            {
+                // Jump up and away from the wall
+                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1);
+                player.matterSprite.setVelocityX(this.playerController.speed.run*1.5);
+                this.playerController.lastJumpedAt = time;
+                player.jumpSpeed = 0;
+            }
+            else if (this.playerController.blocked.right && player.stick)
+            {
+                // Jump up and away from the wall
+                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1);
+                player.matterSprite.setVelocityX(-this.playerController.speed.run*1.5);
+                this.playerController.lastJumpedAt = time;
+                player.jumpSpeed = 0;
+            }
+        }
+        if (this.cursors.up.isDown && player.jumpSpeed >=player.speed.jump)
+        {
+            player.jumpSpeed =player.speed.jump
+        }
+        if(!this.playerController.blocked.bottom && !player.morte){
+            player.jumpSpeed = 0;
+            if(!player.punch
+                && !player.jump
+                && !player.morte
+                && !player.defeat
+            ){
+                this.playerController.matterSprite.anims.play('jump', true);
+            }
+            player.jump=true;
+        }else {
+            player.jump=false;
+        }
+
+        this.input.keyboard.on('keyup', function (event) {
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP) {
+                if (player.blocked.bottom ){
+                    player.matterSprite.setVelocityY(-player.jumpSpeed);
+                }
+                if(!player.punch
+                    && !player.jump
+                    && !player.morte
+                ){
+                    this.playerController.matterSprite.anims.play('jump', true);
+                    this.playerController.matterSprite.anims.play('jump', true);
+                    player.defeat=false;
+
+                }
+            }
+        }, this);
+        /*
+           if (this.cursors.up.isDown && canJump)
+        {
+            player.jump=true;
+            player.jumpSpeed += 0.1; // Ajusta el incremento de velocidad según sea necesario
+            if(player.jumpSpeed >=player.speed.jump && !player.jump){
+                player.jumpSpeed = 0;
+            }
+            player.matterSprite.setVelocityY(-player.jumpSpeed);
+            if (this.playerController.blocked.bottom)
+            {
+                player.jump=false;
+                this.playerController.lastJumpedAt = time;
+                // Restablecer la velocidad de salto
+                // player.jumpSpeed = 0;
+
+            }
+           if (this.playerController.blocked.left && player.stick)
+            {
+                // Jump up and away from the wall
+                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1);
+                player.matterSprite.setVelocityX(this.playerController.speed.run*1.5);
+                this.playerController.lastJumpedAt = time;
+            }
+            else if (this.playerController.blocked.right && player.stick)
+            {
+                // Jump up and away from the wall
+                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1);
+                player.matterSprite.setVelocityX(-this.playerController.speed.run*1.5);
+                this.playerController.lastJumpedAt = time;
+            }
+        }
+         */
+    }
+    movePlayerDirection(delta,player) {
+        let oldVelocityX;
+        let targetVelocityX;
+        let newVelocityX;
+        if (this.cursors.left.isDown && !this.playerController.blocked.left)
+        {
+            this.playerController.matterSprite.setFlipX(true);
+            this.smoothedControls.moveLeft(delta);
+            // player.matterSprite.anims.play('run', true);
+            this.playerController.direction.x = -1;
+            oldVelocityX = player.matterSprite.body.velocity.x;
+            targetVelocityX = -this.playerController.speed.step;
+            // this.playerController.matterSprite.setVelocityX(this.MAX_SPEED * enemy.direction.x);
+            newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, -this.smoothedControls.value);
+            player.matterSprite.setVelocityX(newVelocityX);
+            this.parallaxBg(this.playerController.direction.x);
+
+        }
+        else if (this.cursors.right.isDown && !this.playerController.blocked.right)
+        {
+            this.playerController.matterSprite.setFlipX(false);
+            this.smoothedControls.moveRight(delta);
+            // player.matterSprite.anims.play('run', true);
+            this.playerController.direction.x = 1;
+            oldVelocityX = player.matterSprite.body.velocity.x;
+            targetVelocityX = this.playerController.speed.step;
+            newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, this.smoothedControls.value);
+            player.matterSprite.setVelocityX(newVelocityX);
+            this.parallaxBg(this.playerController.direction.x);
+        }
+        else
+        {
+            // this.smoothedControls.reset();
+            // player.matterSprite.anims.play('run_stop', true);
+            this.stopPlayer(player)
+        }
+    }
+    stopPlayer(player) {
+        this.input.keyboard.on('keyup', function (event) {
+            if (event.keyCode ===Phaser.Input.Keyboard.KeyCodes.LEFT
+                || event.keyCode ===Phaser.Input.Keyboard.KeyCodes.RIGHT) {
+                // this.playerController.matterSprite.anims.play('run_stop', true);
+                this.smoothedControls.reset(); // Reiniciar controles suavizados
+            }
+        }, this);
+        // this.smoothedControls.reset(); // Reiniciar controles suavizados
+        // player.matterSprite.anims.play('run_stop', true); // Reproducir animación de detenerse
+    }
+    // Función para manejar colisiones durante el "dash"
+    moveEnemies(time, delta){
+        this.enemiesGroup.forEach(enemy => {
+            enemy.actionTimer += delta;
+            const isDirectionPositive = (enemy.direction.x === 1) ? true : false;
+            // Verificar si el enemigo no está haciendo ninguna acción bloqueada
+            if (
+                !enemy.blocked.attack &&
+                !enemy.blocked.left &&
+                !enemy.fliped &&
+                !enemy.blocked.right &&
+                !enemy.blocked.up &&
+                !enemy.isAttacking &&
+                enemy.actionTimer >= enemy.actionDuration
+            ) {
+                enemy.matterSprite.anims.play('run_enemi', true);
+                // enemy.actionDuration = 100;
+            }
+            else
+            {
+                if (
+                    enemy.blocked.left
+                    // !enemy.blocked.attack
+                ) {
+                    enemy.direction.x = 1;
+                } else if (
+                    enemy.blocked.right
+                    // !enemy.blocked.attack
+                ) {
+                    enemy.direction.x = -1;
+                }
+                if(enemy.fliped){
+                    enemy.matterSprite.anims.play('flip_enemi', true);
+                }
+                if(enemy.isAttacking){
+                    enemy.matterSprite.anims.play('dash_enemi', true);
+                }else
+                if (
+                    enemy.blocked.attack &&
+                    enemy.matterSprite.x > this.playerController.matterSprite.x &&
+                    !isDirectionPositive) {
+                    // enemy.matterSprite.anims.play('dash_enemi', true);
+                    enemy.actionDuration = 500;
+                    this.enemiHitPlayer(this.playerController.matterSprite,enemy);
+                    this.playerController.matterSprite.anims.play('defeat', true);
+                    this.playerController.matterSprite.setVelocityX(this.MAX_SPEED * enemy.direction.x);
+                    this.playerController.matterSprite.setVelocityY(-4);
+                    this.playerController.defeat=true;
+                    enemy.isAttacking=true;
+                    this.time.delayedCall(300, () => {
+                        enemy.direction.x = 1;
+                        enemy.isAttacking=false;
+                        enemy.actionTimer = 0;
+                    }, [], this);
+                    this.time.delayedCall(2000, () => {
+                        this.playerController.defeat=false;
+                    }, [], this);
+
+                    //     // this.playerController.matterSprite.setBounce(1.5); // Un valor entre 0 y 1, donde 1 es un rebote completo
+                    //     this.time.delayedCall(500, () => {
+                    //         // this.playerController.matterSprite.setVelocityX(this.MAX_SPEED * enemy.direction.x);
+                    //         // this.playerController.matterSprite.setVelocityY(-1.2);
+                    //         // this.playerController.matterSprite.setBounce(0)
+                    //         enemy.direction.x = 1;
+                    //         this.playerController.matterSprite.anims.play('run', true);
+                    //         enemy.actionTimer = 0;
+                    //     }, [], this);
+                }else if (
+                    enemy.blocked.attack &&
+                    enemy.matterSprite.x<this.playerController.matterSprite.x &&
+                    isDirectionPositive) {
+                    // enemy.matterSprite.anims.play('dash_enemi', true);
+                    enemy.actionDuration = 500;
+                    this.enemiHitPlayer(this.playerController.matterSprite,enemy);
+                    this.playerController.matterSprite.anims.play('defeat', true);
+                    this.playerController.matterSprite.setVelocityX(this.MAX_SPEED * enemy.direction.x);
+                    this.playerController.matterSprite.setVelocityY(-4);
+                    this.playerController.defeat=true;
+
+                    enemy.isAttacking=true;
+                    this.time.delayedCall(300, () => {
+                        enemy.direction.x = -1;
+                        enemy.isAttacking=false;
+                        enemy.actionTimer = 0;
+                    }, [], this);
+                    this.time.delayedCall(2000, () => {
+                        this.playerController.defeat=false;
+                    }, [], this);
+                    //     // this.playerController.matterSprite.setBounce(1.5); // Un valor entre 0 y 1, donde 1 es un rebote completo
+                    //     this.time.delayedCall(500, () => {
+                    //         // this.playerController.matterSprite.setVelocityX(this.MAX_SPEED * enemy.direction.x);
+                    //         // this.playerController.matterSprite.setVelocityY(-1.2);
+                    //         // this.playerController.matterSprite.setBounce(0)
+                    //         enemy.direction.x = 1;
+                    //         this.playerController.matterSprite.anims.play('run', true);
+                    //         enemy.actionTimer = 0;
+                    //     }, [], this);
+
+                }else
+                if(enemy.blocked.up){
+                    if (enemy.lives===0){
+                        this.killEnemi(enemy);
+                    }else{
+                        this.playerController.matterSprite.setVelocityX(-this.MAX_SPEED*2);
+                        this.playerController.matterSprite.setVelocityY(-this.MAX_SPEED*2);
+                        this.playerController.matterSprite.setFlipX(true);
+                        // enemy.matterSprite.anims.play('flip_enemi', true);
+                        enemy.fliped=true;
+                        enemy.actionDuration =100;
+                        // enemy.actionTimer = 0;
+                        this.playerController.matterSprite.setVelocityX(0);
+
+                        this.time.delayedCall(1200, () => {
+                            // this.playerController.matterSprite.setVelocityX(this.MAX_SPEED * enemy.direction.x);
+                            // this.playerController.matterSprite.setVelocityY(-1.2);
+                            // this.playerController.matterSprite.setBounce(0)
+                            // enemy.matterSprite.anims.play('flip_enemi', true);
+                            enemy.fliped=false;
+                            enemy.actionTimer = 0;
+                        }, [], this);
+
+                        // Establecer un temporizador para volver a la animación "step" después de 2 segundos
+                        enemy.lives--;
+                    }
+                }
+
+            }
+            // else
+            if(
+                !enemy.isAttacking &&
+                !enemy.fliped &&
+                enemy.actionTimer >= enemy.actionDuration){
+                // Reproducir la animación de carrera y ajustar la velocidad y orientación del sprite
+                // enemy.matterSprite.anims.play('run_enemi', true);
+
+                const velocityX = this.NORMAL_SPEED * enemy.direction.x;
+                enemy.matterSprite.setVelocityX(velocityX);
+
+                // Voltear el sprite horizontalmente según la dirección
+                if (enemy.direction.x === 1) {
+                    enemy.matterSprite.setFlipX(false); // No voltear
+                } else {
+                    enemy.matterSprite.setFlipX(true); // Voltear horizontalmente
+                }
+            }
+
+
+        });
+    }
+    moveEnemies2(time, delta) {
+
+        this.enemiesBuGroup.forEach(enemy => {
+            enemy.actionTimer += delta;
+
+            this.enemyAttack(enemy,this.playerController)
+
+
+
+
+            const playerPosition = this.playerController.matterSprite.getCenter();
+            const directionToPlayer = Phaser.Math.Angle.BetweenPoints(enemy.matterSprite.getCenter(), playerPosition);
+            // Introducir una variación más pronunciada en la dirección para cada enemigo
+            const variation = Phaser.Math.FloatBetween(1, 1); // Ajusta el rango de variación según sea necesario
+            const modifiedDirection = directionToPlayer + (variation * Math.PI / 180); // Convertir a radianes
+            // Calcular la dirección x e y basada en la dirección modificada
+            const directionX = Math.cos(modifiedDirection);
+            const directionY = Math.sin(modifiedDirection);
+
+            const duration = 1000; // Duración de cada parpadeo en milisegundos
+            const alphaValues = [1, 0]; // Valores de alfa para el parpadeo
+            const alphaValues2 = [0, 1]; // Valores de alfa para el parpadeo
+
+            //
+            const isDirectionPositive = (this.playerController.direction.x === 1) ? true : false;
+            const distanceToPlayer = Phaser.Math.Distance.Between(enemy.matterSprite.x, enemy.matterSprite.y, this.playerController.matterSprite.x, this.playerController.matterSprite.y);
+            const blinkTween = this.tweens.add({
+                targets: enemy.matterSprite,
+                alpha: alphaValues2,
+                duration: duration,
+                ease: 'Linear',
+                // repeat: -1, // Repetir infinitamente
+                yoyo: false, // Revertir la animación al final
+                paused: true // Dejar el tween en pausa inicialmente
+            });
+            console.log(enemy.blocked.attack)
+            console.log(!enemy.blocked.attack &&
+                !enemy.blocked.left &&
+                !enemy.fliped &&
+                !enemy.blocked.right &&
+                !enemy.blocked.up &&
+                !enemy.isAttacking &&
+                enemy.actionTimer >= enemy.actionDuration)
+            // if (
+            //     !enemy.blocked.attack &&
+            //     !enemy.blocked.left &&
+            //     !enemy.fliped &&
+            //     !enemy.blocked.right &&
+            //     !enemy.blocked.up &&
+            //     !enemy.isAttacking &&
+            //     enemy.actionTimer >= enemy.actionDuration
+            // ) {
+            //     enemy.matterSprite.anims.play('run_enemi', true);
+            //     // enemy.actionDuration = 100;
+            // }else
+            // if(enemy.isAttacking){
+            //     enemy.matterSprite.anims.play('dash_enemi', true);
+            // }else
+            if (
+                enemy.blocked.attack &&
+                // enemy.matterSprite.x > this.playerController.matterSprite.x &&
+                !isDirectionPositive) {
+                // enemy.matterSprite.anims.play('dash_enemi', true);
+                enemy.actionDuration = 500;
+                this.enemiHitPlayer(this.playerController.matterSprite,enemy);
+                this.playerController.matterSprite.anims.play('defeat', true);
+                    enemy.matterSprite.anims.play('dash_bu_enemi', true);
+                this.playerController.matterSprite.setVelocityX(this.MAX_SPEED * enemy.direction.x);
+                this.playerController.matterSprite.setVelocityY(-4);
+                this.playerController.defeat=true;
+                enemy.isAttacking=true;
+                this.time.delayedCall(300, () => {
+                    enemy.direction.x = 1;
+                    enemy.isAttacking=false;
+                    enemy.actionTimer = 0;
+                }, [], this);
+                this.time.delayedCall(2000, () => {
+                    this.playerController.defeat=false;
+                }, [], this);
+
+                //     // this.playerController.matterSprite.setBounce(1.5); // Un valor entre 0 y 1, donde 1 es un rebote completo
+                //     this.time.delayedCall(500, () => {
+                //         // this.playerController.matterSprite.setVelocityX(this.MAX_SPEED * enemy.direction.x);
+                //         // this.playerController.matterSprite.setVelocityY(-1.2);
+                //         // this.playerController.matterSprite.setBounce(0)
+                //         enemy.direction.x = 1;
+                //         this.playerController.matterSprite.anims.play('run', true);
+                //         enemy.actionTimer = 0;
+                //     }, [], this);
+            }
+
+            // else if (
+            //     enemy.blocked.attack &&
+            //     enemy.matterSprite.x<this.playerController.matterSprite.x &&
+            //     isDirectionPositive) {
+            //     // enemy.matterSprite.anims.play('dash_enemi', true);
+            //     enemy.actionDuration = 500;
+            //     this.enemiHitPlayer(this.playerController.matterSprite,enemy);
+            //     this.playerController.matterSprite.anims.play('defeat', true);
+            //     this.playerController.matterSprite.setVelocityX(this.MAX_SPEED * enemy.direction.x);
+            //     this.playerController.matterSprite.setVelocityY(-4);
+            //     this.playerController.defeat=true;
+            //
+            //     enemy.isAttacking=true;
+            //     this.time.delayedCall(300, () => {
+            //         enemy.direction.x = -1;
+            //         enemy.isAttacking=false;
+            //         enemy.actionTimer = 0;
+            //     }, [], this);
+            //     this.time.delayedCall(2000, () => {
+            //         this.playerController.defeat=false;
+            //     }, [], this);
+            //     //     // this.playerController.matterSprite.setBounce(1.5); // Un valor entre 0 y 1, donde 1 es un rebote completo
+            //     //     this.time.delayedCall(500, () => {
+            //     //         // this.playerController.matterSprite.setVelocityX(this.MAX_SPEED * enemy.direction.x);
+            //     //         // this.playerController.matterSprite.setVelocityY(-1.2);
+            //     //         // this.playerController.matterSprite.setBounce(0)
+            //     //         enemy.direction.x = 1;
+            //     //         this.playerController.matterSprite.anims.play('run', true);
+            //     //         enemy.actionTimer = 0;
+            //     //     }, [], this);
+            //
+            // }
+
+            if (
+                (isDirectionPositive && enemy.matterSprite.x > this.playerController.matterSprite.x) ||
+                (!isDirectionPositive && enemy.matterSprite.x < this.playerController.matterSprite.x)
+            ) {
+                enemy.matterSprite.setVelocity(0, 0);
+                blinkTween.play();
+            }else {
+                if (distanceToPlayer < 100) {
+                    enemy.matterSprite.setCollisionCategory(1); // Activa las colisiones con todas las categorías
+                    enemy.matterSprite.setCollidesWith([-1]);
+                    // enemy.matterSprite.anims.play('dash_bu_enemi', true);
+                }
+
+                if (!enemy.attack) {
+                    enemy.matterSprite.setCollisionCategory(0);
+                    enemy.matterSprite.setCollidesWith(0);
+                    const velocityX = 2 * directionX;
+                    const velocityY = 2 * directionY;
+                    enemy.matterSprite.setVelocity(velocityX, velocityY);
+                    enemy.matterSprite.setFlipX(this.playerController.direction.x < 0); // Voltear si va hacia la izquierda
+                    enemy.attack=true;
+                    enemy.matterSprite.setVisible(true);
+
+                    this.time.delayedCall(4000, () => {
+                        enemy.attack=false;
+                        blinkTween.play();
+
+                        enemy.matterSprite.setVisible(false);
+                        enemy.matterSprite.setCollisionCategory(1); // Activa las colisiones con todas las categorías
+                       enemy.matterSprite.setCollidesWith([-1]);
+                    }, [], this);
+                }
+            }
+        });
+    }
+
+
+// Función para hacer que el enemigo desaparezca con un efecto brillante
+    disappearWithEffect2(enemy) {
+        console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeee')
+        // Implementa aquí el efecto de desaparición brillante
+        // Por ejemplo, podrías hacer que el enemigo se desvanezca gradualmente o haga una animación brillante antes de desaparecer
+        // enemy.setVisible(false);
+        // enemy.setActive(false);
+        // Aquí puedes agregar más lógica según tu efecto de desaparición
+
+        // Crear el tween de parpadeo
+        const blinkTween = this.tweens.add({
+            targets: enemy.matterSprite,
+            alpha: alphaValues,
+            duration: duration,
+            ease: 'Linear',
+            // repeat: -1, // Repetir infinitamente
+            yoyo: false // Revertir la animación al final
+        });
+
+        // Iniciar el tween
+        blinkTween.stop();
+    }
+    disappearWithEffect(enemy) {
+        console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeee')
+        // Implementa aquí el efecto de desaparición brillante
+        // Por ejemplo, podrías hacer que el enemigo se desvanezca gradualmente o haga una animación brillante antes de desaparecer
+        // enemy.setVisible(false);
+        // enemy.setActive(false);
+        // Aquí puedes agregar más lógica según tu efecto de desaparición
+        const duration = 1000; // Duración de cada parpadeo en milisegundos
+        const alphaValues = [1, 0]; // Valores de alfa para el parpadeo
+
+        // Crear el tween de parpadeo
+        const blinkTween = this.tweens.add({
+            targets: enemy.matterSprite,
+            alpha: alphaValues,
+            duration: duration,
+            ease: 'Linear',
+            // repeat: -1, // Repetir infinitamente
+            yoyo: false // Revertir la animación al final
+        });
+
+        // Iniciar el tween
+        blinkTween.play();
+    }
+
+    killedEnemi(bodyA,bodyB){
+        const rock = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
+        if(rock){
+            if (rock.lives===0){
+                this.killEnemi(rock);
+            }else{
+                this.playerController.matterSprite.setVelocityX(-this.MAX_SPEED);
+                this.playerController.matterSprite.setVelocityY(-this.MAX_SPEED*2);
+                this.playerController.matterSprite.setFlipX(true);
+                rock.matterSprite.anims.play('flip_enemi', true);
+                // Establecer un temporizador para volver a la animación "step" después de 2 segundos
+                const interval = setInterval(() => {
+                    // Reanudar la animación "step_enemi"
+                    // rock.matterSprite.anims.play('run_enemi', true);
+                    // Limpiar el intervalo después de ejecutar una vez
+                    clearInterval(interval);
+                }, 600); // 2000 milisegundos (2 segundos)
+                rock.lives--;
+            }
+
+        }
+    }
+    enemyAttack(enemy, player) {
+        const distance = Phaser.Math.Distance.Between(
+            this.playerController.matterSprite.x,
+            0,
+            enemy.matterSprite.x, 0);
+
+        const visionRange = 100; // Definir el rango de visión deseado
+
+        const inVisionRange = distance < visionRange;
+
+        if (enemy.visionRectangle) {
+            // Actualizar la visibilidad y posición del rectángulo de visión
+            enemy.visionRectangle.setVisible(inVisionRange);
+            enemy.visionRectangle.setPosition(enemy.matterSprite.x, enemy.matterSprite.y);
+            if (distance < visionRange) {
+                // El jugador está dentro del rango de ataque
+                if (!enemy.isAttacking) {
+                    // El enemigo no está actualmente atacando, así que comienza la animación de ataque
+                    // enemy.isAttacking = true;
+                    enemy.matterSprite.anims.play('dash_enemi', true);
+                    // Establece un temporizador para detener la animación de ataque después de cierto tiempo
+                    this.time.delayedCall(1000, () => {
+                        // Detener la animación de ataque y cambiar a la animación de caminar
+                        // enemy.isAttacking = false;
+                        enemy.matterSprite.anims.play('run_enemi', true);
+                    }, [], this);
+                }
+            } else {
+                // El jugador está fuera del rango de ataque, así que el enemigo debería caminar
+                enemy.matterSprite.anims.play('run_enemi', true);
+            }
+        } else {
+            // Crear el rectángulo de visión si aún no existe
+            enemy.visionRectangle = this.add.rectangle(
+                enemy.matterSprite.x,
+                enemy.matterSprite.y,
+                visionRange*2,
+                visionRange*2, // Reducir la altura a la mitad para representar el área de visión
+                0x00ff00, // Color verde para el área de visión
+                0.5 // Opacidad del rectángulo
+            );
+            enemy.visionRectangle.setStrokeStyle(2, 0x00ff00); // Color del borde verde
+            enemy.visionRectangle.setOrigin(0.5); // Establecer el punto de origen en el centro
+        }
+        // const attackRange1 =120; // Definir el rango de ataque deseado
+        //
+        // const showAttackRangeRectangle = distance < attackRange1;
+        // if (enemy.attackRangeRectangle) {
+        //     enemy.attackRangeRectangle.setVisible(showAttackRangeRectangle);
+        //     enemy.attackRangeRectangle.setPosition(enemy.matterSprite.x, enemy.matterSprite.y);
+        //         enemy.attackRangeRectangle.setSize(attackRange1 , attackRange1/2, true);
+        //
+        // } else {
+        //     enemy.attackRangeRectangle = this.add.rectangle(
+        //         enemy.matterSprite.x,
+        //         enemy.matterSprite.y,
+        //         attackRange1 , attackRange1/2, 0xff0000, 0.5);
+        //     enemy.attackRangeRectangle.setStrokeStyle(2, 0xff0000);
+        //     enemy.attackRangeRectangle.setOrigin(0.5);
+        // }
+        // const showAttackRangeRectangle = distance < attackRange;
+        // if (enemy.attackRangeRectangle) {
+        //     enemy.attackRangeRectangle.setVisible(showAttackRangeRectangle);
+        //     enemy.attackRangeRectangle.setPosition(enemy.matterSprite.x, enemy.matterSprite.y);
+        //     // Ajustar el tamaño del rectángulo de ataque
+        //     enemy.attackRangeRectangle.setSize(attackRange * 2, attackRange, true);
+        // } else {
+        //     enemy.attackRangeRectangle = this.add.rectangle(enemy.matterSprite.x, enemy.matterSprite.y, attackRange * 2, attackRange, 0xff0000, 0.5);
+        //     enemy.attackRangeRectangle.setStrokeStyle(2, 0xff0000);
+        //     enemy.attackRangeRectangle.setOrigin(0.5);
+        // }
+        // const inAttackRange = Phaser.Geom.Rectangle.ContainsPoint(enemy.attackRangeRectangle.getBounds(),
+        //     this.playerController.matterSprite.x, this.playerController.matterSprite.x);
+        //
+        // // Cambiar la animación del enemigo dependiendo de si el jugador está dentro del rectángulo de ataque
+        // if (inAttackRange) {
+        //     // Si el jugador está dentro del rectángulo de ataque, reproducir la animación de ataque
+        //         if (!enemy.isAttacking) {
+        //             // El enemigo no está actualmente atacando, así que comienza la animación de ataque
+        //             enemy.isAttacking = true;
+        //             enemy.matterSprite.anims.play('dash_enemi', true);
+        //
+        //             // Establece un temporizador para detener la animación de ataque después de cierto tiempo
+        //             this.time.delayedCall(700, () => {
+        //                 // Detener la animación de ataque y cambiar a la animación de caminar
+        //                 enemy.isAttacking = false;
+        //                 enemy.matterSprite.anims.play('run_enemi', true);
+        //             }, [], this);
+        //         }
+        // } else {
+        //     // Si el jugador no está dentro del rectángulo de ataque, reproducir la animación de caminar
+        //     enemy.matterSprite.anims.play('dash_enemi', true);
+        // }
+    }
+
+    enemiHitPlayer(sprite,enemi) {
+
     }
     breakRock(rock) {
         const index = this.rocksGroup.indexOf(rock);
@@ -1052,13 +2334,31 @@ class Example extends Phaser.Scene {
     }
     exitZone(obj) {
     }
-
 }
+
+
+const aspectRatio = 16 / 9; // Relación de aspecto deseada (ancho / alto)
+
+const screenWidth = 580; // Ancho original de la pantalla
+const screenHeight = 320; // Alto original de la pantalla
+
+// Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
+let newWidth = screenWidth;
+let newHeight = screenHeight;
+
+// Aumentamos el tamaño de la pantalla al doble
+const scale =2; // Factor de escala deseado
+
+newWidth *= scale;
+newHeight *= scale;
+
+// Ajustamos el alto para conservar la relación de aspecto
+newHeight = newWidth / aspectRatio;
 
 const config = {
     type: Phaser.AUTO,
-    width: 576,
-    height:320,
+    width: newWidth,
+    height: newHeight,
     backgroundColor: '#000000',
     parent: 'phaser-example',
     physics: {
@@ -1066,8 +2366,9 @@ const config = {
         matter: {
             gravity: {
                 x: 0,
-                y: 1.2
-            },            enableSleep: false,
+                y: 1.5
+            },
+            enableSleep: false,
             debug: true
         }
     },

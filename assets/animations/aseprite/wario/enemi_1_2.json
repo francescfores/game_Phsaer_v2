@@ -1766,195 +1766,40 @@
     "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
     "sourceSize": { "w": 45, "h": 45 },
     "duration": 83
-   },
-   "221": {
-    "frame": { "x": 45, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "222": {
-    "frame": { "x": 90, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "223": {
-    "frame": { "x": 135, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "224": {
-    "frame": { "x": 180, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "225": {
-    "frame": { "x": 225, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "226": {
-    "frame": { "x": 270, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "227": {
-    "frame": { "x": 315, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "228": {
-    "frame": { "x": 360, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "229": {
-    "frame": { "x": 405, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "230": {
-    "frame": { "x": 450, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "231": {
-    "frame": { "x": 495, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "232": {
-    "frame": { "x": 540, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "233": {
-    "frame": { "x": 585, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "234": {
-    "frame": { "x": 630, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "235": {
-    "frame": { "x": 675, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "236": {
-    "frame": { "x": 720, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "237": {
-    "frame": { "x": 765, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "238": {
-    "frame": { "x": 810, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "239": {
-    "frame": { "x": 855, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "240": {
-    "frame": { "x": 900, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
-   },
-   "241": {
-    "frame": { "x": 945, "y": 450, "w": 45, "h": 45 },
-    "rotated": false,
-    "trimmed": false,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 45, "h": 45 },
-    "sourceSize": { "w": 45, "h": 45 },
-    "duration": 83
    }
  },
  "meta": {
   "app": "https://github.com/LibreSprite/LibreSprite/",
   "version": "1.0-dev",
-  "image": "/home/fran/Descargas/gamesAssets/Phaser project/assets/animations/aseprite/wario/enemi_1.png",
+  "image": "/home/fran/Descargas/gamesAssets/Phaser project/assets/animations/aseprite/wario/enemi_1_2.png",
   "format": "RGBA8888",
   "size": { "w": 1024, "h": 1024 },
   "scale": "1",
   "frameTags": [
-   { "name": "run_enemi", "from": 0, "to": 3, "direction": "forward" },
+   { "name": "step_ememi", "from": 0, "to": 3, "direction": "forward" },
    { "name": "dash_enemi", "from": 4, "to": 8, "direction": "forward" },
    { "name": "flip_enemi", "from": 9, "to": 12, "direction": "forward" },
    { "name": "defeat_enemi", "from": 13, "to": 15, "direction": "forward" },
-   { "name": "ground_pound2", "from": 16, "to": 27, "direction": "forward" },
-   { "name": "ground_pound_22", "from": 24, "to": 27, "direction": "forward" },
-   { "name": "dash2", "from": 28, "to": 39, "direction": "forward" },
-   { "name": "run back2", "from": 40, "to": 45, "direction": "forward" },
-   { "name": "crouch2", "from": 46, "to": 51, "direction": "forward" },
-   { "name": "crouch2", "from": 46, "to": 51, "direction": "forward" }
-
+   { "name": "jum_enemi", "from": 16, "to": 20, "direction": "forward" },
+   { "name": "dash_enemi", "from": 21, "to": 24, "direction": "forward" },
+   { "name": "run_enemi", "from": 25, "to": 30, "direction": "forward" },
+   { "name": "Skill 1 - Trust-dash", "from": 31, "to": 47, "direction": "forward" },
+   { "name": "Hurt", "from": 48, "to": 52, "direction": "forward" },
+   { "name": "Delay c", "from": 53, "to": 68, "direction": "forward" },
+   { "name": "release c", "from": 61, "to": 68, "direction": "forward" },
+   { "name": "Delay Front atk", "from": 71, "to": 86, "direction": "forward" },
+   { "name": "CF1", "from": 77, "to": 82, "direction": "forward" },
+   { "name": "RF1", "from": 83, "to": 86, "direction": "forward" },
+   { "name": "Sit", "from": 87, "to": 116, "direction": "forward" },
+   { "name": "standup", "from": 104, "to": 116, "direction": "forward" },
+   { "name": "idle back", "from": 117, "to": 129, "direction": "forward" },
+   { "name": "skill back", "from": 130, "to": 147, "direction": "forward" },
+   { "name": "skill front", "from": 148, "to": 165, "direction": "forward" },
+   { "name": "War Cry", "from": 166, "to": 181, "direction": "forward" },
+   { "name": "Magnum Break", "from": 182, "to": 197, "direction": "forward" },
+   { "name": "slide", "from": 198, "to": 201, "direction": "forward" },
+   { "name": "fallen", "from": 202, "to": 212, "direction": "forward" },
+   { "name": "Ress", "from": 213, "to": 220, "direction": "forward" }
   ],
   "layers": [
    { "name": "vazio", "opacity": 255, "blendMode": "normal" },
