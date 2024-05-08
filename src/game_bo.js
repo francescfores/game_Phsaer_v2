@@ -23,93 +23,12 @@ class SmoothedHorionztalControl {
     }
 }
 
-const aspectRatio = 16 / 9; // Relación de aspecto deseada (ancho / alto)
-
-let screenWidth = 100; // Ancho original de la pantalla
-let screenHeight = 100; // Alto original de la pantalla
-
-// Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
-let newWidth = screenWidth;
-let newHeight = screenHeight;
-
-// Aumentamos el tamaño de la pantalla al doble
-const scale =2; // Factor de escala deseado
-
-newWidth *= scale;
-newHeight *= scale;
-
-// Ajustamos el alto para conservar la relación de aspecto
-newHeight = newWidth / aspectRatio;
-
-
-function initializeGame() {
-     screenWidth = window.innerWidth;
-     screenHeight = window.innerHeight;
-
-    // Define la relación de aspecto deseada y el tamaño original de la pantalla
-    const aspectRatio = 16 / 9;
-    const originalWidth = 580;
-    const originalHeight = 320;
-
-    // Calcula el nuevo ancho y alto del juego manteniendo la relación de aspecto
-    if (screenWidth / screenHeight > aspectRatio) {
-        newHeight = screenHeight;
-        newWidth = newHeight * aspectRatio;
-    } else {
-        newWidth = screenWidth;
-        newHeight = newWidth / aspectRatio;
-    }
-
-    // Calcula el factor de escala en función del nuevo tamaño y el tamaño original
-    const scaleX = newWidth / originalWidth;
-    const scaleY = newHeight / originalHeight;
-    const scale = Math.min(scaleX, scaleY);
-
-    // Calcula el nuevo ancho y alto basado en la escala
-    newWidth = originalWidth * scale;
-    newHeight = originalHeight * scale;
-
-    // Configuración del juego
-    const config = {
-        type: Phaser.AUTO,
-        width: newWidth,
-        height: newHeight,
-        backgroundColor: '#000000',
-        parent: 'phaser-example',
-        physics: {
-            default: 'matter',
-            matter: {
-                gravity: {
-                    x: 0,
-                    y: 1.5
-                },
-                enableSleep: false,
-                debug: true
-            }
-        },
-        scale: {
-            mode: Phaser.Scale.RESIZE,
-            autoCenter: Phaser.Scale.CENTER_BOTH
-        },
-        scene: Example
-    };
-
-    // Inicializa el juego con la configuración definida
-    const game = new Phaser.Game(config);
-}
-
-// Llama a la función para inicializar el juego cuando la página esté completamente cargada
-window.onload = function() {
-    initializeGame();
-};
-
 class Example extends Phaser.Scene {
     playerController;
     cursors;
     text;
     cam;
     smoothedControls;
-
     debugGraphics;
     Terrain32x32Layer;
     time;
@@ -126,7 +45,6 @@ class Example extends Phaser.Scene {
     rocksGroup;
     enemiesGroup;
     enemiesBuGroup;
-    enemiesRockGroup;
     tweens;
     layer;
     layer2;
@@ -147,7 +65,6 @@ class Example extends Phaser.Scene {
     MIN_SPEED=2.4;
     tilesCollisionInfo = {
         1: "platform",
-        3: "collision_enemi",
         10: "stick_wall",
         113: "ramp",
         114: "Azulejo especial 2",
@@ -157,8 +74,7 @@ class Example extends Phaser.Scene {
         15: "ramp",
         16: "ramp"
     };
-    enemiGroupCollision;
-    playerGroupCollision;
+
     preload() {
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/maps/matter-platformer2.json');
         this.load.image('kenney_redux_64x64', 'assets/environment/kenney_redux_64x64.png');
@@ -177,16 +93,12 @@ class Example extends Phaser.Scene {
         this.load.aseprite('paladin', 'assets/animations/aseprite/wario/wario_animations_booooooo.png', 'assets/animations/aseprite/wario/wario_animations_booooooo.json',{frameWidth: 45, frameHeight: 45});
         // this.load.aseprite('paladin', 'assets/animations/aseprite/wario/wario_animations3.png', 'assets/animations/aseprite/wario/wario_animations3.json');
 
-        this.load.aseprite('enemi_3', 'assets/animations/aseprite/wario/enemi_rock.png', 'assets/animations/aseprite/wario/enemi_rock.json');
         this.load.aseprite('enemi_2', 'assets/animations/aseprite/wario/enemi_bu.png', 'assets/animations/aseprite/wario/enemi_bu.json');
         this.load.aseprite('enemi_1', 'assets/animations/aseprite/wario/enemi_1_2.png', 'assets/animations/aseprite/wario/enemi_1_2.json');
         this.load.spritesheet('rock1', 'assets/tilemaps/tiles/rock_1.png', {frameWidth: 16, frameHeight: 16});
         this.load.spritesheet('rock2', 'assets/tilemaps/tiles/rock_2.png', {frameWidth: 16, frameHeight: 16});
         this.load.spritesheet('rock3', 'assets/tilemaps/tiles/rock_3.png', {frameWidth: 16, frameHeight: 16});
         this.load.spritesheet('rock_small_object', 'assets/tilemaps/tiles/wario/rock_small_object.png', {frameWidth: 32, frameHeight: 32});
-        this.load.aseprite('hud_lives', 'assets/animations/aseprite/wario/hud_lives.png', 'assets/animations/aseprite/wario/hud_lives.json');
-        this.load.aseprite('hud_power', 'assets/animations/aseprite/wario/hud_power.png', 'assets/animations/aseprite/wario/hud_power.json');
-
     }
     createTileMap(){
 
@@ -200,14 +112,25 @@ class Example extends Phaser.Scene {
         // const map = this.make.tilemap({key: 'map'});
         const map = this.add.tilemap("map");
 
-        this.layer2 = map.createLayer('Capa de patrones 2', [
-            // map.addTilesetImage('kenney_redux_64x64', 'kenney_redux_64x64', 64, 64),
-            // map.addTilesetImage('Terrain32x32', 'Terrain32x32', 32, 32),
-            // map.addTilesetImage('Terrain32x32', 'Terrain32x32', 32, 32),
-            // map.addTilesetImage('fantasy-tiles', 'fantasy-tiles', 32, 32),
-            // map.addTilesetImage('1560', '1560', 32, 32),
+        const layer3 = map.createLayer('Tile Layer 2', [
+
+                map.addTilesetImage('wario-tiles', 'wario-tiles', 32, 32),
+
+            ],
+        );
+        const layer4 = map.createLayer('Tile Layer 3', [
+                map.addTilesetImage('wario-tiles', 'wario-tiles', 32, 32),
+
+            ],
+        );
+        const layer2 = map.createLayer('Capa de patrones 2', [
+            map.addTilesetImage('kenney_redux_64x64', 'kenney_redux_64x64', 64, 64),
+            map.addTilesetImage('Terrain32x32', 'Terrain32x32', 32, 32),
+            map.addTilesetImage('Terrain32x32', 'Terrain32x32', 32, 32),
+            map.addTilesetImage('fantasy-tiles', 'fantasy-tiles', 32, 32),
+            map.addTilesetImage('1560', '1560', 32, 32),
             map.addTilesetImage('wario-tiles', 'wario-tiles', 32, 32),
-            // map.addTilesetImage('PR_TileSet', 'PR_TileSet', 32, 32),
+            map.addTilesetImage('PR_TileSet', 'PR_TileSet', 32, 32),
         ]);
 
         this.layer = map.createLayer('Tile Layer 1', [
@@ -215,14 +138,15 @@ class Example extends Phaser.Scene {
             map.addTilesetImage('PR_TileSet', 'PR_TileSet', 32, 32),],
         );
         this.layer.visible = false;
-        // this.layer2 = map.createLayer('Tile Layer 1', [],
-        // );
+        this.layer2 = map.createLayer('Tile Layer 1', [],
+        );
 
         // Set up the layer to have matter bodies. Any colliding tiles will be given a Matter body.
         map.setCollisionByProperty({collides: true});
         this.matter.world.convertTilemapLayer(this.layer);
-        this.matter.world.convertTilemapLayer(this.layer2);
-
+        this.matter.world.convertTilemapLayer(layer4);
+        this.matter.world.convertTilemapLayer(layer2);
+        this.matter.world.convertTilemapLayer(layer3);
         this.matter.world.setBounds(map.widthInPixels, map.heightInPixels);
         this.matter.world.createDebugGraphic();
         this.matter.world.drawDebug = false;
@@ -234,29 +158,6 @@ class Example extends Phaser.Scene {
         this.smoothedControls = new SmoothedHorionztalControl(0.003);
         this.cam = this.cameras.main;
         this.cam.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-
-        // Este es un grupo en colisión, por lo que los objetos dentro de este grupo siempre colisionarán:
-        this.enemiGroupCollision = this.matter.world.nextGroup();
-        // Este es un grupo que no colisiona, por lo que los objetos de este grupo nunca colisionan:
-        this.playerGroupCollision = this.matter.world.nextGroup(true);
-
-
-        this.layer.forEachTile(tile => {
-            // if (tile.physics.matterBody) {
-            if (tile.index === 3) {
-                console.log(tile.physics.matterBody);
-                // sin embargo, player colisionará con enemi, ya que los grupos son diferentes y distintos de cero,
-                // por lo que usan la prueba de máscara de categoría
-                // por defecto los objetos reciben una categoría de 1 y una máscara de -1,
-                // lo que significa que colisionarán (es decir, bloque1 vs pez2) si están en diferentes grupos
-                // crea una nueva categoría (podemos tener hasta 32)
-                tile.physics.matterBody.setCollisionGroup(this.playerGroupCollision);
-                // tile.physics.matterBody.setCollisionCategory(cat1).setCollidesWith(cat1);
-                // tile.physics.matterBody.setCollisionFromCollisionGroup(group2)
-
-            }
-        });
-
     }
     parallaxBg(direction){
 
@@ -306,7 +207,7 @@ class Example extends Phaser.Scene {
             stick:false,
             climb:false,
             morte:false,
-            stop:false,
+            stop:true,
 
 
             direction: {
@@ -360,11 +261,11 @@ class Example extends Phaser.Scene {
         // this.playerController.sensors.right = M.Bodies.rectangle(sx + w * 0.45, sy*1.55, 5, h * 0.25, {isSensor: true});
         // this.playerController.sensors.up = M.Bodies.rectangle(sx, sy+0.1, sx, 5, {isSensor: true});
 
-        let playerBody = M.Bodies.rectangle(sx, sy * 1.2, w * 0.5, h/1.2, {chamfer: {radius: 10}});
+        let playerBody = M.Bodies.rectangle(sx, sy * 1.1, w * 0.5, h/1.1, {chamfer: {radius: 10}});
         this.playerController.sensors.bottom = M.Bodies.rectangle(sx, h, sx, 5, {isSensor: true});
         this.playerController.sensors.left = M.Bodies.rectangle(sx - w * 0.25, sy, 5, h * 0.25, {isSensor: true});
         this.playerController.sensors.right = M.Bodies.rectangle(sx + w * 0.25, sy, 5, h * 0.25, {isSensor: true});
-        this.playerController.sensors.up = M.Bodies.rectangle(sx, h-h/1.3, sx, 5, {isSensor: true});
+        this.playerController.sensors.up = M.Bodies.rectangle(sx, h-h/1.1, sx, 5, {isSensor: true});
 
         let compoundBody = M.Body.create({
             parts: [
@@ -380,10 +281,7 @@ class Example extends Phaser.Scene {
         this.playerController.matterSprite.play({key: 'delay', repeat: -1})
             .setExistingBody(compoundBody)
             .setPosition(x,y)
-            .setFixedRotation()
-            .setCollisionGroup(this.playerGroupCollision)
-
-        // Sets max inertia to prevent rotation
+            .setFixedRotation() // Sets max inertia to prevent rotation
 
         // .setDensity(1000)
         // .setFrictionStatic(0)
@@ -394,28 +292,20 @@ class Example extends Phaser.Scene {
         // .setPosition(x,y)
         // .setScale(1.5)
         // this.playerController.matterSprite.body.gravityScale.y =2; // Define la gravedad específica para este sprite
-
-            this.smoothMoveCameraTowards(this.playerController.matterSprite);
+        this.smoothMoveCameraTowards(this.playerController.matterSprite);
     }
     createEnemies(){
         const id_enemi = 11;
-        const id_enemi_bu = 12;
-        const id_enemi_rock = 24;
-
         this.layer.forEachTile(tile => {
             if (tile.index === id_enemi) {
                 this.createEnemiSprite(tile.getCenterX(), tile.getCenterY());
             }
         });
+        const id_enemi_bu = 12;
 
         this.layer.forEachTile(tile => {
             if (tile.index === id_enemi_bu) {
                 this.createEnemiSprite3(tile.getCenterX(), tile.getCenterY());
-            }
-        });
-        this.layer.forEachTile(tile => {
-            if (tile.index === id_enemi_rock) {
-                this.createEnemiSprite4(tile.getCenterX(), tile.getCenterY());
             }
         });
     }
@@ -520,25 +410,25 @@ class Example extends Phaser.Scene {
         let sx = w / 2;
         let sy = h / 2;
         // The player's body is going to be a compound body.
-        let playerBody = M.Bodies.rectangle(sx, sy*1.5, w * 0.5, h/2, {chamfer: {radius: 0}});
-        enemy.sensors.bottom = M.Bodies.rectangle(sx, h, sx/4, 5, {isSensor: true});
-        enemy.sensors.left = M.Bodies.rectangle(sx - w * 0.25, sy*1.5, 5, h * 0.25, {isSensor: true});
-        enemy.sensors.right = M.Bodies.rectangle(sx + w * 0.25, sy*1.55, 5, h * 0.25, {isSensor: true});
-        enemy.sensors.up = M.Bodies.rectangle(sx, h/2.5, sx/2, 5, {isSensor: true});
-        enemy.sensors.attack = M.Bodies.rectangle(sx, h, w/1.2, h/2, {isSensor: true});
+            let playerBody = M.Bodies.rectangle(sx, sy*1.5, w * 0.5, h/2, {chamfer: {radius: 0}});
+            enemy.sensors.bottom = M.Bodies.rectangle(sx, h, sx/4, 5, {isSensor: true});
+            enemy.sensors.left = M.Bodies.rectangle(sx - w * 0.25, sy*1.5, 5, h * 0.25, {isSensor: true});
+            enemy.sensors.right = M.Bodies.rectangle(sx + w * 0.25, sy*1.55, 5, h * 0.25, {isSensor: true});
+            enemy.sensors.up = M.Bodies.rectangle(sx, h/2.5, sx/2, 5, {isSensor: true});
+            enemy.sensors.attack = M.Bodies.rectangle(sx, h, w/1.2, h/2, {isSensor: true});
 
-        let compoundBody = M.Body.create({
-            parts: [
-                playerBody,
-                enemy.sensors.bottom,
-                enemy.sensors.left,
-                enemy.sensors.right,
-                enemy.sensors.up,
-                enemy.sensors.attack,
-            ],
-            friction: 0.01,
-            restitution: 0.05 // Prevent body from sticking against a wall
-        });
+            let compoundBody = M.Body.create({
+                parts: [
+                    playerBody,
+                    enemy.sensors.bottom,
+                    enemy.sensors.left,
+                    enemy.sensors.right,
+                    enemy.sensors.up,
+                    enemy.sensors.attack,
+                ],
+                friction: 0.01,
+                restitution: 0.05 // Prevent body from sticking against a wall
+            });
         enemy.matterSprite
             .setExistingBody(compoundBody)
             .setDensity(0.01)
@@ -571,10 +461,6 @@ class Example extends Phaser.Scene {
             fliped: false,
             direction: {
                 x: 1,
-                y: 0,
-            },
-            respawn: {
-                x: 0,
                 y: 0,
             },
             lives: 10,
@@ -630,14 +516,13 @@ class Example extends Phaser.Scene {
         // enemy.sensors.right = M.Bodies.rectangle(sx + w * 0.45, sy*1.55, 5, h * 0.25, {isSensor: true});
         // enemy.sensors.up = M.Bodies.rectangle(sx, sy+0.1, sx, 5, {isSensor: true});
 
-        let playerBody = M.Bodies.rectangle(sx, sy , w -10, h-10, {chamfer: {radius: 10}});
+        let playerBody = M.Bodies.rectangle(sx, sy , w , h, {chamfer: {radius: 10}});
         enemy.sensors.bottom = M.Bodies.rectangle(sx, h, sx, 5, {isSensor: true});
         enemy.sensors.left = M.Bodies.rectangle(sx - w * 0.50, sy, 5, h * 0.5, {isSensor: true});
         enemy.sensors.right = M.Bodies.rectangle(sx + w * 0.50, sy, 5, h * 0.5, {isSensor: true});
         // enemy.sensors.up = M.Bodies.rectangle(sx, 0, sx, 5, {isSensor: true});
         enemy.sensors.up = M.Bodies.rectangle(sx, 0, sx, 5, {isSensor: true});
-        // enemy.sensors.attack = M.Bodies.rectangle(sx, sy , w *5, h*5, {isSensor: true});
-        enemy.sensors.attack = M.Bodies.rectangle(sx, sy , w -10, h-10, {isSensor: true});
+        enemy.sensors.attack = M.Bodies.rectangle(sx, sy , w *6, h*6, {isSensor: true});
         // var enemyAttackCategory = this.matter.world.nextCategory();
         // enemy.sensors.attack.setCollisionCategory(this.enemyAttackCategory); // Establecer la categoría de colisión del sensor de ataque del enemigo
         // enemy.sensors.attack.setCollidesWith([this.playerCategory]);
@@ -661,172 +546,41 @@ class Example extends Phaser.Scene {
 
 // Posicionar el sprite del enemigo
         enemy.matterSprite.setPosition(x, y);
-        enemy.respawn.x=x;
-        enemy.respawn.y=y;
 
 
         // console.log(enemy.matterSprite.body)
         enemy.matterSprite.body.gravityScale.y =0; // Define la gravedad específica para este sprite
         enemy.matterSprite.body.gravityScale.x =0; // Define la gravedad específica para este sprite
         this.enemiesBuGroup.push(enemy);
-        enemy.matterSprite.body.gravityScale.y =0; // Define la gravedad específica para este sprite
-        enemy.matterSprite.setIgnoreGravity(true)
-        enemy.matterSprite.setAngularVelocity(0)
-
-    }
-    createEnemiSprite4(x,  y) {
-        this.anims.createFromAseprite('enemi_3');
-
-        let enemy = {
-            matterSprite: this.matter.add.sprite(32, 32, 'enemi_3', 0)
-                // .setDensity(1000)
-                // .setFrictionStatic(100)
-                // .setFrictionAir(0.00001)
-                // .setFriction(0, 0.02, 1)
-                // .setBounce(0) // Sets max inertia to prevent rotation
-                // .setFixedRotation() // Sets max inertia to prevent rotation
-                .setPosition(x, y)
-                .setScale(1.5),
-            actionDuration: 1000,
-            actionTimer: 0,
-            fliped: false,
-            direction: {
-                x: 1,
-                y: 0,
-            },
-            respawn: {
-                x: 0,
-                y: 0,
-            },
-            lives: 10,
-            isAttacking: false,
-            blocked: {
-                left: false,
-                right: false,
-                bottom: false,
-                up: false,
-                attack: false
-            },
-            numTouching: {
-                left: 0,
-                right: 0,
-                bottom: 0,
-                up: 0,
-                attack: 0
-            },
-            sensors: {
-                bottom: null,
-                left: null,
-                right: null,
-                up: null,
-                attack: null
-            },
-            time: {
-                leftDown: 0,
-                rightDown: 0
-            },
-            lastJumpedAt: 0,
-            speed: {
-                run: 5,
-                jump: 8
-            }
-        };
-
-        const M = Phaser.Physics.Matter.Matter;
-        const w = enemy.matterSprite.width *1.3;
-        const h = enemy.matterSprite.height*1.3;
-        // El cuerpo del jugador va a ser un cuerpo compuesto:
-        // - playerBody es el cuerpo sólido que interactuará físicamente con el mundo. Tiene un
-        // chaflán (bordes redondeados) para evitar el problema de los vértices fantasma: http://www.iforce2d.net/b2dtut/ghost-vertices
-        // - Sensores izquierdo/derecho/inferior que no interactuarán físicamente pero nos permitirán comprobar si
-        // el jugador está parado sobre suelo sólido o empujado contra un objeto sólido.
-        // Move the sensor to player center
-        let sx = w / 2;
-        let sy = h / 2;
-        // The player's body is going to be a compound body.
-
-        // let playerBody = M.Bodies.rectangle(sx, sy*1.5, w * 0.5, h/2, {chamfer: {radius: 0}});
-        // enemy.sensors.bottom = M.Bodies.rectangle(sx, h, sx, 5, {isSensor: true});
-        // enemy.sensors.left = M.Bodies.rectangle(sx - w * 0.45, sy*1.5, 5, h * 0.25, {isSensor: true});
-        // enemy.sensors.right = M.Bodies.rectangle(sx + w * 0.45, sy*1.55, 5, h * 0.25, {isSensor: true});
-        // enemy.sensors.up = M.Bodies.rectangle(sx, sy+0.1, sx, 5, {isSensor: true});
-
-        let playerBody = M.Bodies.rectangle(sx, sy , w -10, h-10, {chamfer: {radius: 0}});
-        enemy.sensors.bottom = M.Bodies.rectangle(sx, h, sx, 5, {isSensor: true});
-        enemy.sensors.left = M.Bodies.rectangle(sx - w * 0.50, sy, 5, h * 0.5, {isSensor: true});
-        enemy.sensors.right = M.Bodies.rectangle(sx + w * 0.50, sy, 5, h * 0.5, {isSensor: true});
-        // enemy.sensors.up = M.Bodies.rectangle(sx, 0, sx, 5, {isSensor: true});
-        enemy.sensors.up = M.Bodies.rectangle(sx, 0, sx, 5, {isSensor: true});
-        // enemy.sensors.attack = M.Bodies.rectangle(sx, sy , w *5, h*5, {isSensor: true});
-        enemy.sensors.attack = M.Bodies.rectangle(sx, sy , w, h, {isSensor: true});
-        // var enemyAttackCategory = this.matter.world.nextCategory();
-        // enemy.sensors.attack.setCollisionCategory(this.enemyAttackCategory); // Establecer la categoría de colisión del sensor de ataque del enemigo
-        // enemy.sensors.attack.setCollidesWith([this.playerCategory]);
-        // this.playerController.matterSprite.body.collisionFilter.mask &= ~enemy.sensors.attack.collisionFilter.category;
-        let compoundBody = M.Body.create({
-            parts: [
-                playerBody,
-                // enemy.sensors.up,
-                // enemy.sensors.bottom,
-                // enemy.sensors.left,
-                // enemy.sensors.right,
-                enemy.sensors.attack
-            ],
-            friction: 1,
-            restitution: 0.05 // Prevent body from sticking against a wall
-        });
-
-        enemy.matterSprite.setExistingBody(compoundBody).setFixedRotation()
-            .setDensity(1000)
-            .setFrictionStatic(100)
-            .setFrictionAir(0)
-            .setFriction(0,0,0)
-            .setBounce(0) // Sets max inertia to prevent rotation
-            .setFixedRotation()
-            .setCollisionGroup(this.enemiGroupCollision)
-        ;
-        // enemy.matterSprite.body.collisionFilter.category = 0; // Desactiva las colisiones con todas las categorías
-        // enemy.matterSprite.body.collisionFilter.mask = 0; // No colisiona con ninguna categoría
-
-// Posicionar el sprite del enemigo
-        enemy.matterSprite.setPosition(x, y);
-        enemy.respawn.x=x;
-        enemy.respawn.y=y;
-        // console.log(enemy.matterSprite.body)
-        enemy.matterSprite.body.gravityScale.y =0; // Define la gravedad específica para este sprite
-        enemy.matterSprite.body.gravityScale.x =10; // Define la gravedad específica para este sprite
-        this.enemiesRockGroup.push(enemy);
+      enemy.matterSprite.body.gravityScale.y =0; // Define la gravedad específica para este sprite
         enemy.matterSprite.setIgnoreGravity(true)
         enemy.matterSprite.setAngularVelocity(0)
 
     }
     create() {
         // Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
-        // const newWidth = 580 * 1.5;
-        // const newHeight = 320 *1.5;
+        const newWidth = 580 * 1.5;
+        const newHeight = 320 *1.5;
 
         // Calculamos el zoom necesario para mantener la misma relación de aspecto
-        // const zoomX = newWidth / screenWidth*2;
-        // const zoomY = newHeight / screenHeight*2;
-        //
-        // // Ajustamos el zoom de la cámara para mantener la misma relación de aspecto
-        // this.cameras.main.setZoom(Math.min(zoomX, zoomY));
-        //
+        const zoomX = newWidth / 580;
+        const zoomY = newHeight / 320;
+
+        // Ajustamos el zoom de la cámara para mantener la misma relación de aspecto
+        this.cameras.main.setZoom(Math.min(zoomX, zoomY));
 
         // Centramos la cámara en el centro del mundo
         this.cameras.main.centerOn(0, 0);
         this.rocksGroup=[];
         this.enemiesGroup=[];
         this.enemiesBuGroup=[];
-        this.enemiesRockGroup=[];
         this.createTileMap()
         // this.decorWorld()
         this.createPlayer(200, 0);
         this.populate();
-        this.anims.createFromAseprite('paladin');
+
         this.matterEvents();
-        // this.enableDebug();
-        this.createHud();
+        this.enableDebug();
         // this.createRocks();
         // this.populate();
         // this.decorWorldFront();
@@ -841,45 +595,6 @@ class Example extends Phaser.Scene {
         // this.setCollisions();
         // this.updateText();
     }
-    createHud() {
-        const uiContainer = this.add.container(0, 0);
-        const borderRect = this.add.rectangle(screenWidth / 2, screenHeight / 2, screenWidth, screenHeight);
-        borderRect.setStrokeStyle(10, 0xff0000); // Establecer el grosor del borde y el color
-        // Alinear el contenedor y el rectángulo al mundo del juego
-        const text2 = this.add.text(10,10, 'Texto dentro del rectángulo', { fontSize: '24px', fill: '#fff' });
-        borderRect.setInteractive();
-        borderRect.setScrollFactor(0);
-        const text = this.add.text(borderRect.x, borderRect.y, 'Texto dentro del rectángulo', { fontSize: '24px', fill: '#fff' });
-        this.hud = this.matter.add.sprite(10, 10, 'hud_lives', 0);
-        this.hud_power = this.matter.add.sprite(10, 10, 'hud_power', 0);
-        // Agregar el contenedor y el rectángulo a la escena
-
-        this.hud.setInteractive();
-        this.hud_power.setInteractive();
-        this.hud.setScrollFactor(0);
-        this.hud_power.setScrollFactor(0);
-        // .setFrictionStatic(0)
-       this.hud.body.gravityScale.y =0; // Define la gravedad específica para este sprite
-       this.hud.body.gravityScale.x =0; // Define la gravedad específica para este sprite
-        this.hud.setIgnoreGravity(true)
-        this.hud_power.setIgnoreGravity(true)
-        this.hud.setAngularVelocity(0)
-        this.hud_power.setAngularVelocity(0)
-        this.hud.setScale(2)
-        this.hud_power.setScale(2)
-
-        this.hud.setPosition(this.hud.body.gameObject.width,16)
-        this.hud_power.setPosition(this.hud_power.body.gameObject.width,32)
-
-        this.layer2.forEachTile(tile => {
-            const tileWorldPos = this.layer2.tileToWorldXY(tile.x, tile.y);
-            const text = this.add.text(tileWorldPos.x + 16, tileWorldPos.y + 16, tile.index.toString(), {
-                fontSize: '10px',
-                fill: '#000'
-            });
-            text.setOrigin(0.5);
-        }, this);
-        }
     update (time, delta)
     {
 
@@ -887,7 +602,6 @@ class Example extends Phaser.Scene {
         this.movePlayer(time, delta);
         this.moveEnemies(time, delta);
         this.moveEnemies2(time, delta);
-        this.moveEnemies3(time, delta);
     }
     matterEvents(){
         // Usa eventos de materia para detectar si el jugador está tocando una superficie a la izquierda, derecha o
@@ -902,13 +616,6 @@ class Example extends Phaser.Scene {
                 enemy.numTouching.attack = 0;
             });
             this.enemiesBuGroup.forEach(enemy => {
-                enemy.numTouching.left = 0;
-                enemy.numTouching.right = 0;
-                enemy.numTouching.bottom = 0;
-                enemy.numTouching.up = 0;
-                enemy.numTouching.attack = 0;
-            });
-            this.enemiesRockGroup.forEach(enemy => {
                 enemy.numTouching.left = 0;
                 enemy.numTouching.right = 0;
                 enemy.numTouching.bottom = 0;
@@ -977,42 +684,18 @@ class Example extends Phaser.Scene {
                 enemy.blocked.up = enemy.numTouching.up > 0 ? true : false;
                 enemy.blocked.attack = enemy.numTouching.attack > 0 ? true : false;
             });
-            this.enemiesRockGroup.forEach(enemy => {
-                enemy.blocked.right = enemy.numTouching.right > 0 ? true : false;
-                enemy.blocked.left = enemy.numTouching.left > 0 ? true : false;
-                enemy.blocked.bottom = enemy.numTouching.bottom > 0 ? true : false;
-                enemy.blocked.up = enemy.numTouching.up > 0 ? true : false;
-                enemy.blocked.attack = enemy.numTouching.attack > 0 ? true : false;
-            });
             this.playerController.blocked.right = this.playerController.numTouching.right > 0 ? true : false;
             this.playerController.blocked.left = this.playerController.numTouching.left > 0 ? true : false;
             this.playerController.blocked.bottom = this.playerController.numTouching.bottom > 0 ? true : false;
         }, this);
     }
     checkTileCollision(body,player) {
-        let collision=true;
         if (body.gameObject.tile instanceof Phaser.Tilemaps.Tile &&
             this.tilesCollisionInfo.hasOwnProperty(body.gameObject.tile.index)) {
             const tileDescription = this.tilesCollisionInfo[body.gameObject.tile.index];
             if(tileDescription==='stick_wall' ){
                 this.playerController.stick=true;
-            }
-            if(tileDescription==='collision_enemi' ){
-                collision=false;
-                // var enemyAttackCategory = this.matter.world.nextCategory();
-                // enemy.sensors.attack.setCollisionCategory(this.enemyAttackCategory); // Establecer la categoría de colisión del sensor de ataque del enemigo
-                // enemy.sensors.attack.setCollidesWith([this.playerCategory]);
-                // Ignorar colisiones del jugador con este tipo de tile
-                // this.playerController.matterSprite.setCollisionCategory(0);
-                // this.playerController.matterSprite.setCollidesWith([]);
-                // Si es el tile con ID 3, el jugador no colisiona con este tipo de tile
-                this.playerController.matterSprite.setCollidesWith([2]); // El jugador sigue colisionando con la categoría del enemigo
-            }else {
-                this.playerController.matterSprite.setCollidesWith([1, 2]); // El jugador colisiona con la categoría del jugador y la del enemigo                    // this.playerController.matterSprite.setCollisionCategory(1); // Esto es solo un ejemplo, ajusta según sea necesario
-                // this.playerController.matterSprite.setCollidesWith([1]); // Esto también es un ejemplo, ajusta según sea necesario
-
-            }
-            if(tileDescription==='platform'){
+            } if(tileDescription==='platform'){
                 this.playerController.stick=false;
             }
             if(tileDescription==='ramp' ){
@@ -1024,11 +707,9 @@ class Example extends Phaser.Scene {
             this.playerController.stick=false;
             this.playerController.ball=false;
             // player.attack=false;
-            collision=true;
-
         }
-        // player.attack=true;
-        return collision;
+        player.attack=true;
+
     }
     checkTileCollisionEnemi(body,player) {
         if (body.gameObject.tile instanceof Phaser.Tilemaps.Tile &&
@@ -1075,7 +756,6 @@ class Example extends Phaser.Scene {
         else if ((bodyA === left ) || (bodyB === left )) {
             this.checkTileCollision(bodyA,playerBody);
             this.checkTileCollision(bodyB,playerBody);
-
             // Only static objects count since we don't want to be blocked by an object that we
             // can push around.
             this.playerController.dash = false;
@@ -1092,17 +772,9 @@ class Example extends Phaser.Scene {
             // }
         }
         else if ((bodyA === right ) || (bodyB === right )) {
-            if(
-                this.checkTileCollision(bodyA,playerBody)
-                && this.checkTileCollision(bodyB,playerBody)
-            ){
-                // this.playerController.numTouching.right += 1;
-                // var enemyAttackCategory = this.matter.world.nextCategory();
-                // enemy.sensors.attack.setCollisionCategory(this.enemyAttackCategory); // Establecer la categoría de colisión del sensor de ataque del enemigo
-                // enemy.sensors.attack.setCollidesWith([this.playerCategory]);
-                // this.playerController.matterSprite.body.collisionFilter.mask &= ~enemy.sensors.attack.collisionFilter.category;
-            }
-
+            this.checkTileCollision(bodyA,playerBody);
+            this.checkTileCollision(bodyB,playerBody);
+            this.playerController.numTouching.right += 1;
             // Verificar si uno de los cuerpos colisionando pertenece al grupo de rocas
             const rock = this.rocksGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
             const enemie = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
@@ -1180,36 +852,8 @@ class Example extends Phaser.Scene {
 
             if ((bodyA === attack && bodyB.gameObject.body === playerBody) || (bodyB === attack && bodyA.gameObject.body === playerBody)) {
                 // Si el jugador está dentro del sensor de ataque del enemigo
-                enemy.numTouching.attack += 1;
-                // Realiza las acciones necesarias, como iniciar el ataque del enemigo, etc.
-            }
-        });
-        this.enemiesRockGroup.forEach(enemy => {
-            const playerBody = this.playerController.matterSprite.body;
-            const left = enemy.sensors.left;
-            const right = enemy.sensors.right;
-            const bottom = enemy.sensors.bottom;
-            const up = enemy.sensors.up;
-            const attack = enemy.sensors.attack;
-
-            // if (bodyA === bottom || bodyB === bottom) {
-            //     enemy.numTouching.bottom += 1;
-            // }else if ((bodyA === left ) || (bodyB === left )) {
-            //     enemy.numTouching.left += 1;
-            // }
-            // else if ((bodyA === right ) || (bodyB === right )) {
-            //         enemy.numTouching.right += 1;
-            // }
-            // // else if ((bodyA === attack ) || (bodyB === attack )) {
-            // //         enemy.numTouching.attack += 1;
-            // // }
-            // else if ((bodyA === up ) || (bodyB === up )) {
-            //     enemy.numTouching.up += 1;
-            // }else
-
-            if ((bodyA === attack && bodyB.gameObject.body === playerBody) || (bodyB === attack && bodyA.gameObject.body === playerBody)) {
-                // Si el jugador está dentro del sensor de ataque del enemigo
-                enemy.numTouching.attack += 1;
+                        enemy.numTouching.attack += 1;
+                console.log("¡El jugador está dentro del sensor de ataque del enemigo!");
                 // Realiza las acciones necesarias, como iniciar el ataque del enemigo, etc.
             }
         });
@@ -1338,75 +982,10 @@ class Example extends Phaser.Scene {
 
         //stop player
 
-
-        if(player.defeat && player.stop){
-            this.playerController.matterSprite.anims.play('defeat', true)
-        }
-        if(player.defeat && player.stop){
-
-            const duration = 1000; // Duración de cada parpadeo en milisegundos
-            const alphaValues = [1, 0.4]; // Valores de alfa para el parpadeo
-            const alphaValues2 = [0.4, 1]; // Valores de alfa para el parpadeo
-
-            const blinkTween3 = this.tweens.add({
-                targets: this.playerController.matterSprite,
-                alpha: alphaValues2,
-                duration: 400,
-                ease: 'Linear',
-                paused: true // Dejar el tween en pausa inicialmente
-            });
-            const blinkTween2 = this.tweens.add({
-                targets: this.playerController.matterSprite,
-                alpha: [1,0],
-                duration: 100,
-                ease: 'Linear',
-                repeat: -1,
-                yoyo: true,
-                paused: true // Dejar el tween en pausa inicialmente
-            });
-            blinkTween2.play()
-            this.time.delayedCall(500, () => {
-                player.stop=false;
-
-            }, [], this);
-            this.time.delayedCall(3000, () => {
-                this.playerController.defeat=false;
-                // player.stop=false;
-                this.playerController.matterSprite.anims.play('run', true);
-                blinkTween3.play()
-                blinkTween2.stop()
-
-            }, [], this);
-
-        }
         this.jumpPlayer(time,player); // Mover jugador hacia la izquierda
 
-        // this.time.delayedCall(300, () => {
-        //     // enemy.direction.x = 1;
-        //     // enemy.isAttacking=false;
-        //     enemy.actionTimer = 0;
-        // }, [], this);
-        //
+        if(!player.defeat){
 
-        // if( player.blocked.bottom
-        //     // && !this.playerController.morte
-        //     && !this.playerController.dash
-        //     && !this.playerController.punch
-        //     && !this.playerController.morte
-        //     && !this.playerController.ball
-        //     // && !this.playerController.punch
-        //     // && !this.playerController.run
-        //     // && !this.playerController.climb
-        //     // && (player.blocked.right ||  plrrayer.blocked.left)
-        //     && (!this.cursors.left.isDown &&  !this.cursors.right.isDown)
-        //     // && !this.playerController.stick
-        // ){
-        //     this.playerController.matterSprite.setFrame(4);
-        //     this.playerController.matterSprite.anims.stop('run');
-        //     // player.stop=true;
-        // }
-        //
-        if(!player.stop){
             if(
                 player.blocked.bottom
                 // && (!player.blocked.right &&  !player.blocked.left)
@@ -1420,7 +999,23 @@ class Example extends Phaser.Scene {
                 this.playerController.matterSprite.anims.play('run', true);
             }
 
-
+            if( player.blocked.bottom
+                // && !this.playerController.morte
+                && !this.playerController.dash
+                && !this.playerController.punch
+                && !this.playerController.morte
+                && !this.playerController.ball
+                // && !this.playerController.punch
+                // && !this.playerController.run
+                // && !this.playerController.climb
+                // && (player.blocked.right ||  plrrayer.blocked.left)
+                && (!this.cursors.left.isDown &&  !this.cursors.right.isDown)
+                // && !this.playerController.stick
+            ){
+                this.playerController.matterSprite.setFrame(4);
+                this.playerController.matterSprite.anims.stop('run');
+                player.stop=true;
+            }
             if(
                 player.blocked.bottom
                 // && (!player.blocked.right &&  !player.blocked.left)
@@ -1502,6 +1097,8 @@ class Example extends Phaser.Scene {
         //         // this.playerController.matterSprite.anims.play('jump', true);
         //     }
         // }
+
+
         this.smoothMoveCameraTowards(matterSprite, 0.9);
     }
     // Función para cambiar la forma del jugador a circular
@@ -1971,7 +1568,8 @@ class Example extends Phaser.Scene {
                 ){
                     this.playerController.matterSprite.anims.play('jump', true);
                     this.playerController.matterSprite.anims.play('jump', true);
-                    player.stop=false;
+                    player.defeat=false;
+
                 }
             }
         }, this);
@@ -2207,14 +1805,15 @@ class Example extends Phaser.Scene {
         });
     }
     moveEnemies2(time, delta) {
+
         this.enemiesBuGroup.forEach(enemy => {
             enemy.actionTimer += delta;
-            let player=this.playerController;
+
             const distance = Phaser.Math.Distance.Between(
                 this.playerController.matterSprite.x,
                 this.playerController.matterSprite.y,
                 enemy.matterSprite.x, enemy.matterSprite.y);
-            const visionRange = 100; // Definir el rango de visión deseado
+            const visionRange = 300; // Definir el rango de visión deseado
             const inVisionRange = distance < visionRange;
 
             const playerPosition = this.playerController.matterSprite.getCenter();
@@ -2240,7 +1839,7 @@ class Example extends Phaser.Scene {
             const blinkTween2 = this.tweens.add({
                 targets: enemy.matterSprite,
                 alpha: alphaValues2,
-                duration: 400,
+                duration: duration,
                 ease: 'Linear',
                 paused: true // Dejar el tween en pausa inicialmente
             });
@@ -2254,158 +1853,119 @@ class Example extends Phaser.Scene {
                 paused: true // Dejar el tween en pausa inicialmente
             });
 
-            if (100 > distance && !player.defeat) {
-                enemy.matterSprite.setCollisionCategory(1); // Activa las colisiones con todas las categorías
-                enemy.matterSprite.setCollidesWith([-1]);
-                // enemy.matterSprite.anims.play('dash_bu_enemi', true);
-            }else {
-                // enemy.matterSprite.setCollisionCategory(0);
-                // enemy.matterSprite.setCollidesWith(0);
-            }
-            if ( enemy.blocked.attack && !player.defeat ) {
-                // enemy.matterSprite.anims.play('dash_enemi', true);
-                enemy.actionDuration = 500;
-                // enemy.matterSprite.anims.play('dash_bu_enemi', true);
-                this.playerController.matterSprite.setVelocityX(0);
-                this.playerController.matterSprite.setVelocityY(0);
-                this.playerController.defeat=true;
-                this.playerController.stop=true;
-                // enemy.isAttacking=true;
-                // enemy.isAttacking=true;
-                enemy.matterSprite.anims.play('flip_bu_enemi', true);
-                blinkTween2.play()
-                this.time.delayedCall(2000, () => {
-                    blinkTween3.stop();
-                    blinkTween2.play();
-                    enemy.matterSprite.setPosition(
-                        enemy.respawn.x,
-                        enemy.respawn.y,
-                    );
-                    // enemy.matterSprite.anims.play('run_bu_enemi', true);
-                }, [], this);
-            }else
+
+
             if (enemy.visionRectangle) {
                 // Actualizar la visibilidad y posición del rectángulo de visión
-                // enemy.visionRectangle.setVisible(inVisionRange);
-                // enemy.visionRectangle.setPosition(enemy.matterSprite.x, enemy.matterSprite.y);
-
-                if (distance < visionRange ) {
+                enemy.visionRectangle.setVisible(inVisionRange);
+                enemy.visionRectangle.setOrigin(0.5); // Establecer el punto de origen en el centro
+                
+                if (distance < visionRange) {
                     // El jugador está dentro del rango de ataque
                     enemy.attack = true;
                     if (!enemy.isAttacking) {
                         // El enemigo no está actualmente atacando, así que comienza la animación de ataque
-                        // enemy.matterSprite.anims.play('dash_bu_enemi', true);
+                        enemy.matterSprite.anims.play('dash_bu_enemi', true);
                         enemy.matterSprite.setCollisionCategory(0);
                         enemy.matterSprite.setCollidesWith(0);
-
                         blinkTween3.play();
                         enemy.isAttacking = true;
                         this.time.delayedCall(1000, () => {
-                            if (!enemy.blocked.attack && !player.defeat){
-                                // Detener la animación de ataque y cambiar a la animación de caminar
-                                enemy.matterSprite.anims.play('dash_bu_enemi', true);
-                                var randomYOffset = Math.random() * 100 - 30;
-                                var randomYOffset2 = Math.random() * 2 - 1;
-                                blinkTween3.stop();
-                                blinkTween2.play();
-                                // Genera un número aleatorio entre 0 y 2
-                                var randomIndex = Math.floor(Math.random() * 2);
-                                // Define los posibles valores: -30, 10, 30
-                                // var possibleValues = [-45, -10,45];
-                                var possibleValues = [-50, 0,];
-                                // Selecciona el valor según el índice aleatorio generado
-                                var randomYOffset3 = possibleValues[randomIndex];
-                                if (enemy.matterSprite.x > this.playerController.matterSprite.x) {
-                                    enemy.matterSprite.setPosition(
-                                        this.playerController.matterSprite.x - visionRange - 60,
-                                        this.playerController.matterSprite.y + randomYOffset3
-                                    );
-                                    enemy.matterSprite.setVelocity(3, 0);
-                                    enemy.direction.x = 1;
-                                    // enemy.matterSprite.setVelocity(4, randomYOffset2);
-                                } else {
-                                    enemy.matterSprite.setPosition(
-                                        this.playerController.matterSprite.x + visionRange + 60,
-                                        this.playerController.matterSprite.y + randomYOffset3
-                                    );
-                                    enemy.matterSprite.setVelocity(-3, 0);
-                                    // enemy.matterSprite.setVelocity(-4, randomYOffset2);
-                                    enemy.direction.x = -1;
-                                }
-                                enemy.matterSprite.setFlipX(enemy.direction.x < 0); // Voltear si va hacia la izquierda
+                            // Detener la animación de ataque y cambiar a la animación de caminar
+                            enemy.matterSprite.anims.play('run_bu_enemi', true);
+                            var randomYOffset = Math.random() * 100 - 30;
+                            var randomYOffset2 = Math.random() * 2 - 1;
+                            blinkTween3.stop();
+                            blinkTween2.play();
+
+                            function randomInRange(min, max) {
+                                return Math.floor(Math.random() * (max - min + 1)) + min;
                             }
+
+                            // Genera un número aleatorio entre 0 y 2
+                            var randomIndex = Math.floor(Math.random() * 3);
+
+                            // Define los posibles valores: -30, 10, 30
+                            var possibleValues = [-45, -10,45];
+
+                            // Selecciona el valor según el índice aleatorio generado
+                            var randomYOffset3 = possibleValues[randomIndex];
+                            if (enemy.matterSprite.x > this.playerController.matterSprite.x) {
+                                enemy.matterSprite.setPosition(
+                                    this.playerController.matterSprite.x - 100,
+                                    this.playerController.matterSprite.y + randomYOffset3
+                                );
+                                enemy.matterSprite.setVelocity(4, 0);
+                                // enemy.matterSprite.setVelocity(4, randomYOffset2);
+                            }else {
+                                enemy.matterSprite.setPosition(
+                                    this.playerController.matterSprite.x + 100,
+                                    this.playerController.matterSprite.y + randomYOffset3
+                                );
+                                enemy.matterSprite.setVelocity(-4, 0);
+                                // enemy.matterSprite.setVelocity(-4, randomYOffset2);
+
+                            }
+                            enemy.matterSprite.setFlipX(this.playerController.direction.x < 0); // Voltear si va hacia la izquierda
+
                         }, [], this);
 
 
 
                         // Establece un temporizador para detener la animación de ataque después de cierto tiempo
-                        this.time.delayedCall(3000, () => {
+                        this.time.delayedCall(4000, () => {
                             // Detener la animación de ataque y cambiar a la animación de caminar
                             enemy.isAttacking = false;
                             // enemy.matterSprite.setVelocity(0, 0);
-                            enemy.attack = false;
 
-                            // enemy.matterSprite.anims.play('run_bu_enemi', true);
+                            enemy.matterSprite.anims.play('run_bu_enemi', true);
                         }, [], this);
                     }
                 }
-
-
-                if(!enemy.attack){
-                    // enemy.attack = false;
-                    if (
-                        (isDirectionPositive && enemy.matterSprite.x > this.playerController.matterSprite.x) ||
-                        (!isDirectionPositive && enemy.matterSprite.x < this.playerController.matterSprite.x)
-                    ) {
-                        enemy.matterSprite.setVelocity(0, 0);
-                        blinkTween2.play();
-                        enemy.matterSprite.setFrame(22);
-
-                    }else {
-                        // if (distanceToPlayer < 100) {
-                        //     // enemy.matterSprite.setCollisionCategory(1); // Activa las colisiones con todas las categorías
-                        //     // enemy.matterSprite.setCollidesWith([-1]);
-                        //     // enemy.matterSprite.anims.play('dash_bu_enemi', true);
-                        //
-                        // }else {
-                        if (!enemy.through_wall ) {
-                            enemy.matterSprite.anims.play('run_bu_enemi', true);
-
-                            enemy.matterSprite.setCollisionCategory(0);
-                            enemy.matterSprite.setCollidesWith(0);
-                            const velocityX = 5 * directionX;
-                            const velocityY = 5 * directionY;
-                            enemy.matterSprite.setVelocity(velocityX, velocityY);
-                            enemy.matterSprite.setFlipX(this.playerController.direction.x < 0); // Voltear si va hacia la izquierda
-                            enemy.through_wall=true;
-                            blinkTween2.play();
-
-                            // enemy.matterSprite.setVisible(true);
-                            this.time.delayedCall(3000, () => {
-                                enemy.through_wall=false;
-                                // enemy.matterSprite.setVisible(false);
-                                // enemy.matterSprite.setCollisionCategory(1); // Activa las colisiones con todas las categorías
-                                // enemy.matterSprite.setCollidesWith([-1]);
-                            }, [], this);
-                            this.time.delayedCall(1000, () => {
-                                blinkTween.play();
-                            }, [], this);
-                            this.time.delayedCall(1000, () => {
-                                if(enemy.blocked.attack && !player.defeat){
-                                    enemy.matterSprite.anims.play('look_bu_enemi', true);
-
-                                }
-                                // blinkTween.play();
-
-                                enemy.matterSprite.setVelocity(0, 0);
-
-                            }, [], this);
-                        }
-                    }
-                    // }
-                }
-            }
-            else {
+                // else
+                // if(!enemy.attack){
+                //     // enemy.attack = false;
+                //     if (
+                //         (isDirectionPositive && enemy.matterSprite.x > this.playerController.matterSprite.x) ||
+                //         (!isDirectionPositive && enemy.matterSprite.x < this.playerController.matterSprite.x)
+                //     ) {
+                //         enemy.matterSprite.setVelocity(0, 0);
+                //         blinkTween2.play();
+                //     }else {
+                //         // if (distanceToPlayer < 100) {
+                //         //     // enemy.matterSprite.setCollisionCategory(1); // Activa las colisiones con todas las categorías
+                //         //     // enemy.matterSprite.setCollidesWith([-1]);
+                //         //     // enemy.matterSprite.anims.play('dash_bu_enemi', true);
+                //         //
+                //         // }else {
+                //         if (!enemy.through_wall) {
+                //             enemy.matterSprite.setCollisionCategory(0);
+                //             enemy.matterSprite.setCollidesWith(0);
+                //             const velocityX = 2 * directionX;
+                //             const velocityY = 2 * directionY;
+                //             enemy.matterSprite.setVelocity(velocityX, velocityY);
+                //             enemy.matterSprite.setFlipX(this.playerController.direction.x < 0); // Voltear si va hacia la izquierda
+                //             enemy.through_wall=true;
+                //             blinkTween2.play();
+                //             // enemy.matterSprite.setVisible(true);
+                //             this.time.delayedCall(2000, () => {
+                //                 enemy.through_wall=false;
+                //                 // enemy.matterSprite.setVisible(false);
+                //                 // enemy.matterSprite.setCollisionCategory(1); // Activa las colisiones con todas las categorías
+                //                 // enemy.matterSprite.setCollidesWith([-1]);
+                //             }, [], this);
+                //             this.time.delayedCall(1000, () => {
+                //                 blinkTween.play();
+                //             }, [], this);
+                //             this.time.delayedCall(1500, () => {
+                //                 blinkTween.play();
+                //                 enemy.matterSprite.setVelocity(0, 0);
+                //             }, [], this);
+                //         }
+                //         }
+                //         // }
+                // }
+            } else {
                 // Crear el rectángulo de visión si aún no existe
                 enemy.visionRectangle = this.add.rectangle(
                     enemy.matterSprite.x,
@@ -2421,167 +1981,55 @@ class Example extends Phaser.Scene {
 
         });
     }
-    moveEnemies3(time, delta) {
-        this.enemiesRockGroup.forEach(enemy => {
-            enemy.actionTimer += delta;
-            let player=this.playerController;
-            const distance = Math.abs(this.playerController.matterSprite.x- enemy.matterSprite.x);
-
-            // const verticalDistance = Math.abs(this.playerController.matterSprite.y - enemy.matterSprite.y);
-            const visionRange = 100; // Definir el rango de visión deseado
-            // const inVisionRange = distance < visionRange;
-// Calcular la distancia vertical entre los sprites del jugador y el enemigo
-            const verticalDistance = Math.abs(this.playerController.matterSprite.x- enemy.matterSprite.x);
-// Calcular la distancia de detección basada en el doble de la altura vertical
-            const detectionDistance = Math.sqrt(Math.pow(visionRange, 2) + Math.pow(verticalDistance * 2, 2));
-            const inVisionRange = distance < detectionDistance;
-            const playerPosition = this.playerController.matterSprite.getCenter();
-            const directionToPlayer = Phaser.Math.Angle.BetweenPoints(enemy.matterSprite.getCenter(), playerPosition);
-            // Introducir una variación más pronunciada en la dirección para cada enemigo
-            const variation = Phaser.Math.FloatBetween(1, 1); // Ajusta el rango de variación según sea necesario
-            const modifiedDirection = directionToPlayer + (variation * Math.PI / 180); // Convertir a radianes
-            // Calcular la dirección x e y basada en la dirección modificada
-            const directionX = Math.cos(modifiedDirection);
-            const directionY = Math.sin(modifiedDirection);
-            const isDirectionPositive = (this.playerController.direction.x === 1) ? true : false;
-            //anims
-            const duration = 1000; // Duración de cada parpadeo en milisegundos
-            const alphaValues = [1, 0.4]; // Valores de alfa para el parpadeo
-            const alphaValues2 = [0.4, 1]; // Valores de alfa para el parpadeo
-            const blinkTween = this.tweens.add({
-                targets: enemy.matterSprite,
-                alpha: alphaValues,
-                duration: duration,
-                ease: 'Linear',
-                paused: true // Dejar el tween en pausa inicialmente
-            });
-            const blinkTween2 = this.tweens.add({
-                targets: enemy.matterSprite,
-                alpha: alphaValues2,
-                duration: 400,
-                ease: 'Linear',
-                paused: true // Dejar el tween en pausa inicialmente
-            });
-            const blinkTween3 = this.tweens.add({
-                targets: enemy.matterSprite,
-                alpha: alphaValues2,
-                duration: 300,
-                ease: 'Linear',
-                repeat: -1,
-                // yoyo: true,
-                paused: true // Dejar el tween en pausa inicialmente
-            });
-
-            if (100 > distance && !player.defeat) {
-                enemy.matterSprite.setCollisionCategory(1); // Activa las colisiones con todas las categorías
-                enemy.matterSprite.setCollidesWith([-1]);
-                // enemy.matterSprite.anims.play('dash_bu_enemi', true);
-            }else {
-                // enemy.matterSprite.setCollisionCategory(0);
-                // enemy.matterSprite.setCollidesWith(0);
-            }
-            if ( !enemy.blocked.attack && !enemy.isAttacking) {
-                // enemy.matterSprite.setVelocityY(0);
-                enemy.matterSprite.setVelocity(0, -10);
-            }
-            if ( enemy.blocked.attack && !player.defeat ) {
-                // enemy.matterSprite.anims.play('dash_enemi', true);
-                enemy.actionDuration = 500;
-                // enemy.matterSprite.anims.play('dash_bu_enemi', true);
-                this.playerController.matterSprite.setVelocityX(10+this.MAX_SPEED * this.playerController.direction.x);
-                this.playerController.matterSprite.setVelocityY(0);
-                this.playerController.defeat=true;
-                this.playerController.stop=true;
-                // enemy.isAttacking=true;
-                // enemy.isAttacking=true;
-                blinkTween2.play()
-                this.time.delayedCall(2000, () => {
-                    blinkTween3.stop();
-                    blinkTween2.play();
-                    // enemy.matterSprite.setPosition(
-                    //     enemy.respawn.x,
-                    //     enemy.respawn.y,
-                    // );
-                    // enemy.matterSprite.anims.play('run_bu_enemi', true);
-                }, [], this);
-            }else
-            if (enemy.visionRectangle) {
-                // Actualizar la visibilidad y posición del rectángulo de visión
-                enemy.visionRectangle.setVisible(distance < visionRange);
-                enemy.visionRectangle.setPosition(enemy.matterSprite.x, enemy.matterSprite.y);
-
-                if (distance < visionRange ) {
-                    // El jugador está dentro del rango de ataque
-                    enemy.attack = true;
-                    if (!enemy.isAttacking) {
-                        // El enemigo no está actualmente atacando, así que comienza la animación de ataque
-                        // enemy.matterSprite.anims.play('dash_bu_enemi', true);
-                        // enemy.matterSprite.setCollisionCategory(0);
-                        // enemy.matterSprite.setCollidesWith(0);
-                        enemy.matterSprite.anims.play('attack_rock_enemi', true);
-
-                        blinkTween3.play();
-                        enemy.isAttacking = true;
-                        this.time.delayedCall(500, () => {
-                            if (!enemy.blocked.attack && !player.defeat){
-                                // Detener la animación de ataque y cambiar a la animación de caminar
-                                var randomYOffset = Math.random() * 100 - 30;
-                                var randomYOffset2 = Math.random() * 2 - 1;
-                                blinkTween3.stop();
-                                blinkTween2.play();
-                                // Genera un número aleatorio entre 0 y 2
-                                var randomIndex = Math.floor(Math.random() * 2);
-                                // Define los posibles valores: -30, 10, 30
-                                // var possibleValues = [-45, -10,45];
-                                var possibleValues = [-50, 0,];
-                                // Selecciona el valor según el índice aleatorio generado
-                                var randomYOffset3 = possibleValues[randomIndex];
-                                enemy.matterSprite.setVelocity(0, 10);
-                            }
-                        }, [], this);
-
-                        this.time.delayedCall(2000, () => {
-                            // Detener la animación de ataque y cambiar a la animación de caminar
-                            // enemy.isAttacking = false;
-                            // enemy.attack = false;
-                            // enemy.matterSprite.anims.play('run_bu_enemi', true);
-                            enemy.matterSprite.setVelocity(0, -10);
-
-                        }, [], this);
-
-                        // Establece un temporizador para detener la animación de ataque después de cierto tiempo
-                        this.time.delayedCall(5000, () => {
-                            // Detener la animación de ataque y cambiar a la animación de caminar
-                            enemy.isAttacking = false;
-                            enemy.attack = false;
-                            // enemy.matterSprite.anims.play('run_bu_enemi', true);
-                        }, [], this);
-                    }
-                }
-                else {
-                    // enemy.matterSprite.anims.play('idle_rock_enemi', true);
-                    enemy.matterSprite.setFrame(5);
-                }
-            }
-            else {
-                // Crear el rectángulo de visión si aún no existe
-                enemy.visionRectangle = this.add.rectangle(
-                    enemy.matterSprite.x,
-                    enemy.matterSprite.y,
-                    visionRange,
-                    visionRange*2, // Reducir la altura a la mitad para representar el área de visión
-                    0x00ff00, // Color verde para el área de visión
-                    0.5 // Opacidad del rectángulo
-                );
-                enemy.visionRectangle.setStrokeStyle(2, 0x00ff00); // Color del borde verde
-                enemy.visionRectangle.setOrigin(0.5); // Establecer el punto de origen en el centro
-            }
-
-        });
-    }
     moveEnemiBuDirection(time,delta,enemi){
         enemy.matterSprite.setCollisionCategory(0);
         enemy.matterSprite.setCollidesWith(0);
+    }
+
+// Función para hacer que el enemigo desaparezca con un efecto brillante
+    disappearWithEffect2(enemy) {
+        console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeee')
+        // Implementa aquí el efecto de desaparición brillante
+        // Por ejemplo, podrías hacer que el enemigo se desvanezca gradualmente o haga una animación brillante antes de desaparecer
+        // enemy.setVisible(false);
+        // enemy.setActive(false);
+        // Aquí puedes agregar más lógica según tu efecto de desaparición
+
+        // Crear el tween de parpadeo
+        const blinkTween = this.tweens.add({
+            targets: enemy.matterSprite,
+            alpha: alphaValues,
+            duration: duration,
+            ease: 'Linear',
+            // repeat: -1, // Repetir infinitamente
+            yoyo: false // Revertir la animación al final
+        });
+
+        // Iniciar el tween
+        blinkTween.stop();
+    }
+    disappearWithEffect(enemy) {
+        console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeee')
+        // Implementa aquí el efecto de desaparición brillante
+        // Por ejemplo, podrías hacer que el enemigo se desvanezca gradualmente o haga una animación brillante antes de desaparecer
+        // enemy.setVisible(false);
+        // enemy.setActive(false);
+        // Aquí puedes agregar más lógica según tu efecto de desaparición
+        const duration = 1000; // Duración de cada parpadeo en milisegundos
+        const alphaValues = [1, 0]; // Valores de alfa para el parpadeo
+
+        // Crear el tween de parpadeo
+        const blinkTween = this.tweens.add({
+            targets: enemy.matterSprite,
+            alpha: alphaValues,
+            duration: duration,
+            ease: 'Linear',
+            // repeat: -1, // Repetir infinitamente
+            yoyo: false // Revertir la animación al final
+        });
+
+        // Iniciar el tween
+        blinkTween.play();
     }
 
     killedEnemi(bodyA,bodyB){
@@ -2759,13 +2207,13 @@ class Example extends Phaser.Scene {
         // Crear un contenedor para el texto y el borde
         const uiContainer = this.add.container(0, 0);
         // Crear el texto y agregarlo al contenedor
-        const text = this.add.text(100, 100, "Texto fijo", { fontSize: '24px', fill: '#FFF' });
-        uiContainer.add(text);
+        // const text = this.add.text(100, 100, "Texto fijo", { fontSize: '24px', fill: '#FFF' });
+        // uiContainer.add(text);
         // Obtener las dimensiones de la pantalla
         const screenWidth = this.cameras.main.width;
         const screenHeight = this.cameras.main.height;
         // Crear un rectángulo que cubra el borde de la pantalla
-        const borderRect = this.add.rectangle(newWidth / 2, newHeight / 2, newWidth, newHeight);
+        const borderRect = this.add.rectangle(screenWidth / 2, screenHeight / 2, screenWidth, screenHeight);
         borderRect.setStrokeStyle(2, 0xff0000); // Establecer el grosor del borde y el color
         // Alinear el contenedor y el rectángulo al mundo del juego
         uiContainer.setScrollFactor(0);
@@ -2774,8 +2222,8 @@ class Example extends Phaser.Scene {
         this.add.existing(uiContainer);
         this.add.existing(borderRect);
 
-        this.layer2.forEachTile(tile => {
-            const tileWorldPos = this.layer2.tileToWorldXY(tile.x, tile.y);
+        this.layer.forEachTile(tile => {
+            const tileWorldPos = this.layer.tileToWorldXY(tile.x, tile.y);
             const text = this.add.text(tileWorldPos.x + 16, tileWorldPos.y + 16, tile.index.toString(), {
                 fontSize: '10px',
                 fill: '#000'
@@ -2810,50 +2258,46 @@ class Example extends Phaser.Scene {
     }
     exitZone(obj) {
     }
-
-    // Event listener para el cambio de tamaño de la ventana del navegador
-
-// Llamamos a la función resizeGame() al cargar la página para ajustar el tamaño inicial
 }
-// window.addEventListener('resize', resizeGame);
-// function resizeGame() {
-//     const screenWidth = window.innerWidth;
-//     const screenHeight = window.innerHeight;
-//
-//     // Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
-//     let newWidth = screenWidth;
-//     let newHeight = screenHeight;
-//
-//     // Ajustamos el alto para conservar la relación de aspecto
-//     newHeight = newWidth / aspectRatio;
-//
-//     // Actualizamos el tamaño del juego
-//     game.scale.resize(newWidth, newHeight);
-// }
 
 
+const aspectRatio = 16 / 9; // Relación de aspecto deseada (ancho / alto)
 
+const screenWidth = 580; // Ancho original de la pantalla
+const screenHeight = 320; // Alto original de la pantalla
 
-// const config = {
-//     type: Phaser.AUTO,
-//     width: newWidth,
-//     height: newHeight,
-//     backgroundColor: '#000000',
-//     parent: 'phaser-example',
-//     physics: {
-//         default: 'matter',
-//         matter: {
-//             gravity: {
-//                 x: 0,
-//                 y: 1.5
-//             },
-//             enableSleep: false,
-//             debug: true
-//         }
-//     },
-//     scene: Example
-// };
-//
-// const game = new Phaser.Game(config);
+// Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
+let newWidth = screenWidth;
+let newHeight = screenHeight;
 
-// Función para inicializar el juego con el tamaño adecuado según el dispositivo
+// Aumentamos el tamaño de la pantalla al doble
+const scale =2; // Factor de escala deseado
+
+newWidth *= scale;
+newHeight *= scale;
+
+// Ajustamos el alto para conservar la relación de aspecto
+newHeight = newWidth / aspectRatio;
+
+const config = {
+    type: Phaser.AUTO,
+    width: newWidth,
+    height: newHeight,
+    backgroundColor: '#000000',
+    parent: 'phaser-example',
+    physics: {
+        default: 'matter',
+        matter: {
+            gravity: {
+                x: 0,
+                y: 1.5
+            },
+            enableSleep: false,
+            debug: true
+        }
+    },
+    scene: Example
+};
+
+const game = new Phaser.Game(config);
+

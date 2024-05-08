@@ -1,0 +1,81 @@
+{ "frames": {
+   "hud_power 0.ase": {
+    "frame": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "hud_power 1.ase": {
+    "frame": { "x": 65, "y": 0, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "hud_power 2.ase": {
+    "frame": { "x": 130, "y": 0, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "hud_power 3.ase": {
+    "frame": { "x": 195, "y": 0, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "hud_power 4.ase": {
+    "frame": { "x": 260, "y": 0, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "hud_power 5.ase": {
+    "frame": { "x": 325, "y": 0, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "hud_power 6.ase": {
+    "frame": { "x": 390, "y": 0, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "hud_power 7.ase": {
+    "frame": { "x": 455, "y": 0, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   }
+ },
+ "meta": {
+  "app": "https://github.com/LibreSprite/LibreSprite/",
+  "version": "1.0-dev",
+  "image": "/home/fran/Descargas/gamesAssets/Phaser project/assets/animations/aseprite/wario/hud_power.png",
+  "format": "RGBA8888",
+  "size": { "w": 520, "h": 10 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "hud_power", "from": 0, "to": 7, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

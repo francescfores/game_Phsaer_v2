@@ -1,0 +1,97 @@
+{ "frames": {
+   "0": {
+    "frame": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "1": {
+    "frame": { "x": 65, "y": 0, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "2": {
+    "frame": { "x": 0, "y": 10, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "3": {
+    "frame": { "x": 65, "y": 10, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "4": {
+    "frame": { "x": 0, "y": 20, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "5": {
+    "frame": { "x": 65, "y": 20, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "6": {
+    "frame": { "x": 0, "y": 30, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "7": {
+    "frame": { "x": 65, "y": 30, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "8": {
+    "frame": { "x": 0, "y": 40, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   },
+   "9": {
+    "frame": { "x": 65, "y": 40, "w": 65, "h": 10 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 65, "h": 10 },
+    "sourceSize": { "w": 65, "h": 10 },
+    "duration": 200
+   }
+ },
+ "meta": {
+  "app": "https://github.com/LibreSprite/LibreSprite/",
+  "version": "1.0-dev",
+  "image": "/home/fran/Descargas/gamesAssets/Phaser project/assets/animations/aseprite/wario/hud_lives.png",
+  "format": "RGBA8888",
+  "size": { "w": 130, "h": 50 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "hud_lives", "from": 0, "to": 9, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

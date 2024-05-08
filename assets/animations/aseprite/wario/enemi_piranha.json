@@ -1,0 +1,106 @@
+{ "frames": {
+   "enemi_piranha 0.ase": {
+    "frame": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 200
+   },
+   "enemi_piranha 1.ase": {
+    "frame": { "x": 30, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 200
+   },
+   "enemi_piranha 2.ase": {
+    "frame": { "x": 60, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 200
+   },
+   "enemi_piranha 3.ase": {
+    "frame": { "x": 90, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 200
+   },
+   "enemi_piranha 4.ase": {
+    "frame": { "x": 120, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 200
+   },
+   "enemi_piranha 5.ase": {
+    "frame": { "x": 150, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 200
+   },
+   "enemi_piranha 6.ase": {
+    "frame": { "x": 180, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 200
+   },
+   "enemi_piranha 7.ase": {
+    "frame": { "x": 210, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 200
+   },
+   "enemi_piranha 8.ase": {
+    "frame": { "x": 240, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 200
+   },
+   "enemi_piranha 9.ase": {
+    "frame": { "x": 270, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 200
+   },
+   "enemi_piranha 10.ase": {
+    "frame": { "x": 300, "y": 0, "w": 30, "h": 30 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 30, "h": 30 },
+    "sourceSize": { "w": 30, "h": 30 },
+    "duration": 200
+   }
+ },
+ "meta": {
+  "app": "https://github.com/LibreSprite/LibreSprite/",
+  "version": "1.0-dev",
+  "image": "/home/fran/Descargas/gamesAssets/Phaser project/assets/animations/aseprite/wario/enemi_piranha.png",
+  "format": "RGBA8888",
+  "size": { "w": 330, "h": 30 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "attack_piranha_enemi", "from": 0, "to": 6, "direction": "forward" },
+   { "name": "idle_piranha_enemi", "from": 7, "to": 10, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

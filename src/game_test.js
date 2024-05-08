@@ -23,93 +23,12 @@ class SmoothedHorionztalControl {
     }
 }
 
-const aspectRatio = 16 / 9; // Relación de aspecto deseada (ancho / alto)
-
-let screenWidth = 100; // Ancho original de la pantalla
-let screenHeight = 100; // Alto original de la pantalla
-
-// Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
-let newWidth = screenWidth;
-let newHeight = screenHeight;
-
-// Aumentamos el tamaño de la pantalla al doble
-const scale =2; // Factor de escala deseado
-
-newWidth *= scale;
-newHeight *= scale;
-
-// Ajustamos el alto para conservar la relación de aspecto
-newHeight = newWidth / aspectRatio;
-
-
-function initializeGame() {
-     screenWidth = window.innerWidth;
-     screenHeight = window.innerHeight;
-
-    // Define la relación de aspecto deseada y el tamaño original de la pantalla
-    const aspectRatio = 16 / 9;
-    const originalWidth = 580;
-    const originalHeight = 320;
-
-    // Calcula el nuevo ancho y alto del juego manteniendo la relación de aspecto
-    if (screenWidth / screenHeight > aspectRatio) {
-        newHeight = screenHeight;
-        newWidth = newHeight * aspectRatio;
-    } else {
-        newWidth = screenWidth;
-        newHeight = newWidth / aspectRatio;
-    }
-
-    // Calcula el factor de escala en función del nuevo tamaño y el tamaño original
-    const scaleX = newWidth / originalWidth;
-    const scaleY = newHeight / originalHeight;
-    const scale = Math.min(scaleX, scaleY);
-
-    // Calcula el nuevo ancho y alto basado en la escala
-    newWidth = originalWidth * scale;
-    newHeight = originalHeight * scale;
-
-    // Configuración del juego
-    const config = {
-        type: Phaser.AUTO,
-        width: newWidth,
-        height: newHeight,
-        backgroundColor: '#000000',
-        parent: 'phaser-example',
-        physics: {
-            default: 'matter',
-            matter: {
-                gravity: {
-                    x: 0,
-                    y: 1.5
-                },
-                enableSleep: false,
-                debug: true
-            }
-        },
-        scale: {
-            mode: Phaser.Scale.RESIZE,
-            autoCenter: Phaser.Scale.CENTER_BOTH
-        },
-        scene: Example
-    };
-
-    // Inicializa el juego con la configuración definida
-    const game = new Phaser.Game(config);
-}
-
-// Llama a la función para inicializar el juego cuando la página esté completamente cargada
-window.onload = function() {
-    initializeGame();
-};
-
 class Example extends Phaser.Scene {
     playerController;
     cursors;
     text;
     cam;
     smoothedControls;
-
     debugGraphics;
     Terrain32x32Layer;
     time;
@@ -157,9 +76,20 @@ class Example extends Phaser.Scene {
         15: "ramp",
         16: "ramp"
     };
-    enemiGroupCollision;
-    playerGroupCollision;
+
+    enemyGroup;
+    mapGroup;
+
+    playerCategory;
+    enemyCategory
+    preload ()
+    {
+
+    }
     preload() {
+        this.load.image('block', 'assets/sprites/block.png');
+        this.load.image('strip', 'assets/sprites/strip1.png');
+        this.load.spritesheet('fish', 'assets/sprites/fish-136x80.png', { frameWidth: 136, frameHeight: 80 });
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/maps/matter-platformer2.json');
         this.load.image('kenney_redux_64x64', 'assets/environment/kenney_redux_64x64.png');
         this.load.image('Terrain32x32', 'assets/environment/Terrain32x32.png');
@@ -184,79 +114,103 @@ class Example extends Phaser.Scene {
         this.load.spritesheet('rock2', 'assets/tilemaps/tiles/rock_2.png', {frameWidth: 16, frameHeight: 16});
         this.load.spritesheet('rock3', 'assets/tilemaps/tiles/rock_3.png', {frameWidth: 16, frameHeight: 16});
         this.load.spritesheet('rock_small_object', 'assets/tilemaps/tiles/wario/rock_small_object.png', {frameWidth: 32, frameHeight: 32});
-        this.load.aseprite('hud_lives', 'assets/animations/aseprite/wario/hud_lives.png', 'assets/animations/aseprite/wario/hud_lives.json');
-        this.load.aseprite('hud_power', 'assets/animations/aseprite/wario/hud_power.png', 'assets/animations/aseprite/wario/hud_power.json');
-
     }
     createTileMap(){
-
         this.image0 = this.add.tileSprite(0, 0, 0, 0, 'background').setScale(1).setOrigin(0.1, 0.1);
-        this.image1 = this.add.tileSprite(0, 0, 0, 0, 'background3').setScale(1).setOrigin(0.1, 0.1);
         this.image0.displayWidth = this.sys.game.config.width * 2.5;
         this.image0.displayHeight = this.sys.game.config.height * 2.5;
-        this.image1.displayWidth = this.sys.game.config.width * 2.5;
-        this.image1.displayHeight = this.sys.game.config.height * 2.5;
-
-        // const map = this.make.tilemap({key: 'map'});
         const map = this.add.tilemap("map");
 
-        this.layer2 = map.createLayer('Capa de patrones 2', [
-            // map.addTilesetImage('kenney_redux_64x64', 'kenney_redux_64x64', 64, 64),
-            // map.addTilesetImage('Terrain32x32', 'Terrain32x32', 32, 32),
-            // map.addTilesetImage('Terrain32x32', 'Terrain32x32', 32, 32),
-            // map.addTilesetImage('fantasy-tiles', 'fantasy-tiles', 32, 32),
-            // map.addTilesetImage('1560', '1560', 32, 32),
-            map.addTilesetImage('wario-tiles', 'wario-tiles', 32, 32),
-            // map.addTilesetImage('PR_TileSet', 'PR_TileSet', 32, 32),
-        ]);
-
-        this.layer = map.createLayer('Tile Layer 1', [
+        this.layer = map.createLayer('Tile Layer 1',
             map.addTilesetImage('kenney_redux_64x64', 'kenney_redux_64x64', 32, 32),
-            map.addTilesetImage('PR_TileSet', 'PR_TileSet', 32, 32),],
         );
-        this.layer.visible = false;
-        // this.layer2 = map.createLayer('Tile Layer 1', [],
-        // );
 
-        // Set up the layer to have matter bodies. Any colliding tiles will be given a Matter body.
-        map.setCollisionByProperty({collides: true});
+        // Configura las colisiones, excluyendo el azulejo con el ID 3
+
+        // Convierte la capa en cuerpos Matter
+        this.layer.setCollisionByProperty({collides: true});
         this.matter.world.convertTilemapLayer(this.layer);
-        this.matter.world.convertTilemapLayer(this.layer2);
+        // this.layer.setCollisionByExclusion([1]);
 
-        this.matter.world.setBounds(map.widthInPixels, map.heightInPixels);
-        this.matter.world.createDebugGraphic();
-        this.matter.world.drawDebug = false;
-        this.cursors = this.input.keyboard.createCursorKeys();
-        this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S); // Tecla "S"
-        this.keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R); // Tecla "S"
-        this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D); // Tecla "S"
+        // Jugador
+
+        // Enemigo
+        var enemy = this.matter.add.image(100, 100, 'enemy');
+        enemy.setCircle();
 
         this.smoothedControls = new SmoothedHorionztalControl(0.003);
         this.cam = this.cameras.main;
         this.cam.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
 
-        // Este es un grupo en colisión, por lo que los objetos dentro de este grupo siempre colisionarán:
-        this.enemiGroupCollision = this.matter.world.nextGroup();
-        // Este es un grupo que no colisiona, por lo que los objetos de este grupo nunca colisionan:
-        this.playerGroupCollision = this.matter.world.nextGroup(true);
+            this.matter.world.setBounds();
 
+            const canCollide = (filterA, filterB) =>
+            {
+                if (filterA.group === filterB.group && filterA.group !== 0)
+                {
+                    return filterA.group > 0;
+                }
 
-        this.layer.forEachTile(tile => {
-            // if (tile.physics.matterBody) {
-            if (tile.index === 3) {
-                console.log(tile.physics.matterBody);
-                // sin embargo, player colisionará con enemi, ya que los grupos son diferentes y distintos de cero,
-                // por lo que usan la prueba de máscara de categoría
-                // por defecto los objetos reciben una categoría de 1 y una máscara de -1,
-                // lo que significa que colisionarán (es decir, bloque1 vs pez2) si están en diferentes grupos
-                // crea una nueva categoría (podemos tener hasta 32)
-                tile.physics.matterBody.setCollisionGroup(this.playerGroupCollision);
-                // tile.physics.matterBody.setCollisionCategory(cat1).setCollidesWith(cat1);
-                // tile.physics.matterBody.setCollisionFromCollisionGroup(group2)
+                return (filterA.mask & filterB.category) !== 0 && (filterB.mask & filterA.category) !== 0;
+            };
 
+            // Aquí crearemos el Grupo 1:
+            // Este es un grupo en colisión, por lo que los objetos dentro de este grupo siempre colisionarán:
+            const enemiGroup = this.matter.world.nextGroup();
+
+            const enemi = this.matter.add.image(400, 450, 'strip').setStatic(true).setCollisionGroup(enemiGroup);
+            const fish1 = this.matter.add.image(0, 100, 'fish', 0).setBounce(1).setFriction(0, 0, 0).setCollisionGroup(enemiGroup).setVelocityY(10);
+            // Aquí crearemos el Grupo 2:
+            // Este es un grupo que no colisiona, por lo que los objetos de este grupo nunca colisionan:
+            const playerGroup = this.matter.world.nextGroup(true);
+
+            // block2 no colisionará con player porque comparten la misma identificación de grupo que no colisiona
+            const block2 = this.matter.add.image(400, 400, 'strip').setStatic(true).setCollisionGroup(playerGroup);
+            const player = this.matter.add.image(250, 100, 'fish', 1).setBounce(1).setFriction(0, 0, 0).setCollisionGroup(playerGroup).setVelocityY(10);
+
+            // sin embargo, player colisionará con enemi, ya que los grupos son diferentes y distintos de cero,
+            // por lo que usan la prueba de máscara de categoría
+            // por defecto los objetos reciben una categoría de 1 y una máscara de -1,
+            // lo que significa que colisionarán (es decir, bloque1 vs pez2) si están en diferentes grupos
+            // crea una nueva categoría (podemos tener hasta 32)
+            const cat1 = this.matter.world.nextCategory();
+            // Asigna la nueva categoría a block3 y fish3 y diles que deberían colisionar:
+            // const block3 = this.matter.add.image(400, 500, 'strip').setStatic(true).setCollisionCategory(cat1).setCollidesWith(cat1);
+            // const fish3 = this.matter.add.image(450, 100, 'fish', 2).setBounce(1).setFriction(0, 0, 0).setVelocityY(10).setCollisionCategory(cat1).setCollidesWith(cat1);
+            player.setBounce(1).setFriction(0, 0, 0).setVelocityY(10).setCollisionCategory(cat1).setCollidesWith(cat1);
+
+            console.log(this.layer)
+            this.layer.forEachTile(tile => {
+                // if (tile.physics.matterBody) {
+                if (tile.index === 3) {
+                    console.log(tile.physics.matterBody);
+                    tile.physics.matterBody.setCollisionGroup(playerGroup);
+                    // tile.physics.matterBody.setCollisionCategory(cat1).setCollidesWith(cat1);
+                    // tile.physics.matterBody.setCollisionFromCollisionGroup(playerGroup)
+                }
+            });
+            // console.log('enemi vs fish1', canCollide(this.layer, fish1.body.collisionFilter));
+            // console.log('enemi vs player', canCollide(this.layer, player.body.collisionFilter));
+            // console.log('enemi vs fish3', canCollide(this.layer, fish3.body.collisionFilter));
+    }
+
+    playerEnemyCollision(player, enemy) {
+        console.log('¡El jugador ha colisionado con un enemigo!');
+    }
+    handleCollision(event) {
+        const { gameObjectB } = event;
+        if (gameObjectB && gameObjectB.layer && gameObjectB.layer.tilemapLayer) {
+            const properties = gameObjectB.layer.tilemapLayer.getTilePropertiesAt(event.gameObjectB.x, event.gameObjectB.y);
+            if (properties && properties[3]) {
+                // ID 3 encontrado, manejar la colisión aquí si es necesario
+                // Por ejemplo, puedes deshabilitar el movimiento del jugador
+                // this.playerController.matterSprite.setVelocity(0, 0);
+            } else {
+                // ID diferente de 3, permitir colisión normalmente
+                return true;
             }
-        });
-
+        }
+        return false;
     }
     parallaxBg(direction){
 
@@ -380,10 +334,7 @@ class Example extends Phaser.Scene {
         this.playerController.matterSprite.play({key: 'delay', repeat: -1})
             .setExistingBody(compoundBody)
             .setPosition(x,y)
-            .setFixedRotation()
-            .setCollisionGroup(this.playerGroupCollision)
-
-        // Sets max inertia to prevent rotation
+            .setFixedRotation() // Sets max inertia to prevent rotation
 
         // .setDensity(1000)
         // .setFrictionStatic(0)
@@ -395,7 +346,7 @@ class Example extends Phaser.Scene {
         // .setScale(1.5)
         // this.playerController.matterSprite.body.gravityScale.y =2; // Define la gravedad específica para este sprite
 
-            this.smoothMoveCameraTowards(this.playerController.matterSprite);
+        this.smoothMoveCameraTowards(this.playerController.matterSprite);
     }
     createEnemies(){
         const id_enemi = 11;
@@ -520,25 +471,25 @@ class Example extends Phaser.Scene {
         let sx = w / 2;
         let sy = h / 2;
         // The player's body is going to be a compound body.
-        let playerBody = M.Bodies.rectangle(sx, sy*1.5, w * 0.5, h/2, {chamfer: {radius: 0}});
-        enemy.sensors.bottom = M.Bodies.rectangle(sx, h, sx/4, 5, {isSensor: true});
-        enemy.sensors.left = M.Bodies.rectangle(sx - w * 0.25, sy*1.5, 5, h * 0.25, {isSensor: true});
-        enemy.sensors.right = M.Bodies.rectangle(sx + w * 0.25, sy*1.55, 5, h * 0.25, {isSensor: true});
-        enemy.sensors.up = M.Bodies.rectangle(sx, h/2.5, sx/2, 5, {isSensor: true});
-        enemy.sensors.attack = M.Bodies.rectangle(sx, h, w/1.2, h/2, {isSensor: true});
+            let playerBody = M.Bodies.rectangle(sx, sy*1.5, w * 0.5, h/2, {chamfer: {radius: 0}});
+            enemy.sensors.bottom = M.Bodies.rectangle(sx, h, sx/4, 5, {isSensor: true});
+            enemy.sensors.left = M.Bodies.rectangle(sx - w * 0.25, sy*1.5, 5, h * 0.25, {isSensor: true});
+            enemy.sensors.right = M.Bodies.rectangle(sx + w * 0.25, sy*1.55, 5, h * 0.25, {isSensor: true});
+            enemy.sensors.up = M.Bodies.rectangle(sx, h/2.5, sx/2, 5, {isSensor: true});
+            enemy.sensors.attack = M.Bodies.rectangle(sx, h, w/1.2, h/2, {isSensor: true});
 
-        let compoundBody = M.Body.create({
-            parts: [
-                playerBody,
-                enemy.sensors.bottom,
-                enemy.sensors.left,
-                enemy.sensors.right,
-                enemy.sensors.up,
-                enemy.sensors.attack,
-            ],
-            friction: 0.01,
-            restitution: 0.05 // Prevent body from sticking against a wall
-        });
+            let compoundBody = M.Body.create({
+                parts: [
+                    playerBody,
+                    enemy.sensors.bottom,
+                    enemy.sensors.left,
+                    enemy.sensors.right,
+                    enemy.sensors.up,
+                    enemy.sensors.attack,
+                ],
+                friction: 0.01,
+                restitution: 0.05 // Prevent body from sticking against a wall
+            });
         enemy.matterSprite
             .setExistingBody(compoundBody)
             .setDensity(0.01)
@@ -669,7 +620,7 @@ class Example extends Phaser.Scene {
         enemy.matterSprite.body.gravityScale.y =0; // Define la gravedad específica para este sprite
         enemy.matterSprite.body.gravityScale.x =0; // Define la gravedad específica para este sprite
         this.enemiesBuGroup.push(enemy);
-        enemy.matterSprite.body.gravityScale.y =0; // Define la gravedad específica para este sprite
+      enemy.matterSprite.body.gravityScale.y =0; // Define la gravedad específica para este sprite
         enemy.matterSprite.setIgnoreGravity(true)
         enemy.matterSprite.setAngularVelocity(0)
 
@@ -678,7 +629,7 @@ class Example extends Phaser.Scene {
         this.anims.createFromAseprite('enemi_3');
 
         let enemy = {
-            matterSprite: this.matter.add.sprite(32, 32, 'enemi_3', 0)
+            matterSprite: this.matter.add.sprite(200, 200, 'enemi_3', 0)
                 // .setDensity(1000)
                 // .setFrictionStatic(100)
                 // .setFrictionAir(0.00001)
@@ -733,8 +684,8 @@ class Example extends Phaser.Scene {
         };
 
         const M = Phaser.Physics.Matter.Matter;
-        const w = enemy.matterSprite.width *1.3;
-        const h = enemy.matterSprite.height*1.3;
+        const w = enemy.matterSprite.width ;
+        const h = enemy.matterSprite.height;
         // El cuerpo del jugador va a ser un cuerpo compuesto:
         // - playerBody es el cuerpo sólido que interactuará físicamente con el mundo. Tiene un
         // chaflán (bordes redondeados) para evitar el problema de los vértices fantasma: http://www.iforce2d.net/b2dtut/ghost-vertices
@@ -777,13 +728,12 @@ class Example extends Phaser.Scene {
         });
 
         enemy.matterSprite.setExistingBody(compoundBody).setFixedRotation()
-            .setDensity(1000)
-            .setFrictionStatic(100)
-            .setFrictionAir(0)
-            .setFriction(0,0,0)
-            .setBounce(0) // Sets max inertia to prevent rotation
-            .setFixedRotation()
-            .setCollisionGroup(this.enemiGroupCollision)
+        .setDensity(1000)
+        .setFrictionStatic(100)
+        .setFrictionAir(0)
+        .setFriction(0,0,0)
+        .setBounce(0) // Sets max inertia to prevent rotation
+        .setFixedRotation() // Sets max inertia to prevent rotation
         ;
         // enemy.matterSprite.body.collisionFilter.category = 0; // Desactiva las colisiones con todas las categorías
         // enemy.matterSprite.body.collisionFilter.mask = 0; // No colisiona con ninguna categoría
@@ -800,18 +750,70 @@ class Example extends Phaser.Scene {
         enemy.matterSprite.setAngularVelocity(0)
 
     }
-    create() {
+    create ()
+    {
+        // this.matter.world.setBounds();
+        //
+        // const canCollide = (filterA, filterB) =>
+        // {
+        //     if (filterA.group === filterB.group && filterA.group !== 0)
+        //     { return filterA.group > 0; }
+        //
+        //     return (filterA.mask & filterB.category) !== 0 && (filterB.mask & filterA.category) !== 0;
+        // };
+        //
+        // //  Here we'll create Group 1:
+        //
+        // //  This is a colliding group, so objects within this Group will always collide:
+        // const enemiGroup = this.matter.world.nextGroup();
+        //
+        // const enemi = this.matter.add.image(400, 450, 'strip').setStatic(true).setCollisionGroup(enemiGroup);
+        // const fish1 = this.matter.add.image(100, 100, 'fish', 0).setBounce(1).setFriction(0, 0, 0).setCollisionGroup(enemiGroup).setVelocityY(10);
+        //
+        // //  Here we'll create Group 2:
+        // //  This is a non-colliding group, so objects in this Group never collide:
+        // const playerGroup = this.matter.world.nextGroup(true);
+        //
+        // //  block2 won't collide with player because they share the same non-colliding group id
+        // const block2 = this.matter.add.image(400, 400, 'strip').setStatic(true).setCollisionGroup(playerGroup);
+        // const player = this.matter.add.image(250, 100, 'fish', 1).setBounce(1).setFriction(0, 0, 0).setCollisionGroup(playerGroup).setVelocityY(10);
+        //
+        // //  however, player WILL collide with enemi, as the groups are different and non-zero, so they use the category mask test
+        //
+        // //  by default objects are given a category of 1 and a mask of -1, meaning they will collide (i.e. enemi vs player) if in different groups
+        //
+        // //  create a new category (we can have up to 32 of them)
+        // const cat1 = this.matter.world.nextCategory();
+        //
+        // //  Assign the new category to block3 and fish3 and tell them they should collide:
+        // const block3 = this.matter.add.image(400, 500, 'strip').setStatic(true).setCollisionCategory(cat1).setCollidesWith(cat1);
+        // const fish3 = this.matter.add.image(450, 100, 'fish', 2).setBounce(1).setFriction(0, 0, 0).setVelocityY(10).setCollisionCategory(cat1).setCollidesWith(cat1);
+        //
+        // console.log('enemi vs fish1', canCollide(enemi.body.collisionFilter, fish1.body.collisionFilter));
+        // console.log('enemi vs player', canCollide(enemi.body.collisionFilter, player.body.collisionFilter));
+        // console.log('enemi vs fish3', canCollide(enemi.body.collisionFilter, fish3.body.collisionFilter));
+        // //
+        // // console.log('block2 vs fish1', canCollide(block2.body.collisionFilter, fish1.body.collisionFilter));
+        // // console.log('block2 vs player', canCollide(block2.body.collisionFilter, player.body.collisionFilter));
+        // // console.log('block2 vs fish3', canCollide(block2.body.collisionFilter, fish3.body.collisionFilter));
+        // //
+        // // console.log('block3 vs fish1', canCollide(block3.body.collisionFilter, fish1.body.collisionFilter));
+        // // console.log('block3 vs player', canCollide(block3.body.collisionFilter, player.body.collisionFilter));
+        // console.log('block3 vs fish3', canCollide(block3.body.collisionFilter, fish3.body.collisionFilter));
+        this.createTileMap()
+
+    }
+    create2() {
         // Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
-        // const newWidth = 580 * 1.5;
-        // const newHeight = 320 *1.5;
+        const newWidth = 580 * 1.5;
+        const newHeight = 320 *1.5;
 
         // Calculamos el zoom necesario para mantener la misma relación de aspecto
-        // const zoomX = newWidth / screenWidth*2;
-        // const zoomY = newHeight / screenHeight*2;
-        //
-        // // Ajustamos el zoom de la cámara para mantener la misma relación de aspecto
-        // this.cameras.main.setZoom(Math.min(zoomX, zoomY));
-        //
+        const zoomX = newWidth / 580;
+        const zoomY = newHeight / 320;
+
+        // Ajustamos el zoom de la cámara para mantener la misma relación de aspecto
+        this.cameras.main.setZoom(Math.min(zoomX, zoomY));
 
         // Centramos la cámara en el centro del mundo
         this.cameras.main.centerOn(0, 0);
@@ -821,12 +823,10 @@ class Example extends Phaser.Scene {
         this.enemiesRockGroup=[];
         this.createTileMap()
         // this.decorWorld()
-        this.createPlayer(200, 0);
-        this.populate();
-        this.anims.createFromAseprite('paladin');
-        this.matterEvents();
-        // this.enableDebug();
-        this.createHud();
+
+
+        // this.matterEvents();
+        this.enableDebug();
         // this.createRocks();
         // this.populate();
         // this.decorWorldFront();
@@ -841,53 +841,14 @@ class Example extends Phaser.Scene {
         // this.setCollisions();
         // this.updateText();
     }
-    createHud() {
-        const uiContainer = this.add.container(0, 0);
-        const borderRect = this.add.rectangle(screenWidth / 2, screenHeight / 2, screenWidth, screenHeight);
-        borderRect.setStrokeStyle(10, 0xff0000); // Establecer el grosor del borde y el color
-        // Alinear el contenedor y el rectángulo al mundo del juego
-        const text2 = this.add.text(10,10, 'Texto dentro del rectángulo', { fontSize: '24px', fill: '#fff' });
-        borderRect.setInteractive();
-        borderRect.setScrollFactor(0);
-        const text = this.add.text(borderRect.x, borderRect.y, 'Texto dentro del rectángulo', { fontSize: '24px', fill: '#fff' });
-        this.hud = this.matter.add.sprite(10, 10, 'hud_lives', 0);
-        this.hud_power = this.matter.add.sprite(10, 10, 'hud_power', 0);
-        // Agregar el contenedor y el rectángulo a la escena
-
-        this.hud.setInteractive();
-        this.hud_power.setInteractive();
-        this.hud.setScrollFactor(0);
-        this.hud_power.setScrollFactor(0);
-        // .setFrictionStatic(0)
-       this.hud.body.gravityScale.y =0; // Define la gravedad específica para este sprite
-       this.hud.body.gravityScale.x =0; // Define la gravedad específica para este sprite
-        this.hud.setIgnoreGravity(true)
-        this.hud_power.setIgnoreGravity(true)
-        this.hud.setAngularVelocity(0)
-        this.hud_power.setAngularVelocity(0)
-        this.hud.setScale(2)
-        this.hud_power.setScale(2)
-
-        this.hud.setPosition(this.hud.body.gameObject.width,16)
-        this.hud_power.setPosition(this.hud_power.body.gameObject.width,32)
-
-        this.layer2.forEachTile(tile => {
-            const tileWorldPos = this.layer2.tileToWorldXY(tile.x, tile.y);
-            const text = this.add.text(tileWorldPos.x + 16, tileWorldPos.y + 16, tile.index.toString(), {
-                fontSize: '10px',
-                fill: '#000'
-            });
-            text.setOrigin(0.5);
-        }, this);
-        }
     update (time, delta)
     {
 
-        this.parallaxBgReset();
-        this.movePlayer(time, delta);
-        this.moveEnemies(time, delta);
-        this.moveEnemies2(time, delta);
-        this.moveEnemies3(time, delta);
+        // this.parallaxBgReset();
+        // this.movePlayer(time, delta);
+        // this.moveEnemies(time, delta);
+        // this.moveEnemies2(time, delta);
+        // this.moveEnemies3(time, delta);
     }
     matterEvents(){
         // Usa eventos de materia para detectar si el jugador está tocando una superficie a la izquierda, derecha o
@@ -997,21 +958,22 @@ class Example extends Phaser.Scene {
             if(tileDescription==='stick_wall' ){
                 this.playerController.stick=true;
             }
-            if(tileDescription==='collision_enemi' ){
-                collision=false;
-                // var enemyAttackCategory = this.matter.world.nextCategory();
-                // enemy.sensors.attack.setCollisionCategory(this.enemyAttackCategory); // Establecer la categoría de colisión del sensor de ataque del enemigo
-                // enemy.sensors.attack.setCollidesWith([this.playerCategory]);
-                // Ignorar colisiones del jugador con este tipo de tile
-                // this.playerController.matterSprite.setCollisionCategory(0);
-                // this.playerController.matterSprite.setCollidesWith([]);
-                // Si es el tile con ID 3, el jugador no colisiona con este tipo de tile
-                this.playerController.matterSprite.setCollidesWith([2]); // El jugador sigue colisionando con la categoría del enemigo
-            }else {
-                this.playerController.matterSprite.setCollidesWith([1, 2]); // El jugador colisiona con la categoría del jugador y la del enemigo                    // this.playerController.matterSprite.setCollisionCategory(1); // Esto es solo un ejemplo, ajusta según sea necesario
-                // this.playerController.matterSprite.setCollidesWith([1]); // Esto también es un ejemplo, ajusta según sea necesario
+                if(tileDescription==='collision_enemi' ){
+                    console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+                    collision=false;
+                    // var enemyAttackCategory = this.matter.world.nextCategory();
+                    // enemy.sensors.attack.setCollisionCategory(this.enemyAttackCategory); // Establecer la categoría de colisión del sensor de ataque del enemigo
+                    // enemy.sensors.attack.setCollidesWith([this.playerCategory]);
+                        // Ignorar colisiones del jugador con este tipo de tile
+                        // this.playerController.matterSprite.setCollisionCategory(0);
+                        // this.playerController.matterSprite.setCollidesWith([]);
+                    // Si es el tile con ID 3, el jugador no colisiona con este tipo de tile
+                    this.playerController.matterSprite.setCollidesWith([2]); // El jugador sigue colisionando con la categoría del enemigo
+                }else {
+                    this.playerController.matterSprite.setCollidesWith([1, 2]); // El jugador colisiona con la categoría del jugador y la del enemigo                    // this.playerController.matterSprite.setCollisionCategory(1); // Esto es solo un ejemplo, ajusta según sea necesario
+                    // this.playerController.matterSprite.setCollidesWith([1]); // Esto también es un ejemplo, ajusta según sea necesario
 
-            }
+                }
             if(tileDescription==='platform'){
                 this.playerController.stick=false;
             }
@@ -1180,7 +1142,8 @@ class Example extends Phaser.Scene {
 
             if ((bodyA === attack && bodyB.gameObject.body === playerBody) || (bodyB === attack && bodyA.gameObject.body === playerBody)) {
                 // Si el jugador está dentro del sensor de ataque del enemigo
-                enemy.numTouching.attack += 1;
+                        enemy.numTouching.attack += 1;
+                console.log("¡El jugador está dentro del sensor de ataque del enemigo!");
                 // Realiza las acciones necesarias, como iniciar el ataque del enemigo, etc.
             }
         });
@@ -1209,7 +1172,8 @@ class Example extends Phaser.Scene {
 
             if ((bodyA === attack && bodyB.gameObject.body === playerBody) || (bodyB === attack && bodyA.gameObject.body === playerBody)) {
                 // Si el jugador está dentro del sensor de ataque del enemigo
-                enemy.numTouching.attack += 1;
+                        enemy.numTouching.attack += 1;
+                console.log("¡El jugador está dentro del sensor de ataque del enemigo!");
                 // Realiza las acciones necesarias, como iniciar el ataque del enemigo, etc.
             }
         });
@@ -1365,7 +1329,7 @@ class Example extends Phaser.Scene {
                 paused: true // Dejar el tween en pausa inicialmente
             });
             blinkTween2.play()
-            this.time.delayedCall(500, () => {
+              this.time.delayedCall(500, () => {
                 player.stop=false;
 
             }, [], this);
@@ -2304,36 +2268,36 @@ class Example extends Phaser.Scene {
                             if (!enemy.blocked.attack && !player.defeat){
                                 // Detener la animación de ataque y cambiar a la animación de caminar
                                 enemy.matterSprite.anims.play('dash_bu_enemi', true);
-                                var randomYOffset = Math.random() * 100 - 30;
-                                var randomYOffset2 = Math.random() * 2 - 1;
-                                blinkTween3.stop();
-                                blinkTween2.play();
-                                // Genera un número aleatorio entre 0 y 2
-                                var randomIndex = Math.floor(Math.random() * 2);
-                                // Define los posibles valores: -30, 10, 30
-                                // var possibleValues = [-45, -10,45];
-                                var possibleValues = [-50, 0,];
-                                // Selecciona el valor según el índice aleatorio generado
-                                var randomYOffset3 = possibleValues[randomIndex];
-                                if (enemy.matterSprite.x > this.playerController.matterSprite.x) {
-                                    enemy.matterSprite.setPosition(
-                                        this.playerController.matterSprite.x - visionRange - 60,
-                                        this.playerController.matterSprite.y + randomYOffset3
-                                    );
-                                    enemy.matterSprite.setVelocity(3, 0);
-                                    enemy.direction.x = 1;
-                                    // enemy.matterSprite.setVelocity(4, randomYOffset2);
-                                } else {
-                                    enemy.matterSprite.setPosition(
-                                        this.playerController.matterSprite.x + visionRange + 60,
-                                        this.playerController.matterSprite.y + randomYOffset3
-                                    );
-                                    enemy.matterSprite.setVelocity(-3, 0);
-                                    // enemy.matterSprite.setVelocity(-4, randomYOffset2);
-                                    enemy.direction.x = -1;
-                                }
-                                enemy.matterSprite.setFlipX(enemy.direction.x < 0); // Voltear si va hacia la izquierda
+                            var randomYOffset = Math.random() * 100 - 30;
+                            var randomYOffset2 = Math.random() * 2 - 1;
+                            blinkTween3.stop();
+                            blinkTween2.play();
+                            // Genera un número aleatorio entre 0 y 2
+                            var randomIndex = Math.floor(Math.random() * 2);
+                            // Define los posibles valores: -30, 10, 30
+                            // var possibleValues = [-45, -10,45];
+                            var possibleValues = [-50, 0,];
+                            // Selecciona el valor según el índice aleatorio generado
+                            var randomYOffset3 = possibleValues[randomIndex];
+                            if (enemy.matterSprite.x > this.playerController.matterSprite.x) {
+                                enemy.matterSprite.setPosition(
+                                    this.playerController.matterSprite.x - visionRange - 60,
+                                    this.playerController.matterSprite.y + randomYOffset3
+                                );
+                                enemy.matterSprite.setVelocity(3, 0);
+                                enemy.direction.x = 1;
+                                // enemy.matterSprite.setVelocity(4, randomYOffset2);
+                            } else {
+                                enemy.matterSprite.setPosition(
+                                    this.playerController.matterSprite.x + visionRange + 60,
+                                    this.playerController.matterSprite.y + randomYOffset3
+                                );
+                                enemy.matterSprite.setVelocity(-3, 0);
+                                // enemy.matterSprite.setVelocity(-4, randomYOffset2);
+                                enemy.direction.x = -1;
                             }
+                            enemy.matterSprite.setFlipX(enemy.direction.x < 0); // Voltear si va hacia la izquierda
+                        }
                         }, [], this);
 
 
@@ -2401,8 +2365,8 @@ class Example extends Phaser.Scene {
 
                             }, [], this);
                         }
-                    }
-                    // }
+                        }
+                        // }
                 }
             }
             else {
@@ -2432,6 +2396,7 @@ class Example extends Phaser.Scene {
             // const inVisionRange = distance < visionRange;
 // Calcular la distancia vertical entre los sprites del jugador y el enemigo
             const verticalDistance = Math.abs(this.playerController.matterSprite.x- enemy.matterSprite.x);
+            console.log(verticalDistance)
 // Calcular la distancia de detección basada en el doble de la altura vertical
             const detectionDistance = Math.sqrt(Math.pow(visionRange, 2) + Math.pow(verticalDistance * 2, 2));
             const inVisionRange = distance < detectionDistance;
@@ -2488,7 +2453,7 @@ class Example extends Phaser.Scene {
                 // enemy.matterSprite.anims.play('dash_enemi', true);
                 enemy.actionDuration = 500;
                 // enemy.matterSprite.anims.play('dash_bu_enemi', true);
-                this.playerController.matterSprite.setVelocityX(10+this.MAX_SPEED * this.playerController.direction.x);
+                this.playerController.matterSprite.setVelocityX(4+this.MAX_SPEED * this.playerController.direction.x);
                 this.playerController.matterSprite.setVelocityY(0);
                 this.playerController.defeat=true;
                 this.playerController.stop=true;
@@ -2498,10 +2463,10 @@ class Example extends Phaser.Scene {
                 this.time.delayedCall(2000, () => {
                     blinkTween3.stop();
                     blinkTween2.play();
-                    // enemy.matterSprite.setPosition(
-                    //     enemy.respawn.x,
-                    //     enemy.respawn.y,
-                    // );
+                    enemy.matterSprite.setPosition(
+                        enemy.respawn.x,
+                        enemy.respawn.y,
+                    );
                     // enemy.matterSprite.anims.play('run_bu_enemi', true);
                 }, [], this);
             }else
@@ -2525,19 +2490,19 @@ class Example extends Phaser.Scene {
                         this.time.delayedCall(500, () => {
                             if (!enemy.blocked.attack && !player.defeat){
                                 // Detener la animación de ataque y cambiar a la animación de caminar
-                                var randomYOffset = Math.random() * 100 - 30;
-                                var randomYOffset2 = Math.random() * 2 - 1;
-                                blinkTween3.stop();
-                                blinkTween2.play();
-                                // Genera un número aleatorio entre 0 y 2
-                                var randomIndex = Math.floor(Math.random() * 2);
-                                // Define los posibles valores: -30, 10, 30
-                                // var possibleValues = [-45, -10,45];
-                                var possibleValues = [-50, 0,];
-                                // Selecciona el valor según el índice aleatorio generado
-                                var randomYOffset3 = possibleValues[randomIndex];
-                                enemy.matterSprite.setVelocity(0, 10);
-                            }
+                            var randomYOffset = Math.random() * 100 - 30;
+                            var randomYOffset2 = Math.random() * 2 - 1;
+                            blinkTween3.stop();
+                            blinkTween2.play();
+                            // Genera un número aleatorio entre 0 y 2
+                            var randomIndex = Math.floor(Math.random() * 2);
+                            // Define los posibles valores: -30, 10, 30
+                            // var possibleValues = [-45, -10,45];
+                            var possibleValues = [-50, 0,];
+                            // Selecciona el valor según el índice aleatorio generado
+                            var randomYOffset3 = possibleValues[randomIndex];
+                            enemy.matterSprite.setVelocity(0, 10);
+                        }
                         }, [], this);
 
                         this.time.delayedCall(2000, () => {
@@ -2560,7 +2525,7 @@ class Example extends Phaser.Scene {
                 }
                 else {
                     // enemy.matterSprite.anims.play('idle_rock_enemi', true);
-                    enemy.matterSprite.setFrame(5);
+                            enemy.matterSprite.setFrame(5);
                 }
             }
             else {
@@ -2582,6 +2547,52 @@ class Example extends Phaser.Scene {
     moveEnemiBuDirection(time,delta,enemi){
         enemy.matterSprite.setCollisionCategory(0);
         enemy.matterSprite.setCollidesWith(0);
+    }
+
+// Función para hacer que el enemigo desaparezca con un efecto brillante
+    disappearWithEffect2(enemy) {
+        console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeee')
+        // Implementa aquí el efecto de desaparición brillante
+        // Por ejemplo, podrías hacer que el enemigo se desvanezca gradualmente o haga una animación brillante antes de desaparecer
+        // enemy.setVisible(false);
+        // enemy.setActive(false);
+        // Aquí puedes agregar más lógica según tu efecto de desaparición
+
+        // Crear el tween de parpadeo
+        const blinkTween = this.tweens.add({
+            targets: enemy.matterSprite,
+            alpha: alphaValues,
+            duration: duration,
+            ease: 'Linear',
+            // repeat: -1, // Repetir infinitamente
+            yoyo: false // Revertir la animación al final
+        });
+
+        // Iniciar el tween
+        blinkTween.stop();
+    }
+    disappearWithEffect(enemy) {
+        console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeee')
+        // Implementa aquí el efecto de desaparición brillante
+        // Por ejemplo, podrías hacer que el enemigo se desvanezca gradualmente o haga una animación brillante antes de desaparecer
+        // enemy.setVisible(false);
+        // enemy.setActive(false);
+        // Aquí puedes agregar más lógica según tu efecto de desaparición
+        const duration = 1000; // Duración de cada parpadeo en milisegundos
+        const alphaValues = [1, 0]; // Valores de alfa para el parpadeo
+
+        // Crear el tween de parpadeo
+        const blinkTween = this.tweens.add({
+            targets: enemy.matterSprite,
+            alpha: alphaValues,
+            duration: duration,
+            ease: 'Linear',
+            // repeat: -1, // Repetir infinitamente
+            yoyo: false // Revertir la animación al final
+        });
+
+        // Iniciar el tween
+        blinkTween.play();
     }
 
     killedEnemi(bodyA,bodyB){
@@ -2759,13 +2770,13 @@ class Example extends Phaser.Scene {
         // Crear un contenedor para el texto y el borde
         const uiContainer = this.add.container(0, 0);
         // Crear el texto y agregarlo al contenedor
-        const text = this.add.text(100, 100, "Texto fijo", { fontSize: '24px', fill: '#FFF' });
-        uiContainer.add(text);
+        // const text = this.add.text(100, 100, "Texto fijo", { fontSize: '24px', fill: '#FFF' });
+        // uiContainer.add(text);
         // Obtener las dimensiones de la pantalla
         const screenWidth = this.cameras.main.width;
         const screenHeight = this.cameras.main.height;
         // Crear un rectángulo que cubra el borde de la pantalla
-        const borderRect = this.add.rectangle(newWidth / 2, newHeight / 2, newWidth, newHeight);
+        const borderRect = this.add.rectangle(screenWidth / 2, screenHeight / 2, screenWidth, screenHeight);
         borderRect.setStrokeStyle(2, 0xff0000); // Establecer el grosor del borde y el color
         // Alinear el contenedor y el rectángulo al mundo del juego
         uiContainer.setScrollFactor(0);
@@ -2774,8 +2785,8 @@ class Example extends Phaser.Scene {
         this.add.existing(uiContainer);
         this.add.existing(borderRect);
 
-        this.layer2.forEachTile(tile => {
-            const tileWorldPos = this.layer2.tileToWorldXY(tile.x, tile.y);
+        this.layer.forEachTile(tile => {
+            const tileWorldPos = this.layer.tileToWorldXY(tile.x, tile.y);
             const text = this.add.text(tileWorldPos.x + 16, tileWorldPos.y + 16, tile.index.toString(), {
                 fontSize: '10px',
                 fill: '#000'
@@ -2810,50 +2821,46 @@ class Example extends Phaser.Scene {
     }
     exitZone(obj) {
     }
-
-    // Event listener para el cambio de tamaño de la ventana del navegador
-
-// Llamamos a la función resizeGame() al cargar la página para ajustar el tamaño inicial
 }
-// window.addEventListener('resize', resizeGame);
-// function resizeGame() {
-//     const screenWidth = window.innerWidth;
-//     const screenHeight = window.innerHeight;
-//
-//     // Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
-//     let newWidth = screenWidth;
-//     let newHeight = screenHeight;
-//
-//     // Ajustamos el alto para conservar la relación de aspecto
-//     newHeight = newWidth / aspectRatio;
-//
-//     // Actualizamos el tamaño del juego
-//     game.scale.resize(newWidth, newHeight);
-// }
 
 
+const aspectRatio = 16 / 9; // Relación de aspecto deseada (ancho / alto)
 
+const screenWidth = 580; // Ancho original de la pantalla
+const screenHeight = 320; // Alto original de la pantalla
 
-// const config = {
-//     type: Phaser.AUTO,
-//     width: newWidth,
-//     height: newHeight,
-//     backgroundColor: '#000000',
-//     parent: 'phaser-example',
-//     physics: {
-//         default: 'matter',
-//         matter: {
-//             gravity: {
-//                 x: 0,
-//                 y: 1.5
-//             },
-//             enableSleep: false,
-//             debug: true
-//         }
-//     },
-//     scene: Example
-// };
-//
-// const game = new Phaser.Game(config);
+// Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
+let newWidth = screenWidth;
+let newHeight = screenHeight;
 
-// Función para inicializar el juego con el tamaño adecuado según el dispositivo
+// Aumentamos el tamaño de la pantalla al doble
+const scale =2; // Factor de escala deseado
+
+newWidth *= scale;
+newHeight *= scale;
+
+// Ajustamos el alto para conservar la relación de aspecto
+newHeight = newWidth / aspectRatio;
+
+const config = {
+    type: Phaser.AUTO,
+    width: 800,
+    height: 600,
+    backgroundColor: '#000000',
+    parent: 'phaser-example',
+    physics: {
+        default: 'matter',
+        matter: {
+            gravity: {
+                x: 0,
+                y: 1.5
+            },
+            enableSleep: false,
+            debug: true
+        }
+    },
+    scene: Example
+};
+
+const game = new Phaser.Game(config);
+

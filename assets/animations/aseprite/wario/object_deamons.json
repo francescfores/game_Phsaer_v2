@@ -1,0 +1,82 @@
+{ "frames": {
+   "object_deamons 0.ase": {
+    "frame": { "x": 0, "y": 0, "w": 14, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 22 },
+    "sourceSize": { "w": 14, "h": 22 },
+    "duration": 200
+   },
+   "object_deamons 1.ase": {
+    "frame": { "x": 14, "y": 0, "w": 14, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 22 },
+    "sourceSize": { "w": 14, "h": 22 },
+    "duration": 200
+   },
+   "object_deamons 2.ase": {
+    "frame": { "x": 28, "y": 0, "w": 14, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 22 },
+    "sourceSize": { "w": 14, "h": 22 },
+    "duration": 200
+   },
+   "object_deamons 3.ase": {
+    "frame": { "x": 42, "y": 0, "w": 14, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 22 },
+    "sourceSize": { "w": 14, "h": 22 },
+    "duration": 200
+   },
+   "object_deamons 4.ase": {
+    "frame": { "x": 56, "y": 0, "w": 14, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 22 },
+    "sourceSize": { "w": 14, "h": 22 },
+    "duration": 200
+   },
+   "object_deamons 5.ase": {
+    "frame": { "x": 70, "y": 0, "w": 14, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 22 },
+    "sourceSize": { "w": 14, "h": 22 },
+    "duration": 200
+   },
+   "object_deamons 6.ase": {
+    "frame": { "x": 84, "y": 0, "w": 14, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 22 },
+    "sourceSize": { "w": 14, "h": 22 },
+    "duration": 200
+   },
+   "object_deamons 7.ase": {
+    "frame": { "x": 98, "y": 0, "w": 14, "h": 22 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 14, "h": 22 },
+    "sourceSize": { "w": 14, "h": 22 },
+    "duration": 200
+   }
+ },
+ "meta": {
+  "app": "https://github.com/LibreSprite/LibreSprite/",
+  "version": "1.0-dev",
+  "image": "/home/fran/Descargas/gamesAssets/Phaser project/assets/animations/aseprite/wario/object_deamons.png",
+  "format": "RGBA8888",
+  "size": { "w": 112, "h": 22 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "object_deamon_blue", "from": 0, "to": 3, "direction": "forward" },
+   { "name": "object_deamon_red", "from": 4, "to": 7, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}

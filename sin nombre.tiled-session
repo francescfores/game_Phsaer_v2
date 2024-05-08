@@ -1,12 +1,12 @@
 {
-    "activeFile": "assets/tilemaps/maps/collisions.tsx",
+    "activeFile": "assets/tilemaps/maps/matter-platformer2.json",
     "expandedProjectPaths": [
-        "assets/tilemaps/maps",
-        "assets",
         ".",
-        "assets/atlas",
+        "assets/tilemaps/maps",
+        "assets/maps",
+        "assets",
         "assets/tilemaps",
-        "assets/maps"
+        "assets/atlas"
     ],
     "file.lastUsedOpenFilter": "Todos los archivos (*)",
     "fileStates": {
@@ -24,8 +24,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 368.5,
-                "y": 211.5
+                "x": 1279.5,
+                "y": 199.5
             }
         },
         "assets/maps/map.json#collisions": {
@@ -222,11 +222,11 @@
             "scaleInDock": 1
         },
         "assets/tilemaps/maps/matter-platformer2.json": {
-            "scale": 0.75,
+            "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 2879.333333333333,
-                "y": 256.66666666666663
+                "x": 470.5,
+                "y": 62.5
             }
         },
         "assets/tilemaps/maps/matter-platformer2.json#1560": {
@@ -260,8 +260,8 @@
             "scale": 0.25,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 122,
-                "y": -234
+                "x": 2880,
+                "y": 258
             }
         },
         "assets/tilemaps/maps/matter-platformer3.json#1560": {
@@ -388,15 +388,14 @@
     "last.imagePath": "/home/fran/Descargas/gamesAssets/Phaser project/assets/tilemaps/tiles",
     "openFiles": [
         "assets/maps/map.json",
-        "assets/tilemaps/maps/collisions.tsx",
         "assets/tilemaps/maps/matter-platformer2.json",
         "assets/tilemaps/maps/matter-platformer3.json"
     ],
     "project": "sin nombre.tiled-project",
     "recentFiles": [
+        "assets/maps/map.json",
         "assets/tilemaps/maps/matter-platformer3.json",
         "assets/tilemaps/maps/matter-platformer2.json",
-        "assets/maps/map.json",
         "assets/tilemaps/maps/collisions.tsx",
         "assets/maps/map2.json",
         "assets/maps/tiles-curious-factory.tsx",
