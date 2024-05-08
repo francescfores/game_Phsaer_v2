@@ -801,7 +801,7 @@
   "scale": "1",
   "frameTags": [
    { "name": "A", "from": 0, "to": 4, "direction": "forward" },
-   { "name": "Buttons1", "from": 0, "to": 19, "direction": "forward" },
+   { "name": "A", "from": 0, "to": 19, "direction": "forward" },
    { "name": "B", "from": 5, "to": 9, "direction": "forward" },
    { "name": "X", "from": 10, "to": 14, "direction": "forward" },
    { "name": "Y", "from": 15, "to": 19, "direction": "forward" },

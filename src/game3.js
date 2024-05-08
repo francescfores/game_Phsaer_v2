@@ -875,7 +875,7 @@ class Example extends Phaser.Scene {
         console.log(borderRect2.width)
         this.anims.createFromAseprite('controllers');
         this.matter.add.sprite(borderRect2.x, borderRect2.y+30, 'controllers', 0)
-        .setFrame(1)
+        .setFrame(0)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
@@ -884,7 +884,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0)
 
         this.matter.add.sprite(borderRect2.x+30, borderRect2.y, 'controllers', 0)
-            .setFrame(15)
+            .setFrame(5)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
@@ -893,7 +893,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0)
 
         this.matter.add.sprite(borderRect2.x-30, borderRect2.y, 'controllers', 0)
-            .setFrame(18)
+            .setFrame(10)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
@@ -902,7 +902,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0)
 
         this.matter.add.sprite(borderRect2.x, borderRect2.y-30, 'controllers', 0)
-            .setFrame(21)
+            .setFrame(15)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
@@ -915,34 +915,35 @@ class Example extends Phaser.Scene {
         console.log(borderRect3.x)
         console.log(borderRect3.width)
         this.anims.createFromAseprite('controllers');
-        this.matter.add.sprite(borderRect3.x, borderRect3.y+30, 'controllers', 0).setFrame(12)
+        //down
+        this.matter.add.sprite(borderRect3.x, borderRect3.y+25, 'controllers', 0).setFrame(39)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
             .setCollidesWith(0)
             .setIgnoreGravity(true)
             .setAngularVelocity(0)
-
-        this.matter.add.sprite(borderRect3.x+30, borderRect3.y, 'controllers', 0)
-            .setFrame(15)
+        //right
+        this.matter.add.sprite(borderRect3.x+25, borderRect3.y, 'controllers', 0)
+            .setFrame(36)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
             .setCollidesWith(0)
             .setIgnoreGravity(true)
             .setAngularVelocity(0)
-
-        this.matter.add.sprite(borderRect3.x-30, borderRect3.y, 'controllers', 0)
-            .setFrame(18)
+        //left
+        this.matter.add.sprite(borderRect3.x-25, borderRect3.y, 'controllers', 0)
+            .setFrame(42)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
             .setCollidesWith(0)
             .setIgnoreGravity(true)
             .setAngularVelocity(0)
-
-        this.matter.add.sprite(borderRect3.x, borderRect3.y-30, 'controllers', 0)
-            .setFrame(21)
+        //up
+        this.matter.add.sprite(borderRect3.x, borderRect3.y-25, 'controllers', 0)
+            .setFrame(32)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
