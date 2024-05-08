@@ -43,37 +43,37 @@ newHeight = newWidth / aspectRatio;
 
 
 function initializeGame() {
-     screenWidth = window.innerWidth;
-     screenHeight = window.innerHeight;
-
-    // Define la relación de aspecto deseada y el tamaño original de la pantalla
-    const aspectRatio = 16 / 9;
-    const originalWidth = 580;
-    const originalHeight = 320;
-
-    // Calcula el nuevo ancho y alto del juego manteniendo la relación de aspecto
-    if (screenWidth / screenHeight > aspectRatio) {
-        newHeight = screenHeight;
-        newWidth = newHeight * aspectRatio;
-    } else {
-        newWidth = screenWidth;
-        newHeight = newWidth / aspectRatio;
-    }
-
-    // Calcula el factor de escala en función del nuevo tamaño y el tamaño original
-    const scaleX = newWidth / originalWidth;
-    const scaleY = newHeight / originalHeight;
-    const scale = Math.min(scaleX, scaleY);
-
-    // Calcula el nuevo ancho y alto basado en la escala
-    newWidth = originalWidth * scale;
-    newHeight = originalHeight * scale;
+    //  screenWidth = window.innerWidth;
+    //  screenHeight = window.innerHeight;
+    //
+    // // Define la relación de aspecto deseada y el tamaño original de la pantalla
+    // const aspectRatio = 16 / 9;
+    // const originalWidth = 580;
+    // const originalHeight = 320;
+    //
+    // // Calcula el nuevo ancho y alto del juego manteniendo la relación de aspecto
+    // if (screenWidth / screenHeight > aspectRatio) {
+    //     newHeight = screenHeight;
+    //     newWidth = newHeight * aspectRatio;
+    // } else {
+    //     newWidth = screenWidth;
+    //     newHeight = newWidth / aspectRatio;
+    // }
+    //
+    // // Calcula el factor de escala en función del nuevo tamaño y el tamaño original
+    // const scaleX = newWidth / originalWidth;
+    // const scaleY = newHeight / originalHeight;
+    // const scale = Math.min(scaleX, scaleY);
+    //
+    // // Calcula el nuevo ancho y alto basado en la escala
+    // newWidth = originalWidth * scale;
+    // newHeight = originalHeight * scale;
 
     // Configuración del juego
     const config = {
         type: Phaser.AUTO,
-        width: newWidth,
-        height: newHeight,
+        width: 580,
+        height: 320,
         backgroundColor: '#000000',
         parent: 'phaser-example',
         physics: {
@@ -127,6 +127,7 @@ class Example extends Phaser.Scene {
     enemiesGroup;
     enemiesBuGroup;
     enemiesRockGroup;
+    scale;
     tweens;
     layer;
     layer2;
@@ -246,7 +247,6 @@ class Example extends Phaser.Scene {
         this.layer.forEachTile(tile => {
             // if (tile.physics.matterBody) {
             if (tile.index === 3) {
-                console.log(tile.physics.matterBody);
                 // sin embargo, player colisionará con enemi, ya que los grupos son diferentes y distintos de cero,
                 // por lo que usan la prueba de máscara de categoría
                 // por defecto los objetos reciben una categoría de 1 y una máscara de -1,
@@ -455,8 +455,9 @@ class Example extends Phaser.Scene {
             speed: { run: 10, jump: 17 }
         };
     }
+
     createEnemiSprite(x, y) {
-        this.anims.createFromAseprite('enemi_1');
+        // this.anims.createFromAseprite('enemi_1');
 
         let enemy = {
             matterSprite: this.matter.add.sprite(200, 200, 'enemi_1', 0)
@@ -556,7 +557,7 @@ class Example extends Phaser.Scene {
         this.enemiesGroup.push(enemy);
     }
     createEnemiSprite3(x,  y) {
-        this.anims.createFromAseprite('enemi_2');
+        // this.anims.createFromAseprite('enemi_2');
 
         let enemy = {
             matterSprite: this.matter.add.sprite(200, 200, 'enemi_2', 0)
@@ -803,20 +804,9 @@ class Example extends Phaser.Scene {
 
     }
     create() {
-        // Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
-        // const newWidth = 580 * 1.5;
-        // const newHeight = 320 *1.5;
+// Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
+// Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
 
-        // Calculamos el zoom necesario para mantener la misma relación de aspecto
-        // const zoomX = newWidth / screenWidth*2;
-        // const zoomY = newHeight / screenHeight*2;
-        //
-        // // Ajustamos el zoom de la cámara para mantener la misma relación de aspecto
-        // this.cameras.main.setZoom(Math.min(zoomX, zoomY));
-        //
-
-        // Centramos la cámara en el centro del mundo
-        this.cameras.main.centerOn(0, 0);
         this.rocksGroup=[];
         this.enemiesGroup=[];
         this.enemiesBuGroup=[];
@@ -824,11 +814,23 @@ class Example extends Phaser.Scene {
         this.createTileMap()
         // this.decorWorld()
         this.createPlayer(200, 0);
-        this.populate();
-        this.anims.createFromAseprite('paladin');
-        this.matterEvents();
+        // this.populate();
+        // this.anims.createFromAseprite('paladin');
+        // this.matterEvents();
         // this.enableDebug();
         this.createHud();
+
+        // Detecta la orientación de la pantalla
+        var isVertical = this.scale.orientation === Phaser.Scale.PORTRAIT;
+        console.log('isVertical')
+        console.log(isVertical)
+        // Define el zoom y las coordenadas de centrado basadas en la orientación
+        var zoomFactor = isVertical ? 4 : 2;
+        var centerX = isVertical ? 0 : this.scale.width / 2;
+        var centerY = isVertical ? 0 : this.scale.height / 2;
+
+        this.cam.setZoom(zoomFactor);
+        this.cam.centerOn(centerX, centerY);
         // this.createRocks();
         // this.populate();
         // this.decorWorldFront();
@@ -845,7 +847,8 @@ class Example extends Phaser.Scene {
     }
     createHud() {
         const uiContainer = this.add.container(0, 0);
-        const borderRect = this.add.rectangle(screenWidth / 2, screenHeight / 2, screenWidth, screenHeight)
+// Crea el rectángulo en el centro de la cámara y establece su tamaño
+        const borderRect = this.add.rectangle(this.cam.midPoint.x, this.cam.midPoint.y, this.cam.width/2, this.cam.height/2)
             .setStrokeStyle(10, 0xff0000).setInteractive().setScrollFactor(0);
         const text = this.add.text(borderRect.x, borderRect.y, 'Texto dentro del rectángulo', { fontSize: '24px', fill: '#fff' });
         this.hud = this.matter.add.sprite(10, 10, 'hud_lives', 0);
@@ -875,6 +878,7 @@ class Example extends Phaser.Scene {
         console.log(borderRect2.width)
         this.anims.createFromAseprite('controllers');
         this.matter.add.sprite(borderRect2.x, borderRect2.y+30, 'controllers', 0)
+            .setScale(1.2)
         .setFrame(0)
             .setInteractive()
             .setScrollFactor(0)
@@ -884,6 +888,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0)
 
         this.matter.add.sprite(borderRect2.x+30, borderRect2.y, 'controllers', 0)
+            .setScale(1.2)
             .setFrame(5)
             .setInteractive()
             .setScrollFactor(0)
@@ -893,6 +898,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0)
 
         this.matter.add.sprite(borderRect2.x-30, borderRect2.y, 'controllers', 0)
+            .setScale(1.2)
             .setFrame(10)
             .setInteractive()
             .setScrollFactor(0)
@@ -902,6 +908,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0)
 
         this.matter.add.sprite(borderRect2.x, borderRect2.y-30, 'controllers', 0)
+            .setScale(1.2)
             .setFrame(15)
             .setInteractive()
             .setScrollFactor(0)
@@ -914,9 +921,9 @@ class Example extends Phaser.Scene {
             .setStrokeStyle(2, 0xff0000).setInteractive().setScrollFactor(0);
         console.log(borderRect3.x)
         console.log(borderRect3.width)
-        this.anims.createFromAseprite('controllers');
         //down
         this.matter.add.sprite(borderRect3.x, borderRect3.y+25, 'controllers', 0).setFrame(39)
+            .setScale(1.2)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
@@ -925,6 +932,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0)
         //right
         this.matter.add.sprite(borderRect3.x+25, borderRect3.y, 'controllers', 0)
+            .setScale(1.2)
             .setFrame(36)
             .setInteractive()
             .setScrollFactor(0)
@@ -934,6 +942,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0)
         //left
         this.matter.add.sprite(borderRect3.x-25, borderRect3.y, 'controllers', 0)
+            .setScale(1.2)
             .setFrame(42)
             .setInteractive()
             .setScrollFactor(0)
@@ -943,7 +952,30 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0)
         //up
         this.matter.add.sprite(borderRect3.x, borderRect3.y-25, 'controllers', 0)
+            .setScale(1.2)
             .setFrame(32)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+
+        let size_icons=32;
+        const borderRect4 = this.add.rectangle(size_icons, 80, size_icons*2, size_icons*2)
+            .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
+        this.matter.add.sprite(borderRect4.x, borderRect4.y-size_icons/2, 'controllers', 0)
+            .setScale(1.2)
+            .setFrame(88)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+        this.matter.add.sprite(borderRect4.x, borderRect4.y+size_icons/2, 'controllers', 0)
+            .setScale(1.2)
+            .setFrame(93)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
