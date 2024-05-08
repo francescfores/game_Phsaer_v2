@@ -25,8 +25,8 @@ class SmoothedHorionztalControl {
 
 const aspectRatio = 16 / 9; // Relación de aspecto deseada (ancho / alto)
 
-let screenWidth = 100; // Ancho original de la pantalla
-let screenHeight = 100; // Alto original de la pantalla
+let screenWidth = 580; // Ancho original de la pantalla
+let screenHeight = 320; // Alto original de la pantalla
 
 // Calculamos el nuevo ancho y alto manteniendo la relación de aspecto
 let newWidth = screenWidth;
@@ -186,6 +186,8 @@ class Example extends Phaser.Scene {
         this.load.spritesheet('rock_small_object', 'assets/tilemaps/tiles/wario/rock_small_object.png', {frameWidth: 32, frameHeight: 32});
         this.load.aseprite('hud_lives', 'assets/animations/aseprite/wario/hud_lives.png', 'assets/animations/aseprite/wario/hud_lives.json');
         this.load.aseprite('hud_power', 'assets/animations/aseprite/wario/hud_power.png', 'assets/animations/aseprite/wario/hud_power.json');
+        this.load.aseprite('controllers', 'assets/animations/aseprite/controllers/icons_xbox_animated.png',
+            'assets/animations/aseprite/controllers/icons_xbox_animated.json');
 
     }
     createTileMap(){
@@ -678,15 +680,15 @@ class Example extends Phaser.Scene {
         this.anims.createFromAseprite('enemi_3');
 
         let enemy = {
-            matterSprite: this.matter.add.sprite(32, 32, 'enemi_3', 0)
+            matterSprite: this.matter.add.sprite(20, 20, 'enemi_3', 0)
                 // .setDensity(1000)
                 // .setFrictionStatic(100)
                 // .setFrictionAir(0.00001)
                 // .setFriction(0, 0.02, 1)
                 // .setBounce(0) // Sets max inertia to prevent rotation
                 // .setFixedRotation() // Sets max inertia to prevent rotation
-                .setPosition(x, y)
-                .setScale(1.5),
+                .setPosition(x, y-10)
+                .setScale(1),
             actionDuration: 1000,
             actionTimer: 0,
             fliped: false,
@@ -843,42 +845,110 @@ class Example extends Phaser.Scene {
     }
     createHud() {
         const uiContainer = this.add.container(0, 0);
-        const borderRect = this.add.rectangle(screenWidth / 2, screenHeight / 2, screenWidth, screenHeight);
-        borderRect.setStrokeStyle(10, 0xff0000); // Establecer el grosor del borde y el color
-        // Alinear el contenedor y el rectángulo al mundo del juego
-        const text2 = this.add.text(10,10, 'Texto dentro del rectángulo', { fontSize: '24px', fill: '#fff' });
-        borderRect.setInteractive();
-        borderRect.setScrollFactor(0);
+        const borderRect = this.add.rectangle(screenWidth / 2, screenHeight / 2, screenWidth, screenHeight)
+            .setStrokeStyle(10, 0xff0000).setInteractive().setScrollFactor(0);
         const text = this.add.text(borderRect.x, borderRect.y, 'Texto dentro del rectángulo', { fontSize: '24px', fill: '#fff' });
         this.hud = this.matter.add.sprite(10, 10, 'hud_lives', 0);
         this.hud_power = this.matter.add.sprite(10, 10, 'hud_power', 0);
         // Agregar el contenedor y el rectángulo a la escena
 
         this.hud.setInteractive();
-        this.hud_power.setInteractive();
         this.hud.setScrollFactor(0);
-        this.hud_power.setScrollFactor(0);
+        this.hud_power.setScrollFactor(0)
+            .setInteractive()
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+            .setScale(2)
+            .setPosition(this.hud_power.body.gameObject.width,32)
+
         // .setFrictionStatic(0)
-       this.hud.body.gravityScale.y =0; // Define la gravedad específica para este sprite
-       this.hud.body.gravityScale.x =0; // Define la gravedad específica para este sprite
         this.hud.setIgnoreGravity(true)
-        this.hud_power.setIgnoreGravity(true)
         this.hud.setAngularVelocity(0)
-        this.hud_power.setAngularVelocity(0)
         this.hud.setScale(2)
-        this.hud_power.setScale(2)
-
         this.hud.setPosition(this.hud.body.gameObject.width,16)
-        this.hud_power.setPosition(this.hud_power.body.gameObject.width,32)
 
-        this.layer2.forEachTile(tile => {
-            const tileWorldPos = this.layer2.tileToWorldXY(tile.x, tile.y);
-            const text = this.add.text(tileWorldPos.x + 16, tileWorldPos.y + 16, tile.index.toString(), {
-                fontSize: '10px',
-                fill: '#000'
-            });
-            text.setOrigin(0.5);
-        }, this);
+
+
+        const borderRect2 = this.add.rectangle(screenWidth -50, screenHeight -50, 100, 100)
+            .setStrokeStyle(2, 0xff0000).setInteractive().setScrollFactor(0);
+        console.log(borderRect2.x)
+        console.log(borderRect2.width)
+        this.anims.createFromAseprite('controllers');
+        this.matter.add.sprite(borderRect2.x, borderRect2.y+30, 'controllers', 0)
+        .setFrame(1)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+
+        this.matter.add.sprite(borderRect2.x+30, borderRect2.y, 'controllers', 0)
+            .setFrame(15)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+
+        this.matter.add.sprite(borderRect2.x-30, borderRect2.y, 'controllers', 0)
+            .setFrame(18)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+
+        this.matter.add.sprite(borderRect2.x, borderRect2.y-30, 'controllers', 0)
+            .setFrame(21)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+
+        const borderRect3 = this.add.rectangle(50, screenHeight -50, 100, 100)
+            .setStrokeStyle(2, 0xff0000).setInteractive().setScrollFactor(0);
+        console.log(borderRect3.x)
+        console.log(borderRect3.width)
+        this.anims.createFromAseprite('controllers');
+        this.matter.add.sprite(borderRect3.x, borderRect3.y+30, 'controllers', 0).setFrame(12)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+
+        this.matter.add.sprite(borderRect3.x+30, borderRect3.y, 'controllers', 0)
+            .setFrame(15)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+
+        this.matter.add.sprite(borderRect3.x-30, borderRect3.y, 'controllers', 0)
+            .setFrame(18)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+
+        this.matter.add.sprite(borderRect3.x, borderRect3.y-30, 'controllers', 0)
+            .setFrame(21)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
         }
     update (time, delta)
     {
@@ -2774,8 +2844,8 @@ class Example extends Phaser.Scene {
         this.add.existing(uiContainer);
         this.add.existing(borderRect);
 
-        this.layer2.forEachTile(tile => {
-            const tileWorldPos = this.layer2.tileToWorldXY(tile.x, tile.y);
+        this.layer.forEachTile(tile => {
+            const tileWorldPos = this.layer.tileToWorldXY(tile.x, tile.y);
             const text = this.add.text(tileWorldPos.x + 16, tileWorldPos.y + 16, tile.index.toString(), {
                 fontSize: '10px',
                 fill: '#000'
