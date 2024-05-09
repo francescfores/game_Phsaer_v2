@@ -904,7 +904,7 @@ class Example extends Phaser.Scene {
         console.log('isVertical')
         console.log(isVertical)
         // Define el zoom y las coordenadas de centrado basadas en la orientación
-        var zoomFactor = isVertical ? 4 : 2;
+        var zoomFactor = isVertical ? 4: 2;
         var centerX = isVertical ? 0 : this.scale.width / 2;
         var centerY = isVertical ? 0 : this.scale.height / 2;
 
@@ -951,7 +951,7 @@ class Example extends Phaser.Scene {
         this.button_lb.setPosition(rectControlsBack.x +(rectControlsBack.width/2)-this.button_lb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_lb.body.gameObject.height/2)
         this.button_rb =this.matter.add.sprite(10, 10, 'controllers', 0)
             .setFrame(88)
-            .setInteractive()
+            .setInteractive() 
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
             .setCollidesWith(0)
@@ -1073,75 +1073,6 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0);
         this.button_right.setPosition(rectControlsPads.x + (rectControlsPads.width/2)-this.button_right.body.gameObject.width/1.5, rectControlsPads.y )
-
-
-
-
-        const borderRect3 = this.add.rectangle(50, screenHeight -50, 100, 100)
-            // .setStrokeStyle(2, 0xff0000).setInteractive().setScrollFactor(0);
-        console.log(borderRect3.x)
-        console.log(borderRect3.width)
-        //down
-        this.matter.add.sprite(borderRect3.x, borderRect3.y+25, 'controllers', 0).setFrame(39)
-            .setScale(1.2)
-            .setInteractive()
-            .setScrollFactor(0)
-            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
-            .setCollidesWith(0)
-            .setIgnoreGravity(true)
-            .setAngularVelocity(0)
-        //right
-        this.matter.add.sprite(borderRect3.x+25, borderRect3.y, 'controllers', 0)
-            .setScale(1.2)
-            .setFrame(36)
-            .setInteractive()
-            .setScrollFactor(0)
-            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
-            .setCollidesWith(0)
-            .setIgnoreGravity(true)
-            .setAngularVelocity(0)
-        //left
-        this.matter.add.sprite(borderRect3.x-25, borderRect3.y, 'controllers', 0)
-            .setScale(1.2)
-            .setFrame(42)
-            .setInteractive()
-            .setScrollFactor(0)
-            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
-            .setCollidesWith(0)
-            .setIgnoreGravity(true)
-            .setAngularVelocity(0)
-        //up
-        this.matter.add.sprite(borderRect3.x, borderRect3.y-25, 'controllers', 0)
-            .setScale(1.2)
-            .setFrame(32)
-            .setInteractive()
-            .setScrollFactor(0)
-            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
-            .setCollidesWith(0)
-            .setIgnoreGravity(true)
-            .setAngularVelocity(0)
-
-        let size_icons=32;
-        const borderRect4 = this.add.rectangle(size_icons, 80, size_icons*2, size_icons*2)
-            // .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
-        this.matter.add.sprite(borderRect4.x, borderRect4.y-size_icons/2, 'controllers', 0)
-            .setScale(1.2)
-            .setFrame(88)
-            .setInteractive()
-            .setScrollFactor(0)
-            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
-            .setCollidesWith(0)
-            .setIgnoreGravity(true)
-            .setAngularVelocity(0)
-        this.matter.add.sprite(borderRect4.x, borderRect4.y+size_icons/2, 'controllers', 0)
-            .setScale(1.2)
-            .setFrame(93)
-            .setInteractive()
-            .setScrollFactor(0)
-            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
-            .setCollidesWith(0)
-            .setIgnoreGravity(true)
-            .setAngularVelocity(0)
         }
     update (time, delta)
     {
