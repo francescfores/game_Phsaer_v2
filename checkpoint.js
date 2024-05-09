@@ -948,7 +948,7 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0)
         // .setScale(1.5)
-        // this.button_lb.setPosition(rectControlsBack.x +(rectControlsBack.width/2)-this.button_lb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_lb.body.gameObject.height/2)
+        this.button_lb.setPosition(rectControlsBack.x +(rectControlsBack.width/2)-this.button_lb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_lb.body.gameObject.height/2)
         this.button_rb =this.matter.add.sprite(10, 10, 'controllers', 0)
             .setFrame(88)
             .setInteractive()
@@ -1414,281 +1414,253 @@ class Example extends Phaser.Scene {
             }
         });
     }
+    handlePointerDown(pointer) {
+        // Verificar qué botón táctil se presionó
+        if (pointer.event.target === this.button_up) {
+            this.buttons.find(x => x.name === 'btn_up').status = 'down';
+        }
+        // Verificar otros botones táctiles si es necesario
+    }
+    handlePointerUp(pointer) {
+        // Verificar qué botón táctil se soltó
+        if (pointer.event.target === this.button_up) {this.buttons.find(x => x.name === 'btn_up').status = 'up';}
+        // Verificar otros botones táctiles si es necesario
+    }
+    handleKeyboardUp(event) {
+        // Lógica para manejar eventos de teclado "keyup"
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP) {
+            this.buttons.find(x => x.name === 'btn_up').status='up';
+        }
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN) {
+            this.buttons.find(x => x.name === 'btn_down').status='up';
+        }
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT) {
+            this.buttons.find(x => x.name === 'btn_left').status='up';
+        }
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.RIGHT) {
+            this.buttons.find(x => x.name === 'btn_right').status='up';
+        }
+
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.S) {
+            this.buttons.find(x => x.name === 'btn_a').status='up';
+        }
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.D) {
+            this.buttons.find(x => x.name === 'btn_b').status='up';
+        }
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.A) {
+            this.buttons.find(x => x.name === 'btn_x').status='up';
+        }
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.W) {
+            this.buttons.find(x => x.name === 'btn_y').status='up';
+        }
+    }
+    handleKeyboardDown(event) {
+        // Lógica para manejar eventos de teclado "keydown"
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP) {
+            this.buttons.find(x => x.name === 'btn_up').status='down';
+        }
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN) {
+            this.buttons.find(x => x.name === 'btn_down').status='down';
+        }
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT) {
+            this.buttons.find(x => x.name === 'btn_left').status='down';
+        }
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.RIGHT) {
+            this.buttons.find(x => x.name === 'btn_right').status='down';
+        }
+
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.S) {
+            this.buttons.find(x => x.name === 'btn_a').status='down';
+        }
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.D) {
+            this.buttons.find(x => x.name === 'btn_b').status='down';
+        }
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.A) {
+            this.buttons.find(x => x.name === 'btn_x').status='down';
+        }
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.W) {
+            this.buttons.find(x => x.name === 'btn_y').status='down';
+        }
+    }
 
     mapControllers(){
-        this.input.keyboard.on('keyup', function (event) {
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP) {
-                this.buttons.find(x => x.name === 'btn_up').status='up';
-            }
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN) {
-                this.buttons.find(x => x.name === 'btn_down').status='up';
-            }
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT) {
-                this.buttons.find(x => x.name === 'btn_left').status='up';
-            }
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.RIGHT) {
-                this.buttons.find(x => x.name === 'btn_right').status='up';
-            }
 
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.S) {
-                this.buttons.find(x => x.name === 'btn_a').status='up';
-            }
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.D) {
-                this.buttons.find(x => x.name === 'btn_b').status='up';
-            }
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.A) {
-                this.buttons.find(x => x.name === 'btn_x').status='up';
-            }
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.W) {
-                this.buttons.find(x => x.name === 'btn_y').status='up';
-            }
-        }, this);
-        this.input.keyboard.on('keydown', function (event) {
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP) {
-                this.buttons.find(x => x.name === 'btn_up').status='down';
-            }
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN) {
-                this.buttons.find(x => x.name === 'btn_down').status='down';
-            }
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT) {
-                this.buttons.find(x => x.name === 'btn_left').status='down';
-            }
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.RIGHT) {
-                this.buttons.find(x => x.name === 'btn_right').status='down';
-            }
 
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.S) {
-                this.buttons.find(x => x.name === 'btn_a').status='down';
-            }
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.D) {
-                this.buttons.find(x => x.name === 'btn_b').status='down';
-            }
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.A) {
-                this.buttons.find(x => x.name === 'btn_x').status='down';
-            }
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.W) {
-                this.buttons.find(x => x.name === 'btn_y').status='down';
-            }
-        }, this);
-        // Variable para rastrear qué botones están actualmente presionados
-        var pressedButtons = {};
+        // Mapear eventos táctiles
+        this.input.keyboard.on('keyup', this.handleKeyboardUp, this);
+        this.input.keyboard.on('keydown', this.handleKeyboardDown, this);
 
-// Controladores de eventos para cada botón
+        // this.input.on('pointerdown', this.handlePointerDown, this);
+        // this.input.on('pointerup', this.handlePointerUp, this);
+
         this.button_up.on('pointerdown', function(pointer) {
-            pressedButtons['btn_up'] = true;
-            this.buttons.find(x => x.name === 'btn_up').status = 'down';
+            this.buttons.find(x => x.name === 'btn_up').status='down';
         }, this);
-
         this.button_down.on('pointerdown', function(pointer) {
-            pressedButtons['btn_down'] = true;
-            this.buttons.find(x => x.name === 'btn_down').status = 'down';
+            this.buttons.find(x => x.name === 'btn_down').status='down';
         }, this);
-
         this.button_left.on('pointerdown', function(pointer) {
-            pressedButtons['btn_left'] = true;
-            this.buttons.find(x => x.name === 'btn_left').status = 'down';
+            this.buttons.find(x => x.name === 'btn_left').status='down';
         }, this);
-
         this.button_right.on('pointerdown', function(pointer) {
-            pressedButtons['btn_right'] = true;
-            this.buttons.find(x => x.name === 'btn_right').status = 'down';
+            this.buttons.find(x => x.name === 'btn_right').status='down';
         }, this);
 
 
         this.button_a.on('pointerdown', function(pointer) {
-            pressedButtons['btn_a'] = true;
-            this.buttons.find(x => x.name === 'btn_a').status = 'down';
+            this.buttons.find(x => x.name === 'btn_a').status='down';
         }, this);
-
-        this.button_x.on('pointerdown', function(pointer) {
-            pressedButtons['btn_x'] = true;
-            this.buttons.find(x => x.name === 'btn_x').status = 'down';
-        }, this);
-
         this.button_b.on('pointerdown', function(pointer) {
-            pressedButtons['btn_b'] = true;
-            this.buttons.find(x => x.name === 'btn_b').status = 'down';
+            this.buttons.find(x => x.name === 'btn_b').status='down';
+        }, this);
+        this.button_x.on('pointerdown', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_x').status='down';
+        }, this);
+        this.button_y.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_y').status='down';
         }, this);
 
-        this.button_y.on('pointerdown', function(pointer) {
-            pressedButtons['btn_y'] = true;
-            this.buttons.find(x => x.name === 'btn_y').status = 'down';
+
+        this.button_up.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_up').status='up';
+        }, this);
+        this.button_down.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_down').status='up';
+        }, this);
+        this.button_left.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_left').status='up';
+        }, this);
+        this.button_right.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_right').status='up';
         }, this);
 
-// Manejador de eventos para el evento global pointerup
-        this.input.on('pointerup', function (event) {
-            // Restablecer el estado de los botones cuando se levanta el dedo del botón
-            Object.keys(pressedButtons).forEach(key => {
-                this.buttons.find(x => x.name === key).status = 'up';
-            });
-            // Limpiar el objeto pressedButtons
-            pressedButtons = {};
+
+        this.button_a.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_a').status='up';
         }, this);
-        // this.button_up.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_up').status='down';
-        // }, this);
-        // this.button_down.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_down').status='down';
-        // }, this);
-        // this.button_left.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_left').status='down';
-        // }, this);
-        // this.button_right.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_right').status='down';
-        // }, this);
-        //
-        //
-        // this.button_a.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_a').status='down';
-        // }, this);
-        // this.button_b.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_b').status='down';
-        // }, this);
-        // this.button_x.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_x').status='down';
-        // }, this);
-        // this.button_y.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_y').status='down';
-        // }, this);
-        //
-        //
-        // this.button_up.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_up').status='up';
-        // }, this);
-        // this.button_down.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_down').status='up';
-        // }, this);
-        // this.button_left.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_left').status='up';
-        // }, this);
-        // this.button_right.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_right').status='up';
-        // }, this);
-        //
-        //
-        // this.button_a.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_a').status='up';
-        // }, this);
-        // this.button_b.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_b').status='up';
-        // }, this);
-        // this.button_x.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_x').status='up';
-        // }, this);
-        // this.button_y.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_y').status='up';
-        // }, this);
+        this.button_b.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_b').status='up';
+        }, this);
+        this.button_x.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_x').status='up';
+        }, this);
+        this.button_y.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_y').status='up';
+        }, this);
 
 
 
     }
     movePlayer(time, delta){
-        this.mapControllers();
+        this.playerController.matterSprite.anims.play('run', true);
+
+        // this.mapControllers();
         // this.smoothMoveCameraTowards(matterSprite, 0.9);
         const player = this.playerController;
         player.actionTimer += delta;
         const matterSprite = this.playerController.matterSprite;
+        this.playerController.matterSprite.anims.play('run', true);
 
-        if(player.defeat && player.stop){
-            this.playerController.matterSprite.anims.play('defeat', true)
-        }
-        if(player.defeat && player.stop){
-
-            const duration = 1000; // Duración de cada parpadeo en milisegundos
-            const alphaValues = [1, 0.4]; // Valores de alfa para el parpadeo
-            const alphaValues2 = [0.4, 1]; // Valores de alfa para el parpadeo
-
-            const blinkTween3 = this.tweens.add({
-                targets: this.playerController.matterSprite,
-                alpha: alphaValues2,
-                duration: 400,
-                ease: 'Linear',
-                paused: true // Dejar el tween en pausa inicialmente
-            });
-            const blinkTween2 = this.tweens.add({
-                targets: this.playerController.matterSprite,
-                alpha: [1,0],
-                duration: 100,
-                ease: 'Linear',
-                repeat: -1,
-                yoyo: true,
-                paused: true // Dejar el tween en pausa inicialmente
-            });
-            blinkTween2.play()
-            this.time.delayedCall(500, () => {
-                player.stop=false;
-
-            }, [], this);
-            this.time.delayedCall(3000, () => {
-                this.playerController.defeat=false;
-                // player.stop=false;
-                this.playerController.matterSprite.anims.play('run', true);
-                blinkTween3.play()
-                blinkTween2.stop()
-
-            }, [], this);
-
-        }
-
-        // this.time.delayedCall(300, () => {
-        //     // enemy.direction.x = 1;
-        //     // enemy.isAttacking=false;
-        //     enemy.actionTimer = 0;
-        // }, [], this);
+        // if(player.defeat && player.stop){
+        //     this.playerController.matterSprite.anims.play('defeat', true)
+        // }
+        // if(player.defeat && player.stop){
         //
-
-        if( player.blocked.bottom
-            // && !this.playerController.morte
-            && !this.playerController.dash
-            && !this.playerController.punch
-            && !this.playerController.morte
-            && !this.playerController.ball
-            // && !this.playerController.punch
-            // && !this.playerController.run
-            // && !this.playerController.climb
-            // && (player.blocked.right ||  plrrayer.blocked.left)
-            && (!this.buttons.find(x => x.action === 'action_left').status==='down' &&  !this.buttons.find(x => x.action === 'action_right').status==='down')
-            // && !this.playerController.stick
-        ){
-            this.playerController.matterSprite.setFrame(4);
-            this.playerController.matterSprite.anims.stop('run');
-            // player.stop=true;
-        }
+        //     const duration = 1000; // Duración de cada parpadeo en milisegundos
+        //     const alphaValues = [1, 0.4]; // Valores de alfa para el parpadeo
+        //     const alphaValues2 = [0.4, 1]; // Valores de alfa para el parpadeo
         //
-        if(!player.stop){
-            if(
-                player.blocked.bottom
-                // && (!player.blocked.right &&  !player.blocked.left)
-                && !this.playerController.punch
-                && !this.playerController.dash
-                && !this.playerController.morte
-                && !this.playerController.ball
-                && (this.buttons.find(x => x.action === 'action_left').status==='down' ||  this.buttons.find(x => x.action === 'action_right').status==='down')
-                // && !this.playerController.stick
-            ){
-                this.playerController.matterSprite.anims.play('run', true);
-            }
-
-            if(
-                player.blocked.bottom
-                // && (!player.blocked.right &&  !player.blocked.left)
-                && this.playerController.morte
-                && !this.playerController.ball
-                && (this.buttons.find(x => x.action === 'action_left').status==='down' ||  this.buttons.find(x => x.action === 'action_right').status==='down')
-                // && !this.playerController.stick
-            ){
-                this.playerController.matterSprite.anims.play('morte', true);
-            }
-            this.jumpPlayer(time,player); // Mover jugador hacia la izquierda
-            this.movePlayerDirection(delta,player); // Mover jugador hacia la izquierda
-            // this.mortePlayer(time,delta,player); // Mover jugador hacia la izquierda
-            // if(!player.morte && !player.stick){
-            //     this.punchPlayer(time,player); // Mover jugador hacia la izquierda
-            //     this.dashPlayer(time,delta,player); // Mover jugador hacia la izquierda
-                // this.ballPlayer(time,delta,player); // Mover jugador hacia la izquierda
-                this.stickWallPlayer(time,player); // Mover jugador hacia la izquierda
-            // }
-        }
+        //     const blinkTween3 = this.tweens.add({
+        //         targets: this.playerController.matterSprite,
+        //         alpha: alphaValues2,
+        //         duration: 400,
+        //         ease: 'Linear',
+        //         paused: true // Dejar el tween en pausa inicialmente
+        //     });
+        //     const blinkTween2 = this.tweens.add({
+        //         targets: this.playerController.matterSprite,
+        //         alpha: [1,0],
+        //         duration: 100,
+        //         ease: 'Linear',
+        //         repeat: -1,
+        //         yoyo: true,
+        //         paused: true // Dejar el tween en pausa inicialmente
+        //     });
+        //     blinkTween2.play()
+        //     this.time.delayedCall(500, () => {
+        //         player.stop=false;
+        //
+        //     }, [], this);
+        //     this.time.delayedCall(3000, () => {
+        //         this.playerController.defeat=false;
+        //         // player.stop=false;
+        //         this.playerController.matterSprite.anims.play('run', true);
+        //         blinkTween3.play()
+        //         blinkTween2.stop()
+        //
+        //     }, [], this);
+        //
+        // }
+        //
+        // // this.time.delayedCall(300, () => {
+        // //     // enemy.direction.x = 1;
+        // //     // enemy.isAttacking=false;
+        // //     enemy.actionTimer = 0;
+        // // }, [], this);
+        // //
+        //
+        // if( player.blocked.bottom
+        //     // && !this.playerController.morte
+        //     && !this.playerController.dash
+        //     && !this.playerController.punch
+        //     && !this.playerController.morte
+        //     && !this.playerController.ball
+        //     // && !this.playerController.punch
+        //     // && !this.playerController.run
+        //     // && !this.playerController.climb
+        //     // && (player.blocked.right ||  plrrayer.blocked.left)
+        //     && (!this.buttons.find(x => x.action === 'action_left').status==='down' &&  !this.buttons.find(x => x.action === 'action_right').status==='down')
+        //     // && !this.playerController.stick
+        // ){
+        //     this.playerController.matterSprite.setFrame(4);
+        //     this.playerController.matterSprite.anims.stop('run');
+        //     // player.stop=true;
+        // }
+        // //
+        // if(!player.stop){
+        //     if(
+        //         player.blocked.bottom
+        //         // && (!player.blocked.right &&  !player.blocked.left)
+        //         && !this.playerController.punch
+        //         && !this.playerController.dash
+        //         && !this.playerController.morte
+        //         && !this.playerController.ball
+        //         && (this.buttons.find(x => x.action === 'action_left').status==='down' ||  this.buttons.find(x => x.action === 'action_right').status==='down')
+        //         // && !this.playerController.stick
+        //     ){
+        //         this.playerController.matterSprite.anims.play('run', true);
+        //     }
+        //
+        //     if(
+        //         player.blocked.bottom
+        //         // && (!player.blocked.right &&  !player.blocked.left)
+        //         && this.playerController.morte
+        //         && !this.playerController.ball
+        //         && (this.buttons.find(x => x.action === 'action_left').status==='down' ||  this.buttons.find(x => x.action === 'action_right').status==='down')
+        //         // && !this.playerController.stick
+        //     ){
+        //         this.playerController.matterSprite.anims.play('morte', true);
+        //     }
+        //     this.jumpPlayer(time,player); // Mover jugador hacia la izquierda
+        //     this.movePlayerDirection(delta,player); // Mover jugador hacia la izquierda
+        //     // this.mortePlayer(time,delta,player); // Mover jugador hacia la izquierda
+        //     // if(!player.morte && !player.stick){
+        //     //     this.punchPlayer(time,player); // Mover jugador hacia la izquierda
+        //     //     this.dashPlayer(time,delta,player); // Mover jugador hacia la izquierda
+        //         // this.ballPlayer(time,delta,player); // Mover jugador hacia la izquierda
+        //         this.stickWallPlayer(time,player); // Mover jugador hacia la izquierda
+        //     // }
+        // }
 
         //
         // if (
@@ -2224,21 +2196,21 @@ class Example extends Phaser.Scene {
         // }
 
         if (this.buttons.find(x => x.action === 'action_jump').status==='up') {
-                if (player.blocked.bottom &&
-                    this.buttons.find(x => x.action === 'action_jump').status==='up'){
-                    player.matterSprite.setVelocityY(-player.jumpSpeed);
-                }
-                if(!player.punch
-                    && !player.jump
-                    && !player.morte
-                ){
-                    this.playerController.matterSprite.anims.play('jump', true);
-                    this.playerController.matterSprite.anims.play('jump', true);
-                    player.stop=false;
-                }
+            if (player.blocked.bottom &&
+                this.buttons.find(x => x.action === 'action_jump').status==='up'){
+                player.matterSprite.setVelocityY(-player.jumpSpeed);
+            }
+            if(!player.punch
+                && !player.jump
+                && !player.morte
+            ){
+                this.playerController.matterSprite.anims.play('jump', true);
+                this.playerController.matterSprite.anims.play('jump', true);
+                player.stop=false;
+            }
             this.buttons.find(x => x.name === 'btn_a').status='stop';
 
-         }else {
+        }else {
         }
 
 
