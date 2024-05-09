@@ -907,9 +907,9 @@ class Example extends Phaser.Scene {
         var zoomFactor = isVertical ? 4: 2;
         var centerX = isVertical ? 0 : this.scale.width / 2;
         var centerY = isVertical ? 0 : this.scale.height / 2;
-
-        this.cam.setZoom(zoomFactor);
-        this.cam.centerOn(centerX, centerY);
+        //
+        // this.cam.setZoom(zoomFactor);
+        // this.cam.centerOn(centerX, centerY);
         // this.createRocks();
         // this.populate();
         // this.decorWorldFront();
@@ -958,7 +958,7 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0)
         // .setScale(1.5)
-        // this.button_rb.setPosition(rectControlsBack.x -(rectControlsBack.width/2)+this.button_rb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_rb.body.gameObject.height/2)
+        this.button_rb.setPosition(rectControlsBack.x -(rectControlsBack.width/2)+this.button_rb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_rb.body.gameObject.height/2)
 
         this.hud_power =this.matter.add.sprite(10, 10, 'hud_power', 0)
             .setInteractive()
@@ -1471,70 +1471,99 @@ class Example extends Phaser.Scene {
             }
         }, this);
         // Variable para rastrear qué botones están actualmente presionados
+        let graphics = this.add.graphics();
+        function drawOutline(sprite) {
+            graphics.clear();
+            graphics.lineStyle(2, 0xff0000);
+            graphics.strokeRect(sprite.x - sprite.width / 2, sprite.y - sprite.height / 2, sprite.width, sprite.height);
+        }
         var pressedButtons = {};
+        this.input.on('pointerdown', function(pointer) {
+            console.log('eeeeeee')
+            console.log(pointer.x)
+            console.log(pointer.y)
+            drawOutline(this.button_left);
+            console.log(this.button_a.getBounds())
+            // Verificar si se ha tocado el sprite player1
+            if (this.button_left.getBounds().contains(pointer.x, pointer.y)) {
+                console.log('Player 1 tocado');
+                this.buttons.find(x => x.name === 'btn_left').status = 'down';
+                drawOutline(this.button_left);
 
-// Controladores de eventos para cada botón
-        this.button_up.on('pointerdown', function(pointer) {
-            pressedButtons['btn_up'] = true;
-            this.buttons.find(x => x.name === 'btn_up').status = 'down';
-        }, this);
+                // Agrega aquí la lógica para el jugador 1
+            }
 
-        this.button_down.on('pointerdown', function(pointer) {
-            pressedButtons['btn_down'] = true;
-            this.buttons.find(x => x.name === 'btn_down').status = 'down';
-        }, this);
+            // Verificar si se ha tocado el sprite player2
+            if (this.button_a.getBounds().contains(pointer.x, pointer.y)) {
+                console.log('Player 2 tocado');
+                this.buttons.find(x => x.name === 'btn_a').status = 'down';
+                drawOutline(this.button_a);
+                // Agrega aquí la lógica para el jugador 2
+            }
+        },this);
 
-        this.button_left.on('pointerdown', function(pointer) {
-            pressedButtons['btn_left'] = true;
-            this.buttons.find(x => x.name === 'btn_left').status = 'down';
-        }, this);
-
-        this.button_right.on('pointerdown', function(pointer) {
-            pressedButtons['btn_right'] = true;
-            this.buttons.find(x => x.name === 'btn_right').status = 'down';
-        }, this);
-
-
-        this.button_a.on('pointerdown', function(pointer) {
-            pressedButtons['btn_a'] = false;
-            this.buttons.find(x => x.name === 'btn_a').status = 'down';
-        }, this);
-
-        this.button_x.on('pointerdown', function(pointer) {
-            pressedButtons['btn_x'] = true;
-            this.buttons.find(x => x.name === 'btn_x').status = 'down';
-        }, this);
-
-        this.button_b.on('pointerdown', function(pointer) {
-            pressedButtons['btn_b'] = true;
-            this.buttons.find(x => x.name === 'btn_b').status = 'down';
-        }, this);
-
-        this.button_y.on('pointerdown', function(pointer) {
-            pressedButtons['btn_y'] = true;
-            this.buttons.find(x => x.name === 'btn_y').status = 'down';
-        }, this);
+// // Controladores de eventos para cada botón
+//         this.button_up.on('pointerdown', function(pointer) {
+//             pressedButtons['btn_up'] = true;
+//             this.buttons.find(x => x.name === 'btn_up').status = 'down';
+//         }, this);
+//
+//         this.button_down.on('pointerdown', function(pointer) {
+//             pressedButtons['btn_down'] = true;
+//             this.buttons.find(x => x.name === 'btn_down').status = 'down';
+//         }, this);
+//
+//         this.button_left.on('pointerdown', function(pointer) {
+//             pressedButtons['btn_left'] = true;
+//             this.buttons.find(x => x.name === 'btn_left').status = 'down';
+//         }, this);
+//
+//         this.button_right.on('pointerdown', function(pointer) {
+//             pressedButtons['btn_right'] = true;
+//             this.buttons.find(x => x.name === 'btn_right').status = 'down';
+//         }, this);
+//
+//
+//         this.button_a.on('pointerdown', function(pointer) {
+//             pressedButtons['btn_a'] = false;
+//             this.buttons.find(x => x.name === 'btn_a').status = 'down';
+//         }, this);
+//
+//         this.button_x.on('pointerdown', function(pointer) {
+//             pressedButtons['btn_x'] = true;
+//             this.buttons.find(x => x.name === 'btn_x').status = 'down';
+//         }, this);
+//
+//         this.button_b.on('pointerdown', function(pointer) {
+//             pressedButtons['btn_b'] = true;
+//             this.buttons.find(x => x.name === 'btn_b').status = 'down';
+//         }, this);
+//
+//         this.button_y.on('pointerdown', function(pointer) {
+//             pressedButtons['btn_y'] = true;
+//             this.buttons.find(x => x.name === 'btn_y').status = 'down';
+//         }, this);
 
 // Manejador de eventos para el evento global pointerup
-        this.input.on('pointerup', function (event) {
-            // Restablecer el estado de los botones cuando se levanta el dedo del botón
-            Object.keys(pressedButtons).forEach(key => {
-                console.log(pressedButtons)
-                this.buttons.find(x => x.name === key).status = 'up';
-            });
-            // Limpiar el objeto pressedButtons
-            pressedButtons = {};
-        }, this);
-
-        this.input.on('pointerdown', function (event) {
-            // Restablecer el estado de los botones cuando se levanta el dedo del botón
-            Object.keys(pressedButtons).forEach(key => {
-                console.log(pressedButtons)
-                this.buttons.find(x => x.name === key).status = 'down';
-            });
-            // Limpiar el objeto pressedButtons
-            // pressedButtons = {};
-        }, this);
+//         this.input.on('pointerup', function (event) {
+//             // Restablecer el estado de los botones cuando se levanta el dedo del botón
+//             Object.keys(pressedButtons).forEach(key => {
+//                 console.log(pressedButtons)
+//                 this.buttons.find(x => x.name === key).status = 'up';
+//             });
+//             // Limpiar el objeto pressedButtons
+//             pressedButtons = {};
+//         }, this);
+//
+//         this.input.on('pointerdown', function (event) {
+//             // Restablecer el estado de los botones cuando se levanta el dedo del botón
+//             Object.keys(pressedButtons).forEach(key => {
+//                 console.log(pressedButtons)
+//                 this.buttons.find(x => x.name === key).status = 'down';
+//             });
+//             // Limpiar el objeto pressedButtons
+//             pressedButtons = {};
+//         }, this);
         // this.button_up.on('pointerdown', function(pointer) {
         //     this.buttons.find(x => x.name === 'btn_up').status='down';
         // }, this);
