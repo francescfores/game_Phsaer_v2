@@ -1529,6 +1529,20 @@ class Example extends Phaser.Scene {
                 // Agrega aquí la lógica para el jugador 2
             }
         },this);
+
+        this.input.on('gameobjectdown', (pointer, gameObject) =>
+        {
+
+            gameObject.setTintFill(0xffff00, 0xffff00, 0xff0000, 0xff0000);
+
+        });
+
+        this.input.on('gameobjectup', (pointer, gameObject) =>
+        {
+
+            gameObject.clearTint();
+
+        });
 // // Controladores de eventos para cada botón
 //         this.button_up.on('pointerdown', function(pointer) {
 //             pressedButtons['btn_up'] = true;
