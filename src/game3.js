@@ -956,7 +956,7 @@ class Example extends Phaser.Scene {
 
         });
 
-        let fullscreenButton = this.add.image(750, 50, 'fullscreenButton')
+        let fullscreenButton = this.matter.add.sprite(750, 50, 'fullscreenButton')
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
