@@ -1496,7 +1496,7 @@ class Example extends Phaser.Scene {
 
 
         this.button_a.on('pointerdown', function(pointer) {
-            pressedButtons['btn_a'] = true;
+            pressedButtons['btn_a'] = false;
             this.buttons.find(x => x.name === 'btn_a').status = 'down';
         }, this);
 
@@ -1519,10 +1519,21 @@ class Example extends Phaser.Scene {
         this.input.on('pointerup', function (event) {
             // Restablecer el estado de los botones cuando se levanta el dedo del botón
             Object.keys(pressedButtons).forEach(key => {
+                console.log(pressedButtons)
                 this.buttons.find(x => x.name === key).status = 'up';
             });
             // Limpiar el objeto pressedButtons
             pressedButtons = {};
+        }, this);
+
+        this.input.on('pointerdown', function (event) {
+            // Restablecer el estado de los botones cuando se levanta el dedo del botón
+            Object.keys(pressedButtons).forEach(key => {
+                console.log(pressedButtons)
+                this.buttons.find(x => x.name === key).status = 'down';
+            });
+            // Limpiar el objeto pressedButtons
+            // pressedButtons = {};
         }, this);
         // this.button_up.on('pointerdown', function(pointer) {
         //     this.buttons.find(x => x.name === 'btn_up').status='down';
