@@ -909,8 +909,8 @@ class Example extends Phaser.Scene {
         var centerY = isVertical ? 0 : this.scale.height / 2;
         this.mapControllers();
 
-        // this.cam.setZoom(zoomFactor);
-        // this.cam.centerOn(centerX, centerY);
+        this.cam.setZoom(zoomFactor);
+        this.cam.centerOn(centerX, centerY);
         // this.createRocks();
         // this.populate();
         // this.decorWorldFront();
@@ -925,22 +925,22 @@ class Example extends Phaser.Scene {
         // this.setCollisions();
         // this.updateText();
 
-        this.input.addPointer(5);
-
-        const p = this.add.image(0, 0, 'p').setInteractive();
-        const h = this.add.image(0, 0, 'h').setInteractive();
-        const a = this.add.image(0, 0, 'a').setInteractive();
-        const s = this.add.image(0, 0, 's').setInteractive();
-        const e = this.add.image(0, 0, 'e').setInteractive();
-        const r = this.add.image(0, 0, 'r').setInteractive();
-
-        Phaser.Actions.GridAlign([ p, h, a, s, e, r ], {
-            width: 6,
-            cellWidth: 132,
-            cellHeight: 200,
-            x: 68,
-            y: 300
-        });
+        // this.input.addPointer(5);
+        //
+        // const p = this.add.image(0, 0, 'p').setInteractive();
+        // const h = this.add.image(0, 0, 'h').setInteractive();
+        // const a = this.add.image(0, 0, 'a').setInteractive();
+        // const s = this.add.image(0, 0, 's').setInteractive();
+        // const e = this.add.image(0, 0, 'e').setInteractive();
+        // const r = this.add.image(0, 0, 'r').setInteractive();
+        //
+        // Phaser.Actions.GridAlign([ p, h, a, s, e, r ], {
+        //     width: 6,
+        //     cellWidth: 132,
+        //     cellHeight: 200,
+        //     x: 68,
+        //     y: 300
+        // });
 
         this.input.on('gameobjectdown', (pointer, gameObject) =>
         {
@@ -955,6 +955,19 @@ class Example extends Phaser.Scene {
             gameObject.clearTint();
 
         });
+
+        let fullscreenButton = this.add.image(750, 50, 'fullscreenButton').setInteractive();
+
+        // Agrega un controlador de eventos al botón de pantalla completa
+        fullscreenButton.on('pointerup', function() {
+            if (this.scale.isFullscreen) {
+                // Si el juego ya está en pantalla completa, sal del modo de pantalla completa
+                this.scale.stopFullscreen();
+            } else {
+                // Si el juego no está en pantalla completa, entra en el modo de pantalla completa
+                this.scale.startFullscreen();
+            }
+        }, this);
     }
     createHud() {
         // Calculamos las coordenadas y dimensiones del rectángulo con la orientacion
@@ -1023,7 +1036,6 @@ class Example extends Phaser.Scene {
         console.log(borderRect2.width)
         this.anims.createFromAseprite('controllers');
         this.button_a = this.matter.add.sprite(0, 0, 'controllers', 0)
-            .setScale(2)
             .setFrame(0)
             .setInteractive()
             .setScrollFactor(0)
@@ -1098,7 +1110,6 @@ class Example extends Phaser.Scene {
         this.button_left.setPosition(rectControlsPads.x - (rectControlsPads.width/2)+this.button_left.body.gameObject.width/1.5, rectControlsPads.y )
 
         this.button_right = this.matter.add.sprite(0,0, 'controllers', 0)
-            .setScale(2)
             .setFrame(36)
             .setInteractive()
             .setScrollFactor(0)
