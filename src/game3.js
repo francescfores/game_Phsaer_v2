@@ -907,11 +907,10 @@ class Example extends Phaser.Scene {
         var zoomFactor = isVertical ? 4: 2;
         var centerX = isVertical ? 0 : this.scale.width / 2;
         var centerY = isVertical ? 0 : this.scale.height / 2;
+        this.mapControllers();
 
         // this.cam.setZoom(zoomFactor);
         // this.cam.centerOn(centerX, centerY);
-        this.mapControllers();
-
         // this.createRocks();
         // this.populate();
         // this.decorWorldFront();
@@ -926,22 +925,22 @@ class Example extends Phaser.Scene {
         // this.setCollisions();
         // this.updateText();
 
-        // this.input.addPointer(5);
-        //
-        // const p = this.add.image(0, 0, 'p').setInteractive();
-        // const h = this.add.image(0, 0, 'h').setInteractive();
-        // const a = this.add.image(0, 0, 'a').setInteractive();
-        // const s = this.add.image(0, 0, 's').setInteractive();
-        // const e = this.add.image(0, 0, 'e').setInteractive();
-        // const r = this.add.image(0, 0, 'r').setInteractive();
-        //
-        // Phaser.Actions.GridAlign([ p, h, a, s, e, r ], {
-        //     width: 6,
-        //     cellWidth: 132,
-        //     cellHeight: 200,
-        //     x: 68,
-        //     y: 300
-        // });
+        this.input.addPointer(5);
+
+        const p = this.add.image(0, 0, 'p').setInteractive();
+        const h = this.add.image(0, 0, 'h').setInteractive();
+        const a = this.add.image(0, 0, 'a').setInteractive();
+        const s = this.add.image(0, 0, 's').setInteractive();
+        const e = this.add.image(0, 0, 'e').setInteractive();
+        const r = this.add.image(0, 0, 'r').setInteractive();
+
+        Phaser.Actions.GridAlign([ p, h, a, s, e, r ], {
+            width: 6,
+            cellWidth: 132,
+            cellHeight: 200,
+            x: 68,
+            y: 300
+        });
 
         this.input.on('gameobjectdown', (pointer, gameObject) =>
         {
@@ -957,7 +956,13 @@ class Example extends Phaser.Scene {
 
         });
 
-        let fullscreenButton = this.add.image(750, 50, 'fullscreenButton').setInteractive();
+        let fullscreenButton = this.add.image(750, 50, 'fullscreenButton')
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0);
 
         // Agrega un controlador de eventos al botón de pantalla completa
         fullscreenButton.on('pointerup', function() {
@@ -1037,6 +1042,7 @@ class Example extends Phaser.Scene {
         console.log(borderRect2.width)
         this.anims.createFromAseprite('controllers');
         this.button_a = this.matter.add.sprite(0, 0, 'controllers', 0)
+            .setScale(2)
             .setFrame(0)
             .setInteractive()
             .setScrollFactor(0)
@@ -1111,6 +1117,7 @@ class Example extends Phaser.Scene {
         this.button_left.setPosition(rectControlsPads.x - (rectControlsPads.width/2)+this.button_left.body.gameObject.width/1.5, rectControlsPads.y )
 
         this.button_right = this.matter.add.sprite(0,0, 'controllers', 0)
+            .setScale(2)
             .setFrame(36)
             .setInteractive()
             .setScrollFactor(0)
