@@ -908,8 +908,8 @@ class Example extends Phaser.Scene {
         var centerX = isVertical ? 0 : this.scale.width / 2;
         var centerY = isVertical ? 0 : this.scale.height / 2;
 
-        this.cam.setZoom(zoomFactor);
-        this.cam.centerOn(centerX, centerY);
+        // this.cam.setZoom(zoomFactor);
+        // this.cam.centerOn(centerX, centerY);
         this.mapControllers();
 
         // this.createRocks();
