@@ -907,7 +907,7 @@ class Example extends Phaser.Scene {
         var zoomFactor = isVertical ? 4: 2;
         var centerX = isVertical ? 0 : this.scale.width / 2;
         var centerY = isVertical ? 0 : this.scale.height / 2;
-        //
+
         // this.cam.setZoom(zoomFactor);
         // this.cam.centerOn(centerX, centerY);
         // this.createRocks();
@@ -948,7 +948,7 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0)
         // .setScale(1.5)
-        // this.button_lb.setPosition(rectControlsBack.x +(rectControlsBack.width/2)-this.button_lb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_lb.body.gameObject.height/2)
+        this.button_lb.setPosition(rectControlsBack.x +(rectControlsBack.width/2)-this.button_lb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_lb.body.gameObject.height/2)
         this.button_rb =this.matter.add.sprite(10, 10, 'controllers', 0)
             .setFrame(88)
             .setInteractive()
@@ -1473,7 +1473,6 @@ class Example extends Phaser.Scene {
         // Variable para rastrear qué botones están actualmente presionados
         let graphics = this.add.graphics();
         function drawOutline(sprite) {
-            graphics.clear();
             graphics.lineStyle(2, 0xff0000);
             graphics.strokeRect(sprite.x - sprite.width / 2, sprite.y - sprite.height / 2, sprite.width, sprite.height);
         }
@@ -1482,8 +1481,6 @@ class Example extends Phaser.Scene {
             console.log('eeeeeee')
             console.log(pointer.x)
             console.log(pointer.y)
-            drawOutline(this.button_left);
-            console.log(this.button_a.getBounds())
             // Verificar si se ha tocado el sprite player1
             if (this.button_left.getBounds().contains(pointer.x, pointer.y)) {
                 console.log('Player 1 tocado');
@@ -1492,7 +1489,13 @@ class Example extends Phaser.Scene {
 
                 // Agrega aquí la lógica para el jugador 1
             }
+            if (this.button_right.getBounds().contains(pointer.x, pointer.y)) {
+                console.log('Player 1 tocado');
+                this.buttons.find(x => x.name === 'btn_right').status = 'down';
+                drawOutline(this.button_right);
 
+                // Agrega aquí la lógica para el jugador 1
+            }
             // Verificar si se ha tocado el sprite player2
             if (this.button_a.getBounds().contains(pointer.x, pointer.y)) {
                 console.log('Player 2 tocado');
@@ -1502,6 +1505,27 @@ class Example extends Phaser.Scene {
             }
         },this);
 
+        this.input.on('pointerup', function(pointer) {
+            graphics.clear();
+
+            // Verificar si se ha tocado el sprite player1
+            if (this.button_left.getBounds().contains(pointer.x, pointer.y)) {
+                console.log('Player 1 tocado');
+                this.buttons.find(x => x.name === 'btn_left').status = 'up';
+                // Agrega aquí la lógica para el jugador 1
+            }
+            if (this.button_right.getBounds().contains(pointer.x, pointer.y)) {
+                console.log('Player 1 tocado');
+                this.buttons.find(x => x.name === 'btn_right').status = 'up';
+                // Agrega aquí la lógica para el jugador 1
+            }
+            // Verificar si se ha tocado el sprite player2
+            if (this.button_a.getBounds().contains(pointer.x, pointer.y)) {
+                console.log('Player 2 tocado');
+                this.buttons.find(x => x.name === 'btn_a').status = 'up';
+                // Agrega aquí la lógica para el jugador 2
+            }
+        },this);
 // // Controladores de eventos para cada botón
 //         this.button_up.on('pointerdown', function(pointer) {
 //             pressedButtons['btn_up'] = true;
