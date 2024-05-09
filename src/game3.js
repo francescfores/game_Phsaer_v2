@@ -958,7 +958,7 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0)
         // .setScale(1.5)
-        this.button_rb.setPosition(rectControlsBack.x -(rectControlsBack.width/2)+this.button_rb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_rb.body.gameObject.height/2)
+        // this.button_rb.setPosition(rectControlsBack.x -(rectControlsBack.width/2)+this.button_rb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_rb.body.gameObject.height/2)
 
         this.hud_power =this.matter.add.sprite(10, 10, 'hud_power', 0)
             .setInteractive()
