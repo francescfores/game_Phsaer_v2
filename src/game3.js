@@ -907,6 +907,7 @@ class Example extends Phaser.Scene {
         var zoomFactor = isVertical ? 4: 2;
         var centerX = isVertical ? 0 : this.scale.width / 2;
         var centerY = isVertical ? 0 : this.scale.height / 2;
+        this.mapControllers();
 
         // this.cam.setZoom(zoomFactor);
         // this.cam.centerOn(centerX, centerY);
@@ -948,7 +949,7 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0)
         // .setScale(1.5)
-        // this.button_lb.setPosition(rectControlsBack.x +(rectControlsBack.width/2)-this.button_lb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_lb.body.gameObject.height/2)
+        this.button_lb.setPosition(rectControlsBack.x +(rectControlsBack.width/2)-this.button_lb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_lb.body.gameObject.height/2)
         this.button_rb =this.matter.add.sprite(10, 10, 'controllers', 0)
             .setFrame(88)
             .setInteractive()
@@ -991,7 +992,6 @@ class Example extends Phaser.Scene {
         console.log(borderRect2.width)
         this.anims.createFromAseprite('controllers');
         this.button_a = this.matter.add.sprite(0, 0, 'controllers', 0)
-            .setScale(2)
             .setFrame(0)
             .setInteractive()
             .setScrollFactor(0)
@@ -1083,8 +1083,6 @@ class Example extends Phaser.Scene {
         // this.moveEnemies(time, delta);
         // this.moveEnemies2(time, delta);
         // this.moveEnemies3(time, delta);
-        this.mapControllers();
-
     }
     matterEvents(){
         // Usa eventos de materia para detectar si el jugador está tocando una superficie a la izquierda, derecha o
@@ -1480,7 +1478,7 @@ class Example extends Phaser.Scene {
             graphics.strokeRect(sprite.x - sprite.width / 2, sprite.y - sprite.height / 2, sprite.width, sprite.height);
         }
         var pressedButtons = {};
-        this.input.on('pointerout', function(pointer) {
+        this.input.on('pointerdown', function(pointer) {
             console.log('eeeeeee')
             console.log(pointer.x)
             console.log(pointer.y)
