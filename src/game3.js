@@ -160,6 +160,85 @@ class Example extends Phaser.Scene {
     };
     enemiGroupCollision;
     playerGroupCollision;
+
+    //buttons
+    button_a;
+    button_x;
+    button_y;
+    button_b;
+    button_lb;
+    button_rb;
+    button_home;
+    button_up;
+    button_down;
+    button_left;
+    button_right;
+    //actions buttons
+    buttons=[
+        {
+            name:'btn_up',
+            action:'action_up',
+            status:'stop',
+            sprite:null,
+        },
+        {
+            name:'btn_down',
+            action:'action_down',
+            status:'stop',
+            sprite:null,
+        },
+        {
+            name:'btn_right',
+            action:'action_right',
+            status:'stop',
+            sprite:null,
+        },
+        {
+            name:'btn_left',
+            action:'action_left',
+            status:'stop',
+            sprite:null,
+        },
+        {
+            name:'btn_a',
+            action:'action_jump',
+            status:'stop',
+            sprite:null,
+        },
+        {
+            name:'btn_b',
+            action:'action_catch',
+            status:'stop',
+            sprite:null,
+        },
+        {
+            name:'btn_y',
+            action:'action_dash',
+            status:'stop',
+            sprite:null,
+        },
+        {
+            name:'btn_x',
+            action:'action_dash',
+            status:'stop',
+            sprite:null,
+        },
+        {
+            name:'btn_home',
+            action:'action_home',
+            status:'stop',
+            sprite:null,
+        },
+    ]
+
+    touch_button_a;
+    touch_button_x;
+    touch_button_y;
+    touch_button_b;
+    touch_button_lb;
+    touch_button_rb;
+    touch_button_home;
+
     preload() {
         this.load.tilemapTiledJSON('map', 'assets/tilemaps/maps/matter-platformer2.json');
         this.load.image('kenney_redux_64x64', 'assets/environment/kenney_redux_64x64.png');
@@ -288,12 +367,12 @@ class Example extends Phaser.Scene {
         this.playerController = {
             matterSprite: this.matter.add.sprite(200, 200, 'paladin', 0)
                 // .setExistingBody(compoundBody)
-                // .setDensity(1000)
-                // .setFrictionStatic(100)
-                // .setFrictionAir(0.00001)
-                // .setFriction(0, 0.02, 1)
-                // .setBounce(0) // Sets max inertia to prevent rotation
-                .setScale(1.7)
+                .setDensity(1000)
+                .setFrictionStatic(100)
+                .setFrictionAir(0.00001)
+                .setFriction(0, 0.02, 1)
+                .setBounce(0) // Sets max inertia to prevent rotation
+                .setScale(1.5)
             ,
             actionDuration:1000,
             actionTimer:0,
@@ -344,8 +423,8 @@ class Example extends Phaser.Scene {
         };
 
         const M = Phaser.Physics.Matter.Matter;
-        const w = this.playerController.matterSprite.width *1.7;
-        const h = this.playerController.matterSprite.height *1.7;
+        const w = this.playerController.matterSprite.width *1.5;
+        const h = this.playerController.matterSprite.height *1.5;
         // El cuerpo del jugador va a ser un cuerpo compuesto:
         // - playerBody es el cuerpo sólido que interactuará físicamente con el mundo. Tiene un
         // chaflán (bordes redondeados) para evitar el problema de los vértices fantasma: http://www.iforce2d.net/b2dtut/ghost-vertices
@@ -363,10 +442,10 @@ class Example extends Phaser.Scene {
         // this.playerController.sensors.up = M.Bodies.rectangle(sx, sy+0.1, sx, 5, {isSensor: true});
 
         let playerBody = M.Bodies.rectangle(sx, sy * 1.2, w * 0.5, h/1.2, {chamfer: {radius: 10}});
-        this.playerController.sensors.bottom = M.Bodies.rectangle(sx, h, sx, 5, {isSensor: true});
+        this.playerController.sensors.bottom = M.Bodies.rectangle(sx, h, sx/2, 5, {isSensor: true});
         this.playerController.sensors.left = M.Bodies.rectangle(sx - w * 0.25, sy, 5, h * 0.25, {isSensor: true});
         this.playerController.sensors.right = M.Bodies.rectangle(sx + w * 0.25, sy, 5, h * 0.25, {isSensor: true});
-        this.playerController.sensors.up = M.Bodies.rectangle(sx, h-h/1.3, sx, 5, {isSensor: true});
+        this.playerController.sensors.up = M.Bodies.rectangle(sx, h-h/1.3, sx/2, 5, {isSensor: true});
 
         let compoundBody = M.Body.create({
             parts: [
@@ -816,9 +895,9 @@ class Example extends Phaser.Scene {
         this.createPlayer(200, 0);
         // this.populate();
         // this.anims.createFromAseprite('paladin');
-        // this.matterEvents();
-        // this.enableDebug();
+        this.matterEvents();
         this.createHud();
+        this.enableDebug();
 
         // Detecta la orientación de la pantalla
         var isVertical = this.scale.orientation === Phaser.Scale.PORTRAIT;
@@ -846,76 +925,157 @@ class Example extends Phaser.Scene {
         // this.updateText();
     }
     createHud() {
-        const uiContainer = this.add.container(0, 0);
-// Crea el rectángulo en el centro de la cámara y establece su tamaño
-        const borderRect = this.add.rectangle(this.cam.midPoint.x, this.cam.midPoint.y, this.cam.width/2, this.cam.height/2)
+        // Calculamos las coordenadas y dimensiones del rectángulo con la orientacion
+        var rectWidth = this.cam.width / (this.scale.orientation === Phaser.Scale.PORTRAIT ? 2 : 1);
+        var rectHeight = this.cam.height / (this.scale.orientation === Phaser.Scale.PORTRAIT ? 2 : 1);
+        var rectX = this.cam.midPoint.x;
+        var rectY = this.cam.midPoint.y;
+
+        // Creamos el rectángulo en el centro de la cámara y establecemos su tamaño
+        const borderRect = this.add.rectangle(rectX, rectY, rectWidth/2, rectHeight/2)
             .setStrokeStyle(10, 0xff0000).setInteractive().setScrollFactor(0);
-        const text = this.add.text(borderRect.x, borderRect.y, 'Texto dentro del rectángulo', { fontSize: '24px', fill: '#fff' });
-        this.hud = this.matter.add.sprite(10, 10, 'hud_lives', 0);
-        this.hud_power = this.matter.add.sprite(10, 10, 'hud_power', 0);
-        // Agregar el contenedor y el rectángulo a la escena
 
-        this.hud.setInteractive();
-        this.hud.setScrollFactor(0);
-        this.hud_power.setScrollFactor(0)
-            .setInteractive()
-            .setIgnoreGravity(true)
-            .setAngularVelocity(0)
-            .setScale(2)
-            .setPosition(this.hud_power.body.gameObject.width,32)
-
-        // .setFrictionStatic(0)
-        this.hud.setIgnoreGravity(true)
-        this.hud.setAngularVelocity(0)
-        this.hud.setScale(2)
-        this.hud.setPosition(this.hud.body.gameObject.width,16)
-
-
-
-        const borderRect2 = this.add.rectangle(screenWidth -50, screenHeight -50, 100, 100)
-            .setStrokeStyle(2, 0xff0000).setInteractive().setScrollFactor(0);
-        console.log(borderRect2.x)
-        console.log(borderRect2.width)
-        this.anims.createFromAseprite('controllers');
-        this.matter.add.sprite(borderRect2.x, borderRect2.y+30, 'controllers', 0)
-            .setScale(1.2)
-        .setFrame(0)
+        const rectHud = this.add.rectangle(borderRect.x, borderRect.y -(borderRect.height/2)+30, borderRect.width-20, 40)
+            .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
+        const rectControlsBack = this.add.rectangle(borderRect.x, borderRect.y -(borderRect.height/2)+30+40, borderRect.width-20, 40)
+            .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
+        this.button_lb =this.matter.add.sprite(10, 10, 'controllers', 0)
+            .setFrame(93)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
             .setCollidesWith(0)
             .setIgnoreGravity(true)
             .setAngularVelocity(0)
+        // .setScale(1.5)
+        this.button_lb.setPosition(rectControlsBack.x +(rectControlsBack.width/2)-this.button_lb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_lb.body.gameObject.height/2)
+        this.button_rb =this.matter.add.sprite(10, 10, 'controllers', 0)
+            .setFrame(88)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+        // .setScale(1.5)
+        this.button_rb.setPosition(rectControlsBack.x -(rectControlsBack.width/2)+this.button_rb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_rb.body.gameObject.height/2)
 
-        this.matter.add.sprite(borderRect2.x+30, borderRect2.y, 'controllers', 0)
-            .setScale(1.2)
+        this.hud_power =this.matter.add.sprite(10, 10, 'hud_power', 0)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+            // .setScale(1.5)
+        this.hud_power.setPosition(rectHud.x -(rectHud.width/2)+this.hud_power.body.gameObject.width/2,rectHud.y)
+
+        let gap=4;
+        this.hud = this.matter.add.sprite(10, 10, 'hud_lives', 0)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0)
+        // .setScale(2)
+        this.hud.setPosition(rectHud.x -(rectHud.width/2)+this.hud.body.gameObject.width/2,rectHud.y-this.hud_power.height-gap)
+
+
+        const rectControls = this.add.rectangle(borderRect.x +(borderRect.width/2)-40, borderRect.y +(borderRect.height/2)-40, 80, 80)
+            .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
+
+        const borderRect2 = this.add.rectangle(screenWidth -50, screenHeight -50, 100, 100)
+            .setStrokeStyle(2, 0xff1100).setInteractive().setScrollFactor(0);
+        console.log(borderRect2.x)
+        console.log(borderRect2.width)
+        this.anims.createFromAseprite('controllers');
+        this.button_a = this.matter.add.sprite(0, 0, 'controllers', 0)
+            .setFrame(0)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0);
+        this.button_a.setPosition(rectControls.x, rectControls.y + (rectControls.width/2)-this.button_a.body.gameObject.width/2)
+
+        this.button_b = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(5)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
             .setCollidesWith(0)
             .setIgnoreGravity(true)
-            .setAngularVelocity(0)
+            .setAngularVelocity(0);
+        this.button_b.setPosition(rectControls.x + (rectControls.width/2)-this.button_b.body.gameObject.width/2, rectControls.y )
 
-        this.matter.add.sprite(borderRect2.x-30, borderRect2.y, 'controllers', 0)
-            .setScale(1.2)
+        this.button_x = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(10)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
             .setCollidesWith(0)
             .setIgnoreGravity(true)
-            .setAngularVelocity(0)
+            .setAngularVelocity(0);
+        this.button_x.setPosition(rectControls.x - (rectControls.width/2)+this.button_x.body.gameObject.width/2, rectControls.y )
 
-        this.matter.add.sprite(borderRect2.x, borderRect2.y-30, 'controllers', 0)
-            .setScale(1.2)
+        this.button_y = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(15)
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
             .setCollidesWith(0)
             .setIgnoreGravity(true)
-            .setAngularVelocity(0)
+            .setAngularVelocity(0);
+        this.button_y.setPosition(rectControls.x, rectControls.y - (rectControls.width/2)+this.button_y.body.gameObject.width/2)
+
+        const rectControlsPads = this.add.rectangle(borderRect.x -(borderRect.width/2)+40, borderRect.y +(borderRect.height/2)-40, 80, 80)
+            .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
+
+
+        this.button_down = this.matter.add.sprite(0, 0, 'controllers', 0)
+            .setFrame(39)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0);
+        this.button_down.setPosition(rectControlsPads.x, rectControlsPads.y + (rectControlsPads.width/2)-this.button_down.body.gameObject.width/1.5)
+
+        this.button_up = this.matter.add.sprite(0,0, 'controllers', 0)
+            .setFrame(32)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0);
+        this.button_up.setPosition(rectControlsPads.x, rectControlsPads.y - (rectControlsPads.width/2)+this.button_up.body.gameObject.width/1.5)
+
+        this.button_left = this.matter.add.sprite(0,0, 'controllers', 0)
+            .setFrame(42)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0);
+        this.button_left.setPosition(rectControlsPads.x - (rectControlsPads.width/2)+this.button_left.body.gameObject.width/1.5, rectControlsPads.y )
+
+        this.button_right = this.matter.add.sprite(0,0, 'controllers', 0)
+            .setFrame(36)
+            .setInteractive()
+            .setScrollFactor(0)
+            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+            .setCollidesWith(0)
+            .setIgnoreGravity(true)
+            .setAngularVelocity(0);
+        this.button_right.setPosition(rectControlsPads.x + (rectControlsPads.width/2)-this.button_right.body.gameObject.width/1.5, rectControlsPads.y )
+
+
+
 
         const borderRect3 = this.add.rectangle(50, screenHeight -50, 100, 100)
             .setStrokeStyle(2, 0xff0000).setInteractive().setScrollFactor(0);
@@ -1176,15 +1336,21 @@ class Example extends Phaser.Scene {
             const enemie = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
         }
         else if ((bodyA === left ) || (bodyB === left )) {
-            this.checkTileCollision(bodyA,playerBody);
-            this.checkTileCollision(bodyB,playerBody);
-
+            if(
+                this.checkTileCollision(bodyA,playerBody)
+                && this.checkTileCollision(bodyB,playerBody)
+            ){
+                this.playerController.numTouching.left += 1;
+                // var enemyAttackCategory = this.matter.world.nextCategory();
+                // enemy.sensors.attack.setCollisionCategory(this.enemyAttackCategory); // Establecer la categoría de colisión del sensor de ataque del enemigo
+                // enemy.sensors.attack.setCollidesWith([this.playerCategory]);
+                // this.playerController.matterSprite.body.collisionFilter.mask &= ~enemy.sensors.attack.collisionFilter.category;
+            }
             // Only static objects count since we don't want to be blocked by an object that we
             // can push around.
             this.playerController.dash = false;
             this.playerController.punch = false;
 
-            this.playerController.numTouching.left += 1;
             const rock = this.rocksGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
             const enemie = this.enemiesGroup.find(rock => rock.matterSprite.body === bodyA.gameObject.body || rock.matterSprite.body === bodyB.gameObject.body);
             if (rock) {
@@ -1199,7 +1365,7 @@ class Example extends Phaser.Scene {
                 this.checkTileCollision(bodyA,playerBody)
                 && this.checkTileCollision(bodyB,playerBody)
             ){
-                // this.playerController.numTouching.right += 1;
+                this.playerController.numTouching.right += 1;
                 // var enemyAttackCategory = this.matter.world.nextCategory();
                 // enemy.sensors.attack.setCollisionCategory(this.enemyAttackCategory); // Establecer la categoría de colisión del sensor de ataque del enemigo
                 // enemy.sensors.attack.setCollidesWith([this.playerCategory]);
@@ -1317,130 +1483,126 @@ class Example extends Phaser.Scene {
             }
         });
     }
-    movePlayer(time, delta){
-        // const matterSprite = this.playerController.matterSprite;
-        //
-        // // Horizontal movement
-        // let oldVelocityX;
-        // let targetVelocityX;
-        // let newVelocityX;
-        //
-        // if (this.cursors.left.isDown && !this.playerController.blocked.left)
-        // {
-        //     this.smoothedControls.moveLeft(delta);
-        //     matterSprite.anims.play('left', true);
-        //
-        //     // Lerp the velocity towards the max run using the smoothed controls. This simulates a
-        //     // player controlled acceleration.
-        //     oldVelocityX = matterSprite.body.velocity.x;
-        //     targetVelocityX = -this.playerController.speed.run;
-        //     newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, -this.smoothedControls.value);
-        //
-        //     matterSprite.setVelocityX(newVelocityX);
-        // }
-        // else if (this.cursors.right.isDown && !this.playerController.blocked.right)
-        // {
-        //     this.smoothedControls.moveRight(delta);
-        //     matterSprite.anims.play('right', true);
-        //
-        //     // Lerp the velocity towards the max run using the smoothed controls. This simulates a
-        //     // player controlled acceleration.
-        //     oldVelocityX = matterSprite.body.velocity.x;
-        //     targetVelocityX = this.playerController.speed.run;
-        //     newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, this.smoothedControls.value);
-        //
-        //     matterSprite.setVelocityX(newVelocityX);
-        // }
-        // else
-        // {
-        //     this.smoothedControls.reset();
-        //     matterSprite.anims.play('idle', true);
-        // }
-        //
-        // // Jumping & wall jumping
-        //
-        // // Add a slight delay between jumps since the sensors will still collide for a few frames after
-        // // a jump is initiated
-        // const canJump = (time - this.playerController.lastJumpedAt) > 250;
-        // if (this.cursors.up.isDown && canJump)
-        // {
-        //     if (this.playerController.blocked.bottom)
-        //     {
-        //         matterSprite.setVelocityY(-this.playerController.speed.jump);
-        //         this.playerController.lastJumpedAt = time;
-        //     }
-        //     else if (this.playerController.blocked.left)
-        //     {
-        //         // Jump up and away from the wall
-        //         matterSprite.setVelocityY(-this.playerController.speed.jump);
-        //         matterSprite.setVelocityX(this.playerController.speed.run*2);
-        //         this.playerController.lastJumpedAt = time;
-        //     }
-        //     else if (this.playerController.blocked.right)
-        //     {
-        //         // Jump up and away from the wall
-        //         matterSprite.setVelocityY(-this.playerController.speed.jump);
-        //         matterSprite.setVelocityX(-this.playerController.speed.run*2);
-        //         this.playerController.lastJumpedAt = time;
-        //     }
-        // }
 
+    mappControllers(){
+        this.input.keyboard.on('keyup', function (event) {
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP) {
+                this.buttons.find(x => x.name === 'btn_up').status='up';
+            }
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN) {
+                this.buttons.find(x => x.name === 'btn_down').status='up';
+            }
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT) {
+                this.buttons.find(x => x.name === 'btn_left').status='up';
+            }
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.RIGHT) {
+                this.buttons.find(x => x.name === 'btn_right').status='up';
+            }
+
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.S) {
+                this.buttons.find(x => x.name === 'btn_a').status='up';
+            }
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.D) {
+                this.buttons.find(x => x.name === 'btn_b').status='up';
+            }
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.A) {
+                this.buttons.find(x => x.name === 'btn_x').status='up';
+            }
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.W) {
+                this.buttons.find(x => x.name === 'btn_y').status='up';
+            }
+        }, this);
+        this.input.keyboard.on('keydown', function (event) {
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP) {
+                this.buttons.find(x => x.name === 'btn_up').status='down';
+            }
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN) {
+                this.buttons.find(x => x.name === 'btn_down').status='down';
+            }
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT) {
+                this.buttons.find(x => x.name === 'btn_left').status='down';
+            }
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.RIGHT) {
+                this.buttons.find(x => x.name === 'btn_right').status='down';
+            }
+
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.S) {
+                this.buttons.find(x => x.name === 'btn_a').status='down';
+            }
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.D) {
+                this.buttons.find(x => x.name === 'btn_b').status='down';
+            }
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.A) {
+                this.buttons.find(x => x.name === 'btn_x').status='down';
+            }
+            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.W) {
+                this.buttons.find(x => x.name === 'btn_y').status='down';
+            }
+        }, this);
+        this.button_up.on('pointerdown', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_up').status='down';
+        }, this);
+        this.button_down.on('pointerdown', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_down').status='down';
+        }, this);
+        this.button_left.on('pointerdown', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_left').status='down';
+        }, this);
+        this.button_right.on('pointerdown', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_right').status='down';
+        }, this);
+
+
+        this.button_a.on('pointerdown', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_a').status='down';
+        }, this);
+        this.button_b.on('pointerdown', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_b').status='down';
+        }, this);
+        this.button_x.on('pointerdown', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_x').status='down';
+        }, this);
+        this.button_y.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_y').status='down';
+        }, this);
+
+
+        this.button_up.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_up').status='up';
+        }, this);
+        this.button_down.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_down').status='up';
+        }, this);
+        this.button_left.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_left').status='up';
+        }, this);
+        this.button_right.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_right').status='up';
+        }, this);
+
+
+        this.button_a.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_a').status='up';
+        }, this);
+        this.button_b.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_b').status='up';
+        }, this);
+        this.button_x.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_x').status='up';
+        }, this);
+        this.button_y.on('pointerup', function(pointer) {
+            this.buttons.find(x => x.name === 'btn_y').status='up';
+        }, this);
+
+
+
+    }
+    movePlayer(time, delta){
+        this.mappControllers();
         // this.smoothMoveCameraTowards(matterSprite, 0.9);
         const player = this.playerController;
         player.actionTimer += delta;
-
         const matterSprite = this.playerController.matterSprite;
-
-        // if(
-        //     player.blocked.bottom
-        //     && !this.playerController.climb
-        //     && (!this.cursors.left.isDown ||  !this.cursors.right.isDown)
-        //     && !this.playerController.stick
-        //     && player.actionTimer >= player.actionDuration
-        // ){
-        //     this.playerController.matterSprite.anims.play('run_stop', true);
-        //     player.actionDuration = 1000;
-        //     player.actionTimer = 0;
-        // }
-
-        // if(player.actionTimer >= player.actionDuration ){
-        //     // this.playerController.matterSprite.anims.play('look', true);
-        //     player.actionTimer = 0;
-        //     // // player.actionDuration=500;
-        //     this.playerController.jump=false;
-        //     this.playerController.run=false;
-        //     this.playerController.crouch=false; //todo remove
-        //     this.playerController.punch=false;
-        //     this.playerController.dash=false;
-        //     this.playerController.pound=false;
-        //     this.playerController.defeat=false;
-        //     this.playerController.stick=false;
-        //     this.playerController.climb=false;
-        //     this.playerController.morte=false;
-        //     //
-        //     // this.smoothedControls.reset();
-        // }
-
-        // if(player.actionTimer >= player.actionDuration ){
-        //     // this.playerController.matterSprite.anims.play('look', true);
-        //     // player.actionTimer = 0;
-        //     // player.actionDuration=500;
-        //     this.playerController.jump=false;
-        //     this.playerController.run=false;
-        //     // this.playerController.crouch=false; //todo remove
-        //     this.playerController.punch=false;
-        //     this.playerController.dash=false;
-        //     this.playerController.pound=false;
-        //     this.playerController.defeat=false;
-        //     this.playerController.stick=false;
-        //     this.playerController.climb=false;
-        //     this.playerController.morte=false;
-        //
-        //     this.smoothedControls.reset();
-        // }
-
-        //stop player
-
 
         if(player.defeat && player.stop){
             this.playerController.matterSprite.anims.play('defeat', true)
@@ -1482,7 +1644,6 @@ class Example extends Phaser.Scene {
             }, [], this);
 
         }
-        this.jumpPlayer(time,player); // Mover jugador hacia la izquierda
 
         // this.time.delayedCall(300, () => {
         //     // enemy.direction.x = 1;
@@ -1491,23 +1652,23 @@ class Example extends Phaser.Scene {
         // }, [], this);
         //
 
-        // if( player.blocked.bottom
-        //     // && !this.playerController.morte
-        //     && !this.playerController.dash
-        //     && !this.playerController.punch
-        //     && !this.playerController.morte
-        //     && !this.playerController.ball
-        //     // && !this.playerController.punch
-        //     // && !this.playerController.run
-        //     // && !this.playerController.climb
-        //     // && (player.blocked.right ||  plrrayer.blocked.left)
-        //     && (!this.cursors.left.isDown &&  !this.cursors.right.isDown)
-        //     // && !this.playerController.stick
-        // ){
-        //     this.playerController.matterSprite.setFrame(4);
-        //     this.playerController.matterSprite.anims.stop('run');
-        //     // player.stop=true;
-        // }
+        if( player.blocked.bottom
+            // && !this.playerController.morte
+            && !this.playerController.dash
+            && !this.playerController.punch
+            && !this.playerController.morte
+            && !this.playerController.ball
+            // && !this.playerController.punch
+            // && !this.playerController.run
+            // && !this.playerController.climb
+            // && (player.blocked.right ||  plrrayer.blocked.left)
+            && (!this.buttons.find(x => x.action === 'action_left').status==='down' &&  !this.buttons.find(x => x.action === 'action_right').status==='down')
+            // && !this.playerController.stick
+        ){
+            this.playerController.matterSprite.setFrame(4);
+            this.playerController.matterSprite.anims.stop('run');
+            // player.stop=true;
+        }
         //
         if(!player.stop){
             if(
@@ -1517,32 +1678,31 @@ class Example extends Phaser.Scene {
                 && !this.playerController.dash
                 && !this.playerController.morte
                 && !this.playerController.ball
-                && (this.cursors.left.isDown ||  this.cursors.right.isDown)
+                && (this.buttons.find(x => x.action === 'action_left').status==='down' ||  this.buttons.find(x => x.action === 'action_right').status==='down')
                 // && !this.playerController.stick
             ){
                 this.playerController.matterSprite.anims.play('run', true);
             }
-
 
             if(
                 player.blocked.bottom
                 // && (!player.blocked.right &&  !player.blocked.left)
                 && this.playerController.morte
                 && !this.playerController.ball
-                && (this.cursors.left.isDown ||  this.cursors.right.isDown)
+                && (this.buttons.find(x => x.action === 'action_left').status==='down' ||  this.buttons.find(x => x.action === 'action_right').status==='down')
                 // && !this.playerController.stick
             ){
                 this.playerController.matterSprite.anims.play('morte', true);
             }
-
+            this.jumpPlayer(time,player); // Mover jugador hacia la izquierda
             this.movePlayerDirection(delta,player); // Mover jugador hacia la izquierda
-            this.mortePlayer(time,delta,player); // Mover jugador hacia la izquierda
-            if(!player.morte && !player.stick){
-                this.punchPlayer(time,player); // Mover jugador hacia la izquierda
-                this.dashPlayer(time,delta,player); // Mover jugador hacia la izquierda
+            // this.mortePlayer(time,delta,player); // Mover jugador hacia la izquierda
+            // if(!player.morte && !player.stick){
+            //     this.punchPlayer(time,player); // Mover jugador hacia la izquierda
+            //     this.dashPlayer(time,delta,player); // Mover jugador hacia la izquierda
                 // this.ballPlayer(time,delta,player); // Mover jugador hacia la izquierda
                 this.stickWallPlayer(time,player); // Mover jugador hacia la izquierda
-            }
+            // }
         }
 
         //
@@ -2000,7 +2160,7 @@ class Example extends Phaser.Scene {
             && !this.playerController.blocked.left
             && !this.playerController.blocked.right
             && this.playerController.blocked.bottom
-            && (!this.cursors.left.isDown || !this.cursors.right.isDown)
+            && (!this.buttons.find(x => x.action === 'action_left').status==='down' || !this.buttons.find(x => x.action === 'action_right').status==='down')
         ){
             this.playerController.punch=true;
             player.actionTimer = 0;
@@ -2025,8 +2185,8 @@ class Example extends Phaser.Scene {
 
         const canJump = (time - this.playerController.lastJumpedAt) > 250;
 
-        if (this.cursors.up.isDown) {
-            player.jumpSpeed += 4; // Ajusta el incremento de velocidad según sea necesario
+        if (this.buttons.find(x => x.action === 'action_jump').status==='down') {
+            player.jumpSpeed += 1; // Ajusta el incremento de velocidad según sea necesario
 
             if (this.playerController.blocked.left && player.stick)
             {
@@ -2045,7 +2205,7 @@ class Example extends Phaser.Scene {
                 player.jumpSpeed = 0;
             }
         }
-        if (this.cursors.up.isDown && player.jumpSpeed >=player.speed.jump)
+        if ((this.buttons.find(x => x.action === 'action_jump').status==='up') && player.jumpSpeed >=player.speed.jump)
         {
             player.jumpSpeed =player.speed.jump
         }
@@ -2063,9 +2223,24 @@ class Example extends Phaser.Scene {
             player.jump=false;
         }
 
-        this.input.keyboard.on('keyup', function (event) {
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP) {
-                if (player.blocked.bottom ){
+
+        // if (this.cursors.up.isUp) {
+        //     if (player.blocked.bottom ){
+        //         player.matterSprite.setVelocityY(-player.jumpSpeed);
+        //     }
+        //     if(!player.punch
+        //         && !player.jump
+        //         && !player.morte
+        //     ){
+        //         this.playerController.matterSprite.anims.play('jump', true);
+        //         this.playerController.matterSprite.anims.play('jump', true);
+        //         player.stop=false;
+        //     }
+        // }
+
+        if (this.buttons.find(x => x.action === 'action_jump').status==='up') {
+                if (player.blocked.bottom &&
+                    this.buttons.find(x => x.action === 'action_jump').status==='up'){
                     player.matterSprite.setVelocityY(-player.jumpSpeed);
                 }
                 if(!player.punch
@@ -2076,8 +2251,12 @@ class Example extends Phaser.Scene {
                     this.playerController.matterSprite.anims.play('jump', true);
                     player.stop=false;
                 }
-            }
-        }, this);
+            this.buttons.find(x => x.name === 'btn_a').status='stop';
+
+         }else {
+        }
+
+
         /*
            if (this.cursors.up.isDown && canJump)
         {
@@ -2116,7 +2295,8 @@ class Example extends Phaser.Scene {
         let oldVelocityX;
         let targetVelocityX;
         let newVelocityX;
-        if (this.cursors.left.isDown && !this.playerController.blocked.left)
+        if (this.buttons.find(x => x.action === 'action_left').status==='down' &&
+            !this.playerController.blocked.left)
         {
             this.playerController.matterSprite.setFlipX(true);
             this.smoothedControls.moveLeft(delta);
@@ -2130,7 +2310,7 @@ class Example extends Phaser.Scene {
             this.parallaxBg(this.playerController.direction.x);
 
         }
-        else if (this.cursors.right.isDown && !this.playerController.blocked.right)
+        else if (this.buttons.find(x => x.action === 'action_right').status==='down'  && !this.playerController.blocked.right)
         {
             this.playerController.matterSprite.setFlipX(false);
             this.smoothedControls.moveRight(delta);
@@ -2144,19 +2324,19 @@ class Example extends Phaser.Scene {
         }
         else
         {
-            // this.smoothedControls.reset();
+            this.smoothedControls.reset();
             // player.matterSprite.anims.play('run_stop', true);
-            this.stopPlayer(player)
+            // this.stopPlayer(player)
         }
     }
     stopPlayer(player) {
-        this.input.keyboard.on('keyup', function (event) {
-            if (event.keyCode ===Phaser.Input.Keyboard.KeyCodes.LEFT
-                || event.keyCode ===Phaser.Input.Keyboard.KeyCodes.RIGHT) {
-                // this.playerController.matterSprite.anims.play('run_stop', true);
-                this.smoothedControls.reset(); // Reiniciar controles suavizados
-            }
-        }, this);
+        // this.input.keyboard.on('keyup', function (event) {
+        //     if (event.keyCode ===Phaser.Input.Keyboard.KeyCodes.LEFT
+        //         || event.keyCode ===Phaser.Input.Keyboard.KeyCodes.RIGHT) {
+        //         // this.playerController.matterSprite.anims.play('run_stop', true);
+        //         this.smoothedControls.reset(); // Reiniciar controles suavizados
+        //     }
+        // }, this);
         // this.smoothedControls.reset(); // Reiniciar controles suavizados
         // player.matterSprite.anims.play('run_stop', true); // Reproducir animación de detenerse
     }
