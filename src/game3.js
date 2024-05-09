@@ -933,12 +933,12 @@ class Example extends Phaser.Scene {
 
         // Creamos el rectángulo en el centro de la cámara y establecemos su tamaño
         const borderRect = this.add.rectangle(rectX, rectY, rectWidth/2, rectHeight/2)
-            .setStrokeStyle(10, 0xff0000).setInteractive().setScrollFactor(0);
+            // .setStrokeStyle(10, 0xff0000).setInteractive().setScrollFactor(0);
 
         const rectHud = this.add.rectangle(borderRect.x, borderRect.y -(borderRect.height/2)+30, borderRect.width-20, 40)
-            .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
+            // .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
         const rectControlsBack = this.add.rectangle(borderRect.x, borderRect.y -(borderRect.height/2)+30+40, borderRect.width-20, 40)
-            .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
+            // .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
         this.button_lb =this.matter.add.sprite(10, 10, 'controllers', 0)
             .setFrame(93)
             .setInteractive()
@@ -983,10 +983,10 @@ class Example extends Phaser.Scene {
 
 
         const rectControls = this.add.rectangle(borderRect.x +(borderRect.width/2)-40, borderRect.y +(borderRect.height/2)-40, 80, 80)
-            .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
+            // .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
 
         const borderRect2 = this.add.rectangle(screenWidth -50, screenHeight -50, 100, 100)
-            .setStrokeStyle(2, 0xff1100).setInteractive().setScrollFactor(0);
+            // .setStrokeStyle(2, 0xff1100).setInteractive().setScrollFactor(0);
         console.log(borderRect2.x)
         console.log(borderRect2.width)
         this.anims.createFromAseprite('controllers');
@@ -1031,7 +1031,7 @@ class Example extends Phaser.Scene {
         this.button_y.setPosition(rectControls.x, rectControls.y - (rectControls.width/2)+this.button_y.body.gameObject.width/2)
 
         const rectControlsPads = this.add.rectangle(borderRect.x -(borderRect.width/2)+40, borderRect.y +(borderRect.height/2)-40, 80, 80)
-            .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
+            // .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
 
 
         this.button_down = this.matter.add.sprite(0, 0, 'controllers', 0)
@@ -1078,7 +1078,7 @@ class Example extends Phaser.Scene {
 
 
         const borderRect3 = this.add.rectangle(50, screenHeight -50, 100, 100)
-            .setStrokeStyle(2, 0xff0000).setInteractive().setScrollFactor(0);
+            // .setStrokeStyle(2, 0xff0000).setInteractive().setScrollFactor(0);
         console.log(borderRect3.x)
         console.log(borderRect3.width)
         //down
@@ -1123,7 +1123,7 @@ class Example extends Phaser.Scene {
 
         let size_icons=32;
         const borderRect4 = this.add.rectangle(size_icons, 80, size_icons*2, size_icons*2)
-            .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
+            // .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
         this.matter.add.sprite(borderRect4.x, borderRect4.y-size_icons/2, 'controllers', 0)
             .setScale(1.2)
             .setFrame(88)
