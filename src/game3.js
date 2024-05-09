@@ -992,7 +992,7 @@ class Example extends Phaser.Scene {
         console.log(borderRect2.width)
         this.anims.createFromAseprite('controllers');
         this.button_a = this.matter.add.sprite(0, 0, 'controllers', 0)
-            .setScale(10)
+            .setScale(2)
             .setFrame(0)
             .setInteractive()
             .setScrollFactor(0)
@@ -1067,7 +1067,7 @@ class Example extends Phaser.Scene {
         this.button_left.setPosition(rectControlsPads.x - (rectControlsPads.width/2)+this.button_left.body.gameObject.width/1.5, rectControlsPads.y )
 
         this.button_right = this.matter.add.sprite(0,0, 'controllers', 0)
-            .setScale(10)
+            .setScale(2)
             .setFrame(36)
             .setInteractive()
             .setScrollFactor(0)
