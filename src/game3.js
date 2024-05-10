@@ -176,55 +176,55 @@ class Example extends Phaser.Scene {
     //actions buttons
     buttons=[
         {
-            name:'btn_up',
+            name:'button_up',
             action:'action_up',
             status:'stop',
             sprite:null,
         },
         {
-            name:'btn_down',
+            name:'button_down',
             action:'action_down',
             status:'stop',
             sprite:null,
         },
         {
-            name:'btn_right',
+            name:'button_right',
             action:'action_right',
             status:'stop',
             sprite:null,
         },
         {
-            name:'btn_left',
+            name:'button_left',
             action:'action_left',
             status:'stop',
             sprite:null,
         },
         {
-            name:'btn_a',
+            name:'button_a',
             action:'action_jump',
             status:'stop',
             sprite:null,
         },
         {
-            name:'btn_b',
+            name:'button_x',
             action:'action_catch',
             status:'stop',
             sprite:null,
         },
         {
-            name:'btn_y',
+            name:'button_y',
+            action:'action_attack',
+            status:'stop',
+            sprite:null,
+        },
+        {
+            name:'button_b',
             action:'action_dash',
             status:'stop',
             sprite:null,
         },
         {
-            name:'btn_x',
-            action:'action_dash',
-            status:'stop',
-            sprite:null,
-        },
-        {
-            name:'btn_home',
+            name:'button_home',
             action:'action_home',
             status:'stop',
             sprite:null,
@@ -421,6 +421,7 @@ class Example extends Phaser.Scene {
                 jump: 9
             }
         };
+        this.anims.createFromAseprite('paladin');
 
         const M = Phaser.Physics.Matter.Matter;
         const w = this.playerController.matterSprite.width *1.5;
@@ -896,8 +897,7 @@ class Example extends Phaser.Scene {
         // this.populate();
         // this.anims.createFromAseprite('paladin');
         this.matterEvents();
-        this.createHud();
-        // this.enableDebug();
+        this.enableDebug();
 
         // Detecta la orientación de la pantalla
         var isVertical = this.scale.orientation === Phaser.Scale.PORTRAIT;
@@ -907,10 +907,13 @@ class Example extends Phaser.Scene {
         var zoomFactor = isVertical ? 4: 2;
         var centerX = isVertical ? 0 : this.scale.width / 2;
         var centerY = isVertical ? 0 : this.scale.height / 2;
+
         this.mapControllers();
 
-        // this.cam.setZoom(zoomFactor);
-        // this.cam.centerOn(centerX, centerY);
+        this.cam.setZoom(zoomFactor);
+        this.cam.centerOn(centerX, centerY);
+        this.createHud();
+
         // this.createRocks();
         // this.populate();
         // this.decorWorldFront();
@@ -927,42 +930,13 @@ class Example extends Phaser.Scene {
 
         this.input.addPointer(5);
 
-        const p = this.add.image(0, 0, 'p').setInteractive();
-        const h = this.add.image(0, 0, 'h').setInteractive();
-        const a = this.add.image(0, 0, 'a').setInteractive();
-        const s = this.add.image(0, 0, 's').setInteractive();
-        const e = this.add.image(0, 0, 'e').setInteractive();
-        const r = this.add.image(0, 0, 'r').setInteractive();
-
-        Phaser.Actions.GridAlign([ p, h, a, s, e, r ], {
-            width: 6,
-            cellWidth: 132,
-            cellHeight: 200,
-            x: 68,
-            y: 300
-        });
-
-        this.input.on('gameobjectdown', (pointer, gameObject) =>
-        {
-
-            gameObject.setTintFill(0xffff00, 0xffff00, 0xff0000, 0xff0000);
-
-        });
-
-        this.input.on('gameobjectup', (pointer, gameObject) =>
-        {
-
-            gameObject.clearTint();
-
-        });
-
         let fullscreenButton = this.matter.add.sprite(750, 50, 'fullscreenButton')
             .setInteractive()
             .setScrollFactor(0)
             .setCollisionCategory(0) // Activa las colisiones con todas las categorías
             .setCollidesWith(0)
             .setIgnoreGravity(true)
-            .setAngularVelocity(0);
+            .setAngularVelocity(this.cam.midPoint.x,this.cam.midPoint.y);
 
         // Agrega un controlador de eventos al botón de pantalla completa
         fullscreenButton.on('pointerup', function() {
@@ -981,10 +955,13 @@ class Example extends Phaser.Scene {
         var rectHeight = this.cam.height / (this.scale.orientation === Phaser.Scale.PORTRAIT ? 2 : 1);
         var rectX = this.cam.midPoint.x;
         var rectY = this.cam.midPoint.y;
-
+        console.log('rectX',rectX)
+        console.log('rectY',rectY)
+        console.log('this.cam.width',this.cam.width)
+        console.log('this.cam.height',this.cam.height)
         // Creamos el rectángulo en el centro de la cámara y establecemos su tamaño
         const borderRect = this.add.rectangle(rectX, rectY, rectWidth/2, rectHeight/2)
-        // .setStrokeStyle(10, 0xff0000).setInteractive().setScrollFactor(0);
+        .setStrokeStyle(1, 0xff0000).setInteractive().setScrollFactor(0);
 
         const rectHud = this.add.rectangle(borderRect.x, borderRect.y -(borderRect.height/2)+30, borderRect.width-20, 40)
         // .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
@@ -1038,11 +1015,8 @@ class Example extends Phaser.Scene {
 
         const borderRect2 = this.add.rectangle(screenWidth -50, screenHeight -50, 100, 100)
         // .setStrokeStyle(2, 0xff1100).setInteractive().setScrollFactor(0);
-        console.log(borderRect2.x)
-        console.log(borderRect2.width)
         this.anims.createFromAseprite('controllers');
         this.button_a = this.matter.add.sprite(0, 0, 'controllers', 0)
-            .setScale(2)
             .setFrame(0)
             .setInteractive()
             .setScrollFactor(0)
@@ -1051,7 +1025,7 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0);
         this.button_a.setPosition(rectControls.x, rectControls.y + (rectControls.width/2)-this.button_a.body.gameObject.width/2)
-
+        this.button_a.name='button_a';
         this.button_b = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(5)
             .setInteractive()
@@ -1061,6 +1035,7 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0);
         this.button_b.setPosition(rectControls.x + (rectControls.width/2)-this.button_b.body.gameObject.width/2, rectControls.y )
+        this.button_b.name='button_b';
 
         this.button_x = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(10)
@@ -1071,6 +1046,7 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0);
         this.button_x.setPosition(rectControls.x - (rectControls.width/2)+this.button_x.body.gameObject.width/2, rectControls.y )
+        this.button_x.name='button_x';
 
         this.button_y = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(15)
@@ -1081,6 +1057,7 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0);
         this.button_y.setPosition(rectControls.x, rectControls.y - (rectControls.width/2)+this.button_y.body.gameObject.width/2)
+        this.button_y.name='button_y';
 
         const rectControlsPads = this.add.rectangle(borderRect.x -(borderRect.width/2)+40, borderRect.y +(borderRect.height/2)-40, 80, 80)
         // .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
@@ -1095,6 +1072,7 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0);
         this.button_down.setPosition(rectControlsPads.x, rectControlsPads.y + (rectControlsPads.width/2)-this.button_down.body.gameObject.width/1.5)
+        this.button_down.name='button_down';
 
         this.button_up = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(32)
@@ -1105,6 +1083,7 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0);
         this.button_up.setPosition(rectControlsPads.x, rectControlsPads.y - (rectControlsPads.width/2)+this.button_up.body.gameObject.width/1.5)
+        this.button_up.name='button_up';
 
         this.button_left = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(42)
@@ -1115,9 +1094,9 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0);
         this.button_left.setPosition(rectControlsPads.x - (rectControlsPads.width/2)+this.button_left.body.gameObject.width/1.5, rectControlsPads.y )
+        this.button_left.name='button_left';
 
         this.button_right = this.matter.add.sprite(0,0, 'controllers', 0)
-            .setScale(2)
             .setFrame(36)
             .setInteractive()
             .setScrollFactor(0)
@@ -1126,6 +1105,8 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0);
         this.button_right.setPosition(rectControlsPads.x + (rectControlsPads.width/2)-this.button_right.body.gameObject.width/1.5, rectControlsPads.y )
+        this.button_right.name='button_right';
+
     }
     update (time, delta)
     {
@@ -1471,56 +1452,56 @@ class Example extends Phaser.Scene {
     mapControllers(){
         this.input.keyboard.on('keyup', function (event) {
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP) {
-                this.buttons.find(x => x.name === 'btn_up').status='up';
+                this.buttons.find(x => x.name === 'button_up').status='up';
             }
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN) {
-                this.buttons.find(x => x.name === 'btn_down').status='up';
+                this.buttons.find(x => x.name === 'button_down').status='up';
             }
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT) {
-                this.buttons.find(x => x.name === 'btn_left').status='up';
+                this.buttons.find(x => x.name === 'button_left').status='up';
             }
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.RIGHT) {
-                this.buttons.find(x => x.name === 'btn_right').status='up';
+                this.buttons.find(x => x.name === 'button_right').status='up';
             }
 
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.S) {
-                this.buttons.find(x => x.name === 'btn_a').status='up';
+                this.buttons.find(x => x.name === 'button_a').status='up';
             }
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.D) {
-                this.buttons.find(x => x.name === 'btn_b').status='up';
+                this.buttons.find(x => x.name === 'button_b').status='up';
             }
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.A) {
-                this.buttons.find(x => x.name === 'btn_x').status='up';
+                this.buttons.find(x => x.name === 'button_x').status='up';
             }
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.W) {
-                this.buttons.find(x => x.name === 'btn_y').status='up';
+                this.buttons.find(x => x.name === 'button_y').status='up';
             }
         }, this);
         this.input.keyboard.on('keydown', function (event) {
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.UP) {
-                this.buttons.find(x => x.name === 'btn_up').status='down';
+                this.buttons.find(x => x.name === 'button_up').status='down';
             }
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN) {
-                this.buttons.find(x => x.name === 'btn_down').status='down';
+                this.buttons.find(x => x.name === 'button_down').status='down';
             }
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.LEFT) {
-                this.buttons.find(x => x.name === 'btn_left').status='down';
+                this.buttons.find(x => x.name === 'button_left').status='down';
             }
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.RIGHT) {
-                this.buttons.find(x => x.name === 'btn_right').status='down';
+                this.buttons.find(x => x.name === 'button_right').status='down';
             }
 
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.S) {
-                this.buttons.find(x => x.name === 'btn_a').status='down';
+                this.buttons.find(x => x.name === 'button_a').status='down';
             }
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.D) {
-                this.buttons.find(x => x.name === 'btn_b').status='down';
+                this.buttons.find(x => x.name === 'button_b').status='down';
             }
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.A) {
-                this.buttons.find(x => x.name === 'btn_x').status='down';
+                this.buttons.find(x => x.name === 'button_x').status='down';
             }
             if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.W) {
-                this.buttons.find(x => x.name === 'btn_y').status='down';
+                this.buttons.find(x => x.name === 'button_y').status='down';
             }
         }, this);
         // Variable para rastrear qué botones están actualmente presionados
@@ -1530,187 +1511,20 @@ class Example extends Phaser.Scene {
             graphics.strokeRect(sprite.x - sprite.width / 2, sprite.y - sprite.height / 2, sprite.width, sprite.height);
         }
         var pressedButtons = {};
-        this.input.on('pointerdown', function(pointer) {
-            console.log('eeeeeee')
-            console.log(pointer.x)
-            console.log(pointer.y)
-            // Verificar si se ha tocado el sprite player1
-            if (this.button_left.getBounds().contains(pointer.x, pointer.y)) {
-                console.log('Player 1 tocado');
-                this.buttons.find(x => x.name === 'btn_left').status = 'down';
-                drawOutline(this.button_left);
 
-                // Agrega aquí la lógica para el jugador 1
-            }
-            if (this.button_right.getBounds().contains(pointer.x, pointer.y)) {
-                console.log('Player 1 tocado');
-                this.buttons.find(x => x.name === 'btn_right').status = 'down';
-                drawOutline(this.button_right);
-
-                // Agrega aquí la lógica para el jugador 1
-            }
-            // Verificar si se ha tocado el sprite player2
-            if (this.button_a.getBounds().contains(pointer.x, pointer.y)) {
-                console.log('Player 2 tocado');
-                this.buttons.find(x => x.name === 'btn_a').status = 'down';
-                drawOutline(this.button_a);
-                // Agrega aquí la lógica para el jugador 2
-            }
-        },this);
-
-        this.input.on('pointerup', function(pointer) {
-            graphics.clear();
-
-            // Verificar si se ha tocado el sprite player1
-            if (this.button_left.getBounds().contains(pointer.x, pointer.y)) {
-                console.log('Player 1 tocado');
-                this.buttons.find(x => x.name === 'btn_left').status = 'up';
-                // Agrega aquí la lógica para el jugador 1
-            }
-            if (this.button_right.getBounds().contains(pointer.x, pointer.y)) {
-                console.log('Player 1 tocado');
-                this.buttons.find(x => x.name === 'btn_right').status = 'up';
-                // Agrega aquí la lógica para el jugador 1
-            }
-            // Verificar si se ha tocado el sprite player2
-            if (this.button_a.getBounds().contains(pointer.x, pointer.y)) {
-                console.log('Player 2 tocado');
-                this.buttons.find(x => x.name === 'btn_a').status = 'up';
-                // Agrega aquí la lógica para el jugador 2
-            }
-        },this);
 
         this.input.on('gameobjectdown', (pointer, gameObject) =>
         {
-
+            this.buttons.find(x => x.name === gameObject.name).status='down';
             gameObject.setTintFill(0xffff00, 0xffff00, 0xff0000, 0xff0000);
-
         });
 
         this.input.on('gameobjectup', (pointer, gameObject) =>
         {
-
+            console.log(gameObject.name)
+                this.buttons.find(x => x.name === gameObject.name).status='up';
             gameObject.clearTint();
-
         });
-// // Controladores de eventos para cada botón
-//         this.button_up.on('pointerdown', function(pointer) {
-//             pressedButtons['btn_up'] = true;
-//             this.buttons.find(x => x.name === 'btn_up').status = 'down';
-//         }, this);
-//
-//         this.button_down.on('pointerdown', function(pointer) {
-//             pressedButtons['btn_down'] = true;
-//             this.buttons.find(x => x.name === 'btn_down').status = 'down';
-//         }, this);
-//
-//         this.button_left.on('pointerdown', function(pointer) {
-//             pressedButtons['btn_left'] = true;
-//             this.buttons.find(x => x.name === 'btn_left').status = 'down';
-//         }, this);
-//
-//         this.button_right.on('pointerdown', function(pointer) {
-//             pressedButtons['btn_right'] = true;
-//             this.buttons.find(x => x.name === 'btn_right').status = 'down';
-//         }, this);
-//
-//
-//         this.button_a.on('pointerdown', function(pointer) {
-//             pressedButtons['btn_a'] = false;
-//             this.buttons.find(x => x.name === 'btn_a').status = 'down';
-//         }, this);
-//
-//         this.button_x.on('pointerdown', function(pointer) {
-//             pressedButtons['btn_x'] = true;
-//             this.buttons.find(x => x.name === 'btn_x').status = 'down';
-//         }, this);
-//
-//         this.button_b.on('pointerdown', function(pointer) {
-//             pressedButtons['btn_b'] = true;
-//             this.buttons.find(x => x.name === 'btn_b').status = 'down';
-//         }, this);
-//
-//         this.button_y.on('pointerdown', function(pointer) {
-//             pressedButtons['btn_y'] = true;
-//             this.buttons.find(x => x.name === 'btn_y').status = 'down';
-//         }, this);
-
-// Manejador de eventos para el evento global pointerup
-//         this.input.on('pointerup', function (event) {
-//             // Restablecer el estado de los botones cuando se levanta el dedo del botón
-//             Object.keys(pressedButtons).forEach(key => {
-//                 console.log(pressedButtons)
-//                 this.buttons.find(x => x.name === key).status = 'up';
-//             });
-//             // Limpiar el objeto pressedButtons
-//             pressedButtons = {};
-//         }, this);
-//
-//         this.input.on('pointerdown', function (event) {
-//             // Restablecer el estado de los botones cuando se levanta el dedo del botón
-//             Object.keys(pressedButtons).forEach(key => {
-//                 console.log(pressedButtons)
-//                 this.buttons.find(x => x.name === key).status = 'down';
-//             });
-//             // Limpiar el objeto pressedButtons
-//             pressedButtons = {};
-//         }, this);
-        // this.button_up.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_up').status='down';
-        // }, this);
-        // this.button_down.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_down').status='down';
-        // }, this);
-        // this.button_left.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_left').status='down';
-        // }, this);
-        // this.button_right.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_right').status='down';
-        // }, this);
-        //
-        //
-        // this.button_a.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_a').status='down';
-        // }, this);
-        // this.button_b.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_b').status='down';
-        // }, this);
-        // this.button_x.on('pointerdown', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_x').status='down';
-        // }, this);
-        // this.button_y.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_y').status='down';
-        // }, this);
-        //
-        //
-        // this.button_up.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_up').status='up';
-        // }, this);
-        // this.button_down.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_down').status='up';
-        // }, this);
-        // this.button_left.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_left').status='up';
-        // }, this);
-        // this.button_right.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_right').status='up';
-        // }, this);
-        //
-        //
-        // this.button_a.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_a').status='up';
-        // }, this);
-        // this.button_b.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_b').status='up';
-        // }, this);
-        // this.button_x.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_x').status='up';
-        // }, this);
-        // this.button_y.on('pointerup', function(pointer) {
-        //     this.buttons.find(x => x.name === 'btn_y').status='up';
-        // }, this);
-
-
 
     }
     movePlayer(time, delta){
@@ -1773,51 +1587,59 @@ class Example extends Phaser.Scene {
             && !this.playerController.punch
             && !this.playerController.morte
             && !this.playerController.ball
-            // && !this.playerController.punch
-            // && !this.playerController.run
-            // && !this.playerController.climb
+            && !this.playerController.punch
+            && !this.playerController.run
+            && !this.playerController.climb
             // && (player.blocked.right ||  plrrayer.blocked.left)
-            && (!this.buttons.find(x => x.action === 'action_left').status==='down' &&  !this.buttons.find(x => x.action === 'action_right').status==='down')
+            && (this.buttons.find(x => x.action === 'action_left').status==='up'
+            && this.buttons.find(x => x.action === 'action_right').status==='up' )
             // && !this.playerController.stick
         ){
-            this.playerController.matterSprite.setFrame(4);
-            this.playerController.matterSprite.anims.stop('run');
+            // this.playerController.matterSprite.setFrame(4);
+            // this.playerController.matterSprite.anims.stop('run');
             // player.stop=true;
         }
         //
         if(!player.stop){
-            if(
-                player.blocked.bottom
-                // && (!player.blocked.right &&  !player.blocked.left)
-                && !this.playerController.punch
-                && !this.playerController.dash
-                && !this.playerController.morte
-                && !this.playerController.ball
-                && (this.buttons.find(x => x.action === 'action_left').status==='down' ||  this.buttons.find(x => x.action === 'action_right').status==='down')
-                // && !this.playerController.stick
-            ){
-                this.playerController.matterSprite.anims.play('run', true);
-            }
-
-            if(
-                player.blocked.bottom
-                // && (!player.blocked.right &&  !player.blocked.left)
-                && this.playerController.morte
-                && !this.playerController.ball
-                && (this.buttons.find(x => x.action === 'action_left').status==='down' ||  this.buttons.find(x => x.action === 'action_right').status==='down')
-                // && !this.playerController.stick
-            ){
-                this.playerController.matterSprite.anims.play('morte', true);
-            }
-            this.jumpPlayer(time,player); // Mover jugador hacia la izquierda
-            this.movePlayerDirection(delta,player); // Mover jugador hacia la izquierda
-            // this.mortePlayer(time,delta,player); // Mover jugador hacia la izquierda
-            // if(!player.morte && !player.stick){
-            //     this.punchPlayer(time,player); // Mover jugador hacia la izquierda
-            //     this.dashPlayer(time,delta,player); // Mover jugador hacia la izquierda
-                // this.ballPlayer(time,delta,player); // Mover jugador hacia la izquierda
-                this.stickWallPlayer(time,player); // Mover jugador hacia la izquierda
+            // if(
+            //     player.blocked.bottom
+            //     // && (!player.blocked.right &&  !player.blocked.left)
+            //     && !this.playerController.punch
+            //     && !this.playerController.dash
+            //     && !this.playerController.morte
+            //     && !this.playerController.ball
+            //     && (
+            //         this.buttons.find(x => x.action === 'action_left').status==='down'
+            //         ||  this.buttons.find(x => x.action === 'action_right').status==='down')
+            //     // && !this.playerController.stick
+            // ){
+            //     this.playerController.matterSprite.anims.play('run', true);
             // }
+
+            // if(
+            //     player.blocked.bottom
+            //     // && (!player.blocked.right &&  !player.blocked.left)
+            //     && this.playerController.morte
+            //     && !this.playerController.ball
+            //     && (this.buttons.find(x => x.action === 'action_left').status==='down' ||  this.buttons.find(x => x.action === 'action_right').status==='down')
+            //     // && !this.playerController.stick
+            // ){
+            //     this.playerController.matterSprite.anims.play('morte', true);
+            // }
+            // this.jumpPlayer(time,player); // Mover jugador hacia la izquierda
+            this.movePlayerDirection(delta,player); // Mover jugador hacia la izquierda
+            this.mortePlayer(time,delta,player); // Mover jugador hacia la izquierda
+            if(!player.morte && !player.stick){
+                this.punchPlayer(time,player); // Mover jugador hacia la izquierda
+                if((
+                    this.buttons.find(x => x.action === 'action_left').status==='down'
+                    ||  this.buttons.find(x => x.action === 'action_right').status==='down')){
+                    this.dashPlayer(time,delta,player); // Mover jugador hacia la izquierda
+
+                }
+                this.ballPlayer(time,delta,player); // Mover jugador hacia la izquierda
+                this.stickWallPlayer(time,player); // Mover jugador hacia la izquierda
+            }
         }
 
         //
@@ -2016,7 +1838,7 @@ class Example extends Phaser.Scene {
 // Crear el jugador cuadrado inicialmente
         playerBody = M.Bodies.rectangle(1, w * 0.5, h / 1.1, { chamfer: { radius: 10 } });
 
-        if( this.cursors.down.isDown && this.playerController.ball && this.playerController.morte){
+        if( this.buttons.find(x => x.action === 'action_down').status==='down' && this.playerController.ball && this.playerController.morte){
             this.playerController.matterSprite.anims.play('ball', true);
             // this.smoothedControls.moveRight(delta);
             // if (
@@ -2042,7 +1864,7 @@ class Example extends Phaser.Scene {
 
         if (
             this.playerController.blocked.bottom &&
-            this.cursors.down.isDown
+            this.buttons.find(x => x.action === 'action_down').status==='down'
             && this.playerController.ball
             && !this.playerController.morte ){
             this.changeToBall(player);
@@ -2063,7 +1885,7 @@ class Example extends Phaser.Scene {
             }
         }, this);
         if (
-            this.cursors.down.isDown
+            this.buttons.find(x => x.action === 'action_down').status==='down'
             && !this.playerController.morte
             // && !this.playerController.ball
             && this.playerController.blocked.bottom
@@ -2111,11 +1933,12 @@ class Example extends Phaser.Scene {
             // Actualizar el tamaño del sprite
             // Marcar que la acción de escalar se ha realizado
         }
+        // this.buttons.find(x => x.action === 'action_down').status==='up'
 
         if (
-            this.cursors.down.isUp
+            this.buttons.find(x => x.action === 'action_down').status==='up'
             && this.playerController.morte
-            && this.playerController.ball
+            && !this.playerController.ball
         ) {
             player.actionDuration=0;
             this.changeToNormal(player)
@@ -2147,10 +1970,10 @@ class Example extends Phaser.Scene {
             // this.playerController.matterSprite.anims.play('SHit', true);
             if (this.playerController.blocked.bottom)
             {
-                // this.playerController.matterSprite.anims.play('run', true);
+                this.playerController.matterSprite.anims.play('run', true);
 
             }else {
-                // this.playerController.matterSprite.anims.play('jump', true);
+                this.playerController.matterSprite.anims.play('jump', true);
             }
         }
     }
@@ -2207,9 +2030,8 @@ class Example extends Phaser.Scene {
         const isDirectionPositive = (player.direction.x === 1) ? true : false;
 
 
-        if (this.keyR.isDown){
+        if (this.buttons.find(x => x.action === 'action_dash').status==='down'){
             this.playerController.punch=false;
-            this.playerController.matterSprite.anims.play('dash', true);
             player.actionTimer = 0;
             player.actionDuration=1000;
             this.playerController.dash=true;
@@ -2223,6 +2045,8 @@ class Example extends Phaser.Scene {
                 player.matterSprite.setVelocityX(newVelocityX);
                 this.smoothedControls.moveLeft(delta);
                 this.parallaxBg(this.playerController.direction.x);
+                this.playerController.matterSprite.anims.play('dash', true);
+
             } else if (
                 isDirectionPositive
             ) {
@@ -2232,7 +2056,13 @@ class Example extends Phaser.Scene {
                 player.matterSprite.setVelocityX(newVelocityX);
                 this.smoothedControls.moveRight(delta);
                 this.parallaxBg(this.playerController.direction.x);
+                this.playerController.matterSprite.anims.play('dash', true);
+
             }
+        }else {
+           this.playerController.dash =false;
+            this.playerController.matterSprite.anims.play('run', true);
+
         }
         // else if(this.keyR.isUp){
         //     this.playerController.matterSprite.anims.play('ground_pound', true);
@@ -2246,7 +2076,7 @@ class Example extends Phaser.Scene {
                 // Haz algo cuando la tecla 'R' sea liberada
                 // this.playerController.matterSprite.anims.play('run_stop', true);
                 player.dash=false;
-                this.smoothedControls.reset();
+                // this.smoothedControls.reset();
             }
         }, this);
 
@@ -2269,13 +2099,13 @@ class Example extends Phaser.Scene {
             this.playerController.punch=true;
 
         }
-        if (this.keyS.isDown
+        if (this.buttons.find(x => x.action === 'action_attack').status==='down'
             && !this.playerController.ball
             && !this.playerController.punch
             && !this.playerController.blocked.left
             && !this.playerController.blocked.right
             && this.playerController.blocked.bottom
-            && (!this.buttons.find(x => x.action === 'action_left').status==='down' || !this.buttons.find(x => x.action === 'action_right').status==='down')
+            && (this.buttons.find(x => x.action === 'action_left').status==='up' || this.buttons.find(x => x.action === 'action_right').status==='up')
         ){
             this.playerController.punch=true;
             player.actionTimer = 0;
@@ -2300,13 +2130,13 @@ class Example extends Phaser.Scene {
 
         const canJump = (time - this.playerController.lastJumpedAt) > 250;
 
-        if (this.buttons.find(x => x.action === 'action_jump').status==='down') {
-            player.jumpSpeed += 1; // Ajusta el incremento de velocidad según sea necesario
+        if (this.buttons.find(x => x.action === 'action_jump').status==='down'  && canJump) {
+            player.jumpSpeed += 1.5; // Ajusta el incremento de velocidad según sea necesario
 
             if (this.playerController.blocked.left && player.stick)
             {
                 // Jump up and away from the wall
-                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1);
+                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1.1);
                 player.matterSprite.setVelocityX(this.playerController.speed.run*1.5);
                 this.playerController.lastJumpedAt = time;
                 player.jumpSpeed = 0;
@@ -2314,7 +2144,7 @@ class Example extends Phaser.Scene {
             else if (this.playerController.blocked.right && player.stick)
             {
                 // Jump up and away from the wall
-                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1);
+                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1.1);
                 player.matterSprite.setVelocityX(-this.playerController.speed.run*1.5);
                 this.playerController.lastJumpedAt = time;
                 player.jumpSpeed = 0;
@@ -2362,11 +2192,9 @@ class Example extends Phaser.Scene {
                     && !player.jump
                     && !player.morte
                 ){
-                    this.playerController.matterSprite.anims.play('jump', true);
-                    this.playerController.matterSprite.anims.play('jump', true);
+                    // this.playerController.matterSprite.anims.play('jump', true);
                     player.stop=false;
                 }
-            this.buttons.find(x => x.name === 'btn_a').status='stop';
 
          }else {
         }
