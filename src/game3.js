@@ -897,7 +897,7 @@ class Example extends Phaser.Scene {
         this.populate();
         // this.anims.createFromAseprite('paladin');
         this.matterEvents();
-        this.enableDebug();
+        // this.enableDebug();
 
         // Detecta la orientación de la pantalla
         var isVertical = this.scale.orientation === Phaser.Scale.PORTRAIT;
