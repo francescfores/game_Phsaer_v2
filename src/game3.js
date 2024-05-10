@@ -1626,7 +1626,7 @@ class Example extends Phaser.Scene {
             // ){
             //     this.playerController.matterSprite.anims.play('morte', true);
             // }
-            // this.jumpPlayer(time,player); // Mover jugador hacia la izquierda
+            this.jumpPlayer(time,player); // Mover jugador hacia la izquierda
             this.movePlayerDirection(delta,player); // Mover jugador hacia la izquierda
             this.mortePlayer(time,delta,player); // Mover jugador hacia la izquierda
             if(!player.morte && !player.stick){
