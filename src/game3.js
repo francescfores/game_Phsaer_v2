@@ -456,8 +456,8 @@ class Example extends Phaser.Scene {
                 this.playerController.sensors.left,
                 this.playerController.sensors.right
             ],
-            friction: 0.01,
-            restitution: 0.05 // Prevent body from sticking against a wall
+            friction: 0.001,
+            restitution: 0.1 // Prevent body from sticking against a wall
         });
         this.playerController.matterSprite.play({key: 'delay', repeat: -1})
             .setExistingBody(compoundBody)
@@ -894,7 +894,7 @@ class Example extends Phaser.Scene {
         this.createTileMap()
         // this.decorWorld()
         this.createPlayer(200, 0);
-        // this.populate();
+        this.populate();
         // this.anims.createFromAseprite('paladin');
         this.matterEvents();
         this.enableDebug();
@@ -1016,6 +1016,7 @@ class Example extends Phaser.Scene {
         const borderRect2 = this.add.rectangle(screenWidth -50, screenHeight -50, 100, 100)
         // .setStrokeStyle(2, 0xff1100).setInteractive().setScrollFactor(0);
         this.anims.createFromAseprite('controllers');
+        let opacityControll=0.8;
         this.button_a = this.matter.add.sprite(0, 0, 'controllers', 0)
             .setFrame(0)
             .setInteractive()
@@ -1025,6 +1026,9 @@ class Example extends Phaser.Scene {
             .setIgnoreGravity(true)
             .setAngularVelocity(0);
         this.button_a.setPosition(rectControls.x, rectControls.y + (rectControls.width/2)-this.button_a.body.gameObject.width/2)
+        this.button_a.alpha = opacityControll;
+
+        // this.button_a.opacity=0.5
         this.button_a.name='button_a';
         this.button_b = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(5)
@@ -1036,6 +1040,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0);
         this.button_b.setPosition(rectControls.x + (rectControls.width/2)-this.button_b.body.gameObject.width/2, rectControls.y )
         this.button_b.name='button_b';
+        this.button_b.alpha = opacityControll;
 
         this.button_x = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(10)
@@ -1047,6 +1052,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0);
         this.button_x.setPosition(rectControls.x - (rectControls.width/2)+this.button_x.body.gameObject.width/2, rectControls.y )
         this.button_x.name='button_x';
+        this.button_x.alpha = opacityControll;
 
         this.button_y = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(15)
@@ -1058,6 +1064,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0);
         this.button_y.setPosition(rectControls.x, rectControls.y - (rectControls.width/2)+this.button_y.body.gameObject.width/2)
         this.button_y.name='button_y';
+        this.button_y.alpha = opacityControll;
 
         const rectControlsPads = this.add.rectangle(borderRect.x -(borderRect.width/2)+40, borderRect.y +(borderRect.height/2)-40, 80, 80)
         // .setStrokeStyle(2, 0xfff).setInteractive().setScrollFactor(0);
@@ -1073,6 +1080,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0);
         this.button_down.setPosition(rectControlsPads.x, rectControlsPads.y + (rectControlsPads.width/2)-this.button_down.body.gameObject.width/1.5)
         this.button_down.name='button_down';
+        this.button_down.alpha = opacityControll;
 
         this.button_up = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(32)
@@ -1084,6 +1092,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0);
         this.button_up.setPosition(rectControlsPads.x, rectControlsPads.y - (rectControlsPads.width/2)+this.button_up.body.gameObject.width/1.5)
         this.button_up.name='button_up';
+        this.button_up.alpha = opacityControll;
 
         this.button_left = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(42)
@@ -1095,6 +1104,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0);
         this.button_left.setPosition(rectControlsPads.x - (rectControlsPads.width/2)+this.button_left.body.gameObject.width/1.5, rectControlsPads.y )
         this.button_left.name='button_left';
+        this.button_left.alpha = opacityControll;
 
         this.button_right = this.matter.add.sprite(0,0, 'controllers', 0)
             .setFrame(36)
@@ -1106,6 +1116,7 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0);
         this.button_right.setPosition(rectControlsPads.x + (rectControlsPads.width/2)-this.button_right.body.gameObject.width/1.5, rectControlsPads.y )
         this.button_right.name='button_right';
+        this.button_right.alpha = opacityControll;
 
     }
     update (time, delta)
@@ -1113,9 +1124,9 @@ class Example extends Phaser.Scene {
 
         this.parallaxBgReset();
         this.movePlayer(time, delta);
-        // this.moveEnemies(time, delta);
-        // this.moveEnemies2(time, delta);
-        // this.moveEnemies3(time, delta);
+        this.moveEnemies(time, delta);
+        this.moveEnemies2(time, delta);
+        this.moveEnemies3(time, delta);
     }
     matterEvents(){
         // Usa eventos de materia para detectar si el jugador está tocando una superficie a la izquierda, derecha o
@@ -1582,7 +1593,7 @@ class Example extends Phaser.Scene {
         //
 
         if( player.blocked.bottom
-            // && !this.playerController.morte
+            && !this.playerController.morte
             && !this.playerController.dash
             && !this.playerController.punch
             && !this.playerController.morte
@@ -1591,56 +1602,64 @@ class Example extends Phaser.Scene {
             && !this.playerController.run
             && !this.playerController.climb
             // && (player.blocked.right ||  plrrayer.blocked.left)
-            && (this.buttons.find(x => x.action === 'action_left').status==='up'
-            && this.buttons.find(x => x.action === 'action_right').status==='up' )
-            // && !this.playerController.stick
+            && (
+                this.buttons.find(x => x.action === 'action_left').status!=='down'
+                && this.buttons.find(x => x.action === 'action_right').status!=='down'
+            )
+            && !this.playerController.stick
         ){
-            // this.playerController.matterSprite.setFrame(4);
+                // this.playerController.matterSprite.anims.play('run', true);
+
+            this.playerController.matterSprite.setFrame(4);
+            // this.playerController.matterSprite.anims.play('run', true);
+
             // this.playerController.matterSprite.anims.stop('run');
             // player.stop=true;
         }
         //
-        if(!player.stop){
-            // if(
-            //     player.blocked.bottom
-            //     // && (!player.blocked.right &&  !player.blocked.left)
-            //     && !this.playerController.punch
-            //     && !this.playerController.dash
-            //     && !this.playerController.morte
-            //     && !this.playerController.ball
-            //     && (
-            //         this.buttons.find(x => x.action === 'action_left').status==='down'
-            //         ||  this.buttons.find(x => x.action === 'action_right').status==='down')
-            //     // && !this.playerController.stick
-            // ){
-            //     this.playerController.matterSprite.anims.play('run', true);
-            // }
+        // if(!player.stop){
+            if(
+                player.blocked.bottom
+                && (!player.blocked.right &&  !player.blocked.left)
+                && !this.playerController.punch
+                && !this.playerController.dash
+                && !this.playerController.morte
+                && !this.playerController.ball
+                && (
+                    this.buttons.find(x => x.action === 'action_left').status==='down'
+                    ||  this.buttons.find(x => x.action === 'action_right').status==='down')
+                && !this.playerController.stick
+            ){
+                this.playerController.matterSprite.anims.play('run', true);
+            }
 
-            // if(
-            //     player.blocked.bottom
-            //     // && (!player.blocked.right &&  !player.blocked.left)
-            //     && this.playerController.morte
-            //     && !this.playerController.ball
-            //     && (this.buttons.find(x => x.action === 'action_left').status==='down' ||  this.buttons.find(x => x.action === 'action_right').status==='down')
-            //     // && !this.playerController.stick
-            // ){
-            //     this.playerController.matterSprite.anims.play('morte', true);
-            // }
-            this.jumpPlayer(time,player); // Mover jugador hacia la izquierda
+            if(
+                player.blocked.bottom
+                // && (!player.blocked.right &&  !player.blocked.left)
+                && this.playerController.morte
+                && !this.playerController.ball
+                && (this.buttons.find(x => x.action === 'action_left').status==='down' ||  this.buttons.find(x => x.action === 'action_right').status==='down')
+                // && !this.playerController.stick
+            ){
+                this.playerController.matterSprite.anims.play('morte', true);
+            }
             this.movePlayerDirection(delta,player); // Mover jugador hacia la izquierda
+        this.jumpPlayer(time,player); // Mover jugador hacia la izquierda
+
             this.mortePlayer(time,delta,player); // Mover jugador hacia la izquierda
             if(!player.morte && !player.stick){
                 this.punchPlayer(time,player); // Mover jugador hacia la izquierda
                 if((
                     this.buttons.find(x => x.action === 'action_left').status==='down'
-                    ||  this.buttons.find(x => x.action === 'action_right').status==='down')){
+                    ||  this.buttons.find(x => x.action === 'action_right').status==='down'))
+                {
                     this.dashPlayer(time,delta,player); // Mover jugador hacia la izquierda
 
                 }
                 this.ballPlayer(time,delta,player); // Mover jugador hacia la izquierda
                 this.stickWallPlayer(time,player); // Mover jugador hacia la izquierda
             }
-        }
+        // }
 
         //
         // if (
@@ -1707,8 +1726,8 @@ class Example extends Phaser.Scene {
     // Función para cambiar la forma del jugador a circular
     changeToBall(player) {
         const M = Phaser.Physics.Matter.Matter;
-        const w = this.playerController.matterSprite.width *1.7;
-        const h = this.playerController.matterSprite.height *1.7;
+        const w = this.playerController.matterSprite.width *1.5;
+        const h = this.playerController.matterSprite.height *1.5;
         // El cuerpo del jugador va a ser un cuerpo compuesto:
         // - playerBody es el cuerpo sólido que interactuará físicamente con el mundo. Tiene un
         // chaflán (bordes redondeados) para evitar el problema de los vértices fantasma: http://www.iforce2d.net/b2dtut/ghost-vertices
@@ -1771,8 +1790,8 @@ class Example extends Phaser.Scene {
     }
     changeToNormal(player) {
         const M = Phaser.Physics.Matter.Matter;
-        const w = this.playerController.matterSprite.width *1.7;
-        const h = this.playerController.matterSprite.height *1.7;
+        const w = this.playerController.matterSprite.width *1.5;
+        const h = this.playerController.matterSprite.height *1.5;
 
         let sx = w / 2;
         let sy = h / 2;
@@ -1816,52 +1835,14 @@ class Example extends Phaser.Scene {
     }
     mortePlayer(time,delta,player) {
         const M = Phaser.Physics.Matter.Matter;
-        let oldVelocityX;
-        let targetVelocityX;
-        let newVelocityX;
-        const isDirectionPositive = (player.direction.x === 1) ? true : false;
 
-        let isCircular = false;
-        const w = player.matterSprite.width * 1.5;
-        const h = player.matterSprite.height * 1.5;
-        // El cuerpo del jugador va a ser un cuerpo compuesto:
-        // - playerBody es el cuerpo sólido que interactuará físicamente con el mundo. Tiene un
-        // chaflán (bordes redondeados) para evitar el problema de los vértices fantasma: http://www.iforce2d.net/b2dtut/ghost-vertices
-        // - Sensores izquierdo/derecho/inferior que no interactuarán físicamente pero nos permitirán comprobar si
-        // el jugador está parado sobre suelo sólido o empujado contra un objeto sólido.
-        // Move the sensor to player center
-        let sx = w / 2;
-        let sy = h / 2;
-        // The player's body is going to be a compound body.
-        let playerBody = M.Bodies.rectangle(sx, sy*1.5, w * 0.5, h/2, {chamfer: {radius: 0}});
-
-// Crear el jugador cuadrado inicialmente
-        playerBody = M.Bodies.rectangle(1, w * 0.5, h / 1.1, { chamfer: { radius: 10 } });
-
-        if( this.buttons.find(x => x.action === 'action_down').status==='down' && this.playerController.ball && this.playerController.morte){
+        //animation
+        if( this.buttons.find(x => x.action === 'action_down').status==='down'
+            && this.playerController.ball
+            && this.playerController.morte){
             this.playerController.matterSprite.anims.play('ball', true);
-            // this.smoothedControls.moveRight(delta);
-            // if (
-            //     !isDirectionPositive
-            // ) {
-            //     oldVelocityX = player.matterSprite.body.velocity.x;
-            //     targetVelocityX = -this.playerController.speed.step;
-            //     newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, -this.smoothedControls.value);
-            //     player.matterSprite.setVelocityX(newVelocityX);
-            //     this.smoothedControls.moveLeft(delta);
-            //     this.parallaxBg(this.playerController.direction.x);
-            // } else if (
-            //     isDirectionPositive
-            // ) {
-            //     oldVelocityX = player.matterSprite.body.velocity.x;
-            //     targetVelocityX = this.playerController.speed.step;
-            //     newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, this.smoothedControls.value);
-            //     player.matterSprite.setVelocityX(newVelocityX);
-            //     this.smoothedControls.moveRight(delta);
-            //     this.parallaxBg(this.playerController.direction.x);
-            // }
         }
-
+        //ball
         if (
             this.playerController.blocked.bottom &&
             this.buttons.find(x => x.action === 'action_down').status==='down'
@@ -1870,20 +1851,7 @@ class Example extends Phaser.Scene {
             this.changeToBall(player);
             // this.playerController.morte=true;
         }
-        this.input.keyboard.on('keyup', function (event) {
-            if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.DOWN) {
-                if(
-                    !player.ball &&
-                    this.playerController.blocked.bottom
 
-                ){
-                    player.ball=false;
-                    player.morte=false;
-                    this.changeToNormal(player)
-                }
-
-            }
-        }, this);
         if (
             this.buttons.find(x => x.action === 'action_down').status==='down'
             && !this.playerController.morte
@@ -1898,7 +1866,6 @@ class Example extends Phaser.Scene {
 
 // Escalar el cuerpo físico
             M.Body.scale(currentBody, 1, newBodyHeight / currentHeight);
-
 // Establecer el cuerpo físico y ajustar la posición vertical
             this.playerController.matterSprite
                 .setExistingBody(currentBody)
@@ -1906,35 +1873,7 @@ class Example extends Phaser.Scene {
 
             this.playerController.morte = true;
             this.playerController.matterSprite.anims.play('morte', true);
-
-            this.input.keyboard.on('keyup', function (event) {
-                // Verifica si la tecla liberada es la tecla 'R'
-                if (event.keyCode === this.keyD.keyCode) {
-                    // Haz algo cuando la tecla 'R' sea liberada
-                    // this.playerController.matterSprite.anims.play('start_ball', true);
-                    this.smoothedControls.reset();
-                    player.ball=false;
-                    player.morte=false;
-                    this.changeToNormal(player)
-                }
-            }, this);
-
-            // this.playerController.matterSprite
-            //     .setExistingBody(currentBody)
-            //     .setPosition(currentBody.position.x,currentBody.position.y)
-            //     .setCircle(20)
-            //     .setPosition(currentBody.position.x,currentBody.position.y)
-            //     .setCircle(20)
-            // Actualizar la posición visual del sprite
-            // const newPositionY = this.playerController.matterSprite.y - (newHeight - this.playerController.matterSprite.height) / 2;
-            // this.playerController.matterSprite.y = newPositionY-20;
-            // this.playerController.matterSprite.setSize(this.playerController.matterSprite.width, newHeight);
-            // this.playerController.matterSprite.setBounce(0)
-            // Actualizar el tamaño del sprite
-            // Marcar que la acción de escalar se ha realizado
         }
-        // this.buttons.find(x => x.action === 'action_down').status==='up'
-
         if (
             this.buttons.find(x => x.action === 'action_down').status==='up'
             && this.playerController.morte
@@ -1942,32 +1881,7 @@ class Example extends Phaser.Scene {
         ) {
             player.actionDuration=0;
             this.changeToNormal(player)
-            // // Modificar el alto del sprite
-            // // Modificar el alto del sprite
-            // const newHeight = this.playerController.matterSprite.height ; // Reducir el alto al 75%
-            // // Modificar el alto del cuerpo físico
-            // const currentBody = this.playerController.matterSprite.body;
-            // const currentHeight = currentBody.bounds.max.y - currentBody.bounds.min.y;
-            // const newBodyHeight = newHeight * 1.5;
-            // // Calcular la nueva posición Y del cuerpo físico
-            // // const newPositionY = currentBody.position.y + (currentHeight - newBodyHeight) / 2;
-            // // Escalar el cuerpo físico
-            // M.Body.scale(currentBody, 1, newBodyHeight / currentHeight);
-            // // this.playerController.matterSprite
-            // //         .setPosition(currentBody.position.x,currentBody.position.y)
-            // //     .setExistingBody(currentBody).setRectangle(this.playerController.matterSprite.width, this.playerController.matterSprite.height)
-            // // this.playerController.matterSprite
-            // //     .setExistingBody(currentBody)
-            // //     .setCircle(20)
-            // //     .setPosition(currentBody.position.x,currentBody.position.y)
-            // //     .setCircle(20)
-            // // Actualizar la posición Y del cuerpo físico
-            // // M.Body.setPosition(currentBody, { x: currentBody.position.x+1, y: newPositionY });
-            // // Actualizar el tamaño del sprite
-            // // this.playerController.matterSprite.setSize(this.playerController.matterSprite.width, newHeight);
-            // // Marcar que la acción de escalar se ha realizado
             this.playerController.morte = false;
-            // this.playerController.matterSprite.anims.play('SHit', true);
             if (this.playerController.blocked.bottom)
             {
                 this.playerController.matterSprite.anims.play('run', true);
@@ -2061,7 +1975,7 @@ class Example extends Phaser.Scene {
             }
         }else {
            this.playerController.dash =false;
-            this.playerController.matterSprite.anims.play('run', true);
+            // this.playerController.matterSprite.anims.play('run', true);
 
         }
         // else if(this.keyR.isUp){
@@ -2131,12 +2045,13 @@ class Example extends Phaser.Scene {
         const canJump = (time - this.playerController.lastJumpedAt) > 250;
 
         if (this.buttons.find(x => x.action === 'action_jump').status==='down'  && canJump) {
-            player.jumpSpeed += 1.5; // Ajusta el incremento de velocidad según sea necesario
+            player.jumpSpeed += 5.5; // Ajusta el incremento de velocidad según sea necesario
 
             if (this.playerController.blocked.left && player.stick)
             {
                 // Jump up and away from the wall
-                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1.1);
+                this.playerController.matterSprite.setFlipX(false);
+                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1.3);
                 player.matterSprite.setVelocityX(this.playerController.speed.run*1.5);
                 this.playerController.lastJumpedAt = time;
                 player.jumpSpeed = 0;
@@ -2144,7 +2059,8 @@ class Example extends Phaser.Scene {
             else if (this.playerController.blocked.right && player.stick)
             {
                 // Jump up and away from the wall
-                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1.1);
+                this.playerController.matterSprite.setFlipX(true);
+                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1.3);
                 player.matterSprite.setVelocityX(-this.playerController.speed.run*1.5);
                 this.playerController.lastJumpedAt = time;
                 player.jumpSpeed = 0;
@@ -2251,9 +2167,11 @@ class Example extends Phaser.Scene {
             newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, -this.smoothedControls.value);
             player.matterSprite.setVelocityX(newVelocityX);
             this.parallaxBg(this.playerController.direction.x);
+                // this.playerController.matterSprite.anims.play('run', true);
 
         }
-        else if (this.buttons.find(x => x.action === 'action_right').status==='down'  && !this.playerController.blocked.right)
+        else if (this.buttons.find(x => x.action === 'action_right').status==='down'
+            && !this.playerController.blocked.right)
         {
             this.playerController.matterSprite.setFlipX(false);
             this.smoothedControls.moveRight(delta);
@@ -2264,11 +2182,13 @@ class Example extends Phaser.Scene {
             newVelocityX = Phaser.Math.Linear(oldVelocityX, targetVelocityX, this.smoothedControls.value);
             player.matterSprite.setVelocityX(newVelocityX);
             this.parallaxBg(this.playerController.direction.x);
+                // this.playerController.matterSprite.anims.play('run', true);
+
         }
         else
         {
             this.smoothedControls.reset();
-            // player.matterSprite.anims.play('run_stop', true);
+            // player.matterSprite.anims.stop('run_stop', true);
             // this.stopPlayer(player)
         }
     }

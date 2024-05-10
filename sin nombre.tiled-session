@@ -24,8 +24,8 @@
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 1279.5,
-                "y": 199.5
+                "x": 942,
+                "y": -68.5
             }
         },
         "assets/maps/map.json#collisions": {
@@ -225,8 +225,8 @@
             "scale": 1,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 2712,
-                "y": 256.5
+                "x": 2880,
+                "y": 255.5
             }
         },
         "assets/tilemaps/maps/matter-platformer2.json#1560": {
