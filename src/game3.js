@@ -2058,7 +2058,7 @@ class Example extends Phaser.Scene {
             {
                 // Jump up and away from the wall
                 this.playerController.matterSprite.setFlipX(false);
-                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1.3);
+                player.matterSprite.setVelocityY(-this.playerController.speed.jump*1.2);
                 player.matterSprite.setVelocityX(this.playerController.speed.run*1.5);
                 this.playerController.lastJumpedAt = time;
                 player.jumpSpeed = 0;
@@ -2067,7 +2067,7 @@ class Example extends Phaser.Scene {
             {
                 // Jump up and away from the wall
                 this.playerController.matterSprite.setFlipX(true);
-                player.matterSprite.setVelocityY(-this.playerController.speed.jump/1.3);
+                player.matterSprite.setVelocityY(-this.playerController.speed.jump*1.2);
                 player.matterSprite.setVelocityX(-this.playerController.speed.run*1.5);
                 this.playerController.lastJumpedAt = time;
                 player.jumpSpeed = 0;
