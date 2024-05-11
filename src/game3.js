@@ -933,24 +933,7 @@ class Example extends Phaser.Scene {
 
         this.input.addPointer(5);
 
-        let fullscreenButton = this.matter.add.sprite(750, 50, 'fullscreenButton')
-            .setInteractive()
-            .setScrollFactor(0)
-            .setCollisionCategory(0) // Activa las colisiones con todas las categorías
-            .setCollidesWith(0)
-            .setIgnoreGravity(true)
-            .setAngularVelocity(this.cam.midPoint.x,this.cam.midPoint.y);
 
-        // Agrega un controlador de eventos al botón de pantalla completa
-        fullscreenButton.on('pointerup', function() {
-            if (this.scale.isFullscreen) {
-                // Si el juego ya está en pantalla completa, sal del modo de pantalla completa
-                this.scale.stopFullscreen();
-            } else {
-                // Si el juego no está en pantalla completa, entra en el modo de pantalla completa
-                this.scale.startFullscreen();
-            }
-        }, this);
     }
     createHud() {
         // Calculamos las coordenadas y dimensiones del rectángulo con la orientacion
@@ -990,7 +973,25 @@ class Example extends Phaser.Scene {
             .setAngularVelocity(0)
         // .setScale(1.5)
         this.button_rb.setPosition(rectControlsBack.x -(rectControlsBack.width/2)+this.button_rb.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+this.button_rb.body.gameObject.height/2)
+        // let fullscreenButton = this.matter.add.sprite(750, 50, 'fullscreenButton')
+        //     .setInteractive()
+        //     .setScrollFactor(0)
+        //     .setCollisionCategory(0) // Activa las colisiones con todas las categorías
+        //     .setCollidesWith(0)
+        //     .setIgnoreGravity(true)
+        //     .setAngularVelocity(0)
+        // fullscreenButton.setPosition(rectControlsBack.x -(rectControlsBack.width/2)+fullscreenButton.body.gameObject.width/2,rectControlsBack.y -(rectControlsBack.height/2)+fullscreenButton.body.gameObject.height/2)
 
+        // Agrega un controlador de eventos al botón de pantalla completa
+        this.button_rb.on('pointerup', function() {
+            if (this.scale.isFullscreen) {
+                // Si el juego ya está en pantalla completa, sal del modo de pantalla completa
+                this.scale.stopFullscreen();
+            } else {
+                // Si el juego no está en pantalla completa, entra en el modo de pantalla completa
+                this.scale.startFullscreen();
+            }
+        }, this);
         this.hud_power =this.matter.add.sprite(10, 10, 'hud_power', 0)
             .setInteractive()
             .setScrollFactor(0)
