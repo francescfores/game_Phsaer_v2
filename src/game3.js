@@ -537,7 +537,7 @@ class Example extends Phaser.Scene {
     }
 
     createEnemiSprite(x, y) {
-        // this.anims.createFromAseprite('enemi_1');
+        this.anims.createFromAseprite('enemi_1');
 
         let enemy = {
             matterSprite: this.matter.add.sprite(200, 200, 'enemi_1', 0)
@@ -637,7 +637,7 @@ class Example extends Phaser.Scene {
         this.enemiesGroup.push(enemy);
     }
     createEnemiSprite3(x,  y) {
-        // this.anims.createFromAseprite('enemi_2');
+        this.anims.createFromAseprite('enemi_2');
 
         let enemy = {
             matterSprite: this.matter.add.sprite(200, 200, 'enemi_2', 0)
